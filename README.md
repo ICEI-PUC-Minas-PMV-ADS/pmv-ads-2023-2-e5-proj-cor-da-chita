@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# Cor da Chita
 
 `Análise e Desenvolvimento de Sistemas`
 
@@ -6,7 +6,7 @@
 
 `5º Eixo`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O projeto se destina a criação de um website para a empresa de artesanato Cor da Chita. O foco principal é criar um canal de vendas online - e-commerce - para maior comodidade dos clientes e expansão do negócio, fortalecendo assim a marca no mercado.
 
 ## Integrantes
 
