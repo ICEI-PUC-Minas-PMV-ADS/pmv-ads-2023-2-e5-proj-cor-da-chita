@@ -19,45 +19,39 @@ Colocar a imagem do modelo construído apresentando a proposta de solução.
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto, assim como suas prioridades.
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|:------:|:-----------------------------------------:|:----:|
+|RF-001| O sistema suportará autenticação de usuários | ALTA | 
+|RF-002| A artesã pode cadastrar novos produtos, definindo suas descrições, preços, gerar estoque, assim como excluir os produtos já cadastrados. | ALTA |
+|RF-003| O cliente pode realizar buscas por produtos por nome, categoria e preço  | MÉDIA |
+|RF-004| O cliente pode adicionar ou excluir produtos no carrinho  | ALTA |
+|RF-005| O sistema se integra à API dos Correios para calcular o frete com base no endereço do cliente. | MÉDIA |
+|RF-006| Os clientes podem escolher opções de pagamento, PIX ou cartão via contato de WhatsApp, e concluir a compra. | MÉDIA |
+|RF-007| Os clientes devem receber um e-mail de confirmação após a conclusão da compra.  | BAIXA |
+|RF-008| Os clientes podem entrar em contato com a artesã via WhatsApp ou Instagram em caso de dúvidas. | BAIXA |
+|RF-009| A artesã deverá receber notificações de novos pedidos no site. | BAIXA |
+|RF-010|  O sistema pode gerar relatórios que mostram o período do mês com mais vendas e as regiões do Brasil com mais compras. | BAIXA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|:-------:|:-------------------------:|:----:|
+|RNF-001| Dados sensíveis devem ser protegidos com medidas de segurança adequadas. | ALTA | 
+|RNF-002| O sistema deve ser capaz de lidar com um grande número de usuários de diferentes regiões do Brasil. | BAIXA | 
+|RNF-003| O tempo de resposta devem ser razoáveis para garantir uma boa experiência do usuário.  | MÉDIA | 
+|RNF-004| A autenticação será baseada em OAuth, com opções de login via Google ou Microsoft.  | ALTA | 
 
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|:--:|:-------------------------------------------------------:|
+|01| O sistema será oferecido apenas em português. |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
