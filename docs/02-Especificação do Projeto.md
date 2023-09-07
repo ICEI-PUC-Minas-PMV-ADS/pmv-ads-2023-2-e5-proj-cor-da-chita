@@ -1,10 +1,28 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
+## Personas
+| NOME | INTERESSE | PERSONALIDADE | MOTIVAÇÃO |
+|:----:|:----:|:----:|:----:|
+| ![Gabriela](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/persona-gabriela.png)<br>**Gabriela Fernandes**| Ela se encanta por bonecas e objetos de decoração feitos de tecido chita, que muitas vezes contam histórias culturais e tradicionais. | Gabriela é introspectiva e que encontra significado e conexão nas narrativas por trás dos objetos. | Para Gabriela, cada peça de chita é uma janela para a história e a criatividade humana. Ela encontra satisfação em aprender sobre as origens e os significados por trás de cada artefato. |
+|![Gustavo](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/persona-gustavo.png)<br>**Gustavo Soeiro** | Ele compra toalhas de mesa decorativas e estandartes de chita para presentear amigos e familiares. Acredita que esses presentes únicos carregam um pedaço genuíno do Nordeste. | Gustavo é criativo e apaixonado por apoiar o trabalho manual de artesãos locais. | Gustavo valoriza a autenticidade e o esforço por trás de cada peça de chita. Ele vê esses artesanatos como presentes que transcendem o material e compartilham a cultura nordestina de maneira significativa. |
+| ![Larissa](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/persona-larissa.png)<br>**Larissa Medeiros** | Ela adora artesanatos de chita, como bolsas e acessórios. | Larissa é uma mulher moderna e consciente, que prefere fazer suas compras de forma prática e sustentável. |  Larissa valoriza a conveniência das compras online, mas também se preocupa com a origem ética dos produtos que adquire. Ela acredita que comprar de pequenos artesãos pela internet é uma maneira de apoiar talentos locais.  |
+| ![Paula](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/persona-paula.png)<br>**Paula Santana** | Ela gosta de explorar plataformas de venda online e redes sociais em busca de peças de chita únicas, como toalhas de mesa e decorações. | Paula é curiosa e entusiasta da tecnologia, sempre em busca de itens únicos e interessantes online. | Paula vê a internet como uma vasta galeria de arte e artesanato, onde ele pode encontrar peças exclusivas de chita que muitas vezes não estariam disponíveis em lojas físicas locais. |
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
+## Histórias de Usuários
 
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`|
+|:----:|:----:|:----:|
+| Gabriela Fernandes | Comprar artesanatos online | Decorar minha casa |
+| Gabriela Fernandes | Email de confirmação na compra | Segurança dos meus dados |
+| Gabriela Fernandes | História da artista e das peças | Para conhecer as inspirações e técnicas dos trabalhos |
+| Gustavo Soeiro | Comprar artesanatos online | Presentear meus amigos e familiares |
+| Gustavo Soeiro | Opção de frete no site | Calcular os custos finais da peça |
+| Gustavo Soeiro | Comprar artesanatos online  | Conhecer a cultura da região Nordeste do Brasil |
+| Larissa Medeiros | Facilidade no pagamento | Economizar meu tempo |
+| Larissa Medeiros | Catálogo de produtos com fotos e descrição | Para avaliar as artes e escolher a que melhor me agrada |
+| Larissa Medeiros | Comprar artesanatos online | Apoiar talentos de várias partes do país |
+| Paula Santana | Comprar artesanatos online | Obter peças exclusivas |
+| Paula Santana | Pagamento em PIX | Para ter um controle maior dos gastos com as peças |
 
 ## Arquitetura e Tecnologias
 
