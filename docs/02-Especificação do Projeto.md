@@ -84,8 +84,3 @@ Após levantamento dos requisitos e elaboração do diagrama de casos de uso, p�
 
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/Cor_da_chita_ER.png" alt="diagrama de caso de uso" width="500" />
 
-> - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
-
-## Projeto da Base de Dados
-
-O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
