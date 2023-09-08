@@ -78,13 +78,11 @@ De acordo com a elicitação de requisitos, foram elencados os seguintes casos d
 
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/diagrama-caso-uso-cor-da-chita.png" alt="diagrama de caso de uso" width="500" />
 
-## Modelo ER (Projeto Conceitual)
+## Modelo ER (Projeto Conceitual) e Projeto da Base de Dados
 
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
+Após levantamento dos requisitos e elaboração do diagrama de casos de uso, pôde-se estabelecer as entidades envolvidas no processo do produto Cor da Chita, bem como seus atributos e como se relacionam entre si. Abaixo, está o Modelo Entidade-Relacionamento que ilustra bem todo esse contexto.
 
-Sugestão de ferramentas para geração deste artefato: LucidChart e Draw.io.
-
-A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/Cor_da_chita_ER.png" alt="diagrama de caso de uso" width="500" />
 
 > - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
 
