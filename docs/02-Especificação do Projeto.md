@@ -33,14 +33,13 @@ A arquitetura levantada para atender os requisitos funcionais e não funcionais 
 
 ### Tecnologias e Integrações
 
-Sanity.io: 
-Para o gerenciamento de conteúdo do site, será usado um Headless Content Management System. Foi optado pelo Sanity.io, que disponibiliza interface do admin e banco de dados. 
+- Sanity.io: Para o gerenciamento de conteúdo do site, será usado um Headless Content Management System. Foi optado pelo Sanity.io, que disponibiliza interface do admin e banco de dados. 
 
-API do Correios: 
-Para cálculo do frete dos produtos de acordo com seu tamanho ,largura,altura e comprimento,calculo de prazo,. 
+- API do Correios: Para cálculo do frete dos produtos de acordo com seu tamanho, largura, altura e comprimento, cálculo de prazo. 
+ 
+- Next.js: Para integrar os serviços, e desenvolvimento da interface de usuário 
 
-Next.js: 
-Para integrar os serviços, e desenvolvimento da interface de usuário 
+- OAuth: Para autenticação. 
 
 ## Project Model Canvas
 O Project Model Canvas foi desenvolvido levando-se em consideração as reuniões feitas e as dúvidas esclarecidas com a 'parceira de negócios' Madriana, proprietária da empresa Cor da Chita.
