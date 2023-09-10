@@ -43,8 +43,10 @@ Next.js:
 Para integrar os serviços, e desenvolvimento da interface de usuário 
 
 ## Project Model Canvas
+O Project Model Canvas foi desenvolvido levando-se em consideração as reuniões feitas e as dúvidas esclarecidas com a 'parceira de negócios' Madriana, proprietária da empresa Cor da Chita.
 
-Colocar a imagem do modelo construído apresentando a proposta de solução.
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/PM-Canvas-Cor-da-Chita-PNG.png?raw=true" alt="Project Model Canvas" />
+
 
 ## Requisitos
 
