@@ -26,11 +26,21 @@
 
 ## Arquitetura e Tecnologias
 
-o	Descreva brevemente a arquitetura definida para o projeto e as tecnologias a serem utilizadas. Sugere-se a criação de um diagrama de componentes da solução.
+A arquitetura levantada para atender os requisitos funcionais e não funcionais do Cor da Chita, foi definida conforme o seguinte diagrama 
 
-### Tecnologias
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/arquitetura.png" alt="arquitetura de solução" />
 
-### Integrações
+
+### Tecnologias e Integrações
+
+Sanity.io: 
+Para o gerenciamento de conteúdo do site, será usado um Headless Content Management System. Foi optado pelo Sanity.io, que disponibiliza interface do admin e banco de dados. 
+
+API do Correios: 
+Para cálculo do frete dos produtos. 
+
+Next.js: 
+Para integrar os serviços, e desenvolvimento da interface de usuário 
 
 ## Project Model Canvas
 
