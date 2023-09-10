@@ -37,7 +37,7 @@ Sanity.io:
 Para o gerenciamento de conteúdo do site, será usado um Headless Content Management System. Foi optado pelo Sanity.io, que disponibiliza interface do admin e banco de dados. 
 
 API do Correios: 
-Para cálculo do frete dos produtos. 
+Para cálculo do frete dos produtos de acordo com seu tamanho ,largura,altura e comprimento,calculo de prazo,. 
 
 Next.js: 
 Para integrar os serviços, e desenvolvimento da interface de usuário 
