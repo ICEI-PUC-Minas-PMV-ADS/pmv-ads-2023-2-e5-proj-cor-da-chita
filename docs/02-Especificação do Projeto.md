@@ -63,8 +63,8 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-005| O sistema se integra à API dos Correios para calcular o frete com base no endereço do cliente. | MÉDIA |
 |RF-006| Os clientes podem escolher opções de pagamento, PIX ou cartão via contato de WhatsApp, e concluir a compra. | MÉDIA |
 |RF-007| Os clientes devem receber um e-mail de confirmação após a conclusão da compra.  | BAIXA |
-|RF-008| Os clientes podem entrar em contato com a artesã via WhatsApp ou Instagram em caso de dúvidas. | BAIXA |
-|RF-009| A artesã deverá receber notificações de novos pedidos no site. | BAIXA |
+|RF-008| Os clientes podem entrar em contato com a artesã via WhatsApp ou Instagram em caso de dúvidas. | MÉDIA |
+|RF-009| A artesã deverá receber notificações de novos pedidos no site. | ALTA |
 |RF-010|  O sistema pode gerar relatórios que mostram o período do mês com mais vendas e as regiões do Brasil com mais compras. | BAIXA |
 
 ### Requisitos não Funcionais
