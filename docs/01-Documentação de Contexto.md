@@ -45,23 +45,26 @@ Diante dos itens mencionados acima, fica evidente a necessidade de implementar u
 
 ## Relação com a Extensão Universitária
 
-Acreditamos que a relação entre o projeto de desenvolvimento do website para a Cor da Chita e a Extensão Universitária é muito relevante e pode ser enriquecedora para ambas as partes. Vamos tentar demonstrar algumas maneiras pelas quais o projeto se conecta com os princípios da Extensão Universitária. 
+Extensão universitária é uma atividade desenvolvida por instituições de ensino superior que visa promover a interação entre a comunidade acadêmica e a sociedade. O eixo 5, que é o atual estágio do nosso grupo no curso de análise e desenvolvimento de sistemas, possui um viés extensionista.
 
-O desenvolvimento do e-commerce vai envolver a aplicação prática de conhecimentos de programação, design, gestão de projetos, e outras áreas relacionadas. Isso vai nos proporcionar, como alunos, uma oportunidade de aplicar o que aprendemos em sala de aula em um projeto do mundo real. 
+O projeto de desenvolvimento do website para a Cor da Chita se relaciona com os princípios da Extensão Universitária de diversas maneiras.
 
-O site é uma ferramenta que pode ser utilizada para interagir com a comunidade, neste caso, os consumidores dos produtos artísticos. A interação com a Comunidade se alinha com a abordagem da Extensão Universitária de estabelecer conexões e trocas de conhecimento entre a universidade e a sociedade. Também proporcionar, por outro lado, um benefício para a Madriana, proprietária do ateliê com algumas automações de processos. 
+O desenvolvimento do e-commerce envolverá a aplicação prática de conhecimentos de programação, design, gestão de projetos, e outras áreas relacionadas. Isso permitirá que os alunos apliquem o que aprendem em sala de aula em um projeto do mundo real.
 
-O projeto visa atender às necessidades específicas da artista e dos consumidores, proporcionando um serviço que facilita a interação e as transações. Isso se assemelha à Extensão Universitária, que procura responder a demandas da sociedade com a aplicação de conhecimentos acadêmicos. Esta parte de poder aplicar nosso aprendizado para atender as necessidades reais de uma empresa ou pessoa está dentro dos objetivos da extensão. 
+O site será uma ferramenta que pode ser utilizada para interagir com a comunidade, neste caso, os consumidores dos produtos artísticos. Isso se alinha com a abordagem da Extensão Universitária de estabelecer conexões e trocas de conhecimento entre a universidade e a sociedade.
 
-Este projeto nos oferece a oportunidade de desenvolver habilidades de comunicação, colaboração e resolução de problemas ao trabalhar em conjunto com a artista e entender as necessidades dos consumidores. 
+O projeto visa atender às necessidades específicas da artista e dos consumidores, proporcionando um serviço que facilita a interação e as transações. Isso se assemelha à Extensão Universitária, que procura responder a demandas da sociedade com a aplicação de conhecimentos acadêmicos.
 
-Ao criar um website que simplifica o processo de vendas para o ateliê e melhora a experiência dos consumidores, o projeto contribui para a melhoria do ambiente de negócios e da interação cliente-artista, o que tem um impacto positivo na sociedade sendo um ponto extremamente relevante para nós, para a universidade e para a sociedade em geral. 
+Este projeto oferecerá aos alunos a oportunidade de desenvolver habilidades de comunicação, colaboração e resolução de problemas ao trabalhar em conjunto com a artista e entender as necessidades dos consumidores.
 
-O website provavelmente destacará o trabalho artístico dos indivíduos ou grupos envolvidos com a chita na região. Isso não apenas contribui para a promoção da cultura e da arte, mas também pode ampliar a visibilidade dos artistas, algo que é fundamental na Extensão Universitária.  
+Ao criar um website que simplifica o processo de vendas para o ateliê e melhora a experiência dos consumidores, o projeto contribui para a melhoria do ambiente de negócios e da interação Parceiro-artista, o que tem um impacto positivo na sociedade.
 
-O desenvolvimento desse projeto envolve conhecimentos de várias disciplinas, como design, programação, marketing e gestão. Essa abordagem multidisciplinar se alinha com a natureza interdisciplinar da Extensão Universitária. Vamos ter que aprimorar nossas soft skills para conseguir entender aquilo que a Madriana precisa, o que ela poderá arcar financeiramente, aquilo que se adequa à infraestrutura e realidade dela, além de nos relacionar em si no grupo para definir o escopo do projeto, dividir as tarefas e entregar cada etapa corrigindo certos pontos apontados pela professora durante o semestre letivo. 
+O website provavelmente destacará o trabalho artístico dos indivíduos ou grupos envolvidos com a chita na região. Isso contribui para a promoção da cultura e da arte, algo que é fundamental na Extensão Universitária.
 
-A parceria entre a universidade (alunos e professores) e os artistas é uma forma de colaboração que caracteriza muitas iniciativas de Extensão Universitária. Ambos os lados podem se beneficiar dessa interação, aprendendo e contribuindo para o sucesso do projeto. 
+O desenvolvimento desse projeto envolve conhecimentos de várias disciplinas, como design, programação, marketing e gestão. Essa abordagem multidisciplinar se alinha com a natureza interdisciplinar da Extensão Universitária.
+
+A parceria entre a universidade (alunos e professores) e os artistas é uma forma de colaboração que caracteriza muitas iniciativas de Extensão Universitária. Ambos os lados podem se beneficiar dessa interação, aprendendo e contribuindo para o sucesso do projeto.
+ 
 
 ## Descrição do Parceiro
 
