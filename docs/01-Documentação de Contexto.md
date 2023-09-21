@@ -36,11 +36,12 @@ Desenvolver um WebSite que reúna opções de realização de pedidos, cálculo 
  
 ## Justificativa
 
-Reconhecendo o tempo como um recurso essencial e extremamente escasso para a nossa cliente, sendo que a maior parte do qual é consumido ao lidar com negociações e atendimento dedicado aos clientes. O trabalho envolve atender diversas necessidades e personalizações diferentes de seus produtos, além de gerenciar os pagamentos dos pedidos, incluindo a escolha entre métodos de pagamento como PIX ou cartão.  
+O tempo é um recurso essencial e extremamente escasso para o Parceiro. A maior parte dele é consumida ao lidar com negociações e atendimento dedicado aos clientes. O trabalho envolve atender diversas necessidades e personalizações diferentes dos produtos, além de gerenciar os pagamentos dos pedidos, incluindo a escolha entre métodos de pagamento como PIX ou cartão.
 
-Entretanto, no processo de venda de produtos online, a logística de entrega atualmente inclui o processo manual de calcular os custos de envio dos produtos. valor do frete pode variar consideravelmente de acordo com as medidas e peso do produto fabricado, e atualmente essa responsabilidade recai sobre nossa cliente.  
+No processo de venda de produtos online, a logística de entrega atualmente inclui o processo manual de calcular os custos de envio dos produtos. O valor do frete pode variar consideravelmente de acordo com as medidas e peso do produto fabricado, e atualmente essa responsabilidade recai sobre o Parceiro.
 
-Diante dos itens mencionados acima, fica evidente a necessidade de implementar um E-commerce para nossa cliente. Isso visa facilitar e automatizar todos os processos de seu negócio, incluindo o sistema de personalização dos produtos diretamente na plataforma, pagamentos automatizados e cálculo automatizado de frete. Essa abordagem busca economizar significativamente o tempo de nossa cliente, permitindo que ela direcione seus recursos e tempo principalmente para a fabricação de seus produtos. Com o apoio de uma solução de software, sua vida como proprietária de um negócio se torna mais simplificada, especialmente no que diz respeito à gestão dos processos de venda relacionados a seus produtos. 
+Diante dos itens mencionados acima, fica evidente a necessidade de implementar um E-commerce para o Parceiro. Isso visa facilitar e automatizar processos do negócio, incluindo o sistema de personalização dos produtos diretamente na plataforma, pagamentos automatizados e cálculo automatizado de frete. Essa abordagem busca economizar significativamente o tempo do Parceiro, permitindo que ela direcione seus recursos e tempo principalmente para a fabricação dos produtos. Com o apoio de uma solução de software, sua vida como proprietária de um negócio se torna mais simplificada, especialmente no que diz respeito à gestão dos processos de venda dos produtos.
+ 
 
 ## Relação com a Extensão Universitária
 
