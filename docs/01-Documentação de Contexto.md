@@ -68,6 +68,9 @@ A parceria entre a universidade (alunos e professores) e os artistas é uma form
 
 ## Descrição do Parceiro
 
-A Cor da Chita surge em 2021 com despretensão e como forma de estabelecer um escape criativo para a atual empreendedora, Madriana. Com o tempo, cresceu no que diz respeito à clientela e diversidade do catálogo, devido a uma consistente divulgação na rede social Instagram, onde a artesã se encarrega de produzir conteúdo mostrando suas artes. 
+A Cor da Chita surgiu em 2021 como uma forma de estabelecer um escape criativo para a atual empreendedora. Com o tempo, cresceu no que diz respeito a parcerias e diversidade do catálogo, devido a uma consistente divulgação na rede social Instagram.
 
-Atualmente, a loja continua ainda com produção personalizada de itens como estandartes, toalhas de mesa e bolsas. Entretanto, graças à sua expansão e participação em feiras específicas de artesanato, pôde também deixar alguns produtos de pronta-entrega, como bolsas e lenços para pets.  
+Atualmente, a loja continua ainda com produção personalizada de itens como estandartes, toalhas de mesa e bolsas. Entretanto, graças à sua expansão e participação em feiras específicas de artesanato, pôde também deixar alguns produtos de pronta-entrega, como bolsas e lenços para pets.
+
+No entanto, a falta de um e-commerce é uma desvantagem para o negócio. Isso limita o alcance da loja e dificulta que novos clientes conheçam os produtos. Além disso, a loja perde algumas oportunidades de vendas, pois não possui um e-commerce para facilitar o atendimento de pedidos de clientes de outras regiões.
+  
