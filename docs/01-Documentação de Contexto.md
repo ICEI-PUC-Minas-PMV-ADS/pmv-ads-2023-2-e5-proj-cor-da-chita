@@ -11,13 +11,13 @@ Será feito um e-commerce para o nosso parceiro visando proporcionar um ambiente
 
 ## Problema
 
-Com o advento das redes sociais, diversos setores da indústria, comércio e serviços passaram a ter uma grande facilidade quando se trata de divulgação de suas empresas e produtos. Redes como Facebook, Instagram, YouTube e até mesmo aplicativos de mensagens como WhatsApp e Telegram são largamente utilizados como uma vitrine para os negócios, além de possibilitarem um contato próximo com o cliente, obtendo feedbacks. 
+No contexto do projeto de e-commerce que está sendo desenvolvido, busca-se superar um desafio significativo que é a interação (compra e venda) entre nosso parceiro e seus clientes.
+A dificuldade está na realização eficiente de pedidos de encomendas, processamento de pagamentos e outras transações comerciais, que são essenciais para um comércio eletrônico eficaz.
 
-No campo das artes não poderia ser diferente.  Existe uma grande quantidade de artistas, dos mais variados segmentos, que utilizam essas plataformas como forma de impulsionamento de seus trabalhos e na busca por clientes. 
+Do ponto de vista do cliente, ele geralmente faz um contato prévio com o artista através das redes sociais e posteriormente poderá acessar a estante virtual do e-commerce antes de realizar qualquer pedido ou compra. O e-commerce ajuda a superar este obstáculo, já que reduz interações adicionais e pode tornar o processo rápido e descomplicado. Por outro lado, do ponto de vista do artista, o processo de avaliar e gerenciar pedidos individualmente consome um tempo valioso e resulta em perda de produtividade, e portanto este é um problema que será tratado também.
 
-Entretanto, um desafio se apresenta: De nada adianta cooptar clientes se não tiverem uma ferramenta simples e intuitiva para realização de pedidos de encomenda, pagamentos, entre outras demandas de um comércio eletrônico. Muitas vezes esse trabalho acaba sendo manual, com envio de links para pagamento e troca de mensagens para fechar a compra e levantar custos de envio. 
+Para resolver esse problema, o projeto de e-commerce visa criar uma ferramenta simples e intuitiva que permita aos parceiros realizar pedidos de encomenda, efetuar pagamentos e atender a outras demandas de comércio eletrônico de forma mais eficiente. Isso simplificará a interação entre artistas e parceiros, eliminando a necessidade de contato prévio extensivo e automatizando muitos aspectos do processo de compra e venda. Dessa forma, tanto os artistas quanto os parceiros poderão economizar tempo e recursos, tornando a colaboração mais eficaz e produtiva.
 
-Dentro desse contexto, podemos identificar que, pelo lado do cliente, há uma necessidade de contato prévio para realizar qualquer pedido e do lado do artista, o tempo gasto para avaliar pedido a pedido leva a uma perda de produtividade, afinal de contas, o tempo para um artista é extremamente valioso.
 
 ## Objetivos
 ### Objetivos Gerais
