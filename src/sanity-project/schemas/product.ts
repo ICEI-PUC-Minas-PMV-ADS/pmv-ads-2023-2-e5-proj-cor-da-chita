@@ -34,7 +34,7 @@ export default{
         name: 'peso',
         type: 'number',
         title:'Peso do Produto',
-        validation :Rule =>Rule.positive().greaterThan(0).error("O peso do produto precisar ser maior 0 que e precisa ter valor positivo")
+        validation :(Rule) =>Rule.positive().greaterThan(0).error("O peso do produto precisar ser maior 0 que e precisa ter valor positivo")
     },
     {
         name: 'preco',
