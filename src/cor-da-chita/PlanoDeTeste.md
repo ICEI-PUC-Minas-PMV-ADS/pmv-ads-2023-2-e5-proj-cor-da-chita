@@ -49,6 +49,7 @@ RF-8                        |       Funcionalidade: Contato com a Artesã | Os c
 RF-9                        |       Funcionalidade: Notificação de pedido| A artesã deverá receber notificações de novos pedidos no site. 
 RF-10                       |       Funcionalidade: Relatórios de Vendas | O sistema pode gerar relatórios que mostram o período do mês com mais vendas e as regiões do Brasil com mais compras.
 
+
 ### 2.3 Requisitos não-funcionais:
 
 Identificador do requisito   | Tipo do requisito    | Descrição
@@ -59,16 +60,33 @@ RNF-3                        |       Desempenho     | O tempo de resposta devem 
 RNF-4                        |       Autenticação   | A autenticação será baseada em OAuth, com opções de login via Google ou Microsoft. 
 
 
-## 3 - Tipos de teste
+## 3 - Detalhamento das abordagens de teste
 
-Esta seção deve conter os tipos de testes escolhidos para cada iteração do projeto.
-Pode-se definir inicialmente apenas os tipos de testes que serão usadas na próxima iteração, mas é possível também já registrar eventuais tipos de teste que se espera utilizar nas demais iterações. 
-Com base no guia de testes, indique os tipos de testes que melhor se adéquam aos requisitos, tipo da aplicação e seus recursos disponíveis e, caso necessário complemente ou forneça mais detalhes da técnica e dos critérios de completude sugeridos no guia para cada tipo de teste indicado.
+----------------------------|-----------------------|---------------------
+RF-1                        |      Funcionalidade: Autenticação          | O sistema suportará autenticação de usuários
+RF-2                        |      Funcionalidade: Cadastro de Produtos  | A artesã pode cadastrar novos produtos, definindo suas descrições, preços, gerar estoque, assim como excluir os produtos já cadastrados. 
+RF-3                        |       Funcionalidade: Busca por Produtos   | O cliente pode realizar buscas por produtos por nome, categoria e preço 
+RF-4                        |       Funcionalidade: Carrinho             | O cliente pode adicionar ou excluir produtos no carrinho 
+RF-5                        |       Funcionalidade: Cálculo de frete     | O sistema se integra à API dos Correios para calcular o frete com base no endereço do cliente.
+RF-6                        |       Funcionalidade: Pagamento            | Os clientes podem escolher opções de pagamento, PIX ou cartão via contato de WhatsApp, e concluir a compra. 
+RF-7                        |       Funcionalidade: Confirmação de compra| Os clientes devem receber um e-mail de confirmação após a conclusão da compra. 
+RF-8                        |       Funcionalidade: Contato com a Artesã | Os clientes podem entrar em contato com a artesã via WhatsApp ou Instagram em caso de dúvidas. 
+RF-9                        |       Funcionalidade: Notificação de pedido| A artesã deverá receber notificações de novos pedidos no site. 
+RF-10                       |       Funcionalidade: Relatórios de Vendas | O sistema pode gerar relatórios que mostram o período do mês com mais vendas e as regiões do Brasil com mais compras.
 
 - Teste de interface de usuário;
 - Teste de performance;
 - Teste de segurança e controle de acesso;
 - Teste de instalação;
+
+### 3.1 Ferramentas utilizadas
+
+Ferramenta                  | Fabricante            | Versão
+----------------------------|-----------------------|---------------------
+Sanity.io                   |     Sanity            | ^5.5.3
+API Correios                |     Correios ©        | x
+Next.js                     |      Vercel           | 18.2.0
+OAuth                       |       Google          | x
 
 ### 3.1 - Métodos da Classe 
 
