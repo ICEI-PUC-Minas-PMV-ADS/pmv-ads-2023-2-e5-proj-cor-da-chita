@@ -1,4 +1,4 @@
-# Plano de Teste
+# 📋 Plano de Teste
 
 **Cor da Chita**
 
@@ -354,15 +354,36 @@ Se possível usar teste automatizado.
 
 ## 4 - Recursos
 
-Esta seção deve descrever os recursos humanos, de ambiente de teste (hardware e software) e de ferramentas de automatização de testes necessários para execução dos testes que devem ser descritos nas subseções que seguem.
+Esta seção descreve os recursos necessários para a execução dos testes no projeto de vitrine de produtos artesanais.
 
 ### 4.1 - Ambiente de teste - Software e Hardware
+* Hardware:
 
-Descreva aqui o hardware e sua configuração, e o software. Por exemplo, o sistema operacional, browsers, servidor web, etc.
+    Computador com capacidade de processamento adequada para execução de aplicações web.
 
-### 4.2 - Ferramenta de teste
+    Conexão à internet estável para acesso à aplicação e comunicação com o servidor.
 
-Descreva aqui as ferramentas específicas de teste usadas no projeto.
+* Software:
+
+    Sistema Operacional: Windows 10 ou superior / macOS 10.14 ou superior / Ubuntu 18.04 LTS ou superior.
+
+    Navegadores: Google Chrome (versão mais recente), Mozilla Firefox (versão mais recente), Safari (versão mais recente).
+
+    Aplicativo de Mensagens: WhatsApp instalado e configurado (para testes de comunicação com o dono da loja).
+
+    Ferramentas de Desenvolvimento: Node.js (versão LTS mais recente), npm (versão mais recente).
+
+### 4.2 - Ferramenta de Teste
+
+→ Sanity.io
+
+Descrição: Sanity.io é uma plataforma de gerenciamento de conteúdo (CMS) que será utilizada para gerenciar o conteúdo exibido na vitrine de produtos. Ela oferece uma interface amigável e flexível para criação e edição de conteúdo.
+Site Oficial: https://www.sanity.io/
+Ferramentas Adicionais (Opcionais):
+Jest (para testes unitários)
+Selenium (para testes de integração)
+
+Com estes recursos de software e hardware, juntamente com as ferramentas específicas de teste, a equipe terá o ambiente necessário para conduzir os testes de forma eficaz no projeto da vitrine de produtos artesanais.
 
 
 ## 5 - Cronograma
