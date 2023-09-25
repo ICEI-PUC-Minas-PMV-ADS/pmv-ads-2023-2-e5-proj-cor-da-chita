@@ -22,7 +22,10 @@ export default{
         name: 'categoria',
         type: 'string',
         title:'Categoria do produto',
-        validation :Rule =>Rule.min(3).max(30).error("Essa parada ai precisa ter no minimo 10 caracteres")
+        options :{
+            list:['Estandartes','Cama','EcoBags E Carteiras','Outros']
+        },
+        validation :Rule =>Rule.min(3).required().error("A Categoria é Obrigatória")
     },
     {
         name: 'estoque',
@@ -34,7 +37,7 @@ export default{
         name: 'peso',
         type: 'number',
         title:'Peso do Produto',
-        validation :Rule =>Rule.positive().greaterThan(0).error("O peso do produto precisar ser maior 0 que e precisa ter valor positivo")
+        validation :(Rule) =>Rule.positive().greaterThan(0).error("O peso do produto precisar ser maior 0 que e precisa ter valor positivo")
     },
     {
         name: 'preco',
