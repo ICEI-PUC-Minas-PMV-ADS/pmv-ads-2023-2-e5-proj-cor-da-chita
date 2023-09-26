@@ -5,12 +5,11 @@ export interface Produto {
   descricao: string;
   categoria: string;
   estoque: number;
-  peso:number;
+  peso: number;
   preço: number;
-  comprimento:number;
-  largura:number;
-  altura:number;
-  imagem:any;
+  comprimento: number;
+  largura: number;
+  altura: number;
+  imagem: any;
   _createdAt: string;
-
 }
