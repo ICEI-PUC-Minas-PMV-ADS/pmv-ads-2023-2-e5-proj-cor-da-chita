@@ -2,10 +2,10 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
+// Login with Google
 export default function SignInButton() {
-  // O hook vai usar todas os dados da sessão
   const { data: session } = useSession();
-  
+
   if (session && session.user) {
     return (
       <div>
