@@ -1,7 +1,6 @@
+// Para renderizar os cards dos produtos ao clicar em categoria ou usar o menu de busca
 import React from "react";
 
-// Utilizado para renderizar os produtos
-// Nesse momento está sendo renderizado direto na page.tsx
-export default function ProductCard() {
+export default function ProductCard(props: any) {
   return <></>;
 }
