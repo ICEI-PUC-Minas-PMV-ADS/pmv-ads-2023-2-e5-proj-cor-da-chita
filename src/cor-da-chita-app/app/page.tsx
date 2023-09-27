@@ -1,3 +1,4 @@
+import { PortableText } from "@portabletext/react";
 import Header from "./components/Header";
 import { Produto } from "./lib/interface";
 import { client } from "./lib/sanity";
@@ -5,16 +6,32 @@ import { client } from "./lib/sanity";
 const getData = async () => {
   //AQUI REALIZA UM QUERY SIMPLES E PEGA OS PRODUTOS CRIADOS,AONDE
   try {
-    const query = `*[_type == "produto"]{
+    // const query = ` {
+    //   _id,
+    //   nome,
+    //   categoria,
+    //   descricao,
+    //   estoque,
+    //   'imagem':imagem.asset->url
+    // }`;
+
+    const query = `* [_type == "produto"]{           
       _id,
       nome,
       categoria,
-      descricao,
+      descricao,      
       estoque,
-      'imagem':imagem.asset->url
+      preco,
+      peso,
+      comprimento,
+      largura,
+      altura,
+      data,
+      'imagem':imagem.asset->url,       
     }`;
 
     const data = await client.fetch(query);
+
     return data;
   } catch (e) {
     console.log(e);
@@ -23,6 +40,7 @@ const getData = async () => {
 
 export default async function Home() {
   const data = (await getData()) as Produto[];
+  console.log(data);
 
   return (
     <>
@@ -34,18 +52,28 @@ export default async function Home() {
         </div>
 
         <ul>
-          {data.map((produto) => (
-            <li key={produto._id}>
-              <article>
-                <p>Nome: {produto.nome}</p>
-                <p>Categoria: {produto.categoria}</p>
-                <p>Descrição: {produto.descricao}</p>
-                <p>Estoque do Produto: {produto.estoque}</p>
+          {data.map((produto) => {
+            return (
+              <li key={produto._id}>
+                <article>
+                  <p>Nome: {produto.nome}</p>
+                  <p>Categoria: {produto.categoria}</p>
+                  <div>
+                    Descrição:
+                    <PortableText value={produto.descricao} />
+                  </div>
+                  <p>Estoque do Produto: {produto.estoque}</p>
+                  <p>Preço: {produto.preco}</p>
+                  <p>Peso: {produto.peso}g</p>
+                  <p>Comprimento: {produto.comprimento}cm</p>
+                  <p>Largura: {produto.largura}cm</p>
+                  <p>Altura: {produto.altura}cm</p>
 
-                <img className="w-44 pb-8" src={produto.imagem} />
-              </article>
-            </li>
-          ))}
+                  <img className="w-44 pb-8" src={produto.imagem} />
+                </article>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </>

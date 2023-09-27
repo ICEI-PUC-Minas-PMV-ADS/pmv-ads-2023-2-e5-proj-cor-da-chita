@@ -8,14 +8,23 @@ export default {
       type: 'string',
       title: 'Nome do Produto',
       validation: (Rule: any) =>
-        Rule.min(3).max(30).error('O nome do produto não pode ter mais de 30 caracteres'),
+        Rule.min(3)
+          .max(30)
+          .error('O nome do produto não pode ter menos de 3 ou mais de 30 caracteres'),
     },
     {
       name: 'descricao',
-      type: 'string',
+      type: 'array',
       title: 'Descrição',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
       validation: (Rule: any) =>
-        Rule.min(3).max(80).error('A descrição do produto não pode ter mais de 80 caracteres'),
+        Rule.required()
+          .max(120)
+          .error('A descrição do produto não pode ter mais de 120 caracteres'),
     },
     {
       name: 'categoria',
@@ -24,7 +33,7 @@ export default {
       options: {
         list: ['Estandartes', 'Cama e Mesa', 'EcoBags e Carteiras', 'Natalinos', 'Outros'],
       },
-      validation: (Rule: any) => Rule.min(3).required().error('A Categoria é obrigatória'),
+      validation: (Rule: any) => Rule.required().error('A Categoria é obrigatória'),
     },
     {
       // ????? verificar estoque: Incluir manual? Talvez não faça sentido
@@ -37,14 +46,14 @@ export default {
     {
       name: 'preco',
       type: 'number',
-      title: 'Preço',
+      title: 'Preço (R$)',
       validation: (Rule: any) =>
         Rule.positive().greaterThan(0).error('O preço precisa ser maior do que zero'),
     },
     {
       name: 'peso',
       type: 'number',
-      title: 'Peso (kg)',
+      title: 'Peso (g)',
       validation: (Rule: any) =>
         Rule.positive().greaterThan(0).error('O peso precisa ser maior do que zero'),
     },
@@ -70,9 +79,9 @@ export default {
         Rule.positive().greaterThan(0).error('A altura precisa ser maior do que zero'),
     },
     {
-      title: 'imagem',
       name: 'imagem',
       type: 'image',
+      title: 'imagem',
       options: {
         hotspot: true,
       },
@@ -84,23 +93,16 @@ export default {
         },
       ],
     },
-    {
-      // Data ficará oculta
-      name: 'data',
-      type: 'date',
-      title: 'Data',
-      description: 'Data',
-      default: () => new Date().toISOString(),
-      hidden: true,
-    },
-    {
-      // Para gerar URL amigável
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug',
-      options: {
-        source: 'title',
-      },
-    },
+    // Não está funcionando - rever
+    // {
+    //   // Para gerar URL amigável
+    //   name: 'slug',
+    //   type: 'slug',
+    //   title: 'Gerar Link',
+    //   options: {
+    //     source: 'name',
+    //   },
+    //   validation: (Rule: any) => Rule.required().error('Necessário gerar o link'),
+    // },
   ],
 }

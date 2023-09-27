@@ -2,14 +2,17 @@
 export interface Produto {
   _id: string;
   nome: string;
-  descricao: string;
+  descricao: any;
   categoria: string;
   estoque: number;
   peso: number;
-  preço: number;
+  preco: number;
   comprimento: number;
   largura: number;
   altura: number;
   imagem: any;
   _createdAt: string;
+  slug: {
+    current: string;
+  };
 }

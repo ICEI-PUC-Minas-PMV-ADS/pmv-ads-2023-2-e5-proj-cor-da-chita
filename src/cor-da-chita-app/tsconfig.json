@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["glob"],
     "allowSyntheticDefaultImports": true,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
