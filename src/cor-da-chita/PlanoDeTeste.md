@@ -356,6 +356,16 @@ Se possível usar teste automatizado.
 
 Esta seção descreve os recursos necessários para a execução dos testes no projeto de vitrine de produtos artesanais.
 
+### 4.1 Objetivos e prioridades
+
+O sistema deve possibilitar ao usuário a realização da compra de produtos exibidos.
+O sistema deve prover o gerenciamento de produtos presentes no carrinho de compras.
+O sistema deve possibilitar ao comprador a comunicação com o vendedor, por meio de botão que redirecionará ao WhatsApp.
+O sistema deverá gerenciar os produtos exibidos e seus respectivos detalhes.
+O sistema deve gerar relatórios das regiões do país em que a loja mais recebeu pedidos.
+O sistema deve gerar relatórios das regiões das épocas do ano em que a loja mais recebeu pedidos.
+
+
 ### 4.1 - Ambiente de teste - Software e Hardware
 * Hardware:
 
