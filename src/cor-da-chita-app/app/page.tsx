@@ -1,3 +1,4 @@
+"use client";
 import { PortableText } from "@portabletext/react";
 import Header from "./components/Header";
 import { Produto } from "./lib/interface";
@@ -47,7 +48,7 @@ export default async function Home() {
       <div>
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-2xl font-extrabold  tracking-tight text-blue-600 md:leading-14 text-center">
-            Todos meus produtos
+            Todos produtos
           </h1>
         </div>
 
@@ -62,8 +63,8 @@ export default async function Home() {
                     Descrição:
                     <PortableText value={produto.descricao} />
                   </div>
-                  <p>Estoque do Produto: {produto.estoque}</p>
-                  <p>Preço: {produto.preco}</p>
+                  <p>Estoque: {produto.estoque} un</p>
+                  <p>Preço: R$ {produto.preco.toFixed(2)}</p>
                   <p>Peso: {produto.peso}g</p>
                   <p>Comprimento: {produto.comprimento}cm</p>
                   <p>Largura: {produto.largura}cm</p>

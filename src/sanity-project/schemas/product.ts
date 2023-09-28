@@ -102,7 +102,7 @@ export default {
     //   options: {
     //     source: 'name',
     //   },
-    //   validation: (Rule: any) => Rule.required().error('Necessário gerar o link'),
+    //   // validation: (Rule: any) => Rule.required().error('Necessário gerar o link'),
     // },
   ],
 }
