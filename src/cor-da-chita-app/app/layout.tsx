@@ -1,6 +1,7 @@
 import "./globals.css";
 import Providers from "./Providers";
 import Header from "./components/Header";
+import UserData from "./components/UserData";
 
 export default function RootLayout({
   children,
@@ -12,8 +13,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-
-          {children}
+          <UserData />
+          
+          {/* {children} */}
         </Providers>
       </body>
     </html>
