@@ -13,6 +13,8 @@
 
 ## 1 - Introdução
 
+### 1.1 - Propósito do Sistema
+
 No universo da arte e da criatividade, a materialização de ideias é um ato de singular importância. É com essa convicção que surge a Vitrine Virtual da talentosa artesã, um projeto concebido com o propósito de estreitar laços entre a arte e aqueles que a admiram, elevando a experiência de adquirir peças únicas e feitas com amor.
 
 A essência desse projeto reside na democratização do acesso aos tesouros meticulosamente elaborados pela artesã. A plataforma proporciona aos clientes uma jornada fluida e intuitiva, onde podem explorar um catálogo repleto de criações, cada uma contando sua própria história e emanando o cuidado e a dedicação empregados em sua confecção. Aqui, os produtos transcenderam a condição de meros objetos, tornando-se veículos de expressão e manifestações tangíveis de criatividade.
@@ -25,19 +27,18 @@ Para a artesã, este projeto representa mais do que uma vitrine virtual; é uma 
 
 Em última análise, o propósito da Vitrine Cor da Chita é transcendental. É a confluência de paixão, habilidade e tecnologia, unindo mentes criativas e apreciadores de arte em uma jornada de autenticidade e conexão. É um convite para celebrar a singularidade de cada peça e a história que ela carrega consigo. É um testemunho do poder da arte em encurtar distâncias e criar laços duradouros.
 
-## 2 - Referências
+### 1.2 Documentação do Projeto
+Documento                    | Irá fazer parte do projeto | Observações
+-----------------------------|----------------------------|-----------------------------
+Especificação de Requisitos  |       Sim                  | Irá definir as funcionalidades e o ambiente que o sistema deve possuir
+Especificação de Casos de Uso|       Sim                  | Descreverá de forma detalhada as funcionalidades do sistema
 
-### 2.1 Documentação do Projeto
-Documento | Irá fazer parte do projeto | Observações
------------------------------|---------------------|-----------------------------
-Especificação de Requisitos                      |       Sim    | Irá definir as funcionalidades e o ambiente que o sistema deve possuir
-Especificação de Casos de Uso                      |       Sim  | Descreverá de forma detalhada as funcionalidades do sistema
-
+## 2 - Abordagens de testes
 
 ### 2.2 Requisitos funcionais:
 
-Identificador do requisito  | Tipo do requisito     | Descrição
-----------------------------|-----------------------|---------------------
+Identificador do requisito  | Tipo do requisito                          | Descrição
+----------------------------|--------------------------------------------|---------------------
 RF-1                        |      Funcionalidade: Autenticação          | O sistema suportará autenticação de usuários
 RF-2                        |      Funcionalidade: Cadastro de Produtos  | A artesã pode cadastrar novos produtos, definindo suas descrições, preços, gerar estoque, assim como excluir os produtos já cadastrados. 
 RF-3                        |       Funcionalidade: Busca por Produtos   | O cliente pode realizar buscas por produtos por nome, categoria e preço 
@@ -60,313 +61,109 @@ RNF-3                        |       Desempenho     | O tempo de resposta devem 
 RNF-4                        |       Autenticação   | A autenticação será baseada em OAuth, com opções de login via Google ou Microsoft. 
 
 
-## 3 - Detalhamento das abordagens de teste
+## 2.4 - Detalhamento das abordagens de teste
 
-----------------------------|-----------------------|---------------------
-RF-1                        |      Funcionalidade: Autenticação          | O sistema suportará autenticação de usuários
-RF-2                        |      Funcionalidade: Cadastro de Produtos  | A artesã pode cadastrar novos produtos, definindo suas descrições, preços, gerar estoque, assim como excluir os produtos já cadastrados. 
-RF-3                        |       Funcionalidade: Busca por Produtos   | O cliente pode realizar buscas por produtos por nome, categoria e preço 
-RF-4                        |       Funcionalidade: Carrinho             | O cliente pode adicionar ou excluir produtos no carrinho 
-RF-5                        |       Funcionalidade: Cálculo de frete     | O sistema se integra à API dos Correios para calcular o frete com base no endereço do cliente.
-RF-6                        |       Funcionalidade: Pagamento            | Os clientes podem escolher opções de pagamento, PIX ou cartão via contato de WhatsApp, e concluir a compra. 
-RF-7                        |       Funcionalidade: Confirmação de compra| Os clientes devem receber um e-mail de confirmação após a conclusão da compra. 
-RF-8                        |       Funcionalidade: Contato com a Artesã | Os clientes podem entrar em contato com a artesã via WhatsApp ou Instagram em caso de dúvidas. 
-RF-9                        |       Funcionalidade: Notificação de pedido| A artesã deverá receber notificações de novos pedidos no site. 
-RF-10                       |       Funcionalidade: Relatórios de Vendas | O sistema pode gerar relatórios que mostram o período do mês com mais vendas e as regiões do Brasil com mais compras.
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar a funcionalidade de cadastro de pessoas quanto à criação de dados, na base de dados 
+| Requisitos que motivaram esse teste | RF-1 
 
-- Teste de interface de usuário;
-- Teste de performance;
-- Teste de segurança e controle de acesso;
-- Teste de instalação;
 
-### 3.1 Ferramentas utilizadas
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar a funcionalidade de cadastro de produtos na base de dados 
+| Requisitos que motivaram esse teste | RF-2
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar a funcionalidade de recuperar dados de produtos cadastrados na base
+| Requisitos que motivaram esse teste | RF-3
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar a funcionalidade de adicionar e remover produtos do carrinho 
+| Requisitos que motivaram esse teste | RF-4
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar o funcionamento do cálculo do frete ao inserir o CEP do cliente
+| Requisitos que motivaram esse teste | RF-5 
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar a funcionalidade de pagamento, via PIX/WhatsApp 
+| Requisitos que motivaram esse teste | RF-6
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Teste do recebimento de e-mail após a compra, a fim de confirmar que o pedido foi recebido
+| Requisitos que motivaram esse teste | RF-7
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar que os usuários conseguem se comunicar com a vendedora, via WhatsApp
+| Requisitos que motivaram esse teste | RF-8
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Teste do recebimento de notificações à artesã quando novos pedidos forem realizados 
+| Requisitos que motivaram esse teste | RF-9 
+
+
+| Tipo de Teste                       | Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar a funcionalidade de extrair dados da base, a fim de concluir métricas de vendas
+| Requisitos que motivaram esse teste | RF-10
+
+
+| Tipo de Teste                       | Não Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar a capacidade do sistema de lidar com inúmeras requisições concomitantemente
+| Requisitos que motivaram esse teste | RNF-02 
+
+
+| Tipo de Teste                       | Não Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar o tempo de carregamento dos elementos na página
+| Requisitos que motivaram esse teste | RNF-03
+
+
+| Tipo de Teste                       | Não Funcional                                                                                  
+|-------------------------------------|:--------------------------------------------------------------------------------------------:
+| Subtipo de Teste                    | Requisitos                                                                                 
+| Objetivo de Teste                   | Testar o login, que poderá ser feito via Google ou Microsoft
+| Requisitos que motivaram esse teste | RNF-04
+
+
+### 2.5 Ferramentas utilizadas
 
 Ferramenta                  | Fabricante            | Versão
 ----------------------------|-----------------------|---------------------
 Sanity.io                   |     Sanity            | ^5.5.3
 API Correios                |     Correios ©        | x
-Next.js                     |      Vercel           | 18.2.0
-OAuth                       |       Google          | x
+Next.js                     |     Vercel            | 18.2.0
+OAuth                       |     Google            | x
 
-### 3.1 - Métodos da Classe 
-
-Para teste de funcionalidade.
-Aqui deve-se verificar se cada classe retorna o esperado.
-Se possível usar teste automatizado.
-
-<br/>
-<table>
-    <tr>
-        <th>
-            Objetivo
-        </th>
-        <th colspan="4">
-            descreva aqui o objetivo
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Técnica:
-        </th>
-        <th colspan="2">
-            (x) manual
-        </th>
-        <th colspan="2">
-            (x) automática
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Estágio do teste
-        </th>
-        <th>
-            Integração ( )
-        </th>
-        <th>
-            Sistema ( )
-        </th>
-        <th>
-            Unidade (x)
-        </th>
-        <th>
-            Aceitação ( )
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Abordagem do teste
-        </th>   
-        <th colspan="2">
-            Caixa branca (x)
-        </th>
-        <th colspan="2">
-            Caixa preta (x)
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Responsável(is)
-        </th>
-        <th colspan="4">
-            Programador(es) ou equipe de testes
-        </th>
-    </tr>
-</table>
-<br/>
-
-### 3.2 - Persistência de Dados
-
-Para teste de integridade de dados e do banco de dados.
-Aqui deve-se verificar se os dados não se perdem ao desligar o programa. Se o programa consegue se recuperar em caso de falha ou fechamento repentino.
-Se possível usar teste automatizado.
-
-<br/>
-<table>
-    <tr>
-        <th>
-            Objetivo
-        </th>
-        <th colspan="4">
-            Verificar se dados são mantidos após súbito desligamento do programa .
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Técnica:
-        </th>
-        <th colspan="2">
-            (x) manual
-        </th>
-        <th colspan="2">
-            (x) automática
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Estágio do teste
-        </th>
-        <th>
-            Integração ( )
-        </th>
-        <th>
-            Sistema (x)
-        </th>
-        <th>
-            Unidade ( )
-        </th>
-        <th>
-            Aceitação ( )
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Abordagem do teste
-        </th>
-        <th colspan="2">
-            Caixa branca ( )
-        </th>
-        <th colspan="2">
-            Caixa preta (x)
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Responsável(is)
-        </th>
-        <th colspan="4">
-            Programador(es) ou equipe de testes
-        </th>
-    </tr>
-</table>
-<br/>
-
-### 3.3 - Integração dos Componentes
-
-Para teste de funcionalidade.
-Aqui deve-se verificar se as classes e métodos conseguem fazer a integração entre elas para uma sequência de ações do programa.
-Se possível usar teste automatizado.
-
-<br/>
-<table>
-    <tr>
-        <th>
-            Objetivo
-        </th>
-        <th colspan="4">
-            descreva aqui o objetivo
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Técnica:
-        </th>
-        <th colspan="2">
-            (x) manual
-        </th>
-        <th colspan="2">
-            (x) automática
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Estágio do teste
-        </th>
-        <th>
-            Integração (x)
-        </th>
-        <th>
-            Sistema ( )
-        </th>
-        <th>
-            Unidade ( )
-        </th>
-        <th>
-            Aceitação ( )
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Abordagem do teste
-        </th>
-        <th colspan="2">
-            Caixa branca (x)
-        </th>
-        <th colspan="2">
-            Caixa preta (x)
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Responsável(is)
-        </th>
-        <th colspan="4">
-            Programador(es) ou equipe de testes
-        </th>
-    </tr>
-</table>
-<br/>
-
-### 3.4 - Tempo de Resposta
-
-Para teste de funcionalidade.
-Aqui deve-se verificar se o tempo de respostas das ações do programa são consideradas aceitáveis.
-Se possível usar teste automatizado.
-
-<br/>
-<table>
-    <tr>
-        <th>
-            Objetivo
-        </th>
-        <th colspan="4">
-            descreva aqui o objetivo
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Técnica:
-        </th>
-        <th colspan="2">
-            ( ) manual
-        </th>
-        <th colspan="2">
-            ( ) automática
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Estágio do teste
-        </th>
-        <th>
-            Integração ( )
-        </th>
-        <th>
-            Sistema ( )
-        </th>
-        <th>
-            Unidade ( )
-        </th>
-        <th>
-            Aceitação ( )
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Abordagem do teste
-        </th>
-        <th colspan="2">
-            Caixa branca ( )
-        </th>
-        <th colspan="2">
-            Caixa preta ( )
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Responsável(is)
-        </th>
-        <th colspan="4">
-            Programadores e equipe de testes
-        </th>
-    </tr>
-</table>
-<br/>
-
-## 4 - Recursos
-
-Esta seção descreve os recursos necessários para a execução dos testes no projeto de vitrine de produtos artesanais.
-
-### 4.1 Objetivos e prioridades
-
-O sistema deve possibilitar ao usuário a realização da compra de produtos exibidos.
-O sistema deve prover o gerenciamento de produtos presentes no carrinho de compras.
-O sistema deve possibilitar ao comprador a comunicação com o vendedor, por meio de botão que redirecionará ao WhatsApp.
-O sistema deverá gerenciar os produtos exibidos e seus respectivos detalhes.
-O sistema deve gerar relatórios das regiões do país em que a loja mais recebeu pedidos.
-O sistema deve gerar relatórios das regiões das épocas do ano em que a loja mais recebeu pedidos.
-
-
-### 4.1 - Ambiente de teste - Software e Hardware
+## 3 - Ambiente de Testes - Hardware e Software
 * Hardware:
 
     Computador com capacidade de processamento adequada para execução de aplicações web.
@@ -383,6 +180,20 @@ O sistema deve gerar relatórios das regiões das épocas do ano em que a loja m
 
     Ferramentas de Desenvolvimento: Node.js (versão LTS mais recente), npm (versão mais recente).
 
+
+## 4 - Programação dos Testes
+
+Esta seção descreve os recursos necessários para a execução dos testes no projeto de vitrine de produtos artesanais.
+
+### 4.1 Objetivos e prioridades
+
+O sistema deve possibilitar ao usuário a realização da compra de produtos exibidos.
+O sistema deve prover o gerenciamento de produtos presentes no carrinho de compras.
+O sistema deve possibilitar ao comprador a comunicação com o vendedor, por meio de botão que redirecionará ao WhatsApp.
+O sistema deverá gerenciar os produtos exibidos e seus respectivos detalhes.
+O sistema deve gerar relatórios das regiões do país em que a loja mais recebeu pedidos.
+O sistema deve gerar relatórios das regiões das épocas do ano em que a loja mais recebeu pedidos.
+
 ### 4.2 - Ferramenta de Teste
 
 → Sanity.io
@@ -395,8 +206,39 @@ Selenium (para testes de integração)
 
 Com estes recursos de software e hardware, juntamente com as ferramentas específicas de teste, a equipe terá o ambiente necessário para conduzir os testes de forma eficaz no projeto da vitrine de produtos artesanais.
 
+## 5 - Casos de Testes
 
-## 5 - Cronograma
+Caso de Uso         | Id       | Passos                                                      | Resultado Esperado
+--------------------|----------|-------------------------------------------------------------|-----------------
+Listar produtos     |    1     | Acessar página home do site                                 | Página inicial com os produtos será exibida
+&nbsp;              |    2      | Escolher uma das categorias disponíveis no menu superior   | Lista de produtos da categoria serão exibidos
+
+
+Caso de Uso         | Id       | Passos                                                      | Resultado Esperado
+--------------------|----------|-------------------------------------------------------------|-----------------
+Cadastrar produtos  |    1     | Acessar página home do site                                 | Página inicial com os produtos será exibida
+&nbsp;              |    2     | Escolher opção de adicionar produtos                        | Deve ser exibido modal com toda descrição do produto, título, valor e demais informações
+
+
+Caso de Uso         | Id       | Passos                                                      | Resultado Esperado
+--------------------|----------|-------------------------------------------------------------|-----------------
+Comunicar com artesã|    1     | Acessar página home do site                                 | Página inicial com os produtos será exibida
+&nbsp;              |    2     | Clicar no botão que redireciona ao WhatsApp   | Deve realizar, com sucesso, redirecionamento
+
+
+Caso de Uso         | Id       | Passos                                                      | Resultado Esperado
+--------------------|----------|-------------------------------------------------------------|-----------------
+Adicionar produtos no carrinho  |    1     | Acessar página home do site                                 | Página inicial com os produtos será exibida
+&nbsp;              |    2     | Escolher produto desejado   | O produto deve ser exibido no carrinho
+
+
+Caso de Uso         | Id       | Passos                                                      | Resultado Esperado
+--------------------|----------|-------------------------------------------------------------|-----------------
+Realizar pagamento  |    1     | Clicar na opção de comprar                                 | Página de pagamento será exibida
+&nbsp;  |    2     | Escolher opção de pagamento desejada  | Se PIX, deve ser exibido QR Code, se pagamento for via WhatsApp, a artesã deverá enviar dados para que seja finalizado o pagamento
+
+
+## 6 - Cronograma
 
 Tipo de teste      | Duração | data de início | data de término
 -------------------|---------|----------------|-----------------
