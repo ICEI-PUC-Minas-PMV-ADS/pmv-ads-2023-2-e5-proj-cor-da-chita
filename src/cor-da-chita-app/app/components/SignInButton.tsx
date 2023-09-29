@@ -11,13 +11,13 @@ export default function SignInButton({ ...props }) {
       <div>
         <p>{session.user.name}</p>
         {/* <p>{session.user.email}</p>  */}
-        <button onClick={() => signOut()}>Sign Out</button>
+        <button onClick={() => signOut()}>Logout</button>
       </div>
     );
   }
   return (
     <div>
-      <button onClick={() => signIn()}>Sign In</button>
+      <button onClick={() => signIn()}>{props.text}</button>
     </div>
   );
 }

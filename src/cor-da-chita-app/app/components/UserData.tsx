@@ -4,14 +4,18 @@ import React, { useState } from "react";
 import Input from "./Input";
 import Form from "./Form";
 import SignInButton from "./SignInButton";
+import { useSession } from "next-auth/react";
 
 export default function UserData(props: any) {
+  const { data: session } = useSession();
+
   const [nome, setNome] = useState<string>();
   const [email, setEmail] = useState<string>();
   const [telefone, setTelefone] = useState<string>();
 
   return (
     <>
+      <h2>Seus Dados</h2>
       <div>
         <Form method="post">
           <Input
@@ -43,15 +47,15 @@ export default function UserData(props: any) {
           />
           <Input type="submit" value="Confirmar Dados" />
         </Form>
-        {/* teste */}
-        {/* <div>
-        {nome} {telefone} {email}
-      </div> */}
       </div>
-      <div>
-        <p>_____________ ou _____________</p>
-        <SignInButton />
-      </div>
+      {session && session.user ? (
+        <></>
+      ) : (
+        <div>
+          <p>________________ ou ________________</p>
+          <SignInButton text="continuar com Google" />
+        </div>
+      )}
     </>
   );
 }
