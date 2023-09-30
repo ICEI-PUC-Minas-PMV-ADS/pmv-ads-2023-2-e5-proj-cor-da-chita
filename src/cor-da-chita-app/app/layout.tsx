@@ -1,10 +1,10 @@
-"use client";
+'use client';
 import "./globals.css";
 import Providers from "./Providers";
 import Header from "./components/Header";
 // import UserData from "./pages/userData";
-import { NextUIProvider } from "@nextui-org/react";
-import Link from "next/link";
+import {NextUIProvider} from "@nextui-org/react";
+
 import ProductCard from "./components/ProductCard";
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
             {/* {children} */}
           </Providers>
         </NextUIProvider>
-        {/* <Link href="/pages/userData">Pages/userData</Link> */}
+      
       </body>
     </html>
   );
