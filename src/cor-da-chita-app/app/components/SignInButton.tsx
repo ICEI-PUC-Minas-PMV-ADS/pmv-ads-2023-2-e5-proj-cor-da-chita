@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { Button } from "@nextui-org/react";
 
 // Login with Google
 export default function SignInButton({ ...props }) {
@@ -11,13 +12,18 @@ export default function SignInButton({ ...props }) {
       <div>
         <p>{session.user.name}</p>
         {/* <p>{session.user.email}</p>  */}
-        <button onClick={() => signOut()}>Logout</button>
+        <Button color="secondary" size="sm" onClick={() => signOut()}>
+          Logout
+        </Button>
       </div>
     );
   }
   return (
     <div>
-      <button onClick={() => signIn()}>{props.text}</button>
+      {" "}
+      <Button color="secondary" size={props.size}  onClick={() => signIn()}>
+        {props.text}
+      </Button>
     </div>
   );
 }

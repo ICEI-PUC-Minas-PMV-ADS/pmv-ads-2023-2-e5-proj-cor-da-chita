@@ -5,7 +5,7 @@ export default function Header(props: any) {
   return (
     <header className="flex justify-between w-full">
       <h1>Cor da Chita</h1>
-      <SignInButton text="Entrar com Google"/>
+      <SignInButton size="sm" text="Entrar com Google"/>
     </header>
   );
 }
