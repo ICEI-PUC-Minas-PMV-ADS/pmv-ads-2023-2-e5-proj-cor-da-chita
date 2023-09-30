@@ -22,7 +22,7 @@ export default function NavBar() {
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
           <CorChitaIcon />
-          <p className="hidden sm:block font-bold text-inherit">ACME</p>
+          <p className="sm:block font-bold text-inherit">Cor da Chita</p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -35,7 +35,7 @@ export default function NavBar() {
             inputWrapper:
               "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
           }}
-          placeholder="Type to search..."
+          placeholder="Busca"
           size="sm"
           startContent={<SearchIcon size={18} />}
           type="search"
@@ -68,7 +68,7 @@ export default function NavBar() {
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-      </NavbarContent>    
+      </NavbarContent>
     </Navbar>
   );
 }

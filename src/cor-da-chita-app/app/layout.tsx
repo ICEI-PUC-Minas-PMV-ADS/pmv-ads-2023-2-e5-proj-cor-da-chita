@@ -8,9 +8,11 @@ import Link from "next/link";
 
 import NavBar from "./components/NavBar";
 import ProductCard from "./components/ProductCard";
-import UserData from "./components/UserData";
+
 import SignInButton from "./components/SignInButton";
 import Menu from "./components/Menu";
+import CustomModal from "./components/CustomModal";
+import UserData from "./pages/userData/page";
 
 export default function RootLayout({
   children,
@@ -27,13 +29,10 @@ export default function RootLayout({
               <Menu />
             </Header>
 
-            {/* <Header className="flex justify-between w-full">
-              <h1>Cor da Chita</h1>
-              <SignInButton size="sm" text="Entrar com Google" />
-            </Header> */}
             <ProductCard />
-            <UserData />
-            {/* {children} */}
+            <Link href="/pages/userData">User Data</Link>
+            {/* <UserData /> */}
+            {children}
           </Providers>
         </NextUIProvider>
       </body>

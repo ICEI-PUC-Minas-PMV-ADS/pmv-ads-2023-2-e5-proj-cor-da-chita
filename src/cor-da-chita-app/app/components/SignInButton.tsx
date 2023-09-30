@@ -20,8 +20,7 @@ export default function SignInButton({ ...props }) {
   }
   return (
     <div>
-      {" "}
-      <Button color="secondary" size={props.size}  onClick={() => signIn()}>
+      <Button color="secondary" size={props.size} onClick={() => signIn()}>
         {props.text}
       </Button>
     </div>

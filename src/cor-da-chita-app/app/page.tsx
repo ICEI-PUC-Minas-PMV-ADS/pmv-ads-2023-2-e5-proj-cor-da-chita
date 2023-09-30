@@ -5,7 +5,8 @@ import { loadMercadoPago } from "@mercadopago/sdk-js";
 import { Produto } from "./lib/interface";
 import { client } from "./lib/sanity";
 import { useEffect } from "react";
-import { Button, Link } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import Link from "next/link";
 import ProductCard from "./components/ProductCard";
 const getData = async () => {
   //AQUI REALIZA UM QUERY SIMPLES E PEGA OS PRODUTOS CRIADOS,AONDE
@@ -113,7 +114,7 @@ export default async function Home() {
 
   return (
     <>
-      <div>      
+      <div>
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-2xl font-extrabold  tracking-tight text-blue-600 md:leading-14 text-center">
             Todos produtos

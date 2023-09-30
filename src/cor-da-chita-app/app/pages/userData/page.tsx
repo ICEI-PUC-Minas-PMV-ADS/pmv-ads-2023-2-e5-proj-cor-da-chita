@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 
-import Form from "./Form";
-import SignInButton from "./SignInButton";
+import Form from "../../components/Form";
+import SignInButton from "../../components/SignInButton";
 
-import { MailIcon } from "../icons/MailIcon";
-import { UserIcon } from "../icons/UserIcon";
-import InputField from "./InputField";
-import Btn from "./Btn";
+import { MailIcon } from "../../icons/MailIcon";
+import { UserIcon } from "../../icons/UserIcon";
+import InputField from "../../components/InputField";
+import Btn from "../../components/Btn";
 
 export default function UserData(props: any) {
   const { data: session } = useSession();
