@@ -5,7 +5,7 @@ import { loadMercadoPago } from "@mercadopago/sdk-js";
 import { Produto } from "./lib/interface";
 import { client } from "./lib/sanity";
 import { useEffect } from "react";
-import { Button } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import ProductCard from "./components/ProductCard";
 const getData = async () => {
   //AQUI REALIZA UM QUERY SIMPLES E PEGA OS PRODUTOS CRIADOS,AONDE
@@ -106,21 +106,22 @@ const renderMp = () => {
 export default async function Home() {
   const data = (await getData()) as Produto[];
 
-  useEffect(() => {
-    renderMp();
-  }, []);
+  // useEffect(() => {
+  //   renderMp();
+  // }, []);
   console.log(data);
 
   return (
     <>
-      <div>
+      <div>      
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-2xl font-extrabold  tracking-tight text-blue-600 md:leading-14 text-center">
             Todos produtos
           </h1>
         </div>
+        {/* <Link href="/pages/userData">Pages/userData</Link> */}
 
-        <ul>
+        {/* <ul>
           {data.map((produto) => {
             return (
               <li key={produto._id}>
@@ -143,7 +144,7 @@ export default async function Home() {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </div>
     </>
   );
