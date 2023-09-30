@@ -42,6 +42,7 @@ const getData = async () => {
     console.log(e);
   }
 };
+//AINDA PRECISANDO RESOLVER,POIS NÃO ESTA RETORANDDO O QRCODE BASE 64,PARA SER MOSTRADO NA TELA
 const renderMp = () => {
   //   var mercadopago = require('mercadopago');
   //   mercadopago.configure({
@@ -104,13 +105,8 @@ const renderMp = () => {
   //   .catch((e) => console.log(e));
 };
 
-export default async function Home() {
+export default async function Page() {
   const data = (await getData()) as Produto[];
-
-  // useEffect(() => {
-  //   renderMp();
-  // }, []);
-  console.log(data);
 
   return (
     <>
@@ -120,7 +116,7 @@ export default async function Home() {
             Todos produtos
           </h1>
         </div>
-        {/* <Link href="/pages/userData">Pages/userData</Link> */}
+        {/* <Link href="/pages/userData">User Data</Link> */}
 
         {/* <ul>
           {data.map((produto) => {

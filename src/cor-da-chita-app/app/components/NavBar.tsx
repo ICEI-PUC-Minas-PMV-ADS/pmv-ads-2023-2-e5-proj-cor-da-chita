@@ -21,8 +21,10 @@ export default function NavBar() {
     <Navbar isBordered>
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
-          <CorChitaIcon />
-          <p className="sm:block font-bold text-inherit">Cor da Chita</p>
+          <Link href="/" color="foreground">
+            <CorChitaIcon />
+            <p className="sm:block font-bold text-inherit">Cor da Chita</p>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 

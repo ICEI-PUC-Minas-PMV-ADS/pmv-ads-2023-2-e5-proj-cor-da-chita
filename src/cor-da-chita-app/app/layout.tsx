@@ -24,14 +24,15 @@ export default function RootLayout({
       <body>
         <NextUIProvider>
           <Providers>
-            <Header>
+            <NavBar />
+            {/* <Header>
               <NavBar />
               <Menu />
-            </Header>
+            </Header> */}
 
-            <ProductCard />
-            <Link href="/pages/userData">User Data</Link>
-            {/* <UserData /> */}
+            {/* <ProductCard /> */}
+            
+            
             {children}
           </Providers>
         </NextUIProvider>
