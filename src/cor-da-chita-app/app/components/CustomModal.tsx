@@ -12,7 +12,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-export default function CustomModal(props: any) {
+export default function CustomModal(...props: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (

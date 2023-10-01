@@ -11,7 +11,7 @@ import UserIcon from "../../icons/UserIcon";
 import PhoneIcon from "../../icons/PhoneIcon";
 import GoogleIcon from "@/app/icons/GoogleIcon";
 
-export default function UserData(props: any) {
+export default function UserData() {
   const { data: session } = useSession();
 
   const [nome, setNome] = useState<string>();
@@ -26,7 +26,7 @@ export default function UserData(props: any) {
   return (
     <>
       <h2>Seus Dados</h2>
-      <div className="bg-sky-950">
+      <div>
         <Form method="post">
           <Input
             type="text"

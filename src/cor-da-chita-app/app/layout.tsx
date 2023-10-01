@@ -1,17 +1,14 @@
 "use client";
+
 import "./globals.css";
 import Providers from "./Providers";
-import Header from "./components/Header";
-// import UserData from "./pages/userData";
 import { NextUIProvider } from "@nextui-org/react";
-import Link from "next/link";
 
+import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import ProductCard from "./components/ProductCard";
-
-import SignInButton from "./components/SignInButton";
 import Menu from "./components/Menu";
-import CustomModal from "./components/CustomModal";
+// import CustomModal from "./components/CustomModal";
 
 export default function RootLayout({
   children,

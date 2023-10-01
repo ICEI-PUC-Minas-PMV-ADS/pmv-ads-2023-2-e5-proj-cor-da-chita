@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function ShoppingCart(props: any) {
+export default function ShoppingCart(...props: any) {
   return <></>;
 }

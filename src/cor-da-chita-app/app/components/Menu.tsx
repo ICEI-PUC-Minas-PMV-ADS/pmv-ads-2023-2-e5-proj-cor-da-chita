@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Menu(props: any) {
+export default function Menu(...props: any) {
   return (
     <nav className="flex justify-center">
       <ul className="flex">

@@ -107,7 +107,7 @@ import ProductCard from "./components/ProductCard";
 
 export default async function Page() {
   //const data = (await getData()) as Produto[];
-
+  //console.log(data);
   return (
     <>
       <div>
