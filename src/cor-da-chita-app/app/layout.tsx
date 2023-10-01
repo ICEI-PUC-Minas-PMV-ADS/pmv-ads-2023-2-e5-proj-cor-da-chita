@@ -12,7 +12,6 @@ import ProductCard from "./components/ProductCard";
 import SignInButton from "./components/SignInButton";
 import Menu from "./components/Menu";
 import CustomModal from "./components/CustomModal";
-import UserData from "./pages/userData/page";
 
 export default function RootLayout({
   children,
@@ -24,15 +23,13 @@ export default function RootLayout({
       <body>
         <NextUIProvider>
           <Providers>
-            <NavBar />
-            {/* <Header>
+            <Header>
               <NavBar />
               <Menu />
-            </Header> */}
+            </Header>
 
-            {/* <ProductCard /> */}
-            
-            
+            <ProductCard />
+
             {children}
           </Providers>
         </NextUIProvider>

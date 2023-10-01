@@ -1,15 +1,26 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Menu(props: any) {
   return (
-    <div className="flex justify-center">
+    <nav className="flex justify-center">
       <ul className="flex">
-        <li>Todos os Produtos</li>
-        <li>Estandartes</li>
-        <li>Cama e Mesa</li>
-        <li>Ecobags e Carteiras</li>
-        <li>Outros</li>
+        <li>
+          <Link href="#">Todos os Produtos</Link>
+        </li>
+        <li>
+          <Link href="#">Estandartes</Link>
+        </li>
+        <li>
+          <Link href="#">Cama e Mesa</Link>
+        </li>
+        <li>
+          <Link href="#">Ecobags e Carteiras</Link>
+        </li>
+        <li>
+          <Link href="#">Outros</Link>
+        </li>
       </ul>
-    </div>
+    </nav>
   );
 }

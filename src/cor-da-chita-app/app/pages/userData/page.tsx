@@ -1,15 +1,15 @@
 // Dados do usuário na tela na finalização da compra
 "use client";
 import React, { useState } from "react";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { Button, Input } from "@nextui-org/react";
 
 import Form from "../../components/Form";
-import SignInButton from "../../components/SignInButton";
 
-import { MailIcon } from "../../icons/MailIcon";
-import { UserIcon } from "../../icons/UserIcon";
-import InputField from "../../components/InputField";
-import Btn from "../../components/Btn";
+import MailIcon from "../../icons/MailIcon";
+import UserIcon from "../../icons/UserIcon";
+import PhoneIcon from "../../icons/PhoneIcon";
+import GoogleIcon from "@/app/icons/GoogleIcon";
 
 export default function UserData(props: any) {
   const { data: session } = useSession();
@@ -18,11 +18,9 @@ export default function UserData(props: any) {
   const [email, setEmail] = useState<string>();
   const [telefone, setTelefone] = useState<string>();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    console.log(newValue);
-
-    setNome(newValue);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    alert("hello");
+    return "";
   };
 
   return (
@@ -30,42 +28,39 @@ export default function UserData(props: any) {
       <h2>Seus Dados</h2>
       <div className="bg-sky-950">
         <Form method="post">
-          <InputField
+          <Input
             type="text"
             label="Nome"
             size="sm"
             value={nome}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setNome(e.target.value)
-            }
+            onChange={(e) => setNome(e.target.value)}
             startContent={
               <UserIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
           />
-          <InputField
+          <Input
             type="email"
             label="Email"
             size="sm"
             value={email}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
+            onChange={(e) => setEmail(e.target.value)}
             startContent={
               <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
           />
-          <InputField
+          <Input
             type="tel"
             label="Telefone"
             size="sm"
             value={telefone}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setTelefone(e.target.value)
+            onChange={(e) => setTelefone(e.target.value)}
+            startContent={
+              <PhoneIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
           />
-          <Btn color="success" size="md" onClick={handleChange}>
+          <Button color="success" size="md" onClick={handleClick}>
             Confirmar Dados
-          </Btn>
+          </Button>
         </Form>
       </div>
       {session && session.user ? (
@@ -73,11 +68,18 @@ export default function UserData(props: any) {
       ) : (
         <div>
           <p>________________ ou ________________</p>
-          <SignInButton size="md" text="continuar com Google" />
+          <Button
+            color="secondary"
+            size="sm"
+            onClick={() => signIn("google")}
+            startContent={
+              <GoogleIcon className="text-2xl  pointer-events-none flex-shrink-0" />
+            }
+          >
+            Continuar com Google
+          </Button>
         </div>
       )}
-
-      <div>{nome}</div>
     </>
   );
 }

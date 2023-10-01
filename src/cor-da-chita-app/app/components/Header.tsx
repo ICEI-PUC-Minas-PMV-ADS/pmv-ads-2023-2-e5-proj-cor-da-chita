@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Header({ children, props }: any) {
-  return <header>{children}</header>;
+  return <header {...props}>{children}</header>;
 }

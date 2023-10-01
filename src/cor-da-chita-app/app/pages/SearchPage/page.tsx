@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
-import { client } from "../lib/sanity";
+import { client } from "../../lib/sanity";
 import { PortableText } from "@portabletext/react";
 
 export default function SearchPage(props: any) {
