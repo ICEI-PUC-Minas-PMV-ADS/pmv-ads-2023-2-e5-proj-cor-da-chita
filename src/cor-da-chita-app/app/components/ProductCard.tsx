@@ -9,6 +9,7 @@ import ButtonOnlyIcon from "./ButtonOnlyIcon";
 import { Produto } from "../lib/interface";
 import { client } from "../lib/sanity";
 
+// AGUARDANDO GABRIEL CONFIGURAR CORS NO SANITY
 async function getProductData() {
   try {
     const query = `* [_type == "produto"]{
@@ -27,17 +28,26 @@ async function getProductData() {
   }
 }
 
-export default async function ProductCard(...props: any) {
-  const data = (await getProductData()) as Produto[];
+export default function ProductCard(...props: any) {
+  //const data = (await getProductData()) as Produto[];
+  //getProductData();
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     const data = (await getProductData()) as Produto[];
+  //     console.log(data);
+  //     return data;
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <>
       <div>
         Meus Produtos
-        {data.map((produto) => (
+        {/* {data.map((produto) => (
           <Card className="py-4">
             <CardBody className="overflow-visible py-2">
-              {/* <img className="w-20 h-20 pb-8" src={produto.imagem}/>  */}
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl"
@@ -56,7 +66,7 @@ export default async function ProductCard(...props: any) {
               </CardFooter>
             </CardBody>
           </Card>
-        ))}
+        ))} */}
       </div>
     </>
   );
