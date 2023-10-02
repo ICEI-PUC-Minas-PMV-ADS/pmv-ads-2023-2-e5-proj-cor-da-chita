@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 
-import Form from "../../components/Form";
+import Form from "../../components/ui/Form";
 
-import MailIcon from "../../icons/MailIcon";
-import UserIcon from "../../icons/UserIcon";
-import PhoneIcon from "../../icons/PhoneIcon";
-import GoogleIcon from "@/app/icons/GoogleIcon";
+import MailIcon from "../../assets/icons/MailIcon";
+import UserIcon from "../../assets/icons/UserIcon";
+import PhoneIcon from "../../assets/icons/PhoneIcon";
+import GoogleIcon from "@/assets/icons/GoogleIcon";
 
 export default function UserData() {
   const { data: session } = useSession();

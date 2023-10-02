@@ -17,9 +17,9 @@ import {
   Button,
 } from "@nextui-org/react";
 
-import { CorChitaIcon } from "../icons/CorChitaIcon";
-import { SearchIcon } from "../icons/SearchIcon";
-import GoogleIcon from "../icons/GoogleIcon";
+import { CorChitaIcon } from "../assets/icons/CorChitaIcon";
+import { SearchIcon } from "../assets/icons/SearchIcon";
+import GoogleIcon from "../assets/icons/GoogleIcon";
 
 export default function NavBar() {
   const { data: session } = useSession();

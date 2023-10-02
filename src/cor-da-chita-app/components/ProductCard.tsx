@@ -3,8 +3,8 @@
 import { Button, CardFooter } from "@nextui-org/react";
 import React, { useEffect } from "react";
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
-import CartPlusIcon from "../icons/CartPlusIcon";
-import ButtonOnlyIcon from "./ButtonOnlyIcon";
+import CartPlusIcon from "../assets/icons/CartPlusIcon";
+import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 //import getDataProduct from "../lib/sanity";
 import { Produto } from "../lib/interface";
 import { client } from "../lib/sanity";

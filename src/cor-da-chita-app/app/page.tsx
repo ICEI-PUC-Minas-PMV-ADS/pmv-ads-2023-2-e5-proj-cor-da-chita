@@ -1,12 +1,12 @@
 import { PortableText } from "@portabletext/react";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import { loadMercadoPago } from "@mercadopago/sdk-js";
-import { Produto } from "./lib/interface";
-import { client } from "./lib/sanity";
+import { Produto } from "../lib/interface";
+import { client } from "../lib/sanity";
 import { useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "../components/ProductCard";
 
 // const getData = async () => {
 //   //AQUI REALIZA UM QUERY SIMPLES E PEGA OS PRODUTOS CRIADOS,AONDE
@@ -116,7 +116,7 @@ export default function Page() {
             {/* Todos produtos */}
           </h1>
         </div>
-        <Link href="/pages/UserData">User Data</Link>
+        <Link href="/user-data">User Data</Link>
         {/* <ul>
           {data.map((produto) => {
             return (
