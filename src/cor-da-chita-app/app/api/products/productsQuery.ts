@@ -1,6 +1,5 @@
-import { client } from "./sanity";
+import { client } from "../../../lib/sanity";
 
-// EM TESTES
 export default async function getProductData() {
   try {
     const query = `* [_type == "produto"]{

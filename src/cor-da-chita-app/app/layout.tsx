@@ -1,17 +1,17 @@
 "use client";
-
 import "../styles/globals.css";
-import Providers from "./Providers";
+import Providers from "./api/providers/Providers";
 import { NextUIProvider } from "@nextui-org/react";
 
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
-import ProductCard from "../components/ProductCard";
 import Menu from "../components/Menu";
-import MenuProducts from "./menu/page";
 import Section from "../components/Section";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
+import Products from "./products/page";
+import ProductCard from "@/components/ProductCard";
+import { Main } from "next/document";
 // import CustomModal from "./components/CustomModal";
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body>
+      <body suppressHydrationWarning={true}>
         <NextUIProvider>
           <Providers>
             <Header>
@@ -30,7 +30,9 @@ export default function RootLayout({
             </Header>
 
             <main>
-              <Section>{/* <MenuProducts /> */}</Section>
+              <Section>
+                <Products />
+              </Section>
 
               {children}
               <Article />
