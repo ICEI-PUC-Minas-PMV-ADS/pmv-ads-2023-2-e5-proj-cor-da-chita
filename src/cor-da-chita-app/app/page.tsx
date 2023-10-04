@@ -116,7 +116,7 @@ export default function Page() {
             {/* Todos produtos */}
           </h1>
         </div>
-        <Link href="/user-data">User Data</Link>
+        {/* <Link href="/user-data">User Data</Link> */}
         {/* <ul>
           {data.map((produto) => {
             return (

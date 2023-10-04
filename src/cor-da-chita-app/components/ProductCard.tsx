@@ -1,51 +1,41 @@
 // Para renderizar os cards dos produtos ao clicar em categoria ou usar o menu de busca
 "use client";
-import { Button, CardFooter } from "@nextui-org/react";
-import React, { useEffect } from "react";
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
-import CartPlusIcon from "../assets/icons/CartPlusIcon";
+import React, { useEffect, useState } from "react";
+import { Card, CardBody, Image, CardFooter } from "@nextui-org/react";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
-//import getDataProduct from "../lib/sanity";
+import CartPlusIcon from "../assets/icons/CartPlusIcon";
+
 import { Produto } from "../lib/interface";
-import { client } from "../lib/sanity";
+import getProductData from "../app/api/products/productsQuery";
 
-// AGUARDANDO GABRIEL CONFIGURAR CORS NO SANITY
-async function getProductData() {
-  try {
-    const query = `* [_type == "produto"]{
-        _id,
-        nome,
-        preco,
-        'imagem':imagem.asset->url
-      }`;
+async function getData(
+  setProductData: React.Dispatch<React.SetStateAction<Produto[] | undefined>>
+) {
+  const data = (await getProductData()) as Produto[];
 
-    const data = await client.fetch(query);
-    console.log(data);
-
-    return data;
-  } catch (e) {
-    console.log(e);
-  }
+  setProductData(data);
 }
 
 export default function ProductCard(...props: any) {
-  const data = (await getProductData()) as Produto[];
-  console.log(data)
+  const [productData, setProductData] = useState<Produto[] | undefined>([]);
 
+  useEffect(() => {
+    getData(setProductData);
+  }, []);
 
   return (
     <>
       <div>
         Meus Produtos
-        {data.map((produto) => (
-          <Card className="py-4">
+        {productData?.map((produto) => (
+          <Card className="py-4" key={produto._id}>
             <CardBody className="overflow-visible py-2">
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl"
                 src={produto.imagem}
-                width={20}
-                height={20}
+                width={180}
+                height={180}
               />
               <CardFooter className="pb-0 pt-2 px-4 flex-col items-start">
                 <p className="font-bold text-medium">{produto.nome}</p>

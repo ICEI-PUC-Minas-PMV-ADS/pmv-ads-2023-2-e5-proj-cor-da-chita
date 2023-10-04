@@ -33,12 +33,8 @@ export default function Menu(...props: any) {
     <nav className="flex  h-16 ">
       <ul className="flex justify-center w-full ">
         {categorias.map((categoria) => (
-          <li>
-            <Link
-            className=""
-              href={`/pages/MenuProducts/${categoria.id} `}
-              key={categoria.id}
-            >
+          <li key={categoria.id}>
+            <Link href={`/pages/MenuProducts/${categoria.id} `}>
               {categoria.nome}
             </Link>
           </li>
