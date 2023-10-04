@@ -1,14 +1,14 @@
 // Dados do usuário na tela na finalização da compra
 "use client";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { client } from "../../lib/sanity";
 import { PortableText } from "@portabletext/react";
-
+import { Produto } from "@/lib/interface";
 export default function SearchPage(props: any) {
-  const [produtos, setProdutos] = useState<any>();
+  const [produtos, setProdutos] = useState<Produto[]>();
   const [nomeProduto, setNomeProduto] = useState<string>();
   const categorias = [
     { label: "Estandartes", value: "estandartes" },
@@ -40,26 +40,56 @@ export default function SearchPage(props: any) {
     setProdutos(data);
   };
   const searchByCategory = async () => {
+
     //Pega as 2 primeiras letras da categoria e realiza a busca
-    const query = ` * [type == "produto" && nome match "${categorias[0]}${categorias[1]}*"]{
-       _id,
-       nome,
-       categoria,
-       descricao,      
-       estoque,
-       preco,
-       peso,
-       comprimento,
-       largura,
-       altura,
-       data,
-       'imagem':imagem.asset->url, 
-    }`;
-
+  //   const query = ` * [type == "produto" && categoria match "${categorias[0]}${categorias[1]}*"]{
+  //     _id,
+  //     nome,
+  //     categoria,
+  //     descricao,      
+  //     estoque,
+  //     preco,
+  //     peso,
+  //     comprimento,
+  //     largura,
+  //     altura,
+  //     data,
+  //     'imagem':imagem.asset->url, 
+  //  }`;
+   const query = ` * [type == "produto"]{
+    _id,
+    nome,
+    categoria,
+    descricao,      
+    estoque,
+    preco,
+    peso,
+    comprimento,
+    largura,
+    altura,
+    data,
+    'imagem':imagem.asset->url, 
+ }`;
     const data = await client.fetch(query).then().catch();
-
-    setProdutos(data);
+    console.log(data)
+    return data
   };
+
+  const getThisData = async ()=>{
+    console.log("foiiii")
+    const data = (await searchByCategory()) as Produto[]
+    console.log(data)
+
+
+  }
+
+useEffect(()=>{
+getThisData()
+
+
+  
+},[])
+
   return (
     <>
       <div>
@@ -79,10 +109,10 @@ export default function SearchPage(props: any) {
           value={nomeProduto}
           onChange={(e) => setNomeProduto(e.target.value)}
         />
-        <Button color="success" onClick={searchByName}>
+        <Button color="success" onClick={()=>console.log("oiiiiii")}>
           Buscar
         </Button>
-        <ul>
+        {/* <ul>
           {produtos.map((produto: any) => {
             return (
               <li key={produto._id}>
@@ -105,7 +135,7 @@ export default function SearchPage(props: any) {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </div>
     </>
   );

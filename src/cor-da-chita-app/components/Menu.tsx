@@ -30,11 +30,12 @@ export default function Menu(...props: any) {
   ];
 
   return (
-    <nav className="flex justify-center">
-      <ul className="flex">
+    <nav className="flex  h-16 ">
+      <ul className="flex justify-center w-full ">
         {categorias.map((categoria) => (
           <li>
             <Link
+            className=""
               href={`/pages/MenuProducts/${categoria.id} `}
               key={categoria.id}
             >

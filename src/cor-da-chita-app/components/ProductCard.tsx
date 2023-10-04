@@ -29,23 +29,15 @@ async function getProductData() {
 }
 
 export default function ProductCard(...props: any) {
-  //const data = (await getProductData()) as Produto[];
-  //getProductData();
+  const data = (await getProductData()) as Produto[];
+  console.log(data)
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const data = (await getProductData()) as Produto[];
-  //     console.log(data);
-  //     return data;
-  //   }
-  //   getData();
-  // }, []);
 
   return (
     <>
       <div>
         Meus Produtos
-        {/* {data.map((produto) => (
+        {data.map((produto) => (
           <Card className="py-4">
             <CardBody className="overflow-visible py-2">
               <Image
@@ -66,7 +58,7 @@ export default function ProductCard(...props: any) {
               </CardFooter>
             </CardBody>
           </Card>
-        ))} */}
+        ))}
       </div>
     </>
   );

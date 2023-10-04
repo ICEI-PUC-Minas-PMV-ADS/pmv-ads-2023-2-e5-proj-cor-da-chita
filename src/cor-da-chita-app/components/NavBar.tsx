@@ -25,7 +25,7 @@ export default function NavBar() {
   const { data: session } = useSession();
 
   return (
-    <Navbar isBordered>
+    <Navbar isBordered className="w-full">
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
           <Link href="/" color="foreground">
@@ -35,8 +35,8 @@ export default function NavBar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent as="div" className="items-center" justify="end">
-        <Input
+      <NavbarContent as="div" className="" justify="end">
+        {/* <Input
           classNames={{
             base: "max-w-full sm:max-w-[10rem] h-10",
             mainWrapper: "h-full",
@@ -48,7 +48,7 @@ export default function NavBar() {
           size="sm"
           startContent={<SearchIcon size={18} />}
           type="search"
-        />
+        /> */}
 
         {session && session.user ? (
           <Dropdown placement="bottom-end">
