@@ -1,17 +1,14 @@
 // Dados do usuário na tela na finalização da compra
 "use client";
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-
 import Form from "../../../components/ui/Form";
-
 import MailIcon from "../../../assets/icons/MailIcon";
 import UserIcon from "../../../assets/icons/UserIcon";
 import PhoneIcon from "../../../assets/icons/PhoneIcon";
 import GoogleIcon from "@/assets/icons/GoogleIcon";
-
 import { UserContext } from "@/contexts/UserContext/UserContext";
 
 export default function UserData() {
@@ -26,9 +23,6 @@ export default function UserData() {
   // Seta Nome e Email de acordo com o login
   const isName = isDisabled ? session?.user?.name ?? "" : user.name;
   const isEmail = isDisabled ? session?.user?.email ?? "" : user.email;
-
-  //const isEmpty = // Terminar validação de campo vazio
-  //const [missInfo, setMissInfo] = useState(false);
 
   // Validação de email
   const [value, setValue] = useState("");
@@ -59,9 +53,6 @@ export default function UserData() {
             isRequired
             isDisabled={isDisabled}
             isClearable
-            // color={isInvalid ? "danger" : undefined}
-            // errorMessage={missInfo && !isName ? "true" : "false"}
-            // onValueChange={() => setMissInfo(true)}
             onClear={() => user.setName("")}
             onChange={(e) => user.setName(e.target.value)}
             startContent={
@@ -101,10 +92,7 @@ export default function UserData() {
           <Button
             color="success"
             size="md"
-            // Ajustar aqui para pegar campos vazios e não ir para a outra page
-            onClick={() =>
-              value ? alert("Email incorreto") : route.push("/shipping-data")
-            }
+            onClick={() => route.push("/shipping-data")}
           >
             Confirmar Dados
           </Button>

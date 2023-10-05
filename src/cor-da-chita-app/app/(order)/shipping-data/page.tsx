@@ -7,8 +7,8 @@ import { useSession } from "next-auth/react";
 
 import Form from "@/components/ui/Form";
 
-import { UserContext } from "@/Context/UserContext/UserContext";
-import { AddressContext } from "@/Context/AddressContext/AddressContext";
+import { UserContext } from "@/contexts/UserContext/UserContext";
+import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 
 export default function ShippingData() {
   const { data: session } = useSession();
@@ -35,19 +35,19 @@ export default function ShippingData() {
   return (
     <>
       <h2>Dados de Envio</h2>
-      {session && session.user ? (
-        <div>
-          <p>{session.user.name}</p>
-          <p>{session.user.email}</p>
-          <p>{user.phone}</p>
-        </div>
-      ) : (
+      {/* {session && session.user ? (
         <div>
           <p>{user.name}</p>
           <p>{user.email}</p>
           <p>{user.phone}</p>
         </div>
-      )}
+      ) : ( */}
+      <div>
+        <p>{user.name}</p>
+        <p>{user.email}</p>
+        <p>{user.phone}</p>
+      </div>
+      {/* ) } */}
 
       <div>
         <Form method="post">

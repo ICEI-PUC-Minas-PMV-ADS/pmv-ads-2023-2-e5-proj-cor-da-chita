@@ -13,11 +13,11 @@ import Products from "./(product)/products/page";
 import ProductCard from "@/components/ProductCard";
 import { Main } from "next/document";
 import ShippingData from "./(order)/shipping-data/page";
-import UserContextProvider from "@/Context/UserContext/UserContext";
-import UserData from "./(order)/your-data/page";
+import UserContextProvider from "@/contexts/UserContext/UserContext";
+import UserData from "./(order)/your-data/UserData";
 import AddressContextProvider, {
   AddressContext,
-} from "@/Context/AddressContext/AddressContext";
+} from "@/contexts/AddressContext/AddressContext";
 import CartCard from "@/components/CartCard";
 // import CustomModal from "./components/CustomModal";
 
