@@ -1,8 +1,8 @@
 // Dados do usuário na tela na finalização da compra
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Link } from "@nextui-org/react";
 
 import Form from "../../components/ui/Form";
 
@@ -11,16 +11,21 @@ import UserIcon from "../../assets/icons/UserIcon";
 import PhoneIcon from "../../assets/icons/PhoneIcon";
 import GoogleIcon from "@/assets/icons/GoogleIcon";
 
+import { UserContext } from "@/Context/UserContext/UserContext";
+
 export default function UserData() {
   const { data: session } = useSession();
+  const user = useContext(UserContext);
 
-  const [nome, setNome] = useState<string>();
-  const [email, setEmail] = useState<string>();
-  const [telefone, setTelefone] = useState<string>();
+  // Habilita / Desabilita input de acordo com login
+  const isDisabled = session && session.user ? true : false;
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    alert("hello");
-    return "";
+  // Seta Nome e Email de acordo com o login
+  const isName = isDisabled ? session?.user?.name ?? "" : user.name;
+  const isEmail = isDisabled ? session?.user?.email ?? "" : user.email;
+
+  const handleClick = () => {
+    alert("Programar Dados do Usuário");
   };
 
   return (
@@ -32,8 +37,12 @@ export default function UserData() {
             type="text"
             label="Nome"
             size="sm"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            value={isName}
+            isRequired
+            isClearable
+            onClear={() => user.setName("")}
+            isDisabled={isDisabled}
+            onChange={(e) => user.setName(e.target.value)}
             startContent={
               <UserIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
@@ -42,8 +51,12 @@ export default function UserData() {
             type="email"
             label="Email"
             size="sm"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={isEmail}
+            isRequired
+            isClearable
+            onClear={() => user.setEmail("")}
+            isDisabled={isDisabled}
+            onChange={(e) => user.setEmail(e.target.value)}
             startContent={
               <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
@@ -52,8 +65,11 @@ export default function UserData() {
             type="tel"
             label="Telefone"
             size="sm"
-            value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
+            value={user.phone}
+            isRequired
+            isClearable
+            onClear={() => user.setPhone("")}
+            onChange={(e) => user.setPhone(e.target.value)}
             startContent={
               <PhoneIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }

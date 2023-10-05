@@ -12,6 +12,12 @@ import Footer from "../components/Footer";
 import Products from "./products/page";
 import ProductCard from "@/components/ProductCard";
 import { Main } from "next/document";
+import ShippingData from "./shipping-data/page";
+import UserContextProvider from "@/Context/UserContext/UserContext";
+import UserData from "./user-data/page";
+import AddressContextProvider, {
+  AddressContext,
+} from "@/Context/AddressContext/AddressContext";
 // import CustomModal from "./components/CustomModal";
 
 export default function RootLayout({
@@ -24,21 +30,27 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <NextUIProvider>
           <Providers>
-            <Header>
-              <NavBar />
-              <Menu />
-            </Header>
+            <UserContextProvider>
+              <AddressContextProvider>
+                <Header>
+                  <NavBar />
+                  <Menu />
+                </Header>
 
-            <main>
-              <Section>
-                <Products />
-              </Section>
+                <main>
+                  <Section>
+                    {/* <Products /> */}
+                    <ShippingData />
+                    {/* <UserData /> */}
+                  </Section>
 
-              {children}
-              <Article />
-            </main>
+                  {children}
+                  <Article />
+                </main>
 
-            <Footer />
+                <Footer />
+              </AddressContextProvider>
+            </UserContextProvider>
           </Providers>
         </NextUIProvider>
       </body>
