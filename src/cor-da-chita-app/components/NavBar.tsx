@@ -19,7 +19,6 @@ import {
 
 import { CorChitaIcon } from "../assets/icons/CorChitaIcon";
 import { SearchIcon } from "../assets/icons/SearchIcon";
-import GoogleIcon from "../assets/icons/GoogleIcon";
 
 export default function NavBar() {
   const { data: session } = useSession();
@@ -36,7 +35,7 @@ export default function NavBar() {
       </NavbarContent>
 
       <NavbarContent as="div" className="" justify="end">
-        {/* <Input
+        <Input
           classNames={{
             base: "max-w-full sm:max-w-[10rem] h-10",
             mainWrapper: "h-full",
@@ -48,7 +47,7 @@ export default function NavBar() {
           size="sm"
           startContent={<SearchIcon size={18} />}
           type="search"
-        /> */}
+        />
 
         {session && session.user ? (
           <Dropdown placement="bottom-end">
@@ -70,7 +69,6 @@ export default function NavBar() {
               </DropdownItem>
               <DropdownItem key="my_orders">Meus Pedidos</DropdownItem>
               <DropdownItem key="help">Ajuda</DropdownItem>
-              <DropdownItem key="about">Sobre</DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"

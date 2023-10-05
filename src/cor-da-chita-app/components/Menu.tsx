@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 export default function Menu(...props: any) {
-  const categorias = [
+  const category = [
     {
       id: 1,
       nome: "Todos os Produtos",
@@ -32,10 +32,10 @@ export default function Menu(...props: any) {
   return (
     <nav className="flex  h-16 ">
       <ul className="flex justify-center w-full ">
-        {categorias.map((categoria) => (
-          <li key={categoria.id}>
-            <Link href={`/pages/MenuProducts/${categoria.id} `}>
-              {categoria.nome}
+        {category.map((category) => (
+          <li key={category.id}>
+            <Link href={`/pages/MenuProducts/${category.id} `}>
+              {category.nome}
             </Link>
           </li>
         ))}

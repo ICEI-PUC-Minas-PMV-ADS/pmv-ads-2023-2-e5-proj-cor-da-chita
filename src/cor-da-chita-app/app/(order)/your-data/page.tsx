@@ -4,11 +4,11 @@ import React, { useContext, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { Button, Input, Link } from "@nextui-org/react";
 
-import Form from "../../components/ui/Form";
+import Form from "../../../components/ui/Form";
 
-import MailIcon from "../../assets/icons/MailIcon";
-import UserIcon from "../../assets/icons/UserIcon";
-import PhoneIcon from "../../assets/icons/PhoneIcon";
+import MailIcon from "../../../assets/icons/MailIcon";
+import UserIcon from "../../../assets/icons/UserIcon";
+import PhoneIcon from "../../../assets/icons/PhoneIcon";
 import GoogleIcon from "@/assets/icons/GoogleIcon";
 
 import { UserContext } from "@/Context/UserContext/UserContext";
@@ -75,7 +75,7 @@ export default function UserData() {
             }
           />
           <Button color="success" size="md" onClick={handleClick}>
-            Confirmar Dados
+            <Link href="/shipping-data">Confirmar Dados</Link>
           </Button>
         </Form>
       </div>

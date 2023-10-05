@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Produto } from "@/lib/interface";
-import getProductData from "../api/products/productsQuery";
+import getProductData from "../../api/products/productsQuery";
 import ProductCard from "@/components/ProductCard";
 
 export default function Products() {

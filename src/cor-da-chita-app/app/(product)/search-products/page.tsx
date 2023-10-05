@@ -4,19 +4,13 @@ import React, { use, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
-import { client } from "../../lib/sanity";
+import { client } from "../../../lib/sanity";
 import { PortableText } from "@portabletext/react";
 import { Produto } from "@/lib/interface";
-export default function SearchPage(props: any) {
+
+export default function SearchProducts(props: any) {
   const [produtos, setProdutos] = useState<Produto[]>();
   const [nomeProduto, setNomeProduto] = useState<string>();
-  const categorias = [
-    { label: "Estandartes", value: "estandartes" },
-    { label: "Cama e Mesa", value: "cama e mesa" },
-    { label: "EcoBags e Carteiras", value: "ecobags e carteiras" },
-    { label: "Natalinos", value: "natalinos" },
-    { label: "Outros", value: "outros" },
-  ];
 
   const searchByName = async () => {
     //Analisar este metodo,pois o match pega somente as duas primeiras letras
@@ -40,23 +34,22 @@ export default function SearchPage(props: any) {
     setProdutos(data);
   };
   const searchByCategory = async () => {
-
     //Pega as 2 primeiras letras da categoria e realiza a busca
-  //   const query = ` * [type == "produto" && categoria match "${categorias[0]}${categorias[1]}*"]{
-  //     _id,
-  //     nome,
-  //     categoria,
-  //     descricao,      
-  //     estoque,
-  //     preco,
-  //     peso,
-  //     comprimento,
-  //     largura,
-  //     altura,
-  //     data,
-  //     'imagem':imagem.asset->url, 
-  //  }`;
-   const query = ` * [type == "produto"]{
+    //   const query = ` * [type == "produto" && categoria match "${categorias[0]}${categorias[1]}*"]{
+    //     _id,
+    //     nome,
+    //     categoria,
+    //     descricao,
+    //     estoque,
+    //     preco,
+    //     peso,
+    //     comprimento,
+    //     largura,
+    //     altura,
+    //     data,
+    //     'imagem':imagem.asset->url,
+    //  }`;
+    const query = ` * [type == "produto"]{
     _id,
     nome,
     categoria,
@@ -71,45 +64,28 @@ export default function SearchPage(props: any) {
     'imagem':imagem.asset->url, 
  }`;
     const data = await client.fetch(query).then().catch();
-    console.log(data)
-    return data
+    console.log(data);
+    return data;
   };
 
-  const getThisData = async ()=>{
-    console.log("foiiii")
-    const data = (await searchByCategory()) as Produto[]
-    console.log(data)
+  const getThisData = async () => {
+    console.log("foiiii");
+    const data = (await searchByCategory()) as Produto[];
+    console.log(data);
+  };
 
-
-  }
-
-useEffect(()=>{
-getThisData()
-
-
-  
-},[])
+  useEffect(() => {
+    getThisData();
+  }, []);
 
   return (
     <>
       <div>
-        <Select
-          isRequired
-          label="Favorite Animal"
-          placeholder="Select an animal"
-          className="max-w-xs"
-        >
-          {categorias.map((categoria) => (
-            <SelectItem key={categoria.value} value={categoria.value}>
-              {categoria.label}
-            </SelectItem>
-          ))}
-        </Select>
         <Input
           value={nomeProduto}
           onChange={(e) => setNomeProduto(e.target.value)}
         />
-        <Button color="success" onClick={()=>console.log("oiiiiii")}>
+        <Button color="success" onClick={() => console.log("oiiiiii")}>
           Buscar
         </Button>
         {/* <ul>

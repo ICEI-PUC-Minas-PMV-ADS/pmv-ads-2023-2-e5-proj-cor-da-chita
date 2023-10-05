@@ -9,12 +9,12 @@ import Menu from "../components/Menu";
 import Section from "../components/Section";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
-import Products from "./products/page";
+import Products from "./(product)/products/page";
 import ProductCard from "@/components/ProductCard";
 import { Main } from "next/document";
-import ShippingData from "./shipping-data/page";
+import ShippingData from "./(order)/shipping-data/page";
 import UserContextProvider from "@/Context/UserContext/UserContext";
-import UserData from "./user-data/page";
+import UserData from "./(order)/your-data/page";
 import AddressContextProvider, {
   AddressContext,
 } from "@/Context/AddressContext/AddressContext";
@@ -40,14 +40,15 @@ export default function RootLayout({
 
                 <main>
                   <Section>
+                    {/* Componentes renderizados aqui apenas para testes */}
                     {/* <Products /> */}
-                    <ShippingData />
+                    {/* <ShippingData /> */}
                     {/* <UserData /> */}
                     {/* <CartCard /> */}
                   </Section>
 
                   {children}
-                  <Article />
+                  {/* <Article /> */}
                 </main>
 
                 <Footer />
