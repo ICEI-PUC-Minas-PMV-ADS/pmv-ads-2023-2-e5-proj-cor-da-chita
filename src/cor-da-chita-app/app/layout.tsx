@@ -18,6 +18,7 @@ import UserData from "./user-data/page";
 import AddressContextProvider, {
   AddressContext,
 } from "@/Context/AddressContext/AddressContext";
+import CartCard from "@/components/CartCard";
 // import CustomModal from "./components/CustomModal";
 
 export default function RootLayout({
@@ -42,6 +43,7 @@ export default function RootLayout({
                     {/* <Products /> */}
                     <ShippingData />
                     {/* <UserData /> */}
+                    {/* <CartCard /> */}
                   </Section>
 
                   {children}
