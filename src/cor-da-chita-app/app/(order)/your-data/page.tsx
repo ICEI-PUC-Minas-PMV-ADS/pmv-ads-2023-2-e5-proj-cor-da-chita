@@ -1,6 +1,6 @@
 // Dados do usuário na tela na finalização da compra
 "use client";
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo, useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -23,12 +23,8 @@ export default function UserData() {
   // Habilita / Desabilita input de acordo com login
   const isDisabled = session && session.user ? true : false;
 
-  // Seta Nome e Email de acordo com o login
-  const isName = isDisabled ? session?.user?.name ?? "" : user.name;
-  const isEmail = isDisabled ? session?.user?.email ?? "" : user.email;
-
-  //const isEmpty = // Terminar validação de campo vazio
-  //const [missInfo, setMissInfo] = useState(false);
+  // Controla mensagem de erro
+  const [missInfo, setMissInfo] = useState(false);
 
   // Validação de email
   const [value, setValue] = useState("");
@@ -42,42 +38,60 @@ export default function UserData() {
     return validateEmail(value) ? false : true;
   }, [value]);
 
-  const handleClick = () => {
-    alert("Programar Dados do Usuário");
-  };
+  useEffect(() => {
+    if (session) {
+      user.setName(session?.user?.name ?? "");
+      user.setEmail(session?.user?.email ?? "");
+    }
+  });
 
   return (
     <>
       <h2>Seus Dados</h2>
       <div>
         <Form method="post">
-          <Input
+          <Input // Nome Completo
             type="text"
-            label="Nome"
+            label="Nome Completo"
             size="sm"
-            value={isName}
+            value={user.name}
+            autoFocus
             isRequired
             isDisabled={isDisabled}
             isClearable
-            // color={isInvalid ? "danger" : undefined}
-            // errorMessage={missInfo && !isName ? "true" : "false"}
-            // onValueChange={() => setMissInfo(true)}
+            color={!isDisabled && missInfo && !user.name ? "danger" : undefined}
+            errorMessage={
+              !isDisabled &&
+              missInfo &&
+              !user.name &&
+              "Favor preencher seu nome completo"
+            }
             onClear={() => user.setName("")}
-            onChange={(e) => user.setName(e.target.value)}
+            onChange={(e) => {
+              user.setName(e.target.value);
+            }}
             startContent={
               <UserIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
           />
-          <Input
+          <Input // Email
             type="email"
             label="Email"
             size="sm"
-            value={isEmail}
+            value={user.email}
             isRequired
             isDisabled={isDisabled}
             isClearable
-            color={isInvalid ? "danger" : undefined}
-            errorMessage={isInvalid && "Favor entrar com um e-mail válido"}
+            color={
+              isInvalid || (!isDisabled && missInfo && !user.email)
+                ? "danger"
+                : undefined
+            }
+            errorMessage={
+              isInvalid || (!isDisabled && missInfo && !user.email)
+                ? "Favor entrar com um e-mail válido"
+                : ""
+            }
             onValueChange={setValue}
             onClear={() => user.setEmail("")}
             onChange={(e) => user.setEmail(e.target.value)}
@@ -85,13 +99,17 @@ export default function UserData() {
               <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
           />
-          <Input
+          <Input // Telefone
             type="tel"
             label="Telefone"
             size="sm"
             value={user.phone}
             isRequired
             isClearable
+            color={missInfo && !user.phone ? "danger" : undefined}
+            errorMessage={
+              missInfo && !user.phone && "Favor preencher seu telefone"
+            }
             onClear={() => user.setPhone("")}
             onChange={(e) => user.setPhone(e.target.value)}
             startContent={
@@ -101,9 +119,10 @@ export default function UserData() {
           <Button
             color="success"
             size="md"
-            // Ajustar aqui para pegar campos vazios e não ir para a outra page
             onClick={() =>
-              value ? alert("Email incorreto") : route.push("/shipping-data")
+              !user.name || !user.email || !user.phone
+                ? setMissInfo(true)
+                : route.push("/shipping-data")
             }
           >
             Confirmar Dados

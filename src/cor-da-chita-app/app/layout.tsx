@@ -14,7 +14,7 @@ import ProductCard from "@/components/ProductCard";
 import { Main } from "next/document";
 import ShippingData from "./(order)/shipping-data/page";
 import UserContextProvider from "@/contexts/UserContext/UserContext";
-import UserData from "./(order)/your-data/UserData";
+
 import AddressContextProvider, {
   AddressContext,
 } from "@/contexts/AddressContext/AddressContext";
