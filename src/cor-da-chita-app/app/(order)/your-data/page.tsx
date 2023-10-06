@@ -25,6 +25,7 @@ export default function UserData() {
 
   // Controla mensagem de erro
   const [missInfo, setMissInfo] = useState(false);
+  const validadeData = !user.name || !user.email || !user.phone;
 
   // Validação de email
   const [value, setValue] = useState("");
@@ -120,9 +121,7 @@ export default function UserData() {
             color="success"
             size="md"
             onClick={() =>
-              !user.name || !user.email || !user.phone
-                ? setMissInfo(true)
-                : route.push("/shipping-data")
+              validadeData ? setMissInfo(true) : route.push("/shipping-data")
             }
           >
             Confirmar Dados

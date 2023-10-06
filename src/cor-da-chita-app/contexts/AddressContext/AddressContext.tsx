@@ -23,8 +23,6 @@ type AddressContextType = {
   setUf: Dispatch<SetStateAction<string>>;
   cep: string;
   setCep: Dispatch<SetStateAction<string>>;
-  country: string;
-  setCountry: Dispatch<SetStateAction<string>>;
   complement: string;
   setComplement: Dispatch<SetStateAction<string>>;
 };
@@ -42,8 +40,6 @@ const initialValue = {
   setUf: () => {},
   cep: "",
   setCep: () => {},
-  country: "",
-  setCountry: () => {},
   complement: "",
   setComplement: () => {},
 };
@@ -59,7 +55,6 @@ export default function AddressContextProvider({
   const [city, setCity] = useState(initialValue.city);
   const [uf, setUf] = useState(initialValue.uf);
   const [cep, setCep] = useState(initialValue.cep);
-  const [country, setCountry] = useState(initialValue.country);
   const [complement, setComplement] = useState(initialValue.complement);
 
   return (
@@ -77,8 +72,6 @@ export default function AddressContextProvider({
         setUf,
         cep,
         setCep,
-        country,
-        setCountry,
         complement,
         setComplement,
       }}
