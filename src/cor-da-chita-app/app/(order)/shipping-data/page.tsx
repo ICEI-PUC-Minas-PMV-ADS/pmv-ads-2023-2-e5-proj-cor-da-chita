@@ -30,13 +30,19 @@ export default function ShippingData() {
     !address.cep ||
     !address.complement;
 
+  const handleCep = async (cep: string) => {
+    const cepData = await Cep(cep);
+
+    console.log(cepData);
+  };
+
   useEffect(() => {
     if (session && session.user) {
       user.setName(session.user.name ?? "");
       user.setEmail(session.user.email ?? "");
-      user.setPhone(user.phone);
+      user.setPhone(user.phone); // Verificar
     }
-  }, []);
+  });
 
   return (
     <>
@@ -65,7 +71,7 @@ export default function ShippingData() {
             <Button
               color="success"
               size="md"
-              onClick={() => alert("programar busca cep")}
+              onClick={() => handleCep(address.cep)}
             >
               Buscar CEP
             </Button>
