@@ -67,15 +67,16 @@ export default function ShippingData() {
   });
 
   return (
-    <>
-      <h2>Dados de Envio</h2>
-      <div>
+    <section>
+      <h1>Dados de Envio</h1>
+
+      <article>
         <p>{user.name}</p>
         <p>{user.email}</p>
         <p>{user.phone}</p>
-      </div>
+      </article>
 
-      <div>
+      <article>
         <Form method="post">
           <div>
             <Input // CEP
@@ -187,7 +188,7 @@ export default function ShippingData() {
             Confirmar Dados
           </Button>
         </Form>
-      </div>
-    </>
+      </article>
+    </section>
   );
 }
