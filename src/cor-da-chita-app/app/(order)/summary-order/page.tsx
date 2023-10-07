@@ -1,18 +1,21 @@
+// EM TESTES
+// Dados do pedido na finalização da compra
 "use client";
-import { AddressContext } from "@/contexts/AddressContext/AddressContext";
-import { UserContext } from "@/contexts/UserContext/UserContext";
-import { Button } from "@nextui-org/react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import React, { useContext, useEffect } from "react";
 
-export default function SummaryOrder() {  
+import { Button, Divider } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+
+import { AddressContext } from "@/contexts/AddressContext/AddressContext";
+import { UserContext } from "@/contexts/UserContext/UserContext";
+
+export default function SummaryOrder() {
   const route = useRouter();
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
 
-  useEffect(() => {}, []);
+  //useEffect(() => {}, []);
 
   return (
     <section>
@@ -37,6 +40,9 @@ export default function SummaryOrder() {
           </Button>
         </div>
       </article>
+
+      <Divider />
+
       <article>
         <h2>Seus Dados</h2>
 
@@ -60,6 +66,8 @@ export default function SummaryOrder() {
           </Button>
         </div>
       </article>
+
+      <Divider />
 
       <article>
         <h2>Modo de Pagamento</h2>

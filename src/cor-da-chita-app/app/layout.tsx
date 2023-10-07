@@ -9,8 +9,8 @@ import Menu from "../components/Menu";
 import Section from "../components/Section";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
-import Products from "./(product)/products/page";
-import ProductCard from "@/components/ProductCard";
+import Products from "./(product)/all-products/page";
+import ProductCard from "@/components/ProductCard.1";
 import { Main } from "next/document";
 import ShippingData from "./(order)/shipping-data/page";
 import UserContextProvider from "@/contexts/UserContext/UserContext";
@@ -33,23 +33,19 @@ export default function RootLayout({
           <Providers>
             <UserContextProvider>
               <AddressContextProvider>
-                <Header>
-                  <NavBar />
-                  <Menu />
-                </Header>
+                {/* <Header> */}
+                <NavBar />
+                <Menu />
+                {/* </Header> */}
 
-                <main>
-                  <Section>
-                    {/* Componentes renderizados aqui apenas para testes */}
-                    {/* <Products /> */}
-                    {/* <ShippingData /> */}
-                    {/* <UserData /> */}
-                    {/* <CartCard /> */}
-                  </Section>
+                {/* Componentes renderizados aqui apenas para testes */}
+                {/* <Products /> */}
+                {/* <ShippingData /> */}
+                {/* <UserData /> */}
+                {/* <CartCard /> */}
 
-                  {children}
-                  {/* <Article /> */}
-                </main>
+                {children}
+                {/* <Article /> */}
 
                 <Footer />
               </AddressContextProvider>

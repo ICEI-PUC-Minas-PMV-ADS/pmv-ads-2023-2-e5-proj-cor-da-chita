@@ -1,4 +1,5 @@
-// Dados do usuário na tela na finalização da compra
+// REVER NECESSIDADE DESSA TELA
+
 "use client";
 import React, { use, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";

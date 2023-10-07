@@ -1,4 +1,4 @@
-// Página com os dados de envio
+// Dados de envio na finalização da compra
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -11,20 +11,6 @@ import { UserContext } from "@/contexts/UserContext/UserContext";
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { useRouter } from "next/navigation";
 import Cep from "@/app/api/cep/cep";
-import { stringify } from "querystring";
-
-interface Ceps {
-  bairro: string;
-  cep: string;
-  complemento: string;
-  ddd: string;
-  gia: string;
-  ibge: string;
-  localidade: string;
-  logradouro: string;
-  siafi: string;
-  uf: string;
-}
 
 export default function ShippingData() {
   const { data: session } = useSession();
@@ -62,7 +48,7 @@ export default function ShippingData() {
     if (session && session.user) {
       user.setName(session.user.name ?? "");
       user.setEmail(session.user.email ?? "");
-      user.setPhone(user.phone); // Verificar
+      user.setPhone(user.phone);
     }
   });
 

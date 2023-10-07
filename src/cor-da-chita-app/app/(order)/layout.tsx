@@ -1,3 +1,5 @@
+// Layout das telas referentes ao processo de pedido:
+// your-data; shipping-data; sumary-order
 import React from "react";
 
 export default function OrderLayout({
