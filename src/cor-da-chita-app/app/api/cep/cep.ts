@@ -3,9 +3,9 @@ export default async function Cep(cep: string) {
   const cepData: string[] = [];
 
   if (cep.length == 8) {
-    const meuCep = String(cep);
+    const myCep = cep;
 
-    const value = meuCep.replace(/[^0-9]+/, meuCep);
+    const value = myCep.replace(/[^0-9]+/, myCep);
     const url = `https://viacep.com.br/ws/${value}/json/`;
 
     await fetch(url)
@@ -14,8 +14,8 @@ export default async function Cep(cep: string) {
         if (json) {
           cepData.push(json);
         }
-        //console.log(cepData);
-      });
+      })
+      .catch((e) => console.error(e));
   }
   return cepData;
 }

@@ -11,6 +11,20 @@ import { UserContext } from "@/contexts/UserContext/UserContext";
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { useRouter } from "next/navigation";
 import Cep from "@/app/api/cep/cep";
+import { stringify } from "querystring";
+
+interface Ceps {
+  bairro: string;
+  cep: string;
+  complemento: string;
+  ddd: string;
+  gia: string;
+  ibge: string;
+  localidade: string;
+  logradouro: string;
+  siafi: string;
+  uf: string;
+}
 
 export default function ShippingData() {
   const { data: session } = useSession();
@@ -27,12 +41,20 @@ export default function ShippingData() {
     !address.num ||
     !address.city ||
     !address.uf ||
-    !address.cep ||
-    !address.complement;
+    !address.cep;
 
+  // Controla preenchimendo dos campos
   const handleCep = async (cep: string) => {
-    const cepData = await Cep(cep);
+    const cepData: any[] = await Cep(cep);
 
+    if (cepData.length == 0) {
+      setMissInfo(true);
+    } else {
+      address.setStreet(cepData[0].logradouro ?? "");
+      address.setNeighborhood(cepData[0].bairro ?? "");
+      address.setCity(cepData[0].localidade ?? "");
+      address.setUf(cepData[0].uf ?? "");
+    }
     console.log(cepData);
   };
 
@@ -68,7 +90,7 @@ export default function ShippingData() {
               onClear={() => address.setCep("")}
               onChange={(e) => address.setCep(e.target.value)}
             />
-            <Button
+            <Button // Buscar CEP
               color="success"
               size="md"
               onClick={() => handleCep(address.cep)}
@@ -155,7 +177,7 @@ export default function ShippingData() {
             onClear={() => address.setComplement("")}
             onChange={(e) => address.setComplement(e.target.value)}
           />
-          <Button
+          <Button // Confirmar Dados
             color="success"
             size="md"
             onClick={() =>
