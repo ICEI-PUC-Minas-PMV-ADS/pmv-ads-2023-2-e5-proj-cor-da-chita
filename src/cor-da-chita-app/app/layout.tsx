@@ -19,6 +19,7 @@ import AddressContextProvider, {
   AddressContext,
 } from "@/contexts/AddressContext/AddressContext";
 import CartCard from "@/components/CartCard";
+import QrCode from "@/components/QrCode";
 // import CustomModal from "./components/CustomModal";
 
 export default function RootLayout({
@@ -50,6 +51,9 @@ export default function RootLayout({
                 <Footer />
               </AddressContextProvider>
             </UserContextProvider>
+            {/* Ver porque logo nao renderiza */}
+            <QrCode/>
+
           </Providers>
         </NextUIProvider>
       </body>
