@@ -1,6 +1,7 @@
-import { client } from "../../../lib/sanity";
+// Query para todos os dados
+import { client } from "../../lib/sanity";
 
-export default async function getProductData() {
+export default async function getAllProductData() {
   try {
     const query = `* [_type == "produto"]{
         _id,
@@ -12,9 +13,10 @@ export default async function getProductData() {
         peso,
         comprimento,
         largura,
-        altura,
-        data,
+        altura,        
         'imagem':imagem.asset->url,
+        _createdAt,
+        slug
       }`;
 
     const data = await client.fetch(query);

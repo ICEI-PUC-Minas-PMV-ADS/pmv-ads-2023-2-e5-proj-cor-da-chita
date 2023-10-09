@@ -7,40 +7,49 @@ import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 
 import { Produto } from "../lib/interface";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   data: Produto[] | undefined;
 }
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
+  const route = useRouter();
   const [productData, setProductData] = useState<Produto[] | undefined>([]);
 
   useEffect(() => {
     setProductData(product.data);
   });
 
+  // EM ANDAMENTO
+  const handleClick = (product: Produto) => {
+    // console.log(product);
+    // route.push(`/product-advertisement/${product.slug.current}/${product._id}`);
+  };
+
   return (
     <>
       <h1>Meus Produtos</h1>
-      {productData?.map((produto) => (
-        <article key={produto._id}>
+      {productData?.map((product) => (
+        <article key={product._id}>
           <Card
             className="py-4"
             isPressable
             onPress={() => alert("Programar rota para o anúncio do produto")}
+            // onPress={() => handleClick(product)} // EM ANDAMENTO
           >
             <CardBody className="overflow-visible py-2">
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl"
-                src={produto.imagem}
+                src={product.imagem}
                 width={180}
                 height={180}
               />
               <CardFooter className="pb-0 pt-2 px-4 flex-col items-start">
-                <p className="font-bold text-medium">{produto.nome}</p>
+                <p className="font-bold text-medium">{product.nome}</p>
                 <small className="text-500">
-                  R$ {produto.preco.toFixed(2)}
+                  R$ {product.preco.toFixed(2)}
                 </small>
               </CardFooter>
             </CardBody>

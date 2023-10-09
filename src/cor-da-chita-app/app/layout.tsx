@@ -45,7 +45,7 @@ export default function RootLayout({
                 {/* <UserData /> */}
                 {/* <CartCard /> */}
 
-                 {children}
+                {children}
                 {/* <Article /> */}
 
                 <Footer />
