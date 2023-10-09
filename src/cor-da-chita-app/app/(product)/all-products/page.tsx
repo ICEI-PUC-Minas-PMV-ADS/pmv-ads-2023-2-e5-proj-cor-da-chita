@@ -3,7 +3,7 @@
 "use client";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Produto } from "@/lib/interface";
-import getProductData from "../../api/products/productsQuery";
+import getProductData from "../../api/products/query";
 import ProductCard from "@/components/ProductCard";
 
 async function getData(
@@ -12,11 +12,11 @@ async function getData(
   const data = (await getProductData()) as Produto[];
 
   setProductData(data);
-  console.log(data);
 }
 
 export default function AllProducts() {
   const [productData, setProductData] = useState<Produto[] | undefined>([]);
+  console.log(productData);
 
   useEffect(() => {
     getData(setProductData);
@@ -24,7 +24,7 @@ export default function AllProducts() {
 
   return (
     <section>
-      <ProductCard />
+      <ProductCard data={productData} />
     </section>
   );
 }

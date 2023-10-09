@@ -69,6 +69,7 @@ export default function ShippingData() {
               type="text"
               label="CEP"
               size="sm"
+              autoFocus
               value={address.cep}
               isRequired
               isClearable

@@ -24,7 +24,7 @@ export default {
       validation: (Rule: any) =>
         Rule.required()
           .max(120)
-          .error('A descrição do produto não pode ter mais de 120 caracteres'),
+          .error('A descrição é obrigatória e não pode passar de 120 caracteres'),
     },
     {
       name: 'categoria',
@@ -36,7 +36,6 @@ export default {
       validation: (Rule: any) => Rule.required().error('A Categoria é obrigatória'),
     },
     {
-      // ????? verificar estoque: Incluir manual? Talvez não faça sentido
       name: 'estoque',
       type: 'number',
       title: 'Estoque',
@@ -47,36 +46,34 @@ export default {
       name: 'preco',
       type: 'number',
       title: 'Preço (R$)',
-      validation: (Rule: any) =>
-        Rule.positive().greaterThan(0).error('O preço precisa ser maior do que zero'),
+      validation: (Rule: any) => Rule.greaterThan(0).error('O preço precisa ser maior do que zero'),
     },
     {
       name: 'peso',
       type: 'number',
       title: 'Peso (g)',
-      validation: (Rule: any) =>
-        Rule.positive().greaterThan(0).error('O peso precisa ser maior do que zero'),
+      validation: (Rule: any) => Rule.greaterThan(0).error('O peso precisa ser maior do que zero'),
     },
     {
       name: 'comprimento',
       type: 'number',
       title: 'Comprimento do Produto (cm)',
       validation: (Rule: any) =>
-        Rule.positive().greaterThan(0).error('O comprimento precisa ser maior do que zero'),
+        Rule.greaterThan(0).error('O comprimento precisa ser maior do que zero'),
     },
     {
       name: 'largura',
       type: 'number',
       title: 'Largura do Produto (cm)',
       validation: (Rule: any) =>
-        Rule.positive().greaterThan(0).error('A largura precisa ser maior do que zero'),
+        Rule.greaterThan(0).error('A largura precisa ser maior do que zero'),
     },
     {
       name: 'altura',
       type: 'number',
       title: 'Altura do Produto (cm)',
       validation: (Rule: any) =>
-        Rule.positive().greaterThan(0).error('A altura precisa ser maior do que zero'),
+        Rule.greaterThan(0).error('A altura precisa ser maior do que zero'),
     },
     {
       name: 'imagem',
@@ -94,15 +91,15 @@ export default {
       ],
     },
     // Não está funcionando - rever
-    // {
-    //   // Para gerar URL amigável
-    //   name: 'slug',
-    //   type: 'slug',
-    //   title: 'Gerar Link',
-    //   options: {
-    //     source: 'name',
-    //   },
-    //   // validation: (Rule: any) => Rule.required().error('Necessário gerar o link'),
-    // },
+    {
+      // Para gerar URL amigável
+      name: 'slug',
+      type: 'slug',
+      title: 'Gerar Link',
+      options: {
+        source: 'nome',
+      },
+      validation: (Rule: any) => Rule.required().error('Necessário gerar o link'),
+    },
   ],
 }

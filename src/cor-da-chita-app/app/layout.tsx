@@ -10,7 +10,7 @@ import Section from "../components/Section";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Products from "./(product)/all-products/page";
-import ProductCard from "@/components/ProductCard.1";
+
 import { Main } from "next/document";
 import ShippingData from "./(order)/shipping-data/page";
 import UserContextProvider from "@/contexts/UserContext/UserContext";
@@ -45,15 +45,14 @@ export default function RootLayout({
                 {/* <UserData /> */}
                 {/* <CartCard /> */}
 
-                {children}
+                 {children}
                 {/* <Article /> */}
 
                 <Footer />
               </AddressContextProvider>
             </UserContextProvider>
             {/* Ver porque logo nao renderiza */}
-            <QrCode/>
-
+            {/* <QrCode /> */}
           </Providers>
         </NextUIProvider>
       </body>
