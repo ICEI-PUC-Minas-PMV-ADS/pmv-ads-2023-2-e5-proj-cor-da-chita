@@ -2,7 +2,7 @@
 export interface Produto {
   _id: string;
   nome: string;
-  descricao: any;
+  descricao: string[];
   categoria: string;
   estoque: number;
   peso: number;

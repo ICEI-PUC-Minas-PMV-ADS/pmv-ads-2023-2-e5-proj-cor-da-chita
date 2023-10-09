@@ -1,13 +1,14 @@
 // Para renderizar os cards dos produtos ao clicar em categoria ou usar o menu de busca
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 
 import { Produto } from "../lib/interface";
 import { useRouter } from "next/navigation";
+import { ProductContext } from "@/contexts/ProductContext/ProductContext";
 
 interface ProductCardProps {
   data: Produto[] | undefined;
@@ -15,28 +16,49 @@ interface ProductCardProps {
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
+
+  // Para pegar os dados do produto que foi clicado pelo usuário
+  const productAds = useContext(ProductContext);
+
   const [productData, setProductData] = useState<Produto[] | undefined>([]);
 
   useEffect(() => {
     setProductData(product.data);
   });
 
-  // EM ANDAMENTO
-  const handleClick = (product: Produto) => {
-    // console.log(product);
-    // route.push(`/product-advertisement/${product.slug.current}/${product._id}`);
-  };
+  // EM TESTES
+  function handleClick(product: Produto) {
+    console.log(product);
+
+    productAds.setId(product._id);
+    productAds.setName(product.nome);
+    productAds.setCategory(product.categoria);
+    //productAds.setDescription(product.descricao); // ERRO AQUI
+    productAds.setPrice(product.preco);
+    productAds.setWeight(product.peso);
+    productAds.setLength(product.comprimento);
+    productAds.setWidth(product.largura);
+    productAds.setHeight(product.altura);
+    productAds.setImage(product.imagem);
+    productAds.setSlug(product.slug.current);
+
+    // Vazio
+    //console.log(productAds);
+
+    route.push(`/advertisement/${product.slug.current}/${product._id}`);
+  }
 
   return (
     <>
-      <h1>Meus Produtos</h1>
+      <h1>Todos Produtos</h1>
       {productData?.map((product) => (
         <article key={product._id}>
           <Card
             className="py-4"
             isPressable
-            onPress={() => alert("Programar rota para o anúncio do produto")}
-            // onPress={() => handleClick(product)} // EM ANDAMENTO
+            onPress={() => {
+              handleClick(product);
+            }}
           >
             <CardBody className="overflow-visible py-2">
               <Image

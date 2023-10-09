@@ -15,11 +15,10 @@ import { Main } from "next/document";
 import ShippingData from "./(order)/shipping-data/page";
 import UserContextProvider from "@/contexts/UserContext/UserContext";
 
-import AddressContextProvider, {
-  AddressContext,
-} from "@/contexts/AddressContext/AddressContext";
+import AddressContextProvider from "@/contexts/AddressContext/AddressContext";
 import CartCard from "@/components/CartCard";
 import QrCode from "@/components/QrCode";
+import ProductContextProvider from "@/contexts/ProductContext/ProductContext";
 // import CustomModal from "./components/CustomModal";
 
 export default function RootLayout({
@@ -32,25 +31,27 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <NextUIProvider>
           <Providers>
-            <UserContextProvider>
-              <AddressContextProvider>
-                {/* <Header> */}
-                <NavBar />
-                <Menu />
-                {/* </Header> */}
+            <ProductContextProvider>
+              <UserContextProvider>
+                <AddressContextProvider>
+                  {/* <Header> */}
+                  <NavBar />
+                  <Menu />
+                  {/* </Header> */}
 
-                {/* Componentes renderizados aqui apenas para testes */}
-                {/* <Products /> */}
-                {/* <ShippingData /> */}
-                {/* <UserData /> */}
-                {/* <CartCard /> */}
+                  {/* Componentes renderizados aqui apenas para testes */}
+                  {/* <Products /> */}
+                  {/* <ShippingData /> */}
+                  {/* <UserData /> */}
+                  {/* <CartCard /> */}
 
-                {children}
-                {/* <Article /> */}
+                  {children}
+                  {/* <Article /> */}
 
-                <Footer />
-              </AddressContextProvider>
-            </UserContextProvider>
+                  <Footer />
+                </AddressContextProvider>
+              </UserContextProvider>
+            </ProductContextProvider>
             {/* Ver porque logo nao renderiza */}
             {/* <QrCode /> */}
           </Providers>
