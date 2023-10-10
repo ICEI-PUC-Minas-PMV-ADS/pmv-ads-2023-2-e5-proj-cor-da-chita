@@ -36,6 +36,8 @@ export default function RootLayout({
                 <AddressContextProvider>
                   {/* <Header> */}
                   <NavBar />
+
+                  {/* Fixar esse componente Menu abaixo do nav bar */}
                   <Menu />
                   {/* </Header> */}
 
@@ -43,10 +45,9 @@ export default function RootLayout({
                   {/* <Products /> */}
                   {/* <ShippingData /> */}
                   {/* <UserData /> */}
-                  {/* <CartCard /> */}
+                  {/* <CartCard />  */}
 
                   {children}
-                  {/* <Article /> */}
 
                   <Footer />
                 </AddressContextProvider>

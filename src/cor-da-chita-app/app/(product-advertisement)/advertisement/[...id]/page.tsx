@@ -19,6 +19,10 @@ export default function ProductAdvertisement() {
     console.log(product.category);
   }, []);
 
+  const handleClick = (productId: string) => {
+    route.push("/shop-cart");
+  };
+
   return (
     <section>
       <h1>Tela de anúncio do produto aqui</h1>
@@ -45,7 +49,11 @@ export default function ProductAdvertisement() {
         {/* <p>{Number(product.lengthProduct) / 100}</p> */}
       </div>
       <div>
-        <Button color="success" variant="solid">
+        <Button
+          color="success"
+          variant="solid"
+          onPress={() => handleClick(product.id)}
+        >
           Adicionar ao Carrinho
         </Button>
       </div>

@@ -1,12 +1,14 @@
+// EM ANDAMENTO
+
 import React from "react";
 import Link from "next/link";
 import IconBagX from "@/assets/icons/IconBagX";
 import { Card, CardBody, Image, Button, Progress } from "@nextui-org/react";
 import { Produto } from "@/lib/interface";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
+
 export default function CardCard(...props: any) {
   return (
-    //MUDAR PARA O HEADER DE LOGIN E NAV BAR NÃO APARECEM NESSSA PAGE
     <div className="bg-zinc-600 ">
       <Card isBlurred className="w-11" shadow="md">
         <CardBody>
