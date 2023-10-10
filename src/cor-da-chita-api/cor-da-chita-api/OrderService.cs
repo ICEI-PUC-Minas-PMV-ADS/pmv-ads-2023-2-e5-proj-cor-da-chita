@@ -23,5 +23,15 @@
         {
             await _orderRepository.CreateAsync(newOrder);
         }
+
+        public Task UpdateAsync(OrderDto orderToBeUpdated) 
+        {
+
+
+            return null;
+        
+        }
+       
+    
     }
 }

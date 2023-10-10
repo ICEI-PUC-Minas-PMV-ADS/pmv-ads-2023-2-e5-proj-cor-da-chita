@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>cor-da-chita-api</name>
+    </assembly>
+    <members>
+        <member name="T:cor_da_chita_api.Controllers.OrderController">
+            <summary>
+            Controller to manage Order Services
+            </summary>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.GetAll">
+            <summary>
+            Endpoint to Get All Orders
+            </summary>
+            <returns>List of Orders</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Get(System.String)">
+            <summary>
+            Endpoint To Get Order By Id
+            </summary>
+            <param name="id">The order Id to be Found</param>
+            <returns>The order finded</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Post(cor_da_chita_api.OrderDto)">
+            <summary>
+            Endpoint To Create Order
+            </summary>
+            <param name="newOrder">Order to be created</param>
+            <returns>The order created</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Put(System.String,cor_da_chita_api.OrderDto)">
+            <summary>
+            Endpoint to Get Update the order
+            </summary>
+            <param name="id">The order Id to be Found</param>
+            <param name="order">The order with changes to me made</param>
+            <returns>The order finded</returns>
+        </member>
+        <member name="T:cor_da_chita_api.Controllers.PaymentController">
+            <summary>
+            Controller to Management Pix Payment
+            </summary>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.PaymentController.Get(System.Int64)">
+            <summary>
+            Get the payment by the payment Id
+            </summary>
+            <param name="id">Id</param>
+            <returns>The paymnet client Entity</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.PaymentController.CreatePayment">
+            <summary>
+            Create The Payment With PIX in Mercado Pago returning the QrCode Key 
+            </summary>
+            <param name="id">The entity </param>
+            <returns>Payment Client Data</returns>
+            <response code="200">Payment found</response>
+            <response code="404">Payment Not found</response>
+            <response code="500">Server Error</response>
+            <response code="403">Not Authorized</response>
+            
+        </member>
+    </members>
+</doc>
