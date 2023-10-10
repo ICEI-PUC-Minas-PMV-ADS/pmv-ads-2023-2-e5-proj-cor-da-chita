@@ -9,7 +9,7 @@ import Menu from "../components/Menu";
 import Section from "../components/Section";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
-import Products from "./(product)/all-products/page";
+import Products from "./(product)/all-products/[[...id]]/page";
 
 import { Main } from "next/document";
 import ShippingData from "./(order)/shipping-data/page";

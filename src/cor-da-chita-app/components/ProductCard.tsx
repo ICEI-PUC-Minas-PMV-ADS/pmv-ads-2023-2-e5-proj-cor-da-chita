@@ -17,7 +17,7 @@ interface ProductCardProps {
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
 
-  // Para pegar os dados do produto que foi clicado pelo usuário
+  // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
 
   const [productData, setProductData] = useState<Produto[] | undefined>([]);

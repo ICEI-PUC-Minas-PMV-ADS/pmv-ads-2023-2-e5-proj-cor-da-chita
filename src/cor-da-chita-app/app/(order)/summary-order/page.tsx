@@ -29,9 +29,13 @@ export default function SummaryOrder() {
           <p>preço</p>
           <p>Produto 3</p>
           <p>preço</p>
-          <p>Dados de Envio</p>
-          <p>Frete</p>
-          <p>Total com Frete</p>
+
+          <Divider />
+          <div>
+            <p>Dados de Envio</p>
+            <p>Frete</p>
+            <p>Total com Frete</p>
+          </div>
         </div>
 
         <div>

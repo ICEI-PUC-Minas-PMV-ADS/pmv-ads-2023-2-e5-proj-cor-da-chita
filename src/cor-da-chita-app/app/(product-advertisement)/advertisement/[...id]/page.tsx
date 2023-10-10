@@ -7,8 +7,10 @@ import { Image } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { Produto } from "@/lib/interface";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+import Link from "next/link";
 
 export default function ProductAdvertisement() {
+  const route = useRouter();
   const product = useContext(ProductContext);
 
   useEffect(() => {
@@ -20,6 +22,10 @@ export default function ProductAdvertisement() {
   return (
     <section>
       <h1>Tela de anúncio do produto aqui</h1>
+      {/* Verificar rota desse button */}
+      <button type="button" onClick={() => route.back()}>
+        Retornar para produtos
+      </button>
       <div>
         <Image
           isZoomed
