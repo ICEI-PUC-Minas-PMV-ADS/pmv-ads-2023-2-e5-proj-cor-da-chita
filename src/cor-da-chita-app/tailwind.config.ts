@@ -36,11 +36,13 @@ module.exports = {
       colors: {
         white: "#FFFFFF",
         black: "#000000",
-        // .. rest of the colors
-      },
-      
+        light: "#FBFEF9",
+        dark: "#191929",
+        green: "#539D79",
+              },
+
     },
-    
+
   },
   darkMode: "class",
   plugins: [nextui()],
