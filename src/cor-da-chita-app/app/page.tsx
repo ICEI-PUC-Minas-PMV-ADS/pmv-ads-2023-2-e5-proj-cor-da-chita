@@ -44,7 +44,7 @@ const createProduct =  async ()=>{
     categoria:'test',
     estoque: 2,
     peso:2,
-    preço:2 ,
+    preco:2 ,
     comprimento:2,
     largura:2,
     altura:2,
