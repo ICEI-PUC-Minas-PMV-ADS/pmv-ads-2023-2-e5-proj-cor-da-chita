@@ -26,7 +26,6 @@ export default function ProductAdvertisement() {
   return (
     <section>
       <h1>Tela de anúncio do produto aqui</h1>
-      {/* Verificar rota desse button */}
       <button type="button" onClick={() => route.back()}>
         Retornar para produtos
       </button>

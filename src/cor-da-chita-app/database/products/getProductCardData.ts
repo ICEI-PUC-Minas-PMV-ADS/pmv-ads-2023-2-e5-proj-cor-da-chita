@@ -18,7 +18,6 @@ export default async function getProductCardData() {
     }`;
 
     const data = await client.fetch(query);
-    //console.log(data);
 
     return data;
   } catch (e) {

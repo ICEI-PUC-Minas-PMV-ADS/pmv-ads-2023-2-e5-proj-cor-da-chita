@@ -10,23 +10,19 @@ import { category } from "@/components/Menu";
 import { usePathname } from "next/navigation";
 
 async function getData(
-  setProductData: Dispatch<SetStateAction<Produto[] | undefined>>,
-  categoryName: string
+  setProductData: Dispatch<SetStateAction<Produto[] | undefined>>
+  //categoryName: string
 ) {
-  //  console.log(category);
-  console.log(categoryName);
+  // EM TESTES
+  // if (categoryName != "Todos os Produtos") {
+  //   const data = (await getProductByCategory(categoryName)) as Produto[];
 
-  // EM ANDAMENTO
-  if (categoryName != "Todos os Produtos") {
-    const data = (await getProductByCategory(categoryName)) as Produto[];
-    console.log(data);
-    setProductData(data);
-    return;
-  }
+  //   setProductData(data);
+  //   return;
+  // }
 
   const data = (await getProductCardData()) as Produto[];
   console.log(data);
-
   setProductData(data);
 }
 
@@ -34,21 +30,25 @@ export default function AllProducts() {
   const pathname = usePathname();
   const [productData, setProductData] = useState<Produto[] | undefined>([]);
 
-  //console.log(pathname);
-  const categoryName = pathname.slice(14);
-
-  console.log(categoryName);
+  //const categoryName = pathname.slice(14);
 
   useEffect(() => {
-    category.filter((category) => {
-      if (categoryName == "") {
-        getData(setProductData, "Todos os Produtos");
-        return;
-      }
-    });
+    // EM TESTES
+    // category.filter((category) => {
+    //   if (category.name == "Todos os Produtos") {
+    //     getData(setProductData, "Todos os Produtos");
+    //     return;
+    //   }
+    // });
 
-    getData(setProductData, categoryName);
+    //getData(setProductData, categoryName);
+
+    getData(setProductData);
+
+    console.log("entrou");
   }, []);
+
+  // console.log(productData);
 
   return (
     <section>
