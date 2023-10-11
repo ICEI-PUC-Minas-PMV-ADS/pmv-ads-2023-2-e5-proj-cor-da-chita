@@ -5,7 +5,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
-
 import { Produto } from "../lib/interface";
 import { useRouter } from "next/navigation";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
@@ -16,7 +15,7 @@ interface ProductCardProps {
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
-
+  const itensCart :string[] = []
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
 
@@ -48,9 +47,25 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
+  const handleStorageProductCart= (id:string)=>
+  {
+
+
+    console.log(id)
+itensCart.push(id)
+localStorage.setItem('cartItens',JSON.stringify(itensCart))
+
+
+  }
+const handleSee = ()=>{
+
+const itens = JSON.parse(localStorage.getItem('CartItens'))
+console.log(itens)
+}
   return (
     <>
       <h1>Todos Produtos</h1>
+      <button onClick={()=>handleSee()}>aaaaaaaaaa</button>
       {productData?.map((product) => (
         <article key={product._id}>
           <Card
@@ -77,9 +92,9 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </CardBody>
             {/* Usar o Link para esse botão, pois o HTML da warning ao usar botão dentro de botão (o card é pressionável). Estilizar para ficar como um botão */}
             <div>
-              <Link href="" onClick={() => alert("Programar ADD ao carrinho")}>
-                <CartPlusIcon />
-              </Link>
+              
+                <CartPlusIcon onClick={() =>handleStorageProductCart(product._id)}/>
+              
             </div>
           </Card>
         </article>

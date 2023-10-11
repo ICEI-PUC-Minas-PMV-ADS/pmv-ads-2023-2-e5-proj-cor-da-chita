@@ -12,6 +12,7 @@ import Link from "next/link";
 export default function ProductAdvertisement() {
   const route = useRouter();
   const product = useContext(ProductContext);
+  const itensCart :string[] = []
 
   useEffect(() => {
     console.log(product.id);
@@ -19,8 +20,19 @@ export default function ProductAdvertisement() {
     console.log(product.category);
   }, []);
 
-  const handleClick = (productId: string) => {
-    route.push("/shop-cart");
+  const handleCartAdd = (productId: string) => {
+    // route.push("/shop-cart");
+    console.log(productId)
+    itensCart.push(productId)
+    console.log(itensCart)
+    localStorage.setItem('cartItens',JSON.stringify(itensCart))
+    const a = JSON.parse(localStorage.getItem('cartItens'))
+
+    console.log(a)
+
+
+
+
   };
 
   return (
@@ -52,7 +64,7 @@ export default function ProductAdvertisement() {
         <Button
           color="success"
           variant="solid"
-          onPress={() => handleClick(product.id)}
+          onClick={() => handleCartAdd(product.id)}
         >
           Adicionar ao Carrinho
         </Button>
