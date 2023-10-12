@@ -1,10 +1,12 @@
 import type { Config } from "tailwindcss";
 const { nextui } = require("@nextui-org/react");
+
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -13,39 +15,25 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-
-    },
-    fontFamily:{
-      sans:['Roboto','Sans-serif']
-    }
-  },
-  plugins: [
-    nextui({
-      addCommonColors: true,
-    }),
-  ],
-};
-
-module.exports = {
-  content: [
-    // ...
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
       colors: {
         white: "#FFFFFF",
         black: "#000000",
         light: "#FBFEF9",
         dark: "#191929",
         green: "#539D79",
-              },
-
+      },
+      fontFamily: {
+        sans: ['Roboto', 'Sans-serif'],
+      },
     },
-
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      addCommonColors: true,
+    }),
+    nextui(),
+  ],
 };
 
 export default config;
