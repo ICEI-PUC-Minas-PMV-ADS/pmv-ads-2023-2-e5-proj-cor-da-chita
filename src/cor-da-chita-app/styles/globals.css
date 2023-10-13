@@ -4,6 +4,6 @@
 @tailwind utilities;
 
 
-.next-ui-component {
-  border-radius: 0 !important;
+.grid-box {
+  height: 500px;
 }
