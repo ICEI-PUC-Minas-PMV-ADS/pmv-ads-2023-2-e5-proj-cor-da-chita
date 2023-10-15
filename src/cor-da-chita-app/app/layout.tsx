@@ -16,7 +16,7 @@ import ShippingData from "./(order)/shipping-data/page";
 import UserContextProvider from "@/contexts/UserContext/UserContext";
 
 import AddressContextProvider from "@/contexts/AddressContext/AddressContext";
-import CartCard from "@/components/CartCard";
+import CartCard from "@/components/CardCart";
 import QrCode from "@/components/QrCode";
 import ProductContextProvider from "@/contexts/ProductContext/ProductContext";
 // import CustomModal from "./components/CustomModal";

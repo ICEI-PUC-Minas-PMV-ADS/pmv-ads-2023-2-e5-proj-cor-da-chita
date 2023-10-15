@@ -34,6 +34,8 @@ type ProductContextType = {
   setImage: Dispatch<SetStateAction<string>>;
   slug: string;
   setSlug: Dispatch<SetStateAction<string>>;
+  estoque:number;
+  setEstoque:Dispatch<SetStateAction<number>>;
 };
 
 const initialValue = {
@@ -59,6 +61,8 @@ const initialValue = {
   setImage: () => {},
   slug: "",
   setSlug: () => {},
+  estoque:0,
+  setEstoque: ()=>{},
 };
 
 export const ProductContext = createContext<ProductContextType>(initialValue);
@@ -69,6 +73,7 @@ export default function ProductContextProvider({
   const [id, setId] = useState(initialValue.id);
   const [name, setName] = useState(initialValue.name);
   const [category, setCategory] = useState(initialValue.category);
+  const [estoque, setEstoque] = useState(initialValue.estoque);
   const [description, setDescription] = useState(initialValue.description);
   const [price, setPrice] = useState(initialValue.price);
   const [weightProduct, setWeight] = useState(initialValue.weightProduct);
@@ -103,6 +108,8 @@ export default function ProductContextProvider({
         setImage,
         slug,
         setSlug,
+        estoque,
+        setEstoque
       }}
     >
       {children}

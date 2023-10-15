@@ -18,17 +18,22 @@ export default function ProductAdvertisement() {
     console.log(product.id);
     console.log(product.name);
     console.log(product.category);
+    const a = JSON.parse(localStorage.getItem('cartItens'))
+ 
+
+
   }, []);
 
   const handleCartAdd = (productId: string) => {
-    // route.push("/shop-cart");
     console.log(productId)
     itensCart.push(productId)
-    console.log(itensCart)
+    // console.log(itensCart)
     localStorage.setItem('cartItens',JSON.stringify(itensCart))
     const a = JSON.parse(localStorage.getItem('cartItens'))
 
-    console.log(a)
+    console.log(a.includes(productId));
+     route.push("/shop-cart")
+    
 
 
 

@@ -7,6 +7,7 @@ export default async function getProductCardData() {
       _id,
       nome,
       categoria,
+      estoque,
       descricao,
       preco,
       peso,
