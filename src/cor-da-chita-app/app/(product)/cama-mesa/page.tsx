@@ -9,61 +9,26 @@ import { client } from "../../../lib/sanity";
 import { PortableText } from "@portabletext/react";
 import { Produto } from "@/lib/interface";
 
-export default function SearchProducts(props: any) {
+export default function CamaMesa(props: any) {
   const [produtos, setProdutos] = useState<Produto[]>();
   const [nomeProduto, setNomeProduto] = useState<string>();
 
-  const searchByName = async () => {
-    //Analisar este metodo,pois o match pega somente as duas primeiras letras
-    const query = ` * [type == "produto" && nome match "${nomeProduto}*"]{
-    _id,
-    nome,
-    categoria,
-    descricao,      
-    estoque,
-    preco,
-    peso,
-    comprimento,
-    largura,
-    altura,
-    data,
-    'imagem':imagem.asset->url, 
- }`;
-
-    const data = await client.fetch(query).then().catch();
-
-    setProdutos(data);
-  };
   const searchByCategory = async () => {
-    //Pega as 2 primeiras letras da categoria e realiza a busca
-    //   const query = ` * [type == "produto" && categoria match "${categorias[0]}${categorias[1]}*"]{
-    //     _id,
-    //     nome,
-    //     categoria,
-    //     descricao,
-    //     estoque,
-    //     preco,
-    //     peso,
-    //     comprimento,
-    //     largura,
-    //     altura,
-    //     data,
-    //     'imagem':imagem.asset->url,
-    //  }`;
-    const query = ` * [type == "produto"]{
-    _id,
-    nome,
-    categoria,
-    descricao,      
-    estoque,
-    preco,
-    peso,
-    comprimento,
-    largura,
-    altura,
-    data,
-    'imagem':imagem.asset->url, 
- }`;
+   
+    const query = ` *[_type == "produto" &&  categoria == 'Cama e Mesa']{
+      _id,
+      nome,
+      categoria,
+      descricao,      
+      estoque,
+      preco,
+      peso,
+      comprimento,
+      largura,
+      altura,
+      data,
+      'imagem':imagem.asset->url, 
+   }`;
     const data = await client.fetch(query).then().catch();
     console.log(data);
     return data;
@@ -72,7 +37,8 @@ export default function SearchProducts(props: any) {
   const getThisData = async () => {
     console.log("foiiii");
     const data = (await searchByCategory()) as Produto[];
-    console.log(data);
+    setProdutos(data)
+    console.log(produtos)
   };
 
   useEffect(() => {
@@ -82,15 +48,10 @@ export default function SearchProducts(props: any) {
   return (
     <>
       <div>
-        <Input
-          value={nomeProduto}
-          onChange={(e) => setNomeProduto(e.target.value)}
-        />
-        <Button color="success" onClick={() => console.log("oiiiiii")}>
-          Buscar
-        </Button>
-        {/* <ul>
-          {produtos.map((produto: any) => {
+        
+      
+        <ul>
+          { produtos!=undefined && produtos.map((produto: any) => {
             return (
               <li key={produto._id}>
                 <article>
@@ -112,7 +73,7 @@ export default function SearchProducts(props: any) {
               </li>
             );
           })}
-        </ul> */}
+        </ul>
       </div>
     </>
   );

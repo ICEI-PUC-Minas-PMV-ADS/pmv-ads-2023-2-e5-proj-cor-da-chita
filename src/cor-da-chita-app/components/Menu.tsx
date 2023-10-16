@@ -7,26 +7,33 @@ export const category = [
   {
     id: "1",
     name: "Todos os Produtos",
+    route:"all-products"
   },
   {
     id: "2",
     name: "Estandartes",
+    route:"estandartes"
   },
   {
     id: "3",
     name: "Cama e Mesa",
+    route:"cama-mesa"
   },
   {
     id: "4",
     name: "Ecobags e Carteiras",
+    route:"ecobags-carteiras"
   },
   {
     id: "5",
     name: "Natalinos",
+    route:"natalinos"
   },
   {
     id: "6",
     name: "Outros",
+    route:"outros"
+
   },
 ];
 
@@ -39,16 +46,8 @@ export default function Menu(...props: any) {
         {category.map((category) => (
           // EM TESTES
           <li key={category.id}>
-            {/* <Link
-              href={
-                category.id !== "1"
-                  ? `/all-products/${category.name}`
-                  : "/all-products"
-              }
-            > 
-              {category.name}
-            </Link> */}
-            <Link href={`/all-products`}>{category.name}</Link>
+           
+            <Link href={`/${category.route}`} className="ml-2">{category.name}</Link>
           </li>
         ))}
       </ul>
