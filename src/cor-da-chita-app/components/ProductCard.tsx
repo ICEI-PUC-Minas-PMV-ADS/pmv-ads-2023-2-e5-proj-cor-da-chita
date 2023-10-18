@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
+import { Card, CardBody, Image, CardFooter, Link, Button } from "@nextui-org/react";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 import { Produto } from "../lib/interface";
@@ -15,7 +15,7 @@ interface ProductCardProps {
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
-  const itensCart :string[] = []
+  let itensCart :string[] = []
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
 
@@ -23,6 +23,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   useEffect(() => {
     setProductData(product.data);
+    // handleSeeLc();
   });
 
   // EM TESTES
@@ -62,6 +63,11 @@ console.log(b)
 
 
   }
+  const handleSeeLc= ()=>{
+    const a = JSON.parse(localStorage.getItem(`cartItens`))
+    itensCart = []
+    console.log(a)
+  }
 
   return (
     <>
@@ -72,9 +78,7 @@ console.log(b)
           <Card
             className="py-4"
             isPressable
-            onPress={() => {
-              handleClick(product);
-            }}
+           
           >
             <CardBody className="overflow-visible py-2">
               <Image
@@ -100,6 +104,8 @@ console.log(b)
           </Card>
         </article>
       ))}
+      <Button onClick={x=>handleSeeLc()}>See</Button>
+      <Button onClick={x=>localStorage.clear()}>Delete</Button>
     </>
   );
 }

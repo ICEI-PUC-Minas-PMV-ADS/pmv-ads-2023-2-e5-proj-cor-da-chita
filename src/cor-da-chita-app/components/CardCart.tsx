@@ -1,32 +1,48 @@
 // EM ANDAMENTO
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import IconBagX from "@/assets/icons/IconBagX";
 import { Card, CardBody, Image, Button, Progress } from "@nextui-org/react";
 import { Produto } from "@/lib/interface";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import { client } from "../lib/sanity";
+import { UserContext } from "@/contexts/UserContext/UserContext";
 export default function CardCart(id:string) {
+
  
    const produto:any = []
+
+    const {cart,setCart} = useContext(UserContext)
     const [nome,setNome] = useState<string>()
     const[categoria,setCategoria] = useState<string>()
     const[preco,setPreco] = useState<number>()
     const[imagemProduto,setImagemProduto]= useState<any>()
+
  const handleRemoveItemCart = (idProduto:string)=>{
-   const carrinho = JSON.parse(localStorage.getItem('cartItens'))
-   //Precisa pegar a propriedade pois o id do produto esta vindo como objecto com uma propriedade id
-  //Realiza um filtro para remover somente o id do produto que o usuário excluiu do carrinho
   
-  const newListCart = carrinho.filter(x=>!(x==idProduto.id))
-  console.log(newListCart)
-  localStorage.setItem('cartItens',newListCart)
+  const carrinho = JSON.parse(localStorage.getItem('cartItens'))
+  setCart(carrinho)
+   //Precisa pegar a propriedade id  pois o id do produto esta vindo como objecto com uma propriedade id
+  //Realiza um filtro para remover somente o id do produto que o usuário excluiu do carrinho
+
+if(cart.length==1){
+  setCart(null)
+}
+    const newListCart = cart.filter(x=>!(x==idProduto.id))
+    
+    setCart(newListCart)
+    
+    localStorage.setItem('cartItens',JSON.stringify(cart))
+   
   
 
 
  }
-
+ const handleSeeLc= ()=>{
+  const a = JSON.parse(localStorage.getItem(`cartItens`))
+  console.log(a)
+}
  useEffect(()=>{
   // const carrinho = JSON.parse(localStorage.getItem('cartItens'))
   // console.log(carrinho)
@@ -34,6 +50,7 @@ getProduct(id)
 
 
  },[])
+
   const getProduct = async  (idProduto:string)=>{
     try {
     
@@ -59,6 +76,7 @@ getProduct(id)
         setNome(data[0].nome)
         setCategoria(data[0].categoria)
         setPreco(data[0].preco)
+      
         return data;
     } catch (e) {
       console.log(e);
@@ -81,6 +99,7 @@ getProduct(id)
               />
 
               <div className="flex flex-col">
+              
                 <p className="font-semibold font-sans mt-2 ml-2  ">{nome}</p>
                 <p className="font-semibold font-sans mt-2 ml-2 ">{categoria}</p>
                 <p className="font-semibold font-sans mt-2  ml-2">R$ {preco?.toFixed(2)}</p> 
@@ -88,6 +107,7 @@ getProduct(id)
               <ButtonOnlyIcon className="h-9 mt-2" isIconOnly color="danger" onClick={()=>handleRemoveItemCart(id)}>
                 <IconBagX />
               </ButtonOnlyIcon>
+              <Button onClick={x=>handleSeeLc()}>seeee</Button>
             </div>
           </div>
         </CardBody>

@@ -53,6 +53,7 @@ export default function AllProducts() {
   return (
     <section>
       <ProductCard data={productData} />
+    
     </section>
   );
 }
