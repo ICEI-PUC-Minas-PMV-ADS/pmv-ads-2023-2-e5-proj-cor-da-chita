@@ -6,6 +6,9 @@ using MercadoPago.Resource.Payment;
 using MercadoPago.Http;
 
 using static Microsoft.AspNetCore.Http.StatusCodes;
+using cor_da_chita_api.Service;
+using cor_da_chita_api.Models;
+
 namespace cor_da_chita_api.Controllers
 {
     /// <summary>
