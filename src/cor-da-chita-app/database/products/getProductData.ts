@@ -8,7 +8,11 @@ export default async function getProductCardData() {
       nome,
       categoria,
       estoque,
-      descricao,
+      descricao[0]{
+        children[0]{
+          text
+        }
+      }, 
       preco,
       peso,
       comprimento,

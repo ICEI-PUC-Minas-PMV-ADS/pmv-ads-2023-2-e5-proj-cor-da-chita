@@ -18,7 +18,7 @@ type ProductContextType = {
   setName: Dispatch<SetStateAction<string>>;
   category: string;
   setCategory: Dispatch<SetStateAction<string>>;
-  description: string[];
+  description: string;
   setDescription: Dispatch<SetStateAction<any>>;
   price: number;
   setPrice: Dispatch<SetStateAction<number>>;
@@ -45,7 +45,7 @@ const initialValue = {
   setName: () => {},
   category: "",
   setCategory: () => {},
-  description: [],
+  description: "",
   setDescription: () => {},
   price: 0,
   setPrice: () => {},

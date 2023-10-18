@@ -7,7 +7,11 @@ export default async function getAllProductData() {
         _id,
         nome,
         categoria,
-        descricao,
+        descricao[0]{
+          children[0]{
+            text
+          }
+        }, 
         estoque,
         preco,
         peso,
@@ -20,6 +24,7 @@ export default async function getAllProductData() {
       }`;
 
     const data = await client.fetch(query);
+    console.log(data);
 
     return data;
   } catch (e) {

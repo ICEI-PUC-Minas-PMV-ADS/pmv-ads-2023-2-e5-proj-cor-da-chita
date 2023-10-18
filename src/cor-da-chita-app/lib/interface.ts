@@ -2,7 +2,11 @@
 export interface Produto {
   _id: string;
   nome: string;
-  descricao: string[];
+  descricao: {
+    children: {
+      text: string;
+    };
+  };
   categoria: string;
   estoque: number;
   peso: number;

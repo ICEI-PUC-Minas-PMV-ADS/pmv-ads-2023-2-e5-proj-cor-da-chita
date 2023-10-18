@@ -1,20 +1,21 @@
 // Query usada na renderização dos Cards de produtos de acordo com o click do user na categoria do  MENU
 import { client } from "../../lib/sanity";
 
-export default async function getProductByCategory(categoryName: string) {
+export default async function getProductDataByCategory(categoryName: string) {
   function replaceCategoryName(categoryName: string) {
     return decodeURIComponent(categoryName.replace(/\+/g, " "));
   }
 
   const formatCategoryName = replaceCategoryName(categoryName);
-  console.log(typeof formatCategoryName);
-  console.log(formatCategoryName);
+  //console.log(typeof formatCategoryName);
+  //console.log(formatCategoryName);
 
   try {
     const query = `*[_type == "produto" && categoria == "${formatCategoryName}"]{
       _id,
       nome,
       categoria,
+      estoque,
       descricao[0]{
         children[0]{
           text
@@ -31,10 +32,9 @@ export default async function getProductByCategory(categoryName: string) {
 
     const data = await client.fetch(query);
     console.log(data);
-    //console.log(data.descricao);
 
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }

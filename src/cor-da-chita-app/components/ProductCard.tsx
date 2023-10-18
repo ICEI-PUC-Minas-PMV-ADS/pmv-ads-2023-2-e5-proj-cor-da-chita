@@ -2,19 +2,12 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Card,
-  CardBody,
-  Image,
-  CardFooter,
-  Link,
-  Button,
-} from "@nextui-org/react";
-import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
-import CartPlusIcon from "../assets/icons/CartPlusIcon";
-import { Produto } from "../lib/interface";
+import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+
+import { Produto } from "../lib/interface";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+import CartPlusIcon from "../assets/icons/CartPlusIcon";
 
 interface ProductCardProps {
   data: Produto[] | undefined;
@@ -41,7 +34,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setName(product.nome);
     productAds.setCategory(product.categoria);
     productAds.setEstoque(product.estoque);
-    productAds.setDescription(product.descricao); // ERRO AQUI
+    productAds.setDescription(product.descricao.children.text);
     productAds.setPrice(product.preco);
     productAds.setWeight(product.peso);
     productAds.setLength(product.comprimento);

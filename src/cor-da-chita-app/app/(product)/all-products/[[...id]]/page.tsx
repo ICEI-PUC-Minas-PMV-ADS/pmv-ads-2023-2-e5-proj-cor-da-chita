@@ -5,24 +5,25 @@ import { usePathname } from "next/navigation";
 
 import { Produto } from "@/lib/interface";
 import ProductCard from "@/components/ProductCard";
-import getProductCardData from "../../../../database/products/getProductCardData";
-import getProductByCategory from "@/database/products/getProductByCategory";
+import getProductCardData from "../../../../database/products/getProductData";
+import getProductDataByCategory from "@/database/products/getProductDataByCategory";
 
 async function getData(
   setProductData: Dispatch<SetStateAction<Produto[] | undefined>>,
   categoryName: string
 ) {
-  // categoryName é vazia quando está em Todos os Produtos
+  // categoryName é vazia quando está em "Todos os Produtos"
   if (categoryName != "") {
-    //console.log(categoryName);
-    const data = (await getProductByCategory(categoryName)) as Produto[];
+    const data = (await getProductDataByCategory(categoryName)) as Produto[];
+    //console.log(data);
 
     setProductData(data);
     return;
   }
 
   const data = (await getProductCardData()) as Produto[];
-  //console.log(data);
+  //  console.log(data);
+
   setProductData(data);
 }
 
@@ -33,7 +34,6 @@ export default function AllProducts() {
   const categoryName = pathname.slice(14);
 
   useEffect(() => {
-    //console.log(categoryName);
     getData(setProductData, categoryName);
   }, []);
 

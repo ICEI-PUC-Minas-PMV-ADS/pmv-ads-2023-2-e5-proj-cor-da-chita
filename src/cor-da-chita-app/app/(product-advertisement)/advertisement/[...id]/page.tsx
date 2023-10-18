@@ -50,11 +50,10 @@ export default function ProductAdvertisement() {
       </div>
       <div>
         <p>{product.name}</p>
-        <p>=== {product.description[0]}</p>
+        <p>{product.description}</p>
         <p>
           {product.lengthProduct} cm x {product.widthProduct} cm
         </p>
-        {/* <p>{Number(product.lengthProduct) / 100}</p> */}
       </div>
       <div>
         <Button
