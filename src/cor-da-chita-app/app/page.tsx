@@ -10,7 +10,7 @@ import LPGrid from "../components/LPGrid";
 export default function Home() {
   const route = useRouter();
   return (
-    <main>
+    <main className="bg-light">
         <Banner />
         <LPGrid />
         <br />
