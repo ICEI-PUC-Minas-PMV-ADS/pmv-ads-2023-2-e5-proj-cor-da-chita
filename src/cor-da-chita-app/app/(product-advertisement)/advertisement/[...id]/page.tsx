@@ -12,32 +12,24 @@ import Link from "next/link";
 export default function ProductAdvertisement() {
   const route = useRouter();
   const product = useContext(ProductContext);
-  const itensCart :string[] = []
+  const itensCart: string[] = [];
 
   useEffect(() => {
     console.log(product.id);
     console.log(product.name);
     console.log(product.category);
-    const a = JSON.parse(localStorage.getItem('cartItens'))
- 
-
-
+    const a = JSON.parse(localStorage.getItem("cartItens"));
   }, []);
 
   const handleCartAdd = (productId: string) => {
-    console.log(productId)
-    itensCart.push(productId)
+    console.log(productId);
+    itensCart.push(productId);
     // console.log(itensCart)
-    localStorage.setItem('cartItens',JSON.stringify(itensCart))
-    const a = JSON.parse(localStorage.getItem('cartItens'))
+    localStorage.setItem("cartItens", JSON.stringify(itensCart));
+    const a = JSON.parse(localStorage.getItem("cartItens"));
 
     console.log(a.includes(productId));
-     route.push("/shop-cart")
-    
-
-
-
-
+    route.push("/shop-cart");
   };
 
   return (
@@ -58,7 +50,7 @@ export default function ProductAdvertisement() {
       </div>
       <div>
         <p>{product.name}</p>
-        <p>{product.description}</p>
+        <p>=== {product.description[0]}</p>
         <p>
           {product.lengthProduct} cm x {product.widthProduct} cm
         </p>

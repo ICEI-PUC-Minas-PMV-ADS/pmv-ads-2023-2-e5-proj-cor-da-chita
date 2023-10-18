@@ -15,7 +15,11 @@ export default async function getProductByCategory(categoryName: string) {
       _id,
       nome,
       categoria,
-      descricao,
+      descricao[0]{
+        children[0]{
+          text
+        }
+      }, 
       preco,
       peso,
       comprimento,
@@ -27,6 +31,7 @@ export default async function getProductByCategory(categoryName: string) {
 
     const data = await client.fetch(query);
     console.log(data);
+    //console.log(data.descricao);
 
     return data;
   } catch (e) {

@@ -41,7 +41,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setName(product.nome);
     productAds.setCategory(product.categoria);
     productAds.setEstoque(product.estoque);
-    //productAds.setDescription(product.descricao); // ERRO AQUI
+    productAds.setDescription(product.descricao); // ERRO AQUI
     productAds.setPrice(product.preco);
     productAds.setWeight(product.peso);
     productAds.setLength(product.comprimento);
