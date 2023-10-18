@@ -9,7 +9,7 @@ export default function Banner() {
       <div className="text-center z-10 p-20">
         <h1 className="text-4xl font-bold text-white">Arte com Chita & Cia para alegrar a vida o ano todo</h1>
         <p className="text-tiny text-white p-10">Por Madriana Nóbrega</p>
-      <MyButton>
+      <MyButton color="green">
         Ver todos os produtos
       </MyButton>
         <div>
