@@ -12,10 +12,13 @@ const LPGrid = () => {
           </div>
         </div>
         <div className="grid-box bg-light flex flex-col items-center justify-center">
-          <p className="text-white mb-4">Coluna 2</p>
-          <MyButton color="transparent">
+          <div className="elements text-left p-15">
+          <p className="uppercase">Estandartes</p>
+          <p className="py-8 font-thin">Com santos, bonequinhos e até poesia para alegrar seu ambiente! </p>
+          <MyButton color="transparent" className="py-8">
             Ver produtos
           </MyButton>
+          </div>
         </div>
       </div>
     </div>
