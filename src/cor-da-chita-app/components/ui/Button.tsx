@@ -5,7 +5,7 @@ export const MyButton = extendVariants(Button, {
   variants: {
     color: {
       green: "text-[#fff] bg-[#539D79]",
-      transparent: "bg-[transparent] text-[#000]",
+      transparent: "bg-[transparent] text-[#191929] border border-solid",
     },
     size: {
       xs: "px-unit-2 min-w-unit-12 h-unit-6 text-tiny gap-unit-1 rounded-sm",
@@ -14,7 +14,6 @@ export const MyButton = extendVariants(Button, {
     },
   },
   defaultVariants: {
-    color: "green",
     size: "xl",
   },
 });
