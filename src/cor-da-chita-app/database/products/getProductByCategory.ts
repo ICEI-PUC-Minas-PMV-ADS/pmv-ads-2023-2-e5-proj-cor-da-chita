@@ -1,12 +1,7 @@
-// Query usada na renderização dos Cards de produtos de acordo com o MENU
-
-// EM TESTES
-
+// Query usada na renderização dos Cards de produtos de acordo com o click do user na categoria do  MENU
 import { client } from "../../lib/sanity";
 
 export default async function getProductByCategory(categoryName: string) {
-  let contador = 0;
-
   function replaceCategoryName(categoryName: string) {
     return decodeURIComponent(categoryName.replace(/\+/g, " "));
   }

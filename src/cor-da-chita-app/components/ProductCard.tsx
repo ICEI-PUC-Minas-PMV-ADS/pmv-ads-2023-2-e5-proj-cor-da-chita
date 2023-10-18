@@ -2,7 +2,14 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { Card, CardBody, Image, CardFooter, Link, Button } from "@nextui-org/react";
+import {
+  Card,
+  CardBody,
+  Image,
+  CardFooter,
+  Link,
+  Button,
+} from "@nextui-org/react";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 import { Produto } from "../lib/interface";
@@ -15,7 +22,7 @@ interface ProductCardProps {
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
-  let itensCart :string[] = []
+  let itensCart: string[] = [];
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
 
@@ -29,11 +36,11 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   // EM TESTES
   function handleClick(product: Produto) {
     console.log(product);
-    
+
     productAds.setId(product._id);
     productAds.setName(product.nome);
     productAds.setCategory(product.categoria);
-    productAds.setEstoque(product.estoque)
+    productAds.setEstoque(product.estoque);
     //productAds.setDescription(product.descricao); // ERRO AQUI
     productAds.setPrice(product.preco);
     productAds.setWeight(product.peso);
@@ -43,31 +50,23 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setImage(product.imagem);
     productAds.setSlug(product.slug.current);
 
-    // Vazio
-    //console.log(productAds);
-
-    // route.push(`/advertisement/${product.slug.current}/${product._id}`);
+    route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
-  const handleStorageProductCart= (id:string)=>
- {
+  const handleStorageProductCart = (id: string) => {
+    //Estudar gestão do carrinho,pois tem lojas que permitem que o mesmo produto seja adicionado no carrinho,acrescentando na quantidade do produto
+    itensCart.push(id);
 
-//Estudar gestão do carrinho,pois tem lojas que permitem que o mesmo produto seja adicionado no carrinho,acrescentando na quantidade do produto
-itensCart.push(id)
+    localStorage.setItem("cartItens", JSON.stringify(itensCart));
 
-localStorage.setItem('cartItens',JSON.stringify(itensCart))
-  
-const b= JSON.parse(localStorage.getItem('cartItens'))
-console.log(b)
-
-
-
-  }
-  const handleSeeLc= ()=>{
-    const a = JSON.parse(localStorage.getItem(`cartItens`))
-    itensCart = []
-    console.log(a)
-  }
+    const b = JSON.parse(localStorage.getItem("cartItens"));
+    console.log(b);
+  };
+  const handleSeeLc = () => {
+    const a = JSON.parse(localStorage.getItem(`cartItens`));
+    itensCart = [];
+    console.log(a);
+  };
 
   return (
     <>
@@ -78,7 +77,7 @@ console.log(b)
           <Card
             className="py-4"
             isPressable
-           
+            onPress={() => handleClick(product)}
           >
             <CardBody className="overflow-visible py-2">
               <Image
@@ -96,16 +95,24 @@ console.log(b)
               </CardFooter>
             </CardBody>
             {/* Usar o Link para esse botão, pois o HTML da warning ao usar botão dentro de botão (o card é pressionável). Estilizar para ficar como um botão */}
-            <div>
-                {product.estoque==0?<p>Não há estoque deste Produto no momento</p>:<CartPlusIcon onClick={() =>handleStorageProductCart(product._id)}/>}
-                
-               
-            </div>
+            <Link href="" onClick={() => handleStorageProductCart(product._id)}>
+              <CartPlusIcon />
+            </Link>
+
+            {/* <div>
+              {product.estoque == 0 ? (
+                <p>Não há estoque deste Produto no momento</p>
+              ) : (
+                <CartPlusIcon
+                  onClick={() => handleStorageProductCart(product._id)}
+                />
+              )}
+            </div> */}
           </Card>
         </article>
       ))}
-      <Button onClick={x=>handleSeeLc()}>See</Button>
-      <Button onClick={x=>localStorage.clear()}>Delete</Button>
+      {/* <Button onClick={(x) => handleSeeLc()}>See</Button>
+      <Button onClick={(x) => localStorage.clear()}>Delete</Button> */}
     </>
   );
 }
