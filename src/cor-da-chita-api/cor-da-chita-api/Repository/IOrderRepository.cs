@@ -1,4 +1,6 @@
-﻿namespace cor_da_chita_api
+﻿using cor_da_chita_api.Models;
+
+namespace cor_da_chita_api.Repository
 {
     public interface IOrderRepository
     {

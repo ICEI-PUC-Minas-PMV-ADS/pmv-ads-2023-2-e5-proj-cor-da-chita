@@ -1,4 +1,7 @@
-﻿namespace cor_da_chita_api
+﻿using cor_da_chita_api.Models;
+using cor_da_chita_api.Repository;
+
+namespace cor_da_chita_api.Service
 {
     public class OrderService : IOrderService
     {
@@ -24,14 +27,14 @@
             await _orderRepository.CreateAsync(newOrder);
         }
 
-        public Task UpdateAsync(OrderDto orderToBeUpdated) 
+        public Task UpdateAsync(OrderDto orderToBeUpdated)
         {
 
 
             return null;
-        
+
         }
-       
-    
+
+
     }
 }

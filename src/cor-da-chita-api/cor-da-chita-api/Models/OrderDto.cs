@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace cor_da_chita_api
+namespace cor_da_chita_api.Models
 {
     public class OrderDto
     {
@@ -19,7 +19,7 @@ namespace cor_da_chita_api
     public class Items
     {
 
-        public string ProductId { get; set; } 
+        public string ProductId { get; set; }
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
     }

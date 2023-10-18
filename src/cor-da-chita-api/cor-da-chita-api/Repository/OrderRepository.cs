@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿using cor_da_chita_api.Models;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace cor_da_chita_api.Controllers
+namespace cor_da_chita_api.Repository
 {
     public class OrderRepository
     {
