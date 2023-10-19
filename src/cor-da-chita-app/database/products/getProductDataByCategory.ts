@@ -27,6 +27,7 @@ export default async function getProductDataByCategory(categoryName: string) {
       largura,
       altura,
       'imagem':imagem.asset->url,
+      _createdAt,
       slug   
     }`;
 

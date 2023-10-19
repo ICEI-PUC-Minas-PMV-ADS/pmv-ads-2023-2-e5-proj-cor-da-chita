@@ -23,6 +23,10 @@ import { SearchIcon } from "../assets/icons/SearchIcon";
 export default function NavBar() {
   const { data: session } = useSession();
 
+  function handleSearch(): void {
+    console.log("entrou");
+  }
+
   return (
     <Navbar isBordered className="w-full">
       <NavbarContent justify="start">
@@ -47,6 +51,7 @@ export default function NavBar() {
           size="sm"
           startContent={<SearchIcon size={18} />}
           type="search"
+          onChange={() => handleSearch()}
         />
 
         {session && session.user ? (

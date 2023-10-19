@@ -19,7 +19,9 @@ type ProductContextType = {
   category: string;
   setCategory: Dispatch<SetStateAction<string>>;
   description: string;
-  setDescription: Dispatch<SetStateAction<any>>;
+  setDescription: Dispatch<SetStateAction<string>>;
+  stock: number;
+  setStock: Dispatch<SetStateAction<number>>;
   price: number;
   setPrice: Dispatch<SetStateAction<number>>;
   weightProduct: number;
@@ -34,8 +36,6 @@ type ProductContextType = {
   setImage: Dispatch<SetStateAction<string>>;
   slug: string;
   setSlug: Dispatch<SetStateAction<string>>;
-  estoque:number;
-  setEstoque:Dispatch<SetStateAction<number>>;
 };
 
 const initialValue = {
@@ -47,6 +47,8 @@ const initialValue = {
   setCategory: () => {},
   description: "",
   setDescription: () => {},
+  stock: 0,
+  setStock: () => {},
   price: 0,
   setPrice: () => {},
   weightProduct: 0,
@@ -61,8 +63,6 @@ const initialValue = {
   setImage: () => {},
   slug: "",
   setSlug: () => {},
-  estoque:0,
-  setEstoque: ()=>{},
 };
 
 export const ProductContext = createContext<ProductContextType>(initialValue);
@@ -73,7 +73,7 @@ export default function ProductContextProvider({
   const [id, setId] = useState(initialValue.id);
   const [name, setName] = useState(initialValue.name);
   const [category, setCategory] = useState(initialValue.category);
-  const [estoque, setEstoque] = useState(initialValue.estoque);
+  const [stock, setStock] = useState(initialValue.stock);
   const [description, setDescription] = useState(initialValue.description);
   const [price, setPrice] = useState(initialValue.price);
   const [weightProduct, setWeight] = useState(initialValue.weightProduct);
@@ -94,6 +94,8 @@ export default function ProductContextProvider({
         setCategory,
         description,
         setDescription,
+        stock,
+        setStock,
         price,
         setPrice,
         weightProduct,
@@ -108,8 +110,6 @@ export default function ProductContextProvider({
         setImage,
         slug,
         setSlug,
-        estoque,
-        setEstoque
       }}
     >
       {children}

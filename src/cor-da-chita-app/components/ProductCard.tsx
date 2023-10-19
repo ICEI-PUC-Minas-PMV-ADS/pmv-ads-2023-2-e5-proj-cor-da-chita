@@ -33,7 +33,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setId(product._id);
     productAds.setName(product.nome);
     productAds.setCategory(product.categoria);
-    productAds.setEstoque(product.estoque);
+    productAds.setStock(product.estoque);
     productAds.setDescription(product.descricao.children.text);
     productAds.setPrice(product.preco);
     productAds.setWeight(product.peso);
@@ -52,13 +52,13 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
     localStorage.setItem("cartItens", JSON.stringify(itensCart));
 
-    const b = JSON.parse(localStorage.getItem("cartItens"));
-    console.log(b);
+    //const b = JSON.parse(localStorage.getItem("cartItens"));
+    //console.log(b);
   };
   const handleSeeLc = () => {
-    const a = JSON.parse(localStorage.getItem(`cartItens`));
-    itensCart = [];
-    console.log(a);
+   // const a = JSON.parse(localStorage.getItem(`cartItens`));
+   // itensCart = [];
+  //  console.log(a);
   };
 
   return (

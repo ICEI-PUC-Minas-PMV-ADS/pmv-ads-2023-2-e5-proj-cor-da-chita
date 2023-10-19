@@ -1,7 +1,7 @@
 // Query para todos os dados
 import { client } from "../../lib/sanity";
 
-export default async function getAllProductData() {
+export default async function getProductDataSearch() {
   try {
     const query = `* [_type == "produto"]{
         _id,
@@ -28,6 +28,6 @@ export default async function getAllProductData() {
 
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }

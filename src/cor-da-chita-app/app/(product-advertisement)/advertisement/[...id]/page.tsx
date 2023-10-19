@@ -12,24 +12,31 @@ import Link from "next/link";
 export default function ProductAdvertisement() {
   const route = useRouter();
   const product = useContext(ProductContext);
-  const itensCart: string[] = [];
 
   useEffect(() => {
     console.log(product.id);
     console.log(product.name);
     console.log(product.category);
-    const a = JSON.parse(localStorage.getItem("cartItens"));
+    // const a = JSON.parse(localStorage.getItem("cartItens"));
   }, []);
 
   const handleCartAdd = (productId: string) => {
-    console.log(productId);
-    itensCart.push(productId);
-    // console.log(itensCart)
-    localStorage.setItem("cartItens", JSON.stringify(itensCart));
-    const a = JSON.parse(localStorage.getItem("cartItens"));
+    const itens = JSON.parse(localStorage.getItem("itensCart") || "[]");
 
-    console.log(a.includes(productId));
-    route.push("/shop-cart");
+    itens.push(productId);
+
+    localStorage.setItem("itensCart", JSON.stringify(itens));
+
+    console.log(itens);
+
+    // console.log(productId);
+    // itensCart.push(productId);
+    // // console.log(itensCart)
+    // localStorage.setItem("cartItens", JSON.stringify(itensCart));
+    // const a = JSON.parse(localStorage.getItem("cartItens"));
+
+    // console.log(a.includes(productId));
+    //route.push("/shop-cart");
   };
 
   return (
