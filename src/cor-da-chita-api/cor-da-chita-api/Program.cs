@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.Configure<CorDaChitaDatabaseSettings>(
     builder.Configuration.GetSection("CorDaChitaDatabase"));
-//Ver porque da exceção desta linha
+//Ver porque da exceï¿½ï¿½o desta linha
 /*builder.Services.AddSingleton<OrderService>();*/
 
 #region Swagger Documentation  Configuration
@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        //Versão da API
+        //Versï¿½o da API
         Version = "v1.0",
         Title = "Cor da Chita API",
         Description = "Service to get informations and manage the services of Cor Da Chita App"
@@ -52,6 +52,9 @@ builder.Services.AddVersionedApiExplorer(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
 
 
 var app = builder.Build();

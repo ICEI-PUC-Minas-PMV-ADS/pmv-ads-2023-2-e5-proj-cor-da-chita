@@ -23,6 +23,8 @@ namespace cor_da_chita_api.Controllers
     {
         private readonly OrderService _ordersService;
 
+        private readonly IEmailSenderService _service;
+
         public OrderController(OrderService ordersService) =>
         _ordersService = ordersService;
 
@@ -86,6 +88,8 @@ namespace cor_da_chita_api.Controllers
 
             return order;
         }
+
+
 
 
 
