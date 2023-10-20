@@ -12,8 +12,9 @@ export default function ShopCart(...props: any) {
   const [itensCart, setItensCart] = useState<Produto[] | undefined>([]);
 
   useEffect(() => {
-    const itens = JSON.parse(localStorage.getItem("itensCart") || "[]");
-    //setCart(itens);
+    const itens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    console.log(itens)
+    setCart(itens);
     //setItensCart(itens);
     getData(itens);
 
@@ -22,15 +23,16 @@ export default function ShopCart(...props: any) {
 
   //const getCartProducts = async () => {};
   return (
-    // <>
-    //   {cart == null ? (
-    //     <p>Ops, parece que seu carrinho esta vázio</p>
-    //   ) : (
-    //     cart?.map((idProduto) => <CartCard />)
-    //   )}
-    // </>
-    <section>
+    <>
+      {cart == null ? (
+        <p>Ops, parece que seu carrinho esta vázio</p>
+      ) : (
+        cart?.map((idProduto) => <CartCard id={idProduto} />)
+      )}
+    
+    {/* <section>
       <CartCard data={itensCart} />
-    </section>
+    </section> */}
+    </>
   );
 }

@@ -33,13 +33,14 @@ export default function ShopCart(...props: any) {
   const arrItemId: any = [];
 
   useEffect(() => {
-    const itens = JSON.parse(localStorage.getItem("itensCart") || "[]");
-    //setCart(itens);
-    //setItensCart(itens);
+    const itens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    console.log(itens)
+    setCart(itens);
 
-    itens.map((itemId: string) => getData(itemId, setCart));
-    //setItensCart(itens);
-    console.log(cart);
+
+    
+  
+ 
   }, []);
 
   //const getCartProducts = async () => {};
@@ -49,7 +50,7 @@ export default function ShopCart(...props: any) {
       {cart == null ? (
         <p>Ops, parece que seu carrinho esta vázio</p>
       ) : (
-        cart?.map(() => <CartCard />)
+        cart?.map((idItem) => <CartCard id={idItem} />)
       )}
     </>
     // <section>
