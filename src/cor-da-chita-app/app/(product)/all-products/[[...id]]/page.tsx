@@ -22,7 +22,7 @@ async function getData(
   }
 
   const data = (await getProductCardData()) as Produto[];
-  //  console.log(data);
+  console.log(data);
 
   setProductData(data);
 }

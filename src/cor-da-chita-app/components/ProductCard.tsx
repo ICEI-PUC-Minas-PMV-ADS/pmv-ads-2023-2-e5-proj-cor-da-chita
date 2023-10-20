@@ -16,6 +16,7 @@ interface ProductCardProps {
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
   let itensCart: string[] = [];
+
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
 
@@ -24,9 +25,10 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   useEffect(() => {
     setProductData(product.data);
     // handleSeeLc();
+    console.log(product.data);
   });
 
-  // EM TESTES
+  // Setando informações para o anúncio
   function handleClick(product: Produto) {
     console.log(product);
 
@@ -56,9 +58,9 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     //console.log(b);
   };
   const handleSeeLc = () => {
-   // const a = JSON.parse(localStorage.getItem(`cartItens`));
-   // itensCart = [];
-  //  console.log(a);
+    // const a = JSON.parse(localStorage.getItem(`cartItens`));
+    // itensCart = [];
+    //  console.log(a);
   };
 
   return (

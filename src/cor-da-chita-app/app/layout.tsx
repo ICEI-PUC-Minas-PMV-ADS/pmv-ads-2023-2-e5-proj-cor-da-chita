@@ -19,6 +19,7 @@ import AddressContextProvider from "@/contexts/AddressContext/AddressContext";
 import CartCard from "@/components/CardCart";
 import QrCode from "@/components/QrCode";
 import ProductContextProvider from "@/contexts/ProductContext/ProductContext";
+import CartContextProvider from "@/contexts/CartContext/CartContext";
 // import CustomModal from "./components/CustomModal";
 
 export default function RootLayout({
@@ -34,22 +35,24 @@ export default function RootLayout({
             <ProductContextProvider>
               <UserContextProvider>
                 <AddressContextProvider>
-                  {/* <Header> */}
-                  <NavBar />
+                  <CartContextProvider>
+                    {/* <Header> */}
+                    <NavBar />
 
-                  {/* Fixar esse componente Menu abaixo do nav bar */}
-                  <Menu />
-                  {/* </Header> */}
+                    {/* Fixar esse componente Menu abaixo do nav bar */}
+                    <Menu />
+                    {/* </Header> */}
 
-                  {/* Componentes renderizados aqui apenas para testes */}
-                  {/* <Products /> */}
-                  {/* <ShippingData /> */}
-                  {/* <UserData /> */}
-                  {/* <CartCard />  */}
+                    {/* Componentes renderizados aqui apenas para testes */}
+                    {/* <Products /> */}
+                    {/* <ShippingData /> */}
+                    {/* <UserData /> */}
+                    {/* <CartCard />  */}
 
-                  {children}
+                    {children}
 
-                  <Footer />
+                    <Footer />
+                  </CartContextProvider>
                 </AddressContextProvider>
               </UserContextProvider>
             </ProductContextProvider>
