@@ -31,7 +31,7 @@ export default {
       type: 'string',
       title: 'Categoria do produto',
       options: {
-        list: ['Estandartes', 'Cama e Mesa', 'EcoBags e Carteiras', 'Natalinos', 'Outros'],
+        list: ['Estandartes', 'Cama e Mesa', 'Ecobags e Carteiras', 'Natalinos', 'Outros'],
       },
       validation: (Rule: any) => Rule.required().error('A Categoria é obrigatória'),
     },
