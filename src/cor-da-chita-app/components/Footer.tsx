@@ -1,6 +1,8 @@
 import IconInstagram from "@/assets/icons/InstagramIcons";
 import IconWhatsapp from "@/assets/icons/WhatsappIcon";
 import React from "react";
+import LinkWhatsApp from "./links/LinkWhatsApp";
+import LinkInstagram from "./links/LinkInstagram";
 
 export default function Footer({ children, ...props }: any) {
   return (
@@ -22,14 +24,10 @@ export default function Footer({ children, ...props }: any) {
         <div>
           <h4>
             <strong>CONTATO</strong>
-            <p>Instagram</p>
-            <p>
-              <IconInstagram />
-            </p>
-            <p>WhatsApp</p>
-            <p>
-              <IconWhatsapp />
-            </p>
+            <div>
+              <LinkInstagram />
+              <LinkWhatsApp />
+            </div>
           </h4>
         </div>
       </div>

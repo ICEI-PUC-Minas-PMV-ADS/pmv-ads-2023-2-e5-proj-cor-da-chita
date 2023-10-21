@@ -17,8 +17,9 @@ import {
   Button,
 } from "@nextui-org/react";
 
-import { CorChitaIcon } from "../assets/icons/CorChitaIcon";
+import { CorChitaFlor } from "./logo/CorChitaFlor";
 import { SearchIcon } from "../assets/icons/SearchIcon";
+import { CorChitaTexto } from "@/components/logo/CorChitaTexto";
 
 export default function NavBar() {
   const { data: session } = useSession();
@@ -32,8 +33,8 @@ export default function NavBar() {
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
           <Link href="/" color="foreground">
-            <CorChitaIcon />
-            <p className="sm:block font-bold text-inherit">Cor da Chita</p>
+            <CorChitaFlor />
+            <CorChitaTexto />
           </Link>
         </NavbarBrand>
       </NavbarContent>

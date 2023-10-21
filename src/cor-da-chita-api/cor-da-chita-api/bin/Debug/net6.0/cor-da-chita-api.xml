@@ -22,14 +22,14 @@
             <param name="id">The order Id to be Found</param>
             <returns>The order finded</returns>
         </member>
-        <member name="M:cor_da_chita_api.Controllers.OrderController.Post(cor_da_chita_api.OrderDto)">
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Post(cor_da_chita_api.Models.OrderDto)">
             <summary>
             Endpoint To Create Order
             </summary>
             <param name="newOrder">Order to be created</param>
             <returns>The order created</returns>
         </member>
-        <member name="M:cor_da_chita_api.Controllers.OrderController.Put(System.String,cor_da_chita_api.OrderDto)">
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Put(System.String,cor_da_chita_api.Models.OrderDto)">
             <summary>
             Endpoint to Get Update the order
             </summary>

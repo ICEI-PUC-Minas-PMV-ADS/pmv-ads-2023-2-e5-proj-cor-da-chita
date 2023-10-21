@@ -4,7 +4,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-
+import { Button } from "@nextui-org/react";
 import { Produto } from "../lib/interface";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
@@ -45,22 +45,23 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setImage(product.imagem);
     productAds.setSlug(product.slug.current);
 
-    route.push(`/advertisement/${product.slug.current}/${product._id}`);
+     route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
   const handleStorageProductCart = (id: string) => {
-    //Estudar gestão do carrinho,pois tem lojas que permitem que o mesmo produto seja adicionado no carrinho,acrescentando na quantidade do produto
+    const a = JSON.stringify(localStorage.getItem("cartItens"));
+    console.log(a);
     itensCart.push(id);
 
     localStorage.setItem("cartItens", JSON.stringify(itensCart));
 
-    //const b = JSON.parse(localStorage.getItem("cartItens"));
-    //console.log(b);
+    const b = JSON.parse(localStorage.getItem("cartItens"));
+    console.log(b);
   };
   const handleSeeLc = () => {
-    // const a = JSON.parse(localStorage.getItem(`cartItens`));
-    // itensCart = [];
-    //  console.log(a);
+    const a = JSON.parse(localStorage.getItem(`cartItens`));
+    itensCart = [];
+    console.log(a);
   };
 
   return (
@@ -74,7 +75,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             isPressable
             onPress={() => handleClick(product)}
           >
-            <CardBody className="overflow-visible py-2">
+            <CardBody className="overlow-visible py-2">
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl"
@@ -94,6 +95,8 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
               <CartPlusIcon />
             </Link>
 
+            {/* <Button onClick={(x) => handleSeeLc()}>See</Button>
+            <Button onClick={(x) => localStorage.clear()}>Delete</Button> */}
             {/* <div>
               {product.estoque == 0 ? (
                 <p>Não há estoque deste Produto no momento</p>
@@ -106,8 +109,6 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
           </Card>
         </article>
       ))}
-      {/* <Button onClick={(x) => handleSeeLc()}>See</Button>
-      <Button onClick={(x) => localStorage.clear()}>Delete</Button> */}
     </>
   );
 }
