@@ -8,6 +8,7 @@ import { Produto } from "@/lib/interface";
 import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import { client } from "../lib/sanity";
 import { CartContext } from "@/contexts/CartContext/CartContext";
+import QuantityManagerCart from "./QuantityManagerCart";
 
 interface ItensCartProps {
   item: Produto[] | undefined;
@@ -112,17 +113,21 @@ export default function CardCart(id:string) {
                       {categoria}
                     </p>
                     <p className="font-semibold font-sans mt-2  ml-2">
-                      R$ {preco}
+                      R$ {preco?.toFixed(2)}
                     </p>
                   </div>
                   <ButtonOnlyIcon
-                    className="h-9 mt-2"
+                    className="h-9 mt-2 bg-red-500"
                     isIconOnly
-                    color="danger"
+                   
                     onClick={() => handleRemoveItemCart(id)}
                   >
                     <IconBagX />
+
+
+                   
                   </ButtonOnlyIcon>
+                  <QuantityManagerCart/>
                   {/* <Button onClick={(x) => handleSeeLc()}>seeee</Button> */}
                 </div>
               </div>

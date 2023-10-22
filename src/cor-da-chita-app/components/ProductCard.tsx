@@ -2,21 +2,20 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
-import { Button } from "@nextui-org/react";
-import { Produto } from "../lib/interface";
-import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+import { Card, CardBody, Image, CardFooter, Link, Button } from "@nextui-org/react";
+import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
-
+import { Produto } from "../lib/interface";
+import { useRouter } from "next/navigation";
+import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+import IconPlusSquare from "@/assets/icons/IconPlusSquare";
 interface ProductCardProps {
   data: Produto[] | undefined;
 }
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
-  let itensCart: string[] = [];
-
+  let itensCart :string[] = []
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
 
@@ -25,18 +24,17 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   useEffect(() => {
     setProductData(product.data);
     // handleSeeLc();
-    console.log(product.data);
   });
 
-  // Setando informações para o anúncio
+  // EM TESTES
   function handleClick(product: Produto) {
     console.log(product);
-
+    
     productAds.setId(product._id);
     productAds.setName(product.nome);
     productAds.setCategory(product.categoria);
-    productAds.setStock(product.estoque);
-    productAds.setDescription(product.descricao.children.text);
+    productAds.setEstoque(product.estoque)
+    //productAds.setDescription(product.descricao); // ERRO AQUI
     productAds.setPrice(product.preco);
     productAds.setWeight(product.peso);
     productAds.setLength(product.comprimento);
@@ -45,24 +43,30 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setImage(product.imagem);
     productAds.setSlug(product.slug.current);
 
-     route.push(`/advertisement/${product.slug.current}/${product._id}`);
+  
+
+    // route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
-  const handleStorageProductCart = (id: string) => {
-    const a = JSON.stringify(localStorage.getItem("cartItens"));
-    console.log(a);
-    itensCart.push(id);
+  const handleStorageProductCart= (id:string)=>
+ {
 
-    localStorage.setItem("cartItens", JSON.stringify(itensCart));
 
-    const b = JSON.parse(localStorage.getItem("cartItens"));
-    console.log(b);
-  };
-  const handleSeeLc = () => {
-    const a = JSON.parse(localStorage.getItem(`cartItens`));
-    itensCart = [];
-    console.log(a);
-  };
+itensCart.push(id)
+
+localStorage.setItem('cartItens',JSON.stringify(itensCart))
+  
+const b= JSON.parse(localStorage.getItem('cartItens'))
+console.log(b)
+
+
+
+  }
+  const handleSeeLc= ()=>{
+    const a = JSON.parse(localStorage.getItem(`cartItens`))
+    itensCart = []
+    console.log(a)
+  }
 
   return (
     <>
@@ -73,9 +77,9 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
           <Card
             className="py-4"
             isPressable
-            onPress={() => handleClick(product)}
+           
           >
-            <CardBody className="overlow-visible py-2">
+            <CardBody className="overflow-visible py-2">
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl"
@@ -91,24 +95,17 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
               </CardFooter>
             </CardBody>
             {/* Usar o Link para esse botão, pois o HTML da warning ao usar botão dentro de botão (o card é pressionável). Estilizar para ficar como um botão */}
-            <Link href="" onClick={() => handleStorageProductCart(product._id)}>
-              <CartPlusIcon />
-            </Link>
-
-            {/* <Button onClick={(x) => handleSeeLc()}>See</Button>
-            <Button onClick={(x) => localStorage.clear()}>Delete</Button> */}
-            {/* <div>
-              {product.estoque == 0 ? (
-                <p>Não há estoque deste Produto no momento</p>
-              ) : (
-                <CartPlusIcon
-                  onClick={() => handleStorageProductCart(product._id)}
-                />
-              )}
-            </div> */}
+            <div>
+                {product.estoque==0?<p>Não há estoque deste Produto no momento</p>:<CartPlusIcon onClick={() =>handleStorageProductCart(product._id)}/>}
+                
+               
+            </div>
           </Card>
         </article>
       ))}
+      <Button onClick={x=>handleSeeLc()}>See</Button>
+      <Button onClick={x=>localStorage.clear()}>Delete</Button>
+      <IconPlusSquare/>
     </>
   );
 }

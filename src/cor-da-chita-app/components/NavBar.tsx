@@ -22,8 +22,8 @@ export default function NavBar() {
   const { data: session } = useSession();
 
   return (
-    <Navbar isBordered className="w-full">
-      <NavbarContent justify="start">
+    <Navbar isBordered className="w-full bg-lime-500">
+      <NavbarContent justify="start" className="">
         <NavbarBrand className="mr-4">
           <Link href="/" color="foreground">
             <CorChitaFlor />
