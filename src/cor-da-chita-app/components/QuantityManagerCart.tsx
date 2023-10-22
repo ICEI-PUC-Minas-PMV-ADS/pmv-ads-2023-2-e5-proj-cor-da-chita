@@ -30,7 +30,7 @@ const [quantidade,setQuantidade] = useState<number>(1)
  
  
   return (
-    <div className="w-full justify-between">
+    <div className="w-full ml-2">
       
    
       <ButtonOnlyIcon
@@ -48,7 +48,7 @@ const [quantidade,setQuantidade] = useState<number>(1)
                   </ButtonOnlyIcon>
     
       <ButtonOnlyIcon
-                    className="h-6 mt-2"
+                    className="h-6 mt-2 ml-1"
                     isIconOnly
                     color="primary" 
                     variant="ghost"

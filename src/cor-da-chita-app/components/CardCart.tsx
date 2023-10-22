@@ -115,9 +115,10 @@ export default function CardCart(id:string) {
                     <p className="font-semibold font-sans mt-2  ml-2">
                       R$ {preco?.toFixed(2)}
                     </p>
+                    <QuantityManagerCart/>
                   </div>
                   <ButtonOnlyIcon
-                    className="h-9 mt-2 bg-red-500"
+                    className="h-9 mt-2 ml-2 bg-red-500"
                     isIconOnly
                    
                     onClick={() => handleRemoveItemCart(id)}
@@ -127,7 +128,7 @@ export default function CardCart(id:string) {
 
                    
                   </ButtonOnlyIcon>
-                  <QuantityManagerCart/>
+                  
                   {/* <Button onClick={(x) => handleSeeLc()}>seeee</Button> */}
                 </div>
               </div>
