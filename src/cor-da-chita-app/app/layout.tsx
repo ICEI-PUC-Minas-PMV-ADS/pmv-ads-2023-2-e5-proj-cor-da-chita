@@ -4,7 +4,7 @@ import Providers from "./api/providers/Providers";
 import { NextUIProvider } from "@nextui-org/react";
 
 import Header from "../components/Header";
-import NavBar from "../components/NavBar";
+import NavBar from "@/components/NavBar";
 import Menu from "../components/Menu";
 import Section from "../components/Section";
 import Article from "../components/Article";
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br"> 
       <body suppressHydrationWarning={true}>
         <NextUIProvider>
           <Providers>

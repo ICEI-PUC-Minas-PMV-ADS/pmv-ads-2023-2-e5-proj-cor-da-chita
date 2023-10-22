@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -6,9 +5,7 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   Link,
-  Input,
   DropdownItem,
   DropdownTrigger,
   Dropdown,
@@ -18,15 +15,11 @@ import {
 } from "@nextui-org/react";
 
 import { CorChitaFlor } from "./logo/CorChitaFlor";
-import { SearchIcon } from "../assets/icons/SearchIcon";
 import { CorChitaTexto } from "@/components/logo/CorChitaTexto";
+import SearchInput from "./ui/SearchInput";
 
 export default function NavBar() {
   const { data: session } = useSession();
-
-  function handleSearch(): void {
-    console.log("entrou");
-  }
 
   return (
     <Navbar isBordered className="w-full">
@@ -40,20 +33,8 @@ export default function NavBar() {
       </NavbarContent>
 
       <NavbarContent as="div" className="" justify="end">
-        <Input
-          classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper:
-              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="Busca"
-          size="sm"
-          startContent={<SearchIcon size={18} />}
-          type="search"
-          onChange={() => handleSearch()}
-        />
+        {/* Funcionando - Programar a renderização da busca */}
+        <SearchInput />
 
         {session && session.user ? (
           <Dropdown placement="bottom-end">
