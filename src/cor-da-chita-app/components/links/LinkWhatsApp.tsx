@@ -6,6 +6,7 @@ export default function LinkWhatsApp({ children, ...props }: any) {
   return (
     <Link
       {...props}
+      isExternal
       aria-label="WhatsApp Cor da Chita"
       href="https://wa.me/5583987261972"
     >

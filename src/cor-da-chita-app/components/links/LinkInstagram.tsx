@@ -6,6 +6,7 @@ export default function LinkInstagram({ children, ...props }: any) {
   return (
     <Link
       {...props}
+      isExternal
       aria-label="Instagram Cor da Chita"
       href="https://www.instagram.com/cor.da.chita/"
     >
