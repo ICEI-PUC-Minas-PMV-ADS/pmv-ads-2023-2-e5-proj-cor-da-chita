@@ -22,10 +22,9 @@ interface ProductCardProps {
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
-  let itensCart: string[] = [];
+
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
-
   const [productData, setProductData] = useState<Produto[] | undefined>([]);
 
   useEffect(() => {
@@ -54,17 +53,17 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   }
 
   const handleStorageProductCart = (id: string) => {
-    itensCart.push(id);
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    localStorage.setItem("cartItens", JSON.stringify(itensCart));
+    arrItens.push(id);
 
-    const b = JSON.parse(localStorage.getItem("cartItens"));
-    console.log(b);
+    localStorage.setItem("cartItens", JSON.stringify(arrItens));
   };
+  
   const handleSeeLc = () => {
-    const a = JSON.parse(localStorage.getItem(`cartItens`));
-    itensCart = [];
-    console.log(a);
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+
+    console.log(arrItens);
   };
 
   return (
