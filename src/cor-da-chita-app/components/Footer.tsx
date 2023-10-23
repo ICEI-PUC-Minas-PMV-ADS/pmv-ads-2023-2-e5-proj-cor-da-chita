@@ -5,6 +5,7 @@ import LinkInstagram from "./links/LinkInstagram";
 export default function Footer({ children, ...props }: any) {
   return (
     <footer {...props}>
+      <div className="grid grid-cols-2">
       <div>
         <h3>
           <strong>COR DA CHITA</strong>
@@ -13,13 +14,13 @@ export default function Footer({ children, ...props }: any) {
         <p>Por Madriana Nóbrega</p>
         <p>&copy; 2020-2023</p>
       </div>
-      <div>
+      <div  className="grid grid-cols-2">
         <h4>
           <strong>INFORMAÇÃO</strong>
           <p>Sobre Cor da Chita</p>
           <p>Perguntas Frequentes</p>
         </h4>
-        <div>
+        <div >
           <h4>
             <strong>CONTATO</strong>
             <div>
@@ -28,6 +29,7 @@ export default function Footer({ children, ...props }: any) {
             </div>
           </h4>
         </div>
+      </div>
       </div>
     </footer>
   );
