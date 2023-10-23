@@ -10,7 +10,7 @@ export default function LinkWhatsApp({ children, ...props }: any) {
       aria-label="WhatsApp Cor da Chita"
       href="https://wa.me/5583987261972"
     >
-      <div>
+      <div className="flex flex-row items-center gap-x-1">
         <p>WhatsApp</p>
         <IconWhatsapp />
       </div>
