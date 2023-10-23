@@ -32,7 +32,6 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     // handleSeeLc();
   });
 
-  // EM TESTES
   function handleClick(product: Produto) {
     console.log(product);
 
@@ -54,15 +53,13 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   const handleStorageProductCart = (id: string) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-
     arrItens.push(id);
 
     localStorage.setItem("cartItens", JSON.stringify(arrItens));
   };
-  
+
   const handleSeeLc = () => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-
     console.log(arrItens);
   };
 
@@ -107,10 +104,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </Link>
           </Card>
         </article>
-      ))}
-      <Button onClick={(x) => handleSeeLc()}>See</Button>
-      <Button onClick={(x) => localStorage.clear()}>Delete</Button>
-      <IconPlusSquare />
+      ))}      
     </>
   );
 }

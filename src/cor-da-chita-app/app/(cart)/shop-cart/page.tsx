@@ -33,14 +33,9 @@ export default function ShopCart(...props: any) {
   const arrItemId: any = [];
 
   useEffect(() => {
-    const itens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-    console.log(itens)
-    setCart(itens);
-
-
-    
-  
- 
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    console.log(arrItens);
+    setCart(arrItens);
   }, []);
 
   //const getCartProducts = async () => {};

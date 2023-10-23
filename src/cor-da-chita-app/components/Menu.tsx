@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export const category = [
@@ -30,20 +31,28 @@ export const category = [
 ];
 
 export default function Menu(...props: any) {
+  const route = useRouter();
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = (categoryId: string, categoryName: string) => {
+    setIsClicked(!isClicked);
+
+    categoryId !== "1"
+      ? route.push(`/all-products/${categoryName}`)
+      : route.push("/all-products");
+  };
+
   return (
-    <nav className="flex  h-16 ">
+    <nav {...props} className="flex  h-16 ">
       <ul className="flex justify-center w-full ">
         {category.map((category) => (
-          <li key={category.id}>
-            <Link
-              href={
-                category.id !== "1"
-                  ? `/all-products/${category.name}`
-                  : "/all-products"
-              }
-            >
+          <li
+            key={category.id}
+            className={"flex w-32 h-32 bg-blue-500 rounded-md cursor-pointer }"}
+          >
+            <p onClick={() => handleClick(category.id, category.name)}>
               {category.name}
-            </Link>
+            </p>
           </li>
         ))}
       </ul>

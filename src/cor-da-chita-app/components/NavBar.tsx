@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import {
@@ -17,18 +17,30 @@ import {
 import { CorChitaFlor } from "./logo/CorChitaFlor";
 import { CorChitaTexto } from "@/components/logo/CorChitaTexto";
 import SearchInput from "./ui/SearchInput";
+import { useRouter } from "next/navigation";
 
 export default function NavBar() {
   const { data: session } = useSession();
+  const route = useRouter();
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+
+    route.push("/");
+  };
 
   return (
     <Navbar isBordered className="w-full bg-lime-500">
       <NavbarContent justify="start" className="">
         <NavbarBrand className="mr-4">
-          <Link href="/" color="foreground">
+          <div
+            className={"flex w-32 h-32 bg-blue-500 rounded-md cursor-pointer }"}
+            onClick={handleClick}
+          >
             <CorChitaFlor />
             <CorChitaTexto />
-          </Link>
+          </div>
         </NavbarBrand>
       </NavbarContent>
 

@@ -9,15 +9,16 @@ import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 import { client } from "../lib/sanity";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import QuantityManagerCart from "./QuantityManagerCart";
+import IconPlusSquare from "@/assets/icons/IconPlusSquare";
 
 interface ItensCartProps {
   item: Produto[] | undefined;
 }
 
-export default function CardCart(id:string) {
+export default function CardCart(id: string) {
   //const produto: any = [];
 
-  const { cart,setCart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const [nome, setNome] = useState<string>();
   const [categoria, setCategoria] = useState<string>();
   const [preco, setPreco] = useState<number>();
@@ -25,39 +26,36 @@ export default function CardCart(id:string) {
 
   const [itemData, setItemData] = useState<Produto[] | undefined>([]);
 
-
-
   const handleRemoveItemCart = (idProduto: string) => {
     //Precisa pegar a propriedade id  pois o id do produto esta vindo como objecto com uma propriedade id
     //Realiza um filtro para remover somente o id do produto que o usuário excluiu do carrinho
-    const carrinho = JSON.parse(localStorage.getItem("cartItens"));
+    const carrinho = JSON.parse(localStorage.getItem("cartItens") || "[]");
     setCart(carrinho);
 
     if (cart.length == 1) {
       setCart(null);
     }
-   const newListCart = cart.filter((x) => !(x == idProduto.id));
+    const newListCart = cart.filter((x) => !(x == idProduto.id));
 
     setCart(newListCart);
 
     localStorage.setItem("cartItens", JSON.stringify(cart));
   };
   const handleSeeLc = () => {
-    const a = JSON.parse(localStorage.getItem(`cartItens`));
-    console.log(a);
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    console.log(arrItens);
   };
   useEffect(() => {
     // const carrinho = JSON.parse(localStorage.getItem('cartItens'))
     // console.log(carrinho)
     getProduct(id);
-   
-    
+
     console.log(cart);
-  },[]);
+  }, []);
 
   const getProduct = async (idProduto: string) => {
     try {
-      console.log(idProduto.id)
+      console.log(idProduto.id);
       const query = `*[_type == "produto" && _id == $id]{
         _id,
         nome,
@@ -75,8 +73,8 @@ export default function CardCart(id:string) {
       const params = { id: idProduto.id };
 
       const data = await client.fetch(query, params);
-      setItemData(data)
-      console.log(itemData)
+      setItemData(data);
+      console.log(itemData);
       console.log(data[0].imagem);
       setImagemProduto(data[0].imagem);
       setNome(data[0].nome);
@@ -90,52 +88,49 @@ export default function CardCart(id:string) {
   };
   return (
     <>
-      
-        <article className="bg-zinc-600 " >
-          <Card isBlurred className="w-11" shadow="md">
-            <CardBody>
-              <div className="flex flex-col w-full">
-                <div className="flex items-start w-full mt-4 ">
-                  <Image
-                    alt="Album cover"
-                    className="h-20"
-                    height={150}
-                    width={150}
-                    shadow="md"
-                    src={imagemProduto}
-                  />
+      <article className="bg-zinc-600 ">
+        <Card isBlurred className="w-11" shadow="md">
+          <CardBody>
+            <div className="flex flex-col w-full">
+              <div className="flex items-start w-full mt-4 ">
+                <Image
+                  alt="Album cover"
+                  className="h-20"
+                  height={150}
+                  width={150}
+                  shadow="md"
+                  src={imagemProduto}
+                />
 
-                  <div className="flex flex-col">
-                    <p className="font-semibold font-sans mt-2 ml-2  ">
-                      {nome}
-                    </p>
-                    <p className="font-semibold font-sans mt-2 ml-2 ">
-                      {categoria}
-                    </p>
-                    <p className="font-semibold font-sans mt-2  ml-2">
-                      R$ {preco?.toFixed(2)}
-                    </p>
-                    <QuantityManagerCart/>
-                  </div>
-                  <ButtonOnlyIcon
-                    className="h-9 mt-2 ml-2 bg-red-500"
-                    isIconOnly
-                   
-                    onClick={() => handleRemoveItemCart(id)}
-                  >
-                    <IconBagX />
-
-
-                   
-                  </ButtonOnlyIcon>
-                  
-                  {/* <Button onClick={(x) => handleSeeLc()}>seeee</Button> */}
+                <div className="flex flex-col">
+                  <p className="font-semibold font-sans mt-2 ml-2  ">{nome}</p>
+                  <p className="font-semibold font-sans mt-2 ml-2 ">
+                    {categoria}
+                  </p>
+                  <p className="font-semibold font-sans mt-2  ml-2">
+                    R$ {preco?.toFixed(2)}
+                  </p>
+                  <QuantityManagerCart />
                 </div>
+                <ButtonOnlyIcon
+                  className="h-9 mt-2 ml-2 bg-red-500"
+                  isIconOnly
+                  onClick={() => handleRemoveItemCart(id)}
+                >
+                  <IconBagX />
+                </ButtonOnlyIcon>
+
+                {/* <Button onClick={(x) => handleSeeLc()}>seeee</Button> */}
               </div>
-            </CardBody>
-          </Card>
-        </article>;
-      
+            </div>
+          </CardBody>
+        </Card>
+      </article>
+      <div>
+        <Button onClick={(x) => handleSeeLc()}>See</Button>
+        <Button onClick={(x) => localStorage.clear()}>Delete</Button>
+        <IconPlusSquare />
+      </div>
     </>
   );
 }
