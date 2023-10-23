@@ -43,19 +43,22 @@ export default function Menu(...props: any) {
   };
 
   return (
-    <nav {...props} className="flex  h-16 ">
-      <ul className="flex justify-center w-full ">
-        {category.map((category) => (
-          <li
-            key={category.id}
-            className={"flex w-32 h-32 rounded-md cursor-pointer }"}
-          >
-            <p onClick={() => handleClick(category.id, category.name)}>
-              {category.name}
-            </p>
-          </li>
-        ))}
-      </ul>
+    <nav {...props}>
+      <div className="bg-light">
+        <div>
+          <ul className="flex flex-auto	justify-around">
+            {category.map((category) => (
+              <li
+                key={category.id}
+              >
+                <p className="p-5" onClick={() => handleClick(category.id, category.name)}>
+                  {category.name}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </nav>
   );
 }
