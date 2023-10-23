@@ -3,6 +3,7 @@ import { Button, Input } from "@nextui-org/react";
 import { SearchIcon } from "@/assets/icons/SearchIcon";
 import getProductDataSearch from "@/database/products/getProductDataSearch";
 import { Produto } from "@/lib/interface";
+import { useRouter } from "next/navigation";
 
 async function getData(search: string | undefined) {
   const data = (await getProductDataSearch(search)) as Produto[];
@@ -11,11 +12,15 @@ async function getData(search: string | undefined) {
 
 export default function SearchInput({ children, ...props }: any) {
   const [search, setSearch] = useState<string>("");
+  const route = useRouter();
 
+  // Em andamento
   useEffect(() => {
     console.log(search);
     if (search !== "") {
+      console.log(search);
       getData(search);
+      // route.push(`/all-products/search?product=${search}`);
     }
   }, [search]);
 

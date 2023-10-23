@@ -35,7 +35,7 @@ export default function NavBar() {
       <NavbarContent justify="start" className="">
         <NavbarBrand className="mr-4">
           <div
-            className={"flex w-32 h-32 bg-blue-500 rounded-md cursor-pointer }"}
+            className={"flex w-32 h-32 rounded-md cursor-pointer }"}
             onClick={handleClick}
           >
             <CorChitaFlor />

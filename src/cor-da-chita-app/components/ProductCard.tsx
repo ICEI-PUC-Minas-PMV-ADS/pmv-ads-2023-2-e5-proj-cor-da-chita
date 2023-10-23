@@ -2,20 +2,13 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Card,
-  CardBody,
-  Image,
-  CardFooter,
-  Link,
-  Button,
-} from "@nextui-org/react";
-import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
+import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
+
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 import { Produto } from "../lib/interface";
 import { useRouter } from "next/navigation";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
-import IconPlusSquare from "@/assets/icons/IconPlusSquare";
+
 interface ProductCardProps {
   data: Produto[] | undefined;
 }
@@ -104,7 +97,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </Link>
           </Card>
         </article>
-      ))}      
+      ))}
     </>
   );
 }

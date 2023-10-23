@@ -48,7 +48,7 @@ export default function Menu(...props: any) {
         {category.map((category) => (
           <li
             key={category.id}
-            className={"flex w-32 h-32 bg-blue-500 rounded-md cursor-pointer }"}
+            className={"flex w-32 h-32 rounded-md cursor-pointer }"}
           >
             <p onClick={() => handleClick(category.id, category.name)}>
               {category.name}
