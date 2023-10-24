@@ -21,10 +21,6 @@ export const category = [
   },
   {
     id: "5",
-    name: "Natalinos",
-  },
-  {
-    id: "6",
     name: "Outros",
   },
 ];
@@ -43,7 +39,7 @@ export default function Menu(...props: any) {
 
   return (
     <nav {...props}>
-      <div className="bg-light">
+      <div className="bg-light text-tiny">
         <div>
           <ul className="flex flex-auto	justify-around">
             {category.map((category) => (
