@@ -4,6 +4,18 @@
         <name>cor-da-chita-api</name>
     </assembly>
     <members>
+        <member name="T:cor_da_chita_api.Controllers.EmailSenderController">
+            <summary>
+            Controller to send Email to an user when transaction happens
+            </summary>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.EmailSenderController.Post(cor_da_chita_api.Models.EmailInputModel)">
+            <summary>
+            Post email
+            </summary>
+            <param name="id">Id</param>
+            <returns>The paymnet client Entity</returns>
+        </member>
         <member name="T:cor_da_chita_api.Controllers.OrderController">
             <summary>
             Controller to manage Order Services
