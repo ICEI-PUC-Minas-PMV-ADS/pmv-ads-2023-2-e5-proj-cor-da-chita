@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 import { SearchIcon } from "@/assets/icons/SearchIcon";
 import getProductDataSearch from "@/database/products/getProductDataSearch";
 import { Produto } from "@/lib/interface";
 import { useRouter } from "next/navigation";
+import { SearchContext } from "@/contexts/ProductContext/SearchContext";
 
-async function getData(search: string | undefined) {
-  const data = (await getProductDataSearch(search)) as Produto[];
-  console.log(data);
-}
+// async function getData(search: string | undefined) {
+//   const data = (await getProductDataSearch(search)) as Produto[];
+//   console.log(data);
+// }
 
 export default function SearchInput({ children, ...props }: any) {
-  const [search, setSearch] = useState<string>("");
+  const [productName, setProductName] = useState<string>("");
+  const { setSearch } = useContext(SearchContext);
   const route = useRouter();
 
-  // Em andamento
-  useEffect(() => {
-    console.log(search);
-    if (search !== "") {
-      console.log(search);
-      getData(search);
-      // route.push(`/all-products/search?product=${search}`);
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key == "Enter") {
+      //console.log(search);
+      if (productName !== "") {
+        console.log(productName);
+        //getData(search);
+        setSearch(productName);
+        route.push(`/all-products/search?product=${productName}`);
+      }
     }
-  }, [search]);
+  }
 
   return (
     <Input
@@ -37,8 +41,9 @@ export default function SearchInput({ children, ...props }: any) {
       size="sm"
       startContent={<SearchIcon size={18} />}
       type="search"
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
+      value={productName}
+      onChange={(e) => setProductName(e.target.value)}
+      onKeyDown={handleKeyPress}
     />
   );
 }

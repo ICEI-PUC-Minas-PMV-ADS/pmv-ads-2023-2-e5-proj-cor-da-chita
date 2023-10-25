@@ -1,5 +1,3 @@
-import IconInstagram from "@/assets/icons/InstagramIcons";
-import IconWhatsapp from "@/assets/icons/WhatsappIcon";
 import React from "react";
 import LinkWhatsApp from "./links/LinkWhatsApp";
 import LinkInstagram from "./links/LinkInstagram";

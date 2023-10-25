@@ -1,11 +1,11 @@
+// Navbar com busca e Login Google
 import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-
+import { useRouter } from "next/navigation";
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  Link,
   DropdownItem,
   DropdownTrigger,
   Dropdown,
@@ -17,7 +17,6 @@ import {
 import { CorChitaFlor } from "./logo/CorChitaFlor";
 import { CorChitaTexto } from "@/components/logo/CorChitaTexto";
 import SearchInput from "./ui/SearchInput";
-import { useRouter } from "next/navigation";
 
 export default function NavBar() {
   const { data: session } = useSession();
@@ -45,7 +44,6 @@ export default function NavBar() {
       </NavbarContent>
 
       <NavbarContent as="div" className="" justify="end">
-        {/* Funcionando - Programar a renderização da busca */}
         <SearchInput />
 
         {session && session.user ? (

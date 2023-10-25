@@ -1,7 +1,6 @@
-"use client";
+// Menu fixo, abaixo de Navbar
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export const category = [
   {
@@ -36,7 +35,6 @@ export default function Menu(...props: any) {
 
   const handleClick = (categoryId: string, categoryName: string) => {
     setIsClicked(!isClicked);
-    console.log(categoryId);
 
     categoryId !== "1"
       ? route.push(`/all-products/${categoryName}`)
