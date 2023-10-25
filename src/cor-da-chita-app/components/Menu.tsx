@@ -46,7 +46,7 @@ export default function Menu(...props: any) {
               <li
                 key={category.id}
               >
-                <p className="p-5" onClick={() => handleClick(category.id, category.name)}>
+                <p className="p-5 tracking-wide underline  decoration-green" onClick={() => handleClick(category.id, category.name)}>
                   {category.name}
                 </p>
               </li>

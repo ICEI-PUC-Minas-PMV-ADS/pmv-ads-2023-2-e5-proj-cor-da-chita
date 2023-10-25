@@ -10,7 +10,7 @@ const LPGrid = () => {
       <div className="grid grid-cols-2">
         <div className="grid-box bg-green flex items-center justify-center">
           <div className="grid-img-wrapper bg-white p-4">
-            <Image src="/imgs/chita.jpeg" alt="Banner Image" layout="fill" objectFit="cover" />
+            {/* <Image src="" alt="" layout="fill" objectFit="cover" /> */}
           </div>
         </div>
         <div className="grid-box bg-light flex flex-col items-center justify-center">
@@ -37,12 +37,12 @@ const LPGrid = () => {
         </div>
         <div className="grid-box bg-green flex items-center justify-center">
           <div className="grid-img-wrapper bg-white p-4">
-            <Image src="/imgs/chita.jpeg" alt="Banner Image" layout="fill" objectFit="cover" />
+            {/* <Image src="" alt="" layout="fill" objectFit="cover" /> */}
           </div>
         </div>
         <div className="grid-box bg-green flex items-center justify-center">
           <div className="grid-img-wrapper bg-white p-4">
-            <Image src="/imgs/chita.jpeg" alt="Banner Image" layout="fill" objectFit="cover" />
+            {/* <Image src="" alt="" layout="fill" objectFit="cover" /> */}
           </div>
         </div>
         <div className="grid-box bg-light flex flex-col items-center justify-center">

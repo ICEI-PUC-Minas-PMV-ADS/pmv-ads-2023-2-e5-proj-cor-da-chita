@@ -1,5 +1,5 @@
 import React from "react";
-import Image from 'next/image';
+import {Image} from "@nextui-org/react";
 import { MyButton } from "./ui/Button.tsx";
 import Link from "next/link";
 
@@ -15,18 +15,15 @@ export default function Banner() {
           Ver todos os produtos
         </MyButton>
         </Link>
-        <div>
-        </div>
       </div>
       <div className="absolute bottom-0">
-      <div className="banner-img-wrapper bg-white"
+      <div className="bg-white"
           style={{
             width: '900px',
             height: '450px',
-            overflow: 'hidden',
           }}
         >
-        {/* <Image src="/imgs/chita.jpeg" alt="Banner Image" layout="fill" objectFit="cover" /> */}
+        <Image src="" alt="Banner Image"/>
         </div>
       </div>
     </div>

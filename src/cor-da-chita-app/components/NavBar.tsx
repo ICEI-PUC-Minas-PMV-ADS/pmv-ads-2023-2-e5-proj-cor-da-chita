@@ -34,21 +34,13 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar isBordered shouldHideOnScroll>
-      <NavbarContent>
-        <NavbarBrand>
-          <div
-            className={"flex cursor-pointer }"}
-            onClick={handleClick}
-          >
+    <Navbar shouldHideOnScroll className="bg-light">
+      <NavbarBrand onClick={handleClick} >
             <CorChitaFlor />
             <CorChitaTexto />
-          </div>
-        </NavbarBrand>
-      </NavbarContent>
+      </NavbarBrand>
 
       <NavbarContent>
-        {/* Funcionando - Programar a renderização da busca */}
         <SearchInput />
 
         {session && session.user ? (
@@ -81,7 +73,7 @@ export default function NavBar() {
             </DropdownMenu>
           </Dropdown>
         ) : (
-          <MyButton size="md" color="transparent" onClick={() => signIn("google")}>
+          <MyButton size="md" color="dark" onClick={() => signIn("google")}>
             Entrar
           </MyButton>
         )}

@@ -31,7 +31,7 @@ export default function SearchInput({ children, ...props }: any) {
   return (
     <Input
       classNames={{
-        base: "max-w-full sm:max-w-[14rem] h-10",
+        base: "max-w-full  h-10",
         mainWrapper: "h-full",
         input: "text-small text-light",
         inputWrapper:
