@@ -21,19 +21,73 @@ namespace cor_da_chita_api.Repository
                 corDaChitaDatabaseSettings.Value.OrdersCollectionName);
         }
 
-        public async Task<List<OrderDto>> GetAsync() =>
-        await _ordersCollection.Find(_ => true).ToListAsync();
+        public async Task<List<OrderDto>> GetAllAsync()
+        {
 
-        public async Task<OrderDto?> GetAsync(string id) =>
-            await _ordersCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            try
+            {
+                return await _ordersCollection.Find(_ => true).ToListAsync();
 
-        public async Task CreateAsync(OrderDto newOrder) =>
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<OrderDto?> GetAsync(string id)
+        {
+            try
+            {
+                return await _ordersCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<OrderDto?> CreateAsync(OrderDto newOrder) { 
+        
             await _ordersCollection.InsertOneAsync(newOrder);
+            return newOrder;
+        }
 
-        public async Task UpdateAsync(string id, OrderDto updatedOrder) =>
-            await _ordersCollection.ReplaceOneAsync(x => x.Id == id, updatedOrder);
+        public async Task<OrderDto> UpdateAsync(OrderDto updatedOrder)
+        {
+            try
+            {
 
-        public async Task RemoveAsync(string id) =>
-            await _ordersCollection.DeleteOneAsync(x => x.Id == id);
+                _ = await _ordersCollection.FindAsync(updatedOrder.Id) ?? throw new KeyNotFoundException();
+
+                await _ordersCollection.ReplaceOneAsync(x => x.Id == updatedOrder.Id, updatedOrder);
+
+                return updatedOrder;
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+
+
+        public async Task RemoveAsync(string id)
+        {
+            try
+            {
+                _ = await _ordersCollection.FindAsync(id) ?? throw new KeyNotFoundException();
+
+                await _ordersCollection.DeleteOneAsync(x => x.Id == id);
+
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
     }
 }

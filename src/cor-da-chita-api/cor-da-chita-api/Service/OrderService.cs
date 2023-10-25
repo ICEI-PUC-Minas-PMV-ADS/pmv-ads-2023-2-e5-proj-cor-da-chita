@@ -14,7 +14,7 @@ namespace cor_da_chita_api.Service
 
         public async Task<List<OrderDto>> GetAsync()
         {
-            return await _orderRepository.GetAsync();
+            return await _orderRepository.GetAllAsync();
         }
 
         public async Task<OrderDto?> GetAsync(string id)
