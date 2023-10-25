@@ -13,12 +13,10 @@ export default function Home() {
     <main className="bg-light">
         <Banner />
         <LPGrid />
-        <br />
-        <Link href="/all-products">Ir para produtos</Link>
-        <button
-          type="button"
-          onClick={() => route.push("/all-products")}
-        ></button>
+        <div className="bg-dark  text-center">
+        <Link href="/all-products"><h2 className="text-3xl text-white p-12 ">Ver todos os produtos</h2></Link>
+        </div>
+
     </main>
   );
 }
