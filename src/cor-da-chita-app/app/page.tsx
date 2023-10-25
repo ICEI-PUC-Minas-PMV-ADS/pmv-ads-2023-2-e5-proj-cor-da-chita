@@ -14,7 +14,7 @@ export default function Home() {
         <Banner />
         <LPGrid />
         <div className="bg-dark  text-center">
-        <Link href="/all-products"><h2 className="text-3xl text-white p-12 ">Ver todos os produtos</h2></Link>
+        <Link href="/all-products"><h2 className="text-3xl text-white p-20 ">Ver todos os produtos</h2></Link>
         </div>
 
     </main>
