@@ -19,8 +19,9 @@ const config: Config = {
         white: "#FFFFFF",
         black: "#000000",
         light: "#FBFEF9",
-        dark: "#191929",
-        green: "#539D79",
+        dark: "#100C08",
+        green: "#3d9970",
+        grey: "#3b4849",
       },
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],

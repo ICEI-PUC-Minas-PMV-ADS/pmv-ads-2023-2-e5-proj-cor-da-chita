@@ -17,7 +17,7 @@ export default function Banner() {
         </Link>
       </div>
       <div className="absolute bottom-0">
-      <div className="bg-white"
+      <div className="bg-light"
           style={{
             width: '900px',
             height: '450px',

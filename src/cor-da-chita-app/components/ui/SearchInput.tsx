@@ -33,7 +33,7 @@ export default function SearchInput({ children, ...props }: any) {
       classNames={{
         base: "max-w-full  h-10",
         mainWrapper: "h-full",
-        input: "text-small text-light",
+        input: "text-small",
         inputWrapper:
           "h-full",
       }}
