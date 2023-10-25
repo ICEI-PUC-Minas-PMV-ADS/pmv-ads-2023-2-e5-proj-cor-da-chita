@@ -36,6 +36,7 @@ export default function Menu(...props: any) {
 
   const handleClick = (categoryId: string, categoryName: string) => {
     setIsClicked(!isClicked);
+    console.log(categoryId);
 
     categoryId !== "1"
       ? route.push(`/all-products/${categoryName}`)
