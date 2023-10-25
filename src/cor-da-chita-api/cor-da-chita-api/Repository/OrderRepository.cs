@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace cor_da_chita_api.Repository
 {
-    public class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly IMongoCollection<OrderDto> _ordersCollection;
 
