@@ -34,7 +34,7 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar isBordered className="w-full bg-light">
+    <Navbar isBordered shouldHideOnScroll>
       <NavbarContent>
         <NavbarBrand>
           <div
@@ -47,7 +47,7 @@ export default function NavBar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent as="div">
+      <NavbarContent>
         {/* Funcionando - Programar a renderização da busca */}
         <SearchInput />
 
