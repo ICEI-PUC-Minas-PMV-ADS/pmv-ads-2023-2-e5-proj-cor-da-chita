@@ -130,3 +130,4 @@ C:\Users\carlo\Documents\PUC\EIXO 5\cor-da-chita\src\cor-da-chita-api\cor-da-chi
 C:\Users\carlo\Documents\PUC\EIXO 5\cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\obj\Debug\net6.0\cor-da-chita-api.pdb
 C:\Users\carlo\Documents\PUC\EIXO 5\cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\obj\Debug\net6.0\cor-da-chita-api.genruntimeconfig.cache
 C:\Users\carlo\Documents\PUC\EIXO 5\cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\obj\Debug\net6.0\ref\cor-da-chita-api.dll
+C:\Users\gabri\OneDrive\Área de Trabalho\pmv-ads-2023-2-e5-proj-cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\bin\Debug\net6.0\FluentValidation.dll

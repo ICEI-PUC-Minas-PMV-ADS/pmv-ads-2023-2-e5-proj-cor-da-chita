@@ -17,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
     <PackageReference Include="MailKit" Version="4.2.0" />
+    <PackageReference Include="FluentValidation" Version="11.8.0" />
     <PackageReference Include="mercadopago-sdk" Version="2.3.3" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Versioning.ApiExplorer" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />

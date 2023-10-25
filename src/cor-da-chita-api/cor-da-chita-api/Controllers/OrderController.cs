@@ -8,6 +8,9 @@ using MercadoPago.Http;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 using cor_da_chita_api.Service;
 using cor_da_chita_api.Models;
+using cor_da_chita_api.Validations;
+using cor_da_chita_api.Extensions;
+using cor_da_chita_api.Repository;
 
 namespace cor_da_chita_api.Controllers
 {
@@ -21,10 +24,10 @@ namespace cor_da_chita_api.Controllers
 
     public class OrderController : ControllerBase
     {
-        private readonly OrderService _ordersService;
+        private readonly OrderRepository _ordersRepository;
 
-        public OrderController(OrderService ordersService) =>
-        _ordersService = ordersService;
+        public OrderController(OrderRepository ordersRepository) =>
+        _ordersRepository = ordersRepository;
 
         /// <summary>
         /// Endpoint to Get All Orders
@@ -34,7 +37,7 @@ namespace cor_da_chita_api.Controllers
         public async Task<List<OrderDto>> GetAll()
         {
 
-            return await _ordersService.GetAsync();
+            return await _ordersRepository.GetAllAsync();
         }
         /// <summary>
         /// Endpoint To Get Order By Id
@@ -44,7 +47,7 @@ namespace cor_da_chita_api.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<OrderDto>> Get(string id)
         {
-            var order = await _ordersService.GetAsync(id);
+            var order = await _ordersRepository.GetAsync(id);
 
             if (order is null)
             {
@@ -63,9 +66,27 @@ namespace cor_da_chita_api.Controllers
         
         public async Task<IActionResult> Post(OrderDto newOrder)
         {
-            await _ordersService.CreateAsync(newOrder);
+            try
+            {
+                OrderPostValidator o1 = new OrderPostValidator();
 
-            return CreatedAtAction(nameof(Get), new { id = newOrder.Id }, newOrder);
+                var validatioResult = o1.Validate(newOrder);
+
+                if (!validatioResult.IsValid)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, validatioResult.ToValidationErrorReponse());
+                }
+
+                var orderCreated = await _ordersRepository.CreateAsync(newOrder);
+                return Ok(orderCreated);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToErrorReponse());
+            }
+
+            
         }
 
         /// <summary>
@@ -77,17 +98,72 @@ namespace cor_da_chita_api.Controllers
         [HttpPut("{id:length(24)}")]
         public async Task<ActionResult<OrderDto>> Put(string id ,OrderDto order)
         {
-            var o1 = await _ordersService.GetAsync(id);
+        /*    if(id!=order.Id) return BadRequest();*/
 
-            if (order is null)
+            try
             {
-                return NotFound();
+                OrderPutValidator o1 = new OrderPutValidator();
+                var validationResult = o1.Validate(order);
+
+                if (!validationResult.IsValid)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, validationResult.ToValidationErrorReponse());
+
+                }
+
+                var orderUpdated = _ordersRepository.UpdateAsync(order);
+
+                return Ok(orderUpdated);
+
             }
 
-            return order;
+            catch (KeyNotFoundException)
+            {
+                return StatusCode(StatusCodes.Status404NotFound,new NotFoundResult().ToNotFoundReponse("OrderDto"));
+            }
+
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToErrorReponse());
+            }
+
+
         }
 
+        /// <summary>
+        /// Endpoint to Delete ORDER
+        /// </summary>
+        /// <param name="id">The if of the order to be deleted</param>
+        [HttpDelete("{id:length(24)}")]
+        public async Task <ActionResult> Delete(string id)
+        {
+            try
+            {
+                OrderIdValidator o1 = new OrderIdValidator();
+                
+                var validationResult = o1.Validate(id);
 
+                if (!validationResult.IsValid)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, validationResult.ToValidationErrorReponse());
+                }
 
+                _ordersRepository.RemoveAsync(id);
+
+                return Ok();
+
+            }
+            catch (KeyNotFoundException)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new NotFoundResult().ToNotFoundReponse("OrderDto"));
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToErrorReponse());
+            }
+        }
     }
 }

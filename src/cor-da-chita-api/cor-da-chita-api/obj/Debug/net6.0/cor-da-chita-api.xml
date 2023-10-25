@@ -37,6 +37,12 @@
             <param name="order">The order with changes to me made</param>
             <returns>The order finded</returns>
         </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Delete(System.String)">
+            <summary>
+            Endpoint to Delete ORDER
+            </summary>
+            <param name="id">The if of the order to be deleted</param>
+        </member>
         <member name="T:cor_da_chita_api.Controllers.PaymentController">
             <summary>
             Controller to Management Pix Payment
@@ -60,6 +66,21 @@
             <response code="500">Server Error</response>
             <response code="403">Not Authorized</response>
             
+        </member>
+        <member name="M:cor_da_chita_api.Extensions.ResponseExtensions.ToValidationErrorReponse(FluentValidation.Results.ValidationResult)">
+            <summary>
+            Handle with validation objects
+            </summary>
+            <param name="validationResult">The validation result</param>
+            <returns>The default validation response</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:cor_da_chita_api.Extensions.ResponseExtensions.ToNotFoundReponse(Microsoft.AspNetCore.Mvc.NotFoundResult,System.String)" -->
+        <member name="M:cor_da_chita_api.Extensions.ResponseExtensions.ToErrorReponse(System.Exception)">
+            <summary>
+            Handle the exceptions to a readable format
+            </summary>
+            <param name="exception">The exception object</param>
+            <returns>The exception default response</returns>
         </member>
     </members>
 </doc>
