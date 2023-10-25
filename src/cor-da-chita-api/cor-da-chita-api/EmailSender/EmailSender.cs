@@ -11,13 +11,15 @@ namespace EmailSender
             MailMessage emailMessage = new MailMessage();
             try
             {
-                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-                smtpClient.EnableSsl = true;
-                smtpClient.Timeout = 60 * 60;
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("", "");
-                
-                emailMessage.From = new MailAddress("cordachita@email.com", "Cor da Chita");
+                var smtpClient = new SmtpClient("smtp.gmail.com",587)
+                {
+                    EnableSsl = true,
+                    Timeout = 60 * 60,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential("cordachita.teste@gmail.com", "yzjr grhs ugzn egno")
+                };
+
+                emailMessage.From = new MailAddress("cordachita.teste@gmail.com", "Cor da Chita");
                 emailMessage.Body = "Testando envio de e-mail";
                 emailMessage.Subject = "Teste envio";
                 emailMessage.IsBodyHtml = true;
