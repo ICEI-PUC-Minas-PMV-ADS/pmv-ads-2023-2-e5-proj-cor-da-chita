@@ -1,7 +1,9 @@
 // Navbar com busca e Login Google
 import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import {Input} from "@nextui-org/react";
+
+
 import {
   Navbar,
   NavbarBrand,
@@ -17,6 +19,8 @@ import {
 import { CorChitaFlor } from "./logo/CorChitaFlor";
 import { CorChitaTexto } from "@/components/logo/CorChitaTexto";
 import SearchInput from "./ui/SearchInput";
+import { useRouter } from "next/navigation";
+import { MyButton } from "./ui/Button";
 
 export default function NavBar() {
   const { data: session } = useSession();
@@ -30,11 +34,11 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar isBordered className="w-full">
-      <NavbarContent justify="start" className="">
-        <NavbarBrand className="mr-4">
+    <Navbar isBordered className="w-full bg-light">
+      <NavbarContent>
+        <NavbarBrand>
           <div
-            className={"flex w-32 h-32 rounded-md cursor-pointer }"}
+            className={"flex cursor-pointer }"}
             onClick={handleClick}
           >
             <CorChitaFlor />
@@ -43,7 +47,8 @@ export default function NavBar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent as="div" className="" justify="end">
+      <NavbarContent as="div">
+        {/* Funcionando - Programar a renderização da busca */}
         <SearchInput />
 
         {session && session.user ? (
@@ -76,9 +81,9 @@ export default function NavBar() {
             </DropdownMenu>
           </Dropdown>
         ) : (
-          <Button color="secondary" size="sm" onClick={() => signIn("google")}>
+          <MyButton size="md" color="transparent" onClick={() => signIn("google")}>
             Entrar
-          </Button>
+          </MyButton>
         )}
       </NavbarContent>
     </Navbar>
