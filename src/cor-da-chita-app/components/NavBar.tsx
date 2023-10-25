@@ -31,7 +31,7 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar isBordered className="w-full bg-lime-500">
+    <Navbar isBordered className="w-full">
       <NavbarContent justify="start" className="">
         <NavbarBrand className="mr-4">
           <div
