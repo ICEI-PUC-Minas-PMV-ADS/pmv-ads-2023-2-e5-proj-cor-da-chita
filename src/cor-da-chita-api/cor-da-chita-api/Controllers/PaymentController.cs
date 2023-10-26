@@ -1,4 +1,5 @@
-﻿using MercadoPago.Client.Common;
+﻿using cor_da_chita_api.Models;
+using MercadoPago.Client.Common;
 using MercadoPago.Client.Payment;
 using MercadoPago.Config;
 using MercadoPago.Http;
@@ -56,15 +57,16 @@ namespace cor_da_chita_api.Controllers
         /// <response code="500">Server Error</response>
         /// <response code="403">Not Authorized</response>
         /// 
-        [HttpPost]
+        [HttpPost("CreatePixPayment")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Forbidden)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
 
-        public async Task<ActionResult<PaymentClient>> CreatePayment(decimal value)
+        public async Task<ActionResult<PaymentClient>> CreatePayment(OrderDto order)
         {
+
             try
             {
                 //Credenciais de produção da conta do BIEL,depois trocar para a conta da mãe da illa
@@ -76,19 +78,19 @@ namespace cor_da_chita_api.Controllers
 
                 var request = new PaymentCreateRequest
                 {
-                    TransactionAmount = value,
+                    TransactionAmount = order.Freight.TotalWithFreight,
                     Description = "New Product",
                     PaymentMethodId = "pix",
 
                     Payer = new PaymentPayerRequest
                     {
-                        Email = "gabrielpuneco@gmail.com",
-                        FirstName = "Gabriel",
-                        LastName = "Costa",
+                        Email = order.UserEmail,
+                        FirstName = order.UserName.Split(' ')[0],
+                        LastName = order.UserName.Split(' ')[1],
                         Identification = new IdentificationRequest
                         {
                             Type = "CPF",
-                            Number = "15550676621",
+                            Number = "233325454",
                         },
                     },
                 };
