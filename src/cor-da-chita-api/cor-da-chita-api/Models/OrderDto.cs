@@ -15,6 +15,7 @@ namespace cor_da_chita_api.Models
         public string Street { get; set; }
         public string Neighborhood { get; set; }
         public Freight Freight { get; set; }
+        public long? OrderPixId {  get; set; }
     }
 
     public class Items

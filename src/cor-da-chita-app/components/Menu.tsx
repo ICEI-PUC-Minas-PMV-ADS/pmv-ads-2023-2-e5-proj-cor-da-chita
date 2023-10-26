@@ -1,7 +1,6 @@
-"use client";
+// Menu fixo, abaixo de Navbar
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export const category = [
   {
@@ -22,10 +21,6 @@ export const category = [
   },
   {
     id: "5",
-    name: "Natalinos",
-  },
-  {
-    id: "6",
     name: "Outros",
   },
 ];
@@ -43,19 +38,22 @@ export default function Menu(...props: any) {
   };
 
   return (
-    <nav {...props} className="flex  h-16 ">
-      <ul className="flex justify-center w-full ">
-        {category.map((category) => (
-          <li
-            key={category.id}
-            className={"flex w-32 h-32 rounded-md cursor-pointer }"}
-          >
-            <p onClick={() => handleClick(category.id, category.name)}>
-              {category.name}
-            </p>
-          </li>
-        ))}
-      </ul>
+    <nav {...props}>
+      <div className="bg-light text-tiny">
+        <div>
+          <ul className="flex flex-auto	justify-around">
+            {category.map((category) => (
+              <li
+                key={category.id}
+              >
+                <p className="p-5 tracking-wide underline  decoration-green" onClick={() => handleClick(category.id, category.name)}>
+                  {category.name}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </nav>
   );
 }
