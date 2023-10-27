@@ -24,10 +24,10 @@ namespace cor_da_chita_api.Controllers
 
     public class OrderController : ControllerBase
     {
-        private readonly OrderRepository _ordersRepository;
+        private readonly OrderService _ordersService;
 
-        public OrderController(OrderRepository ordersRepository) =>
-        _ordersRepository = ordersRepository;
+        public OrderController(OrderService ordersService) =>
+        _ordersService = ordersService;
 
         /// <summary>
         /// Endpoint to Get All Orders
@@ -37,7 +37,7 @@ namespace cor_da_chita_api.Controllers
         public async Task<List<OrderDto>> GetAll()
         {
 
-            return await _ordersRepository.GetAllAsync();
+            return await _ordersService.GetAllAsync();
         }
         /// <summary>
         /// Endpoint To Get Order By Id
@@ -47,7 +47,7 @@ namespace cor_da_chita_api.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<OrderDto>> Get(string id)
         {
-            var order = await _ordersRepository.GetAsync(id);
+            var order = await _ordersService.GetAsync(id);
 
             if (order is null)
             {
@@ -77,7 +77,7 @@ namespace cor_da_chita_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, validatioResult.ToValidationErrorReponse());
                 }
 
-                var orderCreated = await _ordersRepository.CreateAsync(newOrder);
+                var orderCreated = await _ordersService.CreateAsync(newOrder);
                 return Ok(orderCreated);
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace cor_da_chita_api.Controllers
 
                 }
 
-                var orderUpdated = _ordersRepository.UpdateAsync(order);
+                var orderUpdated = _ordersService.UpdateAsync(order);
 
                 return Ok(orderUpdated);
 
@@ -149,7 +149,7 @@ namespace cor_da_chita_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, validationResult.ToValidationErrorReponse());
                 }
 
-                _ordersRepository.RemoveAsync(id);
+                _ordersService.RemoveAsync(id);
 
                 return Ok();
 
