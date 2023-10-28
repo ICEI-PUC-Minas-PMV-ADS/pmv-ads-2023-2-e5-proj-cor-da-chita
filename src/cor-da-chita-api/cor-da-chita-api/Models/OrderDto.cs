@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using System;
 
 namespace cor_da_chita_api.Models
 {
@@ -14,6 +15,7 @@ namespace cor_da_chita_api.Models
         public string Street { get; set; }
         public string Neighborhood { get; set; }
         public Freight Freight { get; set; }
+        public long? OrderPixId {  get; set; }
     }
 
     public class Items
@@ -21,12 +23,12 @@ namespace cor_da_chita_api.Models
 
         public string ProductId { get; set; }
         public string ProductName { get; set; }
-        public double ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
     }
 
     public class Freight
     {
-        public double TotalWithFreight { get; set; }
-        public double FreightValue { get; set; }
+        public decimal TotalWithFreight { get; set; }
+        public decimal FreightValue { get; set; }
     }
 }

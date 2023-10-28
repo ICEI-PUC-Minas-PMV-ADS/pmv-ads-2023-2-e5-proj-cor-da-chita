@@ -1,10 +1,11 @@
 using cor_da_chita_api;
 using cor_da_chita_api.Repository;
+
 using cor_da_chita_api.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-
+using cor_da_chita_api.Repository;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.Configure<CorDaChitaDatabaseSettings>(
     builder.Configuration.GetSection("CorDaChitaDatabase"));
 //Ver porque da exceção desta linha
-/*builder.Services.AddSingleton<OrderService>();*/
+builder.Services.AddSingleton<OrderRepository>();
 
 #region Swagger Documentation  Configuration
 builder.Services.AddSwaggerGen(options =>
