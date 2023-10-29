@@ -1,0 +1,165 @@
+{
+  "id": 65187070109,
+  "dateCreated": "2023-10-15T12:52:02-03:00",
+  "dateApproved": "2023-10-15T12:52:55-03:00",
+  "dateLastUpdated": "2023-10-15T12:52:57-03:00",
+  "dateOfExpiration": "2023-10-16T12:52:02-03:00",
+  "moneyReleaseDate": "2023-10-15T12:52:55-03:00",
+  "operationType": "regular_payment",
+  "issuerId": "12501",
+  "paymentMethodId": "pix",
+  "paymentTypeId": "bank_transfer",
+  "status": "approved",
+  "statusDetail": "accredited",
+  "currencyId": "BRL",
+  "description": "New Product",
+  "liveMode": true,
+  "sponsorId": null,
+  "authorizationCode": null,
+  "integratorId": null,
+  "platformId": null,
+  "corporationId": null,
+  "collectorId": 238459047,
+  "payer": {
+    "type": null,
+    "id": "1506751606",
+    "email": "XXXXXXXXXXX",
+    "identification": {
+      "type": "CPF",
+      "number": "99999999999"
+    },
+    "firstName": null,
+    "lastName": null,
+    "entityType": null
+  },
+  "metadata": {},
+  "additionalInfo": {
+    "ipAddress": null,
+    "items": null,
+    "payer": null,
+    "shipments": null
+  },
+  "order": {
+    "id": null,
+    "type": null
+  },
+  "externalReference": null,
+  "transactionAmount": 1,
+  "transactionAmountRefunded": 0,
+  "couponAmount": 0,
+  "differentialPricingId": null,
+  "installments": 1,
+  "transactionDetails": {
+    "financialInstitution": "1",
+    "netReceivedAmount": 0.99,
+    "totalPaidAmount": 1,
+    "installmentAmount": 0,
+    "overpaidAmount": 0,
+    "externalResourceUrl": null,
+    "paymentMethodReferenceId": null
+  },
+  "feeDetails": [
+    {
+      "type": "mercadopago_fee",
+      "feePayer": "collector",
+      "amount": 0.01
+    }
+  ],
+  "captured": true,
+  "binaryMode": false,
+  "callForAuthorizeId": null,
+  "statementDescriptor": null,
+  "card": {
+    "id": null,
+    "lastFourDigits": null,
+    "firstSixDigits": null,
+    "expirationYear": null,
+    "expirationMonth": null,
+    "dateCreated": null,
+    "dateLastUpdated": null,
+    "cardholder": null
+  },
+  "notificationUrl": null,
+  "callbackUrl": null,
+  "processingMode": "aggregator",
+  "merchantAccountId": null,
+  "campaignId": null,
+  "couponCode": null,
+  "netAmount": null,
+  "paymentMethodOptionId": null,
+  "taxes": null,
+  "refunds": [],
+  "pointOfInteraction": {
+    "type": "OPENPLATFORM",
+    "subType": "INTER_PSP",
+    "linkedTo": null,
+    "applicationData": {
+      "name": null,
+      "version": null
+    },
+    "transactionData": {
+      "qrCode": "00020126420014br.gov.bcb.pix0120bielpuneco@gmail.com52040000530398654041.005802BR5925LOPESGABRIEL20230926192336009Sao Paulo62240520mpqrinter651870701096304B4E9",
+      "qrCodeBase64": "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",
+      "transactionId": "PIXE18236120202310151552s1153a4733a",
+      "bankTransferId": 5385486412,
+      "financialInstitution": 1,
+      "ticketUrl": "https://www.mercadopago.com.br/payments/65187070109/ticket?caller_id=1506751606&hash=f1766b1a-3da6-46b9-b676-7008d60515ab",
+      "bankInfo": {
+        "payer": {
+          "email": null,
+          "accountId": {
+            "isPowerOfTwo": false,
+            "isZero": false,
+            "isOne": false,
+            "isEven": false,
+            "sign": 1
+          },
+          "longName": "Nu Pagamentos S.A."
+        },
+        "collector": {
+          "accountId": {
+            "isPowerOfTwo": false,
+            "isZero": false,
+            "isOne": false,
+            "isEven": true,
+            "sign": 1
+          },
+          "longName": "Mercadopago.com Representações Ltda."
+        },
+        "isSameBankAccountOwner": "true"
+      },
+      "firstTimeUse": false,
+      "subscriptionSequence": null,
+      "subscriptionId": null,
+      "invoicePeriod": null,
+      "paymentReference": null,
+      "billingDate": null
+    }
+  },
+  "apiResponse": {
+    "statusCode": 200,
+    "headers": {
+      "Date": "Sun, 15 Oct 2023 15:55:41 GMT",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "Vary": "Accept-Encoding,Accept,Accept-Encoding",
+      "Cache-Control": "max-age=0",
+      "ETag": "b1fd8082ddb3daa35a6bafdfcb14a246",
+      "X-Content-Type-Options": "nosniff",
+      "X-Request-ID": "3298148e-ea71-4151-9d49-28517c969b64",
+      "X-XSS-Protection": "1; mode=block",
+      "Strict-Transport-Security": "max-age=16070400; includeSubDomains; preload",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "PUT, GET, POST, DELETE, OPTIONS",
+      "Access-Control-Max-Age": "86400",
+      "Timing-Allow-Origin": "*"
+    },
+    "content": "{\"accounts_info\":null,\"acquirer_reconciliation\":[],\"additional_info\":{\"authentication_code\":null,\"available_balance\":null,\"bank_info\":{\"is_same_bank_account_owner\":true},\"nsu_processadora\":null},\"authorization_code\":null,\"binary_mode\":false,\"brand_id\":null,\"build_version\":\"3.21.0\",\"call_for_authorize_id\":null,\"callback_url\":null,\"captured\":true,\"card\":{},\"charges_details\":[{\"accounts\":{\"from\":\"collector\",\"to\":\"mp\"},\"amounts\":{\"original\":0.01,\"refunded\":0},\"client_id\":0,\"date_created\":\"2023-10-15T11:52:02.000-04:00\",\"id\":\"65187070109-001\",\"last_updated\":\"2023-10-15T11:52:02.000-04:00\",\"metadata\":{},\"name\":\"mercadopago_fee\",\"refund_charges\":[],\"reserve_id\":null,\"type\":\"fee\"}],\"collector_id\":238459047,\"corporation_id\":null,\"counter_currency\":null,\"coupon_amount\":0,\"currency_id\":\"BRL\",\"date_approved\":\"2023-10-15T11:52:55.000-04:00\",\"date_created\":\"2023-10-15T11:52:02.000-04:00\",\"date_last_updated\":\"2023-10-15T11:52:57.000-04:00\",\"date_of_expiration\":\"2023-10-16T11:52:02.000-04:00\",\"deduction_schema\":null,\"description\":\"New Product\",\"differential_pricing_id\":null,\"external_reference\":null,\"fee_details\":[{\"amount\":0.01,\"fee_payer\":\"collector\",\"type\":\"mercadopago_fee\"}],\"financing_group\":null,\"id\":65187070109,\"installments\":1,\"integrator_id\":null,\"issuer_id\":\"12501\",\"live_mode\":true,\"marketplace_owner\":null,\"merchant_account_id\":null,\"merchant_number\":null,\"metadata\":{},\"money_release_date\":\"2023-10-15T11:52:55.000-04:00\",\"money_release_schema\":null,\"money_release_status\":\"released\",\"notification_url\":null,\"operation_type\":\"regular_payment\",\"order\":{},\"payer\":{\"email\":\"XXXXXXXXXXX\",\"entity_type\":null,\"first_name\":null,\"id\":\"1506751606\",\"identification\":{\"number\":\"99999999999\",\"type\":\"CPF\"},\"last_name\":null,\"operator_id\":null,\"phone\":{\"area_code\":null,\"extension\":null,\"number\":null},\"type\":null},\"payment_method\":{\"id\":\"pix\",\"issuer_id\":\"12501\",\"type\":\"bank_transfer\"},\"payment_method_id\":\"pix\",\"payment_type_id\":\"bank_transfer\",\"platform_id\":null,\"point_of_interaction\":{\"application_data\":{\"name\":null,\"version\":null},\"business_info\":{\"sub_unit\":\"sdk\",\"unit\":\"online_payments\"},\"location\":{\"source\":null,\"state_id\":null},\"sub_type\":\"INTER_PSP\",\"transaction_data\":{\"bank_info\":{\"collector\":{\"account_holder_name\":\"Gabriel Antonio Lopes Costa\",\"account_id\":81213982022,\"long_name\":\"Mercadopago.com Representações Ltda.\",\"transfer_account_id\":null},\"is_same_bank_account_owner\":true,\"origin_bank_id\":null,\"origin_wallet_id\":null,\"payer\":{\"account_id\":191357577,\"external_account_id\":null,\"id\":null,\"identification\":{},\"long_name\":\"Nu Pagamentos S.A.\"}},\"bank_transfer_id\":5385486412,\"e2e_id\":null,\"financial_institution\":1,\"infringement_notification\":{\"status\":null,\"type\":null},\"qr_code\":\"00020126420014br.gov.bcb.pix0120bielpuneco@gmail.com52040000530398654041.005802BR5925LOPESGABRIEL20230926192336009Sao Paulo62240520mpqrinter651870701096304B4E9\",\"qr_code_base64\":\"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\",\"ticket_url\":\"https://www.mercadopago.com.br/payments/65187070109/ticket?caller_id=1506751606&hash=f1766b1a-3da6-46b9-b676-7008d60515ab\",\"transaction_id\":\"PIXE18236120202310151552s1153a4733a\"},\"type\":\"OPENPLATFORM\"},\"pos_id\":null,\"processing_mode\":\"aggregator\",\"refunds\":[],\"shipping_amount\":0,\"sponsor_id\":null,\"statement_descriptor\":null,\"status\":\"approved\",\"status_detail\":\"accredited\",\"store_id\":null,\"tags\":null,\"taxes_amount\":0,\"transaction_amount\":1,\"transaction_amount_refunded\":0,\"transaction_details\":{\"acquirer_reference\":null,\"bank_transfer_id\":5385486412,\"external_resource_url\":null,\"financial_institution\":\"1\",\"installment_amount\":0,\"net_received_amount\":0.99,\"overpaid_amount\":0,\"payable_deferral_period\":null,\"payment_method_reference_id\":null,\"total_paid_amount\":1,\"transaction_id\":\"PIXE18236120202310151552s1153a4733a\"}}"
+  },
+  "paymentMethod": {
+    "data": null
+  },
+  "threeDSInfo": null,
+  "internalMetadata": null
+}
