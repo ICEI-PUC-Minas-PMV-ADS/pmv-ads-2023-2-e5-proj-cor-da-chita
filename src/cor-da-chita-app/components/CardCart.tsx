@@ -1,102 +1,84 @@
-// EM ANDAMENTO
-
-import React, { useEffect, useState, useContext } from "react";
-import Link from "next/link";
-import IconBagX from "@/assets/icons/IconBagX";
-import { Card, CardBody, Image, Button, Progress } from "@nextui-org/react";
-import { Produto } from "@/lib/interface";
-import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
-import { client } from "../lib/sanity";
-import { CartContext } from "@/contexts/CartContext/CartContext";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Image,
+  Spinner,
+  Button,
+} from "@nextui-org/react";
 import QuantityManagerCart from "./QuantityManagerCart";
-import IconPlusSquare from "@/assets/icons/IconPlusSquare";
-import ProductContext from "@/contexts/ProductContext/ProductContext";
+import { Produto } from "@/lib/interface";
+import getProductDataById from "@/database/products/getProductDataById";
+import IconBagX from "@/assets/icons/IconBagX";
 
-interface ItensCartProps {
-  item: Produto[] | undefined;
-}
-
-export default function CardCartTest({ ...props }) {
-  const { cart, setCart } = useContext(CartContext);
-
-  const [itemData, setItemData] = useState({});
+export default function CardCart({ ...props }: any) {
+  const [loading, setLoading] = useState(true);
+  const [item, setItem] = useState<Produto[] | undefined>();
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    // const carrinho = JSON.parse(localStorage.getItem('cartItens'))
-    getProduct(props.id);
+    console.log("entrou");
+    const fetchData = async () => {
+      const data = (await getProductDataById(props.id)) as Produto[];
 
-    console.log(cart);
-  }, []);
+      if (data) setLoading(false);
 
-  const getProduct = async (idProduto: string) => {
-    try {
-      const query = `*[_type == "produto" && _id == $id]{
-        _id,
-        nome,
-        categoria,        
-      }`;
-      // Esta é á forma correta de concatenar o parametro de id com a query pois utilizando a interpolação com ${} não funciona
-      const params = { id: idProduto };
-
-      const data = await client.fetch(query, params);
-      console.log(data[0]._id);
-      setCart(data);
-      console.log(cart);
-
-      console.log(itemData);
+      setItem(data);
+      setRefresh(false);
 
       return data;
-    } catch (e) {
-      console.log(e);
-    }
-  };
+    };
+
+    fetchData();
+  }, [setItem, refresh, setRefresh]);
+
+  function handleRemoveItemCart(id: string): void {
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+
+    const newArrItens: string = arrItens.filter((item: string) => item !== id);
+    localStorage.setItem("cartItens", JSON.stringify(newArrItens));
+
+    setRefresh(true);
+
+    console.log(newArrItens);
+  }
+
   return (
     <>
-      <article className="bg-zinc-600 ">
-        <Card isBlurred className="w-11" shadow="md">
-          <CardBody>
-            <div className="flex flex-col w-full">
-              <div className="flex items-start w-full mt-4 ">
-                <Image
-                  alt="Album cover"
-                  className="h-20"
-                  height={150}
-                  width={150}
-                  shadow="md"
-                  src={""}
-                />
+      {item && (
+        <Card className="py-4">
+          <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+            <p className="text-tiny uppercase font-bold">{item[0].nome}</p>
+            <small className="text-default-500">
+              R$ {item[0].preco.toFixed(2)}
+            </small>
+          </CardHeader>
 
-                <div className="flex flex-col">
-                  <p className="font-semibold font-sans mt-2 ml-2  ">
-                    {"nome"}
-                  </p>
-                  <p className="font-semibold font-sans mt-2 ml-2 ">
-                    {"categoria"}
-                  </p>
-                  <p className="font-semibold font-sans mt-2  ml-2">
-                    R$ {"preco?.toFixed(2)"}
-                  </p>
-                  <QuantityManagerCart />
-                </div>
-                <ButtonOnlyIcon
-                  className="h-9 mt-2 ml-2 bg-red-500"
+          <CardBody className="overflow-visible py-2">
+            <div className="flex">
+              <Image
+                alt="Card background"
+                className="object-cover rounded-xl"
+                src={item[0].imagem}
+                width={150}
+              />
+              <div className="ml-3">
+                <Button
+                  className="p-1"
+                  color="danger"
                   isIconOnly
-                  // onClick={() => handleRemoveItemCart(id)}
+                  size="sm"
+                  onPress={() => handleRemoveItemCart(item[0]._id)}
                 >
                   <IconBagX />
-                </ButtonOnlyIcon>
-
-                {/* <Button onClick={(x) => handleSeeLc()}>seeee</Button> */}
+                </Button>
               </div>
             </div>
           </CardBody>
+          <QuantityManagerCart />
         </Card>
-      </article>
-      <div>
-        {/* <Button onClick={(x) => handleSeeLc()}>See</Button>
-        <Button onClick={(x) => localStorage.clear()}>Delete</Button>
-        <IconPlusSquare /> */}
-      </div>
+      )}
     </>
   );
 }

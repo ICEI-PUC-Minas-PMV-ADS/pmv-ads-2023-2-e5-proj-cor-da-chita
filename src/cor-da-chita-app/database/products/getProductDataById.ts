@@ -1,7 +1,7 @@
 // Query usada na renderização do Carrinho
 import { client } from "../../lib/sanity";
 
-export default async function getProductDataCart(itemId: string) {
+export default async function getProductDataById(itemId: string) {
   console.log(itemId);
   try {
     const query = `*[_type == "produto" && _id == "${itemId}"]{

@@ -10,11 +10,12 @@ import React, {
 import Link from "next/link";
 import IconBagX from "@/assets/icons/IconBagX";
 import { Card, CardBody, Image, Button, Progress } from "@nextui-org/react";
-import CartCardTest from "@/components/CardCart";
+
+import CardCart from "@/components/CardCart";
 import { Produto } from "@/lib/interface";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
-import getProductDataCart from "@/database/products/getProductDataCart";
+import getProductDataCart from "@/database/products/getProductDataById";
 
 // async function getData(
 //   itemId: string,
@@ -39,7 +40,7 @@ export default function ShopCart(...props: any) {
       {itemCart == null ? (
         <p>Seu carrinho está vazio</p>
       ) : (
-        itemCart?.map((idItem) => <CartCardTest id={idItem} />)
+        itemCart?.map((idItem) => <CardCart id={idItem} />)
       )}
     </>
   );

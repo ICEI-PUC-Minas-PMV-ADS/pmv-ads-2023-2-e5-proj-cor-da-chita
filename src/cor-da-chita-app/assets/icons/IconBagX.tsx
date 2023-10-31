@@ -6,8 +6,8 @@ function IconBagX() {
     <svg
       fill="currentColor"
       viewBox="0 0 16 16"
-      height="2.2em"
-      width="1.9em"
+      height="1.5rem"
+      width="1.5rem"
       
     >
       <path
