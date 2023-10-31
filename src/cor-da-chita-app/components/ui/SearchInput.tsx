@@ -1,7 +1,7 @@
 // Em ANDAMENTO: Implementar botão na busca
 // Pega o event da tecla
 import React, { useContext, useState } from "react";
-import { Input } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { SearchIcon } from "@/assets/icons/SearchIcon";
 import { useRouter } from "next/navigation";
 import { SearchContext } from "@/contexts/ProductContext/SearchContext";
@@ -20,6 +20,13 @@ export default function SearchInput({ children, ...props }: any) {
     }
   }
 
+  function handleClickSearch(): void {
+    if (productName !== "") {
+      setSearch(productName); // Context
+      route.push(`/all-products/search?product=${productName}`);
+    }
+  }
+
   return (
     <Input
       classNames={{
@@ -31,7 +38,11 @@ export default function SearchInput({ children, ...props }: any) {
       placeholder="Busca"
       size="sm"
       variant="underlined"
-      startContent={<SearchIcon size={18} />}
+      endContent={
+        <Button isIconOnly size="sm" onPress={handleClickSearch}>
+          <SearchIcon size={18} />
+        </Button>
+      }
       type="search"
       value={productName}
       onChange={(e) => setProductName(e.target.value)}

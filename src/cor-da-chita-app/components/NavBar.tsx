@@ -1,8 +1,8 @@
 // Navbar com busca e Login Google
+"use client";
+
 import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import {Input} from "@nextui-org/react";
-
 
 import {
   Navbar,
@@ -35,9 +35,9 @@ export default function NavBar() {
 
   return (
     <Navbar shouldHideOnScroll className="bg-light">
-      <NavbarBrand onClick={handleClick} >
-            <CorChitaFlor />
-            <CorChitaTexto />
+      <NavbarBrand onClick={handleClick}>
+        <CorChitaFlor />
+        <CorChitaTexto />
       </NavbarBrand>
 
       <NavbarContent>

@@ -1,5 +1,5 @@
 // Menu fixo, abaixo de Navbar
-
+"use client"
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -26,7 +26,7 @@ export const category = [
   },
 ];
 
-export default function Menu(...props: any) {
+export default function Menu(props: any) {
   const route = useRouter();
   const [isClicked, setIsClicked] = useState(false);
 
