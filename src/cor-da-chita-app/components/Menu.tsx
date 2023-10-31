@@ -1,4 +1,5 @@
 // Menu fixo, abaixo de Navbar
+"use client"
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -25,7 +26,7 @@ export const category = [
   },
 ];
 
-export default function Menu(...props: any) {
+export default function Menu(props: any) {
   const route = useRouter();
   const [isClicked, setIsClicked] = useState(false);
 
@@ -43,10 +44,11 @@ export default function Menu(...props: any) {
         <div>
           <ul className="flex flex-auto	justify-around">
             {category.map((category) => (
-              <li
-                key={category.id}
-              >
-                <p className="p-5 tracking-wide underline  decoration-green" onClick={() => handleClick(category.id, category.name)}>
+              <li key={category.id}>
+                <p
+                  className="p-5 tracking-wide underline  decoration-green"
+                  onClick={() => handleClick(category.id, category.name)}
+                >
                   {category.name}
                 </p>
               </li>

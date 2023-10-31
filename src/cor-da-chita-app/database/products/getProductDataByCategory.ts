@@ -28,7 +28,7 @@ export default async function getProductDataByCategory(categoryName: string) {
       altura,
       'imagem':imagem.asset->url,
       _createdAt,
-      slug   
+      slug 
     }`;
 
     const data = await client.fetch(query);

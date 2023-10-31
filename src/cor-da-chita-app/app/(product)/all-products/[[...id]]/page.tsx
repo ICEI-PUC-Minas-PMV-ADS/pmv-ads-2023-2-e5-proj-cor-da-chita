@@ -21,26 +21,26 @@ async function getData(
   categoryNameOrSearch: string,
   search: string
 ) {
-  console.log(categoryNameOrSearch);
+  // categoryNameOrSearch é vazia quando está em "Todos os Produtos"
 
   if (categoryNameOrSearch.includes("search")) {
     // Consulta feita via SeachInput
     const data = (await getProductDataSearch(search)) as Produto[];
-    console.log(data);
+    //console.log(data);
 
     setProductData(data);
   } else if (categoryNameOrSearch != "") {
-    // categoryNameOrSearch é vazia quando está em "Todos os Produtos"
+    // Consulta via click no Menu de Categoria
     const data = (await getProductDataByCategory(
       categoryNameOrSearch
     )) as Produto[];
-    console.log(data);
+    // console.log(data);
 
     setProductData(data);
   } else {
     // Todos os produtos
     const data = (await getProductCardData()) as Produto[];
-    console.log(data);
+    //console.log(data);
 
     setProductData(data);
   }
