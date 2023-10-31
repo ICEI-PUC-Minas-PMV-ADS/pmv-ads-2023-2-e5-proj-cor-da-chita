@@ -15,6 +15,7 @@ interface ProductCardProps {
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
+  const b = []
 
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
@@ -41,18 +42,28 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setImage(product.imagem);
     productAds.setSlug(product.slug.current);
 
-    route.push(`/advertisement/${product.slug.current}/${product._id}`);
+    // route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
   const handleStorageProductCart = (id: string) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-    arrItens.push(id);
+   
+    if(arrItens.includes(id)){
 
-    localStorage.setItem("cartItens", JSON.stringify(arrItens));
+      alert("Este item já esta no seu carrinho")
+    }
+    else{
+      
+      arrItens.push(id);
+      
+  
+      localStorage.setItem("cartItens", JSON.stringify(arrItens));
+    }
   };
 
   const handleSeeLc = () => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+
     console.log(arrItens);
   };
 
