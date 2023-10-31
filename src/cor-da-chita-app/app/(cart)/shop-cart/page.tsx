@@ -10,46 +10,37 @@ import React, {
 import Link from "next/link";
 import IconBagX from "@/assets/icons/IconBagX";
 import { Card, CardBody, Image, Button, Progress } from "@nextui-org/react";
-import CartCard from "@/components/CardCart";
+import CartCardTest from "@/components/CardCart";
 import { Produto } from "@/lib/interface";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import getProductDataCart from "@/database/products/getProductDataCart";
 
-async function getData(
-  itemId: string,
-  setCart: Dispatch<SetStateAction<Produto[] | undefined>>
-) {
-  const data = (await getProductDataCart(itemId)) as Produto[];
+// async function getData(
+//   itemId: string,
+//   setCart: Dispatch<SetStateAction<Produto[] | undefined>>
+// ) {
+//   const data = (await getProductDataCart(itemId)) as Produto[];
 
-  setCart(data);
-}
+//   setCart(data);
+// }
 
 export default function ShopCart(...props: any) {
-  //const [productData, setProductData] = useState<Produto[] | undefined>([]);
-  const { cart, setCart } = useContext(CartContext);
-
-  //const [itensCart, setItensCart] = useState<Produto[] | undefined>([]);
-  const arrItemId: any = [];
+  const [itemCart, setItemCart] = useState<Produto[] | undefined>();
 
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     console.log(arrItens);
-    setCart(arrItens);
+    setItemCart(arrItens);
   }, []);
-
-  //const getCartProducts = async () => {};
 
   return (
     <>
-      {cart == null ? (
-        <p>Ops, parece que seu carrinho esta vázio</p>
+      {itemCart == null ? (
+        <p>Seu carrinho está vazio</p>
       ) : (
-        cart?.map((idItem) => <CartCard id={idItem} />)
+        itemCart?.map((idItem) => <CartCardTest id={idItem} />)
       )}
     </>
-    // <section>
-    //   <CartCard data={itensCart} />
-    // </section>
   );
 }

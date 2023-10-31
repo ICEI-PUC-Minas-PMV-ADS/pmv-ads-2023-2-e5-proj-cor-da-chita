@@ -10,76 +10,40 @@ import { client } from "../lib/sanity";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import QuantityManagerCart from "./QuantityManagerCart";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
+import ProductContext from "@/contexts/ProductContext/ProductContext";
 
 interface ItensCartProps {
   item: Produto[] | undefined;
 }
 
-export default function CardCart(id: string) {
-  //const produto: any = [];
-
+export default function CardCartTest({ ...props }) {
   const { cart, setCart } = useContext(CartContext);
-  const [nome, setNome] = useState<string>();
-  const [categoria, setCategoria] = useState<string>();
-  const [preco, setPreco] = useState<number>();
-  const [imagemProduto, setImagemProduto] = useState<any>();
 
-  const [itemData, setItemData] = useState<Produto[] | undefined>([]);
+  const [itemData, setItemData] = useState({});
 
-  const handleRemoveItemCart = (idProduto: string) => {
-    //Precisa pegar a propriedade id  pois o id do produto esta vindo como objecto com uma propriedade id
-    //Realiza um filtro para remover somente o id do produto que o usuário excluiu do carrinho
-    const carrinho = JSON.parse(localStorage.getItem("cartItens") || "[]");
-    setCart(carrinho);
-
-    if (cart.length == 1) {
-      setCart(null);
-    }
-    const newListCart = cart.filter((x) => !(x == idProduto.id));
-
-    setCart(newListCart);
-
-    localStorage.setItem("cartItens", JSON.stringify(cart));
-  };
-  const handleSeeLc = () => {
-    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-    console.log(arrItens);
-  };
   useEffect(() => {
     // const carrinho = JSON.parse(localStorage.getItem('cartItens'))
-    // console.log(carrinho)
-    getProduct(id);
+    getProduct(props.id);
 
     console.log(cart);
   }, []);
 
   const getProduct = async (idProduto: string) => {
     try {
-      console.log(idProduto.id);
       const query = `*[_type == "produto" && _id == $id]{
         _id,
         nome,
-        categoria,
-        descricao,
-        preco,
-        peso,
-        comprimento,
-        largura,
-        altura,
-        'imagem':imagem.asset->url,
-        slug
+        categoria,        
       }`;
-      //Esta é á forma correta de concatenar o parametro de id com a query pois utilizando a interpolação com ${} não funciona
-      const params = { id: idProduto.id };
+      // Esta é á forma correta de concatenar o parametro de id com a query pois utilizando a interpolação com ${} não funciona
+      const params = { id: idProduto };
 
       const data = await client.fetch(query, params);
-      setItemData(data);
+      console.log(data[0]._id);
+      setCart(data);
+      console.log(cart);
+
       console.log(itemData);
-      console.log(data[0].imagem);
-      setImagemProduto(data[0].imagem);
-      setNome(data[0].nome);
-      setCategoria(data[0].categoria);
-      setPreco(data[0].preco);
 
       return data;
     } catch (e) {
@@ -99,23 +63,25 @@ export default function CardCart(id: string) {
                   height={150}
                   width={150}
                   shadow="md"
-                  src={imagemProduto}
+                  src={""}
                 />
 
                 <div className="flex flex-col">
-                  <p className="font-semibold font-sans mt-2 ml-2  ">{nome}</p>
+                  <p className="font-semibold font-sans mt-2 ml-2  ">
+                    {"nome"}
+                  </p>
                   <p className="font-semibold font-sans mt-2 ml-2 ">
-                    {categoria}
+                    {"categoria"}
                   </p>
                   <p className="font-semibold font-sans mt-2  ml-2">
-                    R$ {preco?.toFixed(2)}
+                    R$ {"preco?.toFixed(2)"}
                   </p>
                   <QuantityManagerCart />
                 </div>
                 <ButtonOnlyIcon
                   className="h-9 mt-2 ml-2 bg-red-500"
                   isIconOnly
-                  onClick={() => handleRemoveItemCart(id)}
+                  // onClick={() => handleRemoveItemCart(id)}
                 >
                   <IconBagX />
                 </ButtonOnlyIcon>
@@ -127,9 +93,9 @@ export default function CardCart(id: string) {
         </Card>
       </article>
       <div>
-        <Button onClick={(x) => handleSeeLc()}>See</Button>
+        {/* <Button onClick={(x) => handleSeeLc()}>See</Button>
         <Button onClick={(x) => localStorage.clear()}>Delete</Button>
-        <IconPlusSquare />
+        <IconPlusSquare /> */}
       </div>
     </>
   );

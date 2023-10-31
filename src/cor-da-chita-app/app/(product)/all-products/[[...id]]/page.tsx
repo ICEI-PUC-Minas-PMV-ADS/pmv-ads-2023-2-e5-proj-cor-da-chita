@@ -22,6 +22,7 @@ async function getData(
   search: string
 ) {
   // categoryNameOrSearch é vazia quando está em "Todos os Produtos"
+
   if (categoryNameOrSearch.includes("search")) {
     // Consulta feita via SeachInput
     const data = (await getProductDataSearch(search)) as Produto[];
