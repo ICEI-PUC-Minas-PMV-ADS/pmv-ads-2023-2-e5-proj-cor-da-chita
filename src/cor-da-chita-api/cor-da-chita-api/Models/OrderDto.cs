@@ -1,6 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace cor_da_chita_api.Models
 {
@@ -16,6 +15,8 @@ namespace cor_da_chita_api.Models
         public string Neighborhood { get; set; }
         public Freight Freight { get; set; }
         public long? OrderPixId {  get; set; }
+        public DateTime OrderDate { get; set; }
+        public string PhoneNumber { get; set; }
     }
 
     public class Items

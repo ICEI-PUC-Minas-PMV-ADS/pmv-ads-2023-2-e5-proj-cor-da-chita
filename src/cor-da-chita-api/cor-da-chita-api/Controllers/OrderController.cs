@@ -25,9 +25,14 @@ namespace cor_da_chita_api.Controllers
     public class OrderController : ControllerBase
     {
         private readonly OrderService _ordersService;
+        private readonly EmailService _emailService;
+        private const string EMAIL_SUBJECT = "Seu pedido foi recebido e está sendo processado!";
 
-        public OrderController(OrderService ordersService) =>
-        _ordersService = ordersService;
+        public OrderController(OrderService ordersService, EmailService emailService)
+        {
+            _ordersService = ordersService;
+            _emailService = emailService;
+        }
 
         /// <summary>
         /// Endpoint to Get All Orders
@@ -78,6 +83,15 @@ namespace cor_da_chita_api.Controllers
                 }
 
                 var orderCreated = await _ordersService.CreateAsync(newOrder);
+
+                var emailProperties = new EmailInputModel
+                {
+                    Subject = EMAIL_SUBJECT,
+                    Body = EmailBodyBuilder.EmailBodyTemplate(newOrder)
+                };
+                 
+                _emailService.SendEmail(emailProperties);
+
                 return Ok(orderCreated);
             }
             catch (Exception ex)
