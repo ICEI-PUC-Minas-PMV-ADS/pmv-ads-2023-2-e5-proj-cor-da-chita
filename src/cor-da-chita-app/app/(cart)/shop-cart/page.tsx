@@ -16,6 +16,7 @@ import { Produto } from "@/lib/interface";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import getProductDataCart from "@/database/products/getProductDataById";
+import { useRouter } from "next/navigation";
 
 // async function getData(
 //   itemId: string,
@@ -27,6 +28,7 @@ import getProductDataCart from "@/database/products/getProductDataById";
 // }
 
 export default function ShopCart(...props: any) {
+  const router = useRouter();
   const [itemCart, setItemCart] = useState<Produto[] | undefined>();
 
   useEffect(() => {
@@ -42,6 +44,11 @@ export default function ShopCart(...props: any) {
       ) : (
         itemCart?.map((idItem) => <CardCart id={idItem} />)
       )}
+      <div>
+        <Button color="success" onPress={() => router.push("/your-data")}>
+          Finalizar Pedido
+        </Button>
+      </div>
     </>
   );
 }
