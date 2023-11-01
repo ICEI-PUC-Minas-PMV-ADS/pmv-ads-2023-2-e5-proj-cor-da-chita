@@ -12,7 +12,7 @@ type CartContextProps = {
 };
 
 type CartContextType = {
-  cart: Produto[];
+  cart: string[];
   setCart: Dispatch<SetStateAction<any>>;
 };
 

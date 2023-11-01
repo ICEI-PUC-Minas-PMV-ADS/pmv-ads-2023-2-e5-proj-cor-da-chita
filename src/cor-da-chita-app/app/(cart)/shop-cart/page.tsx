@@ -29,20 +29,22 @@ import { useRouter } from "next/navigation";
 
 export default function ShopCart(...props: any) {
   const router = useRouter();
+  const { cart, setCart } = useContext(CartContext);
   const [itemCart, setItemCart] = useState<Produto[] | undefined>();
 
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     console.log(arrItens);
+    setCart(arrItens)
     setItemCart(arrItens);
   }, []);
 
   return (
     <>
-      {itemCart == null ? (
+      {!cart.length ? (
         <p>Seu carrinho está vazio</p>
       ) : (
-        itemCart?.map((idItem) => <CardCart id={idItem} />)
+        cart?.map((idItem :string) => <CardCart id={idItem} />)
       )}
       <div>
         <Button color="success" onPress={() => router.push("/your-data")}>

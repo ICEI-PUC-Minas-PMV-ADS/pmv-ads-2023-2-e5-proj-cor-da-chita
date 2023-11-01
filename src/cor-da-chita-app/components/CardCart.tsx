@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -11,45 +11,58 @@ import QuantityManagerCart from "./QuantityManagerCart";
 import { Produto } from "@/lib/interface";
 import getProductDataById from "@/database/products/getProductDataById";
 import IconBagX from "@/assets/icons/IconBagX";
+import { CartContext } from "@/contexts/CartContext/CartContext";
 
 export default function CardCart({ ...props }: any) {
+  const {cart,setCart} = useContext(CartContext)
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Produto[] | undefined>();
   const [refresh, setRefresh] = useState(false);
+ 
 
+  
   useEffect(() => {
-    console.log("entrou");
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
 
       if (data) setLoading(false);
 
       setItem(data);
-      setRefresh(false);
+      
 
       return data;
     };
 
     fetchData();
-  }, [setItem, refresh, setRefresh]);
+  }, [setItem]);
+
+
 
   function handleRemoveItemCart(id: string): void {
-    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    
+    console.log(id)
+    const arrItens : string[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    const newArrItens: string = arrItens.filter((item: string) => item !== id);
-    localStorage.setItem("cartItens", JSON.stringify(newArrItens));
 
-    setRefresh(true);
+      const newArrItens: string[] = arrItens.filter((item: string) => item !== id);
 
-    console.log(newArrItens);
-  }
+  
 
+      localStorage.setItem("cartItens", JSON.stringify(newArrItens));
+        setCart(newArrItens)
+      
+       console.log(newArrItens);
+    
+  
+  
+ }
   return (
     <>
       {item && (
         <Card className="py-4">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-tiny uppercase font-bold">{item[0].nome}</p>
+            <p className="text-tiny uppercase font-bold">{item[0]._id}</p>
             <small className="text-default-500">
               R$ {item[0].preco.toFixed(2)}
             </small>
