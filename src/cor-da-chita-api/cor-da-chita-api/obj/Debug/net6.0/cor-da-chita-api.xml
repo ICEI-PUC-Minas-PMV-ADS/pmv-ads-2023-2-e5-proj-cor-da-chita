@@ -94,5 +94,38 @@
             <param name="exception">The exception object</param>
             <returns>The exception default response</returns>
         </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.GetAllAsync">
+            <summary>
+            Get All Orders
+            </summary>
+            <returns>List of Orders</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.GetAsync(System.String)">
+            <summary>
+            Get All Orders
+            </summary>
+            <param name="id">Id of the order to be found </param>
+            <returns>Order finded</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.CreateAsync(cor_da_chita_api.Models.OrderDto)">
+            <summary>
+            Get All Orders
+            </summary>
+            <param name="id">Id of the order to be found </param>
+            <returns>Order finded</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.UpdateAsync(cor_da_chita_api.Models.OrderDto)">
+            <summary>
+            Update Order
+            </summary>
+            <param name="Order">The entity order to be updated </param>
+            <returns>Order Updated</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.RemoveAsync(System.String)">
+            <summary>
+            Delete Order
+            </summary>
+            <param name="id">Id of the order to be deleted</param>
+        </member>
     </members>
 </doc>

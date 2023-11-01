@@ -24,11 +24,11 @@ namespace cor_da_chita_api.Controllers
 
     public class OrderController : ControllerBase
     {
-        private readonly OrderService _ordersService;
-        private readonly EmailService _emailService;
+        private readonly IOrderService _ordersService;
+        private readonly IEmailService _emailService;
         private const string EMAIL_SUBJECT = "Seu pedido foi recebido e está sendo processado!";
 
-        public OrderController(OrderService ordersService, EmailService emailService)
+        public OrderController(IOrderService ordersService, IEmailService emailService)
         {
             _ordersService = ordersService;
             _emailService = emailService;
