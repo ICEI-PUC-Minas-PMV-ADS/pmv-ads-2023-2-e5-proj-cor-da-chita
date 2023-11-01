@@ -14,13 +14,10 @@ import IconBagX from "@/assets/icons/IconBagX";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 
 export default function CardCart({ ...props }: any) {
-  const {cart,setCart} = useContext(CartContext)
+  const { cart, setCart } = useContext(CartContext);
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Produto[] | undefined>();
-  const [refresh, setRefresh] = useState(false);
- 
 
-  
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
@@ -28,34 +25,25 @@ export default function CardCart({ ...props }: any) {
       if (data) setLoading(false);
 
       setItem(data);
-      
 
       return data;
     };
 
     fetchData();
-  }, [setItem]);
-
-
+  }, [setItem, cart]);
 
   function handleRemoveItemCart(id: string): void {
-    
-    console.log(id)
-    const arrItens : string[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    const arrItens: string[] = JSON.parse(
+      localStorage.getItem("cartItens") || "[]"
+    );
 
+    const newArrItens: string[] = arrItens.filter(
+      (item: string) => item !== id
+    );
 
-      const newArrItens: string[] = arrItens.filter((item: string) => item !== id);
-
-  
-
-      localStorage.setItem("cartItens", JSON.stringify(newArrItens));
-        setCart(newArrItens)
-      
-       console.log(newArrItens);
-    
-  
-  
- }
+    localStorage.setItem("cartItens", JSON.stringify(newArrItens));
+    setCart(newArrItens);
+  }
   return (
     <>
       {item && (

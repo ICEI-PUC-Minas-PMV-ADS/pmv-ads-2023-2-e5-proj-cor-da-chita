@@ -59,8 +59,8 @@ export default function AllProducts() {
   }, [search]);
 
   return (
-    <section>
+    <>
       <ProductCard data={productData} />
-    </section>
+    </>
   );
 }

@@ -57,24 +57,12 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     }
   };
 
-  const handleSeeLc = () => {
-    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-
-    console.log(arrItens);
-  };
-
   return (
     <>
-      <h1>Todos Produtos</h1>
-
       {productData?.map((product) => (
         <article key={product._id}>
-          <Card
-            className="py-4"
-            isPressable
-            onPress={() => handleClick(product)}
-          >
-            <CardBody className="overflow-visible py-2">
+          <Card isPressable onPress={() => handleClick(product)}>
+            <CardBody className="overflow-visible p-4">
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl"
@@ -82,24 +70,14 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                 width={180}
                 height={180}
               />
-              <CardFooter className="pb-0 pt-2 px-4 flex-col items-start">
+              <CardFooter className="pb-0 pt-2 flex-col items-start">
                 <p className="font-bold text-medium">{product.nome}</p>
                 <small className="text-500">
                   R$ {product.preco.toFixed(2)}
                 </small>
               </CardFooter>
             </CardBody>
-            {/* Usar o Link para esse botão, pois o HTML da warning ao usar botão dentro de botão (o card é pressionável). Estilizar para ficar como um botão */}
-            {/* <div>
-              {product.estoque == 0 ? (
-                <p>Não há estoque deste Produto no momento</p>
-              ) : (
-                <CartPlusIcon
-                  onClick={() => handleStorageProductCart(product._id)}
-                />
-              )}
-            </div> */}
-            <Link href="" onClick={() => handleStorageProductCart(product._id)}>
+            <Link className="p-4" href="" onClick={() => handleStorageProductCart(product._id)}>
               <CartPlusIcon />
             </Link>
           </Card>

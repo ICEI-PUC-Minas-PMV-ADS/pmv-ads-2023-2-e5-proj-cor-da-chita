@@ -26,8 +26,6 @@ const initialValue = {
   setEmail: () => {},
   phone: "",
   setPhone: () => {},
-  cart: [],
-  setCart: () => {},
 };
 
 export const UserContext = createContext<UserContextType>(initialValue);
