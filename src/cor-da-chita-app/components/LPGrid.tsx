@@ -15,7 +15,7 @@ const LPGrid = () => {
         </div>
         <div className="grid-box bg-light flex flex-col items-center justify-center">
           <div className="elements text-left p-15">
-          <p className="uppercase">Estandartes</p>
+          <p className="uppercase text-lg">Estandartes</p>
           <p className="py-8 font-thin">Com santos, bonequinhos e até poesia para alegrar seu ambiente! </p>
           <Link href="/all-products">
            <MyButton color="transparent" className="py-8">

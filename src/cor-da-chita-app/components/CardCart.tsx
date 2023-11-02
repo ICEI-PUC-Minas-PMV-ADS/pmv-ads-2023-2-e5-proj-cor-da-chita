@@ -12,12 +12,15 @@ import { Produto } from "@/lib/interface";
 import getProductDataById from "@/database/products/getProductDataById";
 import IconBagX from "@/assets/icons/IconBagX";
 import { CartContext } from "@/contexts/CartContext/CartContext";
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertColor } from "@mui/material/Alert";
 export default function CardCart({ ...props }: any) {
   const { cart, setCart } = useContext(CartContext);
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Produto[] | undefined>();
-
+  const [openSnackBar,setOpenSnackBar]= useState<boolean>(false)
+  const [ messageAlert,setMessageAlert] = useState<string>("");
+ const [ severidadeAlert,setSeveridadeAlert] = useState<AlertColor>()
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
@@ -41,13 +44,16 @@ export default function CardCart({ ...props }: any) {
       (item: string) => item !== id
     );
 
-    localStorage.setItem("cartItens", JSON.stringify(newArrItens));
     setCart(newArrItens);
+    setMessageAlert(`${item[0].nome} foi removido do seu carrinho`)
+    setSeveridadeAlert("success")
+    setOpenSnackBar(true)
+    localStorage.setItem("cartItens", JSON.stringify(newArrItens));
   }
   return (
     <>
       {item && (
-        <Card className="py-4">
+        <Card className="py-4 ">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-tiny uppercase font-bold">{item[0].nome}</p>
             <p className="text-tiny uppercase font-bold">{item[0]._id}</p>
@@ -66,7 +72,7 @@ export default function CardCart({ ...props }: any) {
               />
               <div className="ml-3">
                 <Button
-                  className="p-1"
+                  className="py-0.5"
                   color="danger"
                   isIconOnly
                   size="sm"
@@ -79,7 +85,17 @@ export default function CardCart({ ...props }: any) {
           </CardBody>
           <QuantityManagerCart />
         </Card>
+        
       )}
+      
+
+     
+       <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={e=>setOpenSnackBar(false)}>
+            <MuiAlert onClose={e=>setOpenSnackBar(false)} severity={severidadeAlert} sx={{ width: '100%' }}>
+              {messageAlert}
+           </MuiAlert>
+           </Snackbar>
+           
     </>
   );
 }

@@ -14,8 +14,11 @@
     "fs": false
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@mercadopago/sdk-js": "^0.0.3",
     "@mui/icons-material": "^5.14.11",
+    "@mui/material": "^5.14.16",
     "@nextui-org/react": "^2.1.13",
     "@portabletext/react": "^3.0.7",
     "@sanity/image-url": "^1.0.2",
@@ -23,6 +26,8 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "axios": "^1.6.0",
+    "dayjs": "^1.11.10",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.4",

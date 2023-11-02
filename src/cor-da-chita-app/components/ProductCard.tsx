@@ -8,6 +8,8 @@ import CartPlusIcon from "../assets/icons/CartPlusIcon";
 import { Produto } from "../lib/interface";
 import { useRouter } from "next/navigation";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertColor } from "@mui/material/Alert";
 
 interface ProductCardProps {
   data: Produto[] | undefined;
@@ -16,6 +18,9 @@ interface ProductCardProps {
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
   const b = [];
+  const [openSnackBar,setOpenSnackBar]= useState<boolean>(false)
+  const [ messageAlert,setMessageAlert] = useState<string>("");
+ const [ severidadeAlert,setSeveridadeAlert] = useState<AlertColor>()
 
   // Pegar os dados do produto que foi clicado pelo usuário (exibido no anúncio)
   const productAds = useContext(ProductContext);
@@ -49,25 +54,34 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
     if (arrItens.includes(id)) {
-      alert("Este item já esta no seu carrinho");
+    
+      setMessageAlert("Este item já esta no seu carrinho")
+      setSeveridadeAlert("warning")
+      setOpenSnackBar(true)
+
     } else {
       arrItens.push(id);
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
+      setSeveridadeAlert("success")
+
+      setMessageAlert("Item adiciona no seu carrinho com sucesso")
+
+      setOpenSnackBar(true)
     }
   };
 
   return (
     <>
       {productData?.map((product) => (
-        <article key={product._id}>
+        <article  key={product._id} >
           <Card isPressable onPress={() => handleClick(product)}>
             <CardBody className="overflow-visible p-4">
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl"
                 src={product.imagem}
-                width={180}
+                width={190}
                 height={180}
               />
               <CardFooter className="pb-0 pt-2 flex-col items-start">
@@ -81,6 +95,14 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
               <CartPlusIcon />
             </Link>
           </Card>
+       
+            
+            <Snackbar  open={openSnackBar} autoHideDuration={3000} onClose={e=>setOpenSnackBar(false)}>
+              <MuiAlert onClose={e=>setOpenSnackBar(false)} severity={severidadeAlert} sx={{ width: '100%' }}>
+                {messageAlert}
+             </MuiAlert>
+             </Snackbar>
+  
         </article>
       ))}
     </>

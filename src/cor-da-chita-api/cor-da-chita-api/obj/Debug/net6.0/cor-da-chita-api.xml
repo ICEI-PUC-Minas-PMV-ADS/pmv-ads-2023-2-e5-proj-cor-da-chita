@@ -34,7 +34,7 @@
             <param name="id">The order Id to be Found</param>
             <returns>The order finded</returns>
         </member>
-        <member name="M:cor_da_chita_api.Controllers.OrderController.Post(cor_da_chita_api.Models.OrderDto)">
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Post(cor_da_chita_api.Controllers.Requests.OrderRequest)">
             <summary>
             Endpoint To Create Order
             </summary>
@@ -107,18 +107,18 @@
             <param name="id">Id of the order to be found </param>
             <returns>Order finded</returns>
         </member>
-        <member name="M:cor_da_chita_api.Service.OrderService.CreateAsync(cor_da_chita_api.Models.OrderDto)">
+        <member name="M:cor_da_chita_api.Service.OrderService.CreateAsync(cor_da_chita_api.Controllers.Requests.OrderRequest)">
             <summary>
             Get All Orders
             </summary>
-            <param name="id">Id of the order to be found </param>
+            <param name="newOrder">Object that contains the data from order </param>
             <returns>Order finded</returns>
         </member>
         <member name="M:cor_da_chita_api.Service.OrderService.UpdateAsync(cor_da_chita_api.Models.OrderDto)">
             <summary>
             Update Order
             </summary>
-            <param name="Order">The entity order to be updated </param>
+            <param name="order">The entity order to be updated </param>
             <returns>Order Updated</returns>
         </member>
         <member name="M:cor_da_chita_api.Service.OrderService.RemoveAsync(System.String)">
