@@ -52,6 +52,8 @@ namespace cor_da_chita_api.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<OrderDto>> Get(string id)
         {
+
+            
             var order = await _ordersService.GetAsync(id);
 
             if (order is null)
@@ -87,9 +89,10 @@ namespace cor_da_chita_api.Controllers
                 var emailProperties = new EmailInputModel
                 {
                     Subject = EMAIL_SUBJECT,
-                    Body = EmailBodyBuilder.EmailBodyTemplate(newOrder)
+                    Body = EmailBodyBuilder.EmailBodyTemplate(newOrder),
+                    RecipientEmailAddress = newOrder.UserEmail
                 };
-                 
+              
                 _emailService.SendEmail(emailProperties);
 
                 return Ok(orderCreated);

@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.Configure<CorDaChitaDatabaseSettings>(
     builder.Configuration.GetSection("CorDaChitaDatabase"));
-//Ver porque da exceção desta linha
+
 builder.Services.AddSingleton<OrderRepository>();
 
 #region Swagger Documentation  Configuration
