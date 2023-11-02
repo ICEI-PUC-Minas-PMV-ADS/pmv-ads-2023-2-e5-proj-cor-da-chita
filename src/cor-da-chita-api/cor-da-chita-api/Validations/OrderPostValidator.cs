@@ -1,18 +1,18 @@
-﻿using cor_da_chita_api.Models;
+﻿using cor_da_chita_api.Controllers.Requests;
 using FluentValidation;
 
 namespace cor_da_chita_api.Validations
 {
-    public class OrderPostValidator: AbstractValidator<OrderDto>
+    public class OrderPostValidator : AbstractValidator<OrderRequest>
     {
 
-        public OrderPostValidator() 
+        public OrderPostValidator()
         {
-            
-        RuleFor(x=>x.UserEmail).
-                NotEmpty().
-                EmailAddress().
-                WithMessage("Email not valid ");
+
+            RuleFor(x => x.UserEmail).
+                    NotEmpty().
+                    EmailAddress().
+                    WithMessage("Email not valid ");
 
 
             RuleFor(x => x.UserName)
@@ -26,10 +26,6 @@ namespace cor_da_chita_api.Validations
             RuleFor(x => x.Street)
                 .NotEmpty()
                 .WithMessage("Street cannot be empty");
-
-           
-        
-        
         }
     }
 }

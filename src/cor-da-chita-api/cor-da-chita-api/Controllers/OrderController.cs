@@ -11,6 +11,7 @@ using cor_da_chita_api.Models;
 using cor_da_chita_api.Validations;
 using cor_da_chita_api.Extensions;
 using cor_da_chita_api.Repository;
+using cor_da_chita_api.Controllers.Requests;
 
 namespace cor_da_chita_api.Controllers
 {
@@ -71,7 +72,7 @@ namespace cor_da_chita_api.Controllers
         /// <returns>The order created</returns>
         [HttpPost]
         
-        public async Task<IActionResult> Post(OrderDto newOrder)
+        public async Task<IActionResult> Post(OrderRequest newOrder)
         {
             try
             {
@@ -89,7 +90,7 @@ namespace cor_da_chita_api.Controllers
                 var emailProperties = new EmailInputModel
                 {
                     Subject = EMAIL_SUBJECT,
-                    Body = EmailBodyBuilder.EmailBodyTemplate(newOrder),
+                    Body = EmailBodyBuilder.EmailBodyTemplate(orderCreated!),
                     RecipientEmailAddress = newOrder.UserEmail
                 };
               
@@ -99,11 +100,8 @@ namespace cor_da_chita_api.Controllers
             }
             catch (Exception ex)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.ToErrorReponse());
             }
-
-            
         }
 
         /// <summary>
