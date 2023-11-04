@@ -4,7 +4,8 @@ using MercadoPago.Client.Common;
 using MercadoPago.Client.Payment;
 using MercadoPago.Resource.Payment;
 using MercadoPago.Http;
-
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 using cor_da_chita_api.Service;
 using cor_da_chita_api.Models;
@@ -12,6 +13,7 @@ using cor_da_chita_api.Validations;
 using cor_da_chita_api.Extensions;
 using cor_da_chita_api.Repository;
 using cor_da_chita_api.Controllers.Requests;
+using MongoDB.Driver;
 
 namespace cor_da_chita_api.Controllers
 {
@@ -28,11 +30,13 @@ namespace cor_da_chita_api.Controllers
         private readonly IOrderService _ordersService;
         private readonly IEmailService _emailService;
         private const string EMAIL_SUBJECT = "Seu pedido foi recebido e está sendo processado!";
+       
 
         public OrderController(IOrderService ordersService, IEmailService emailService)
         {
             _ordersService = ordersService;
             _emailService = emailService;
+           
         }
 
         /// <summary>
@@ -93,7 +97,7 @@ namespace cor_da_chita_api.Controllers
                     Body = EmailBodyBuilder.EmailBodyTemplate(orderCreated!),
                     RecipientEmailAddress = newOrder.UserEmail
                 };
-              
+
                 _emailService.SendEmail(emailProperties);
 
                 return Ok(orderCreated);
