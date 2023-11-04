@@ -8,6 +8,7 @@ import AddressContextProvider from "@/contexts/AddressContext/AddressContext";
 import ProductContextProvider from "@/contexts/ProductContext/ProductContext";
 import CartContextProvider from "@/contexts/CartContext/CartContext";
 import SearchContextProvider from "@/contexts/ProductContext/SearchContext";
+import CartIdContextProvider from "@/contexts/CartContext/CartItemsContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -17,7 +18,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <SearchContextProvider>
             <UserContextProvider>
               <AddressContextProvider>
-                <CartContextProvider>{children}</CartContextProvider>
+                <CartIdContextProvider>
+                  <CartContextProvider>{children}</CartContextProvider>
+                </CartIdContextProvider>
               </AddressContextProvider>
             </UserContextProvider>
           </SearchContextProvider>

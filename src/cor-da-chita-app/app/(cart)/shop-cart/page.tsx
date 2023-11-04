@@ -18,33 +18,30 @@ import { CartContext } from "@/contexts/CartContext/CartContext";
 import getProductDataCart from "@/database/products/getProductDataById";
 import { useRouter } from "next/navigation";
 
-// async function getData(
-//   itemId: string,
-//   setCart: Dispatch<SetStateAction<Produto[] | undefined>>
-// ) {
-//   const data = (await getProductDataCart(itemId)) as Produto[];
-
-//   setCart(data);
-// }
-
 export default function ShopCart(...props: any) {
   const router = useRouter();
   const { cart, setCart } = useContext(CartContext);
-  //const [itemCart, setItemCart] = useState<Produto[] | undefined>();
 
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     console.log(arrItens);
-    setCart(arrItens)
-    //setItemCart(arrItens);
+    setCart(arrItens);
   }, []);
+
+  //  function handleOrder() {
+  //   item?.map((item) => console.log(item));
+  //   if (item != null) {
+  //     item.map((item) => setCartItems(item));
+  //   }
+  // }
+  //}
 
   return (
     <>
       {!cart.length ? (
         <p>Seu carrinho está vazio</p>
       ) : (
-        cart?.map((idItem :string) => <CardCart id={idItem} />)
+        cart?.map((idItem: string) => <CardCart id={idItem} />)
       )}
       <div>
         <Button color="success" onPress={() => router.push("/your-data")}>

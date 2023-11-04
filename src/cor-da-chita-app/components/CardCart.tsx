@@ -14,9 +14,15 @@ import IconBagX from "@/assets/icons/IconBagX";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export default function CardCart({ ...props }: any) {
+  // Usado para passar os Ids dos itens do carrinho da page pra cá
   const { cart, setCart } = useContext(CartContext);
+
+  // Salvar no context todos itens do carrinho
+  const { cartItems, setCartItems } = useContext(CartItemsContext);
+
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Produto[] | undefined>();
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
@@ -31,11 +37,23 @@ export default function CardCart({ ...props }: any) {
 
       setItem(data);
 
+      console.log(data);
+
       return data;
     };
 
     fetchData();
   }, [setItem, cart]);
+
+  // function saveCartItemsInContext() {
+  //   if (item != null) {
+  //     item.map((item) => setCartItems(item));
+  //   }
+  // }
+
+  // function teste() {
+  //   item?.map((item) => console.log(item));
+  // }
 
   function handleRemoveItemCart(id: string): void {
     const arrItens: string[] = JSON.parse(
@@ -47,13 +65,15 @@ export default function CardCart({ ...props }: any) {
     );
 
     setCart(newArrItens);
-    setMessageAlert(`${item[0].nome} foi removido do seu carrinho`);
+    //setMessageAlert(`${item[0].nome} foi removido do seu carrinho`);
+    setMessageAlert(` foi removido do seu carrinho`);
     setSeveridadeAlert("success");
     setOpenSnackBar(true);
     localStorage.setItem("cartItens", JSON.stringify(newArrItens));
   }
   return (
     <>
+      {/* <button onClick={teste}>teste</button> */}
       {item && (
         <Card className="py-4 ">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
