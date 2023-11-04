@@ -61,6 +61,12 @@ export default function NavBar() {
               <DropdownItem key="profile" className="h-14 gap-2">
                 <p className="font-semibold">{session.user.name}</p>
               </DropdownItem>
+              <DropdownItem
+                key="my_Cart"
+                onClick={() => route.push("/shop-cart")}
+              >
+                Carrinho
+              </DropdownItem>
               <DropdownItem key="my_orders">Meus Pedidos</DropdownItem>
               <DropdownItem key="help">Ajuda</DropdownItem>
               <DropdownItem

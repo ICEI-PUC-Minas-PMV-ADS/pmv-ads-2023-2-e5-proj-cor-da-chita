@@ -12,15 +12,17 @@ import { Produto } from "@/lib/interface";
 import getProductDataById from "@/database/products/getProductDataById";
 import IconBagX from "@/assets/icons/IconBagX";
 import { CartContext } from "@/contexts/CartContext/CartContext";
-import Snackbar from '@mui/material/Snackbar';
+import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
+
 export default function CardCart({ ...props }: any) {
   const { cart, setCart } = useContext(CartContext);
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Produto[] | undefined>();
-  const [openSnackBar,setOpenSnackBar]= useState<boolean>(false)
-  const [ messageAlert,setMessageAlert] = useState<string>("");
- const [ severidadeAlert,setSeveridadeAlert] = useState<AlertColor>()
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+  const [messageAlert, setMessageAlert] = useState<string>("");
+  const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
+  
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
@@ -45,9 +47,9 @@ export default function CardCart({ ...props }: any) {
     );
 
     setCart(newArrItens);
-    setMessageAlert(`${item[0].nome} foi removido do seu carrinho`)
-    setSeveridadeAlert("success")
-    setOpenSnackBar(true)
+    setMessageAlert(`${item[0].nome} foi removido do seu carrinho`);
+    setSeveridadeAlert("success");
+    setOpenSnackBar(true);
     localStorage.setItem("cartItens", JSON.stringify(newArrItens));
   }
   return (
@@ -85,17 +87,21 @@ export default function CardCart({ ...props }: any) {
           </CardBody>
           <QuantityManagerCart />
         </Card>
-        
       )}
-      
 
-     
-       <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={e=>setOpenSnackBar(false)}>
-            <MuiAlert onClose={e=>setOpenSnackBar(false)} severity={severidadeAlert} sx={{ width: '100%' }}>
-              {messageAlert}
-           </MuiAlert>
-           </Snackbar>
-           
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={2000}
+        onClose={(e) => setOpenSnackBar(false)}
+      >
+        <MuiAlert
+          onClose={(e) => setOpenSnackBar(false)}
+          severity={severidadeAlert}
+          sx={{ width: "100%" }}
+        >
+          {messageAlert}
+        </MuiAlert>
+      </Snackbar>
     </>
   );
 }

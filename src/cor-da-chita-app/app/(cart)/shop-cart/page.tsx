@@ -30,13 +30,13 @@ import { useRouter } from "next/navigation";
 export default function ShopCart(...props: any) {
   const router = useRouter();
   const { cart, setCart } = useContext(CartContext);
-  const [itemCart, setItemCart] = useState<Produto[] | undefined>();
+  //const [itemCart, setItemCart] = useState<Produto[] | undefined>();
 
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     console.log(arrItens);
     setCart(arrItens)
-    setItemCart(arrItens);
+    //setItemCart(arrItens);
   }, []);
 
   return (

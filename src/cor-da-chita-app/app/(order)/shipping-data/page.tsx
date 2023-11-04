@@ -117,7 +117,7 @@ export default function ShippingData() {
             onChange={(e) => address.setNeighborhood(e.target.value)}
           />
           <Input // Número
-            type="number"
+            type="text"
             label="Número"
             size="sm"
             value={address.num}

@@ -7,9 +7,7 @@ export default function ShopCartLayout({
 }) {
   return (
     <div>
-      <h1>ShopCartLayout AQUI</h1>
-      <p>Esse layout será para a tela do carrinho de compras </p>
-      <p>(shop-cart/pages.tsx)</p>
+      <h1>ShopCartLayout</h1>
       {children}
     </div>
   );

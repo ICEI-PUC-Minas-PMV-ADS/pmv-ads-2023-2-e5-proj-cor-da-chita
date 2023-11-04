@@ -8,12 +8,65 @@ import { useRouter } from "next/navigation";
 
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
+import postOrder from "@/database/order/postOrder";
 
 export default function SummaryOrder() {
   const route = useRouter();
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
+
+  {
+    /* <p>{user.name}</p>
+          <p>
+            {address.street}, {address.num}
+          </p>
+          <p>{address.neighborhood}</p>
+          <p>{address.complement ? address.complement : ""}</p>
+          <p>{address.cep}</p>
+          <p>
+            {address.city} - {address.uf}
+          </p>
+          <p>{user.phone}</p>
+          <p>{user.email}</p>
+        </div> */
+  }
+
+  function handleOrder() {
+    const order = {
+      items: [
+        {
+          productId: "6542a425fd304a865bb986f0",
+          productName: "TESTE 1",
+          productPrice: 29
+        }
+      ],
+      userName: user.name,      
+      userEmail: user.email,
+      street: address.street,
+      neighborhood: address.neighborhood,
+      num: address.num,
+      city: address.city,
+      uf: address.uf,
+      cep: address.cep,
+      complement: address.complement,
+      freight: {
+        totalWithFreight: 10,
+        freightValue: 10,
+      },
+      orderPixId: 5555513245,
+      orderDate: "2023-11-04T14:13:00.684Z",
+      phoneNumber: user.phone,
+    };
+    
+    const fetchData = async () => {
+      const data = await postOrder(order);
+      console.log(data);
+
+      return data;
+    };
+    fetchData();
+  }
 
   //useEffect(() => {}, []);
 
@@ -55,7 +108,8 @@ export default function SummaryOrder() {
           <p>
             {address.street}, {address.num}
           </p>
-          <p> {address.neighborhood}</p>
+          <p>{address.neighborhood}</p>
+          <p>{address.complement ? address.complement : ""}</p>
           <p>{address.cep}</p>
           <p>
             {address.city} - {address.uf}
@@ -92,6 +146,9 @@ export default function SummaryOrder() {
             Pagar com <strong>Cartão de Crédito</strong>
           </Button>
         </div>
+        <Button color="primary" onClick={handleOrder}>
+          Botao para Teste API
+        </Button>
       </article>
     </section>
   );

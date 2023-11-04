@@ -9,6 +9,11 @@ namespace cor_da_chita_api.Controllers.Requests
         public string UserEmail { get; set; }
         public string Street { get; set; }
         public string Neighborhood { get; set; }
+        public string Num { get; set; }
+        public string City { get; set; }
+        public string UF { get; set; }
+        public string CEP { get; set; }
+        public string Complement { get; set; }
         public Freight Freight { get; set; }
         public long? OrderPixId { get; set; }
         public DateTime OrderDate { get; set; }
