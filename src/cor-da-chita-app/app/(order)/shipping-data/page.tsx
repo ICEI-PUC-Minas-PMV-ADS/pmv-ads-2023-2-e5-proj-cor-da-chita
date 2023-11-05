@@ -54,12 +54,21 @@ export default function ShippingData() {
 
   return (
     <section>
-      <h1>Dados de Envio</h1>
+      <h1>
+        <strong>Dados de Envio</strong>
+      </h1>
 
       <article>
         <p>{user.name}</p>
         <p>{user.email}</p>
         <p>{user.phone}</p>
+        <Button
+          color="success"
+          variant="ghost"
+          onPress={() => route.back()}
+        >
+          Editar Dados
+        </Button>
       </article>
 
       <article>
