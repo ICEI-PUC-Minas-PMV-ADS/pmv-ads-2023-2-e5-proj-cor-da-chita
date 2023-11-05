@@ -75,7 +75,7 @@ export default function CardCart({ ...props }: any) {
   //   console.log(cartItems);
   // };
 
-  function handleRemoveItemCart(id: string): void {
+  function handleRemoveItemCart(id: string,nome:string): void {
     const arrItens: string[] = JSON.parse(
       localStorage.getItem("cartItens") || "[]"
     );
@@ -86,7 +86,7 @@ export default function CardCart({ ...props }: any) {
 
     setCart(newArrItens);
     //setMessageAlert(`${item[0].nome} foi removido do seu carrinho`);
-    setMessageAlert(` foi removido do seu carrinho`);
+    setMessageAlert(`${nome} foi removido do seu carrinho`);
     setSeveridadeAlert("success");
     setOpenSnackBar(true);
     localStorage.setItem("cartItens", JSON.stringify(newArrItens));
@@ -97,7 +97,6 @@ export default function CardCart({ ...props }: any) {
         <Card className="py-4 ">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-tiny uppercase font-bold">{item[0].nome}</p>
-            <p className="text-tiny uppercase font-bold">{item[0]._id}</p>
             <small className="text-default-500">
               R$ {item[0].preco.toFixed(2)}
             </small>
@@ -111,15 +110,15 @@ export default function CardCart({ ...props }: any) {
                 src={item[0].imagem}
                 width={150}
               />
-              <div className="ml-3">
+              <div className="ml-3 ">
                 <Button
                   className="py-0.5"
                   color="danger"
                   isIconOnly
                   size="sm"
-                  onPress={() => handleRemoveItemCart(item[0]._id)}
+                  onPress={() => handleRemoveItemCart(item[0]._id,item[0].nome)}
                 >
-                  <IconBagX />
+                  <IconBagX  />
                 </Button>
               </div>
             </div>

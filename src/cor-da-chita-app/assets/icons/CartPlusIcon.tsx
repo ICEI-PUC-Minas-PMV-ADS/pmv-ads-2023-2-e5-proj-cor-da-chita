@@ -6,8 +6,9 @@ function CartPlusIcon(props: React.SVGProps<SVGSVGElement>) {
     <svg
       fill="currentColor"
       viewBox="0 0 16 16"
-      height="1em"
-      width="1em"
+      height="1.3rem"
+      width="1.3rem"
+
       {...props}
     >
       <path d="M9 5.5a.5.5 0 00-1 0V7H6.5a.5.5 0 000 1H8v1.5a.5.5 0 001 0V8h1.5a.5.5 0 000-1H9V5.5z" />

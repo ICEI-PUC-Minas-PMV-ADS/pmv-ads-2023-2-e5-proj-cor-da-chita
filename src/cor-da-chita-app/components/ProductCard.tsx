@@ -51,7 +51,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
-  const handleStorageProductCart = (id: string) => {
+  const handleStorageProductCart = (id: string,nome:string) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
     if (arrItens.includes(id)) {
@@ -64,7 +64,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
       setSeveridadeAlert("success");
 
-      setMessageAlert("Item adiciona no seu carrinho com sucesso");
+      setMessageAlert(nome+ " adiciona no seu carrinho com sucesso");
 
       setOpenSnackBar(true);
     }
@@ -72,48 +72,60 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   return (
     <>
+
       {productData?.map((product) => (
-        <article key={product._id}>
-          <Card isPressable onPress={() => handleClick(product)}>
+        <div key={product._id} className="ml-20"  >
+          <Card className="ml-5  flex-wrap  " isPressable onPress={() => handleClick(product)}>
             <CardBody className="overflow-visible p-4">
               <Image
                 alt="Card background"
-                className="object-cover rounded-xl"
+                className="object-cover rounded-xl w-48 h-48 "
                 src={product.imagem}
-                width={190}
-                height={180}
+                
               />
-              <CardFooter className="pb-0 pt-2 flex-col items-start">
+              <CardFooter className="pb-0 pt-4 flex-col items-start">
                 <p className="font-bold text-medium">{product.nome}</p>
-                <small className="text-500">
-                  R$ {product.preco.toFixed(2)}
-                </small>
+                
               </CardFooter>
             </CardBody>
-            <Link
-              className="p-4"
-              href=""
-              onClick={() => handleStorageProductCart(product._id)}
-            >
-              <CartPlusIcon />
-            </Link>
+            <div className="flex flex-row mb-5 mt-5  ">
+
+            <p className="mt-3 ml-7 text-medium">R$ {product.preco.toFixed(2)}</p>
+           
+              <Link
+                className=" ml-20 mb-4 "
+                onClick={() => handleStorageProductCart(product._id,product.nome)}
+              >
+                <div className="bg-green p-1 rounded-md ">
+                  <CartPlusIcon
+                  fill="white"
+                  
+                   />
+                </div>
+              </Link>
+           
+            </div>
+
           </Card>
 
-          <Snackbar
-            open={openSnackBar}
-            autoHideDuration={3000}
-            onClose={(e) => setOpenSnackBar(false)}
-          >
-            <MuiAlert
+          <div className=" m-auto ">
+            <Snackbar
+              open={openSnackBar}
+              autoHideDuration={30000}
               onClose={(e) => setOpenSnackBar(false)}
-              severity={severidadeAlert}
-              sx={{ width: "100%" }}
             >
-              {messageAlert}
-            </MuiAlert>
-          </Snackbar>
-        </article>
+              <MuiAlert
+                onClose={(e) => setOpenSnackBar(false)}
+                severity={severidadeAlert}
+                sx={{ width: "100%" }}
+              >
+                {messageAlert}
+              </MuiAlert>
+            </Snackbar>
+          </div>
+        </div>
       ))}
+
     </>
   );
 }
