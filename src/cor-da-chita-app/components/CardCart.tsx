@@ -15,6 +15,8 @@ import { CartContext } from "@/contexts/CartContext/CartContext";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
+import { fetchData } from "next-auth/client/_utils";
+import { get } from "http";
 
 export default function CardCart({ ...props }: any) {
   // Usado para passar os Ids dos itens do carrinho da page pra cá
@@ -37,20 +39,29 @@ export default function CardCart({ ...props }: any) {
 
       setItem(data);
 
-      console.log(data);
+    
 
       return data;
     };
 
     fetchData();
   }, [setItem, cart]);
+//Chama essa função pelo botao de teste
+  const saveCartItemsInContext = async()=>{
+    const products :Produto[]= []
+    
+    if(cart!=null)
+    {
+     for( let id of cart){
+      const produto = await getProductDataById(id) as Produto[]
+      products.push(produto[0])
+     }
 
-  // function saveCartItemsInContext() {
-  //   if (item != null) {
-  //     item.map((item) => setCartItems(item));
-  //   }
-  // }
-
+    }
+    setCartItems(products)
+ 
+  }
+  
   // function teste() {
   //   item?.map((item) => console.log(item));
   // }
@@ -73,7 +84,7 @@ export default function CardCart({ ...props }: any) {
   }
   return (
     <>
-      {/* <button onClick={teste}>teste</button> */}
+      <button onClick={saveCartItemsInContext}>teste</button>
       {item && (
         <Card className="py-4 ">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
