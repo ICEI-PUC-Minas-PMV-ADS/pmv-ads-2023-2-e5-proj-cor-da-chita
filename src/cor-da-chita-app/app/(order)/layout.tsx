@@ -8,7 +8,7 @@ export default function OrderLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="max-w-md p-10">
       <h1>OrderLayout AQUI</h1>
       {children}
     </div>

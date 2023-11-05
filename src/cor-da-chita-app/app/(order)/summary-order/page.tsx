@@ -58,64 +58,84 @@ export default function SummaryOrder() {
   }
 
   return (
-    <section>
-      <article>
-        <h2>
-          <strong>Resumo do Pedido</strong>
-        </h2>
+    <section className="flex flex-col">
+      <h2 className="place-self-center">
+        <strong>Resumo do Pedido</strong>
+      </h2>
 
-        <div>
-          {cartItems?.map((item, index) => (
-            <div key={index} className="flex justify-between">
-              <p>{item.nome}</p>
-              <p>{item.preco.toFixed(2)}</p>
-            </div>
-          ))}
-          <div>
-            <h2>
-              <strong>Frete</strong>
-            </h2>
-            <h2>
-              <strong>Total com Frete</strong>
-            </h2>
-          </div>
-
-          {/* INSERIR ITENS DO CARRINHO AQUI */}
-          {/* <p>Produto 1</p>
-          <p>preço</p>
-          <p>Produto 2</p>
-          <p>preço</p>
-          <p>Produto 3</p>
-          <p>preço</p> */}
-
-          <Divider />
-          <div>
-            <h2>
-              <strong>Dados de Envio</strong>
-            </h2>
+      <div className="my-5">
+        {cartItems?.map((item, index) => (
+          <div key={index} className="flex justify-between">
+            <p>{item.nome}</p>
             <p>
-              {address.street}, {address.num}
-            </p>
-            <p>{address.neighborhood}</p>
-            <p>{address.complement ? address.complement : ""}</p>
-            <p>{address.cep}</p>
-            <p>
-              {address.city} - {address.uf}
+              <strong>R$</strong> {item.preco.toFixed(2)}
             </p>
           </div>
+        ))}
+      </div>
+
+      <div className="mb-5">
+        <div className="flex justify-between ">
+          <p>
+            <strong>Frete</strong>
+          </p>
+          <p>
+            <strong>R$</strong> 0,00
+          </p>
         </div>
 
-        <div>
-          <Button color="success" variant="ghost">
+        <div className="flex justify-between">
+          <p>
+            <strong>Total com Frete</strong>
+          </p>
+          <p>
+            <strong>R$</strong> 0,00
+          </p>
+        </div>
+
+        <div className="mt-2">
+          {/* Revisar Fluxo aqui */}
+          <Button
+            color="success"
+            variant="ghost"
+            onPress={() => route.push("/shop-cart")}
+          >
             Editar Carrinho
           </Button>
         </div>
-      </article>
+      </div>
 
       <Divider />
 
-      <article>
-        <h2>
+      <div className="my-5">
+        <h2 className="mb-2">
+          <strong>Dados de Envio</strong>
+        </h2>
+        <p>
+          {address.street}, {address.num}
+        </p>
+        <p>{address.neighborhood}</p>
+        <p>{address.complement ? address.complement : ""}</p>
+        <p>{address.cep}</p>
+        <p>
+          {address.city} - {address.uf}
+        </p>
+
+        <div className="mt-2">
+          <Button
+            color="success"
+            variant="ghost"
+            onClick={() => route.push("/shipping-data")}
+          >
+            Editar Endereço
+          </Button>
+        </div>
+      </div>
+
+      <Divider />
+
+      <div className="my-5">
+        <h2 className="mb-2">
           <strong>Seus Dados</strong>
         </h2>
 
@@ -126,40 +146,42 @@ export default function SummaryOrder() {
           <p>{user.email}</p>
         </div>
 
-        <div>
+        <div className="mt-2">
           <Button color="success" variant="ghost" onClick={() => route.back()}>
             Editar Dados
           </Button>
         </div>
-      </article>
+      </div>
 
       <Divider />
 
-      <article>
-        <h2>
+      <div className="flex flex-col gap-3 my-5">
+      <h2 className="mb-2">
           <strong>Modo de Pagamento</strong>
         </h2>
 
-        <div>
-          <Button
-            color="success"
-            variant="solid"
-            onClick={() => alert("Programar PIX")}
-          >
-            Pagar com <strong>PIX</strong>
-          </Button>
-          <Button
-            color="success"
-            variant="solid"
-            onClick={() => alert("Programar Cartão")}
-          >
-            Pagar com <strong>Cartão de Crédito</strong>
-          </Button>
-        </div>
+        <Button
+          className="mx-20"
+          color="success"
+          variant="solid"
+          onClick={() => alert("Programar PIX")}
+        >
+          Pagar com <strong>PIX</strong>
+        </Button>
+
+        <Button
+          className="mx-20"
+          color="success"
+          variant="solid"
+          onClick={() => alert("Programar Cartão")}
+        >
+          Pagar com <strong>Cartão de Crédito</strong>
+        </Button>
+
         <Button color="primary" onClick={handleOrder}>
           Botao para Teste API
         </Button>
-      </article>
+      </div>
     </section>
   );
 }
