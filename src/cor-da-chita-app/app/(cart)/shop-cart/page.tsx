@@ -17,6 +17,7 @@ import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import getProductDataCart from "@/database/products/getProductDataById";
 import { useRouter } from "next/navigation";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export default function ShopCart(...props: any) {
   const router = useRouter();
@@ -27,14 +28,6 @@ export default function ShopCart(...props: any) {
     console.log(arrItens);
     setCart(arrItens);
   }, []);
-
-  //  function handleOrder() {
-  //   item?.map((item) => console.log(item));
-  //   if (item != null) {
-  //     item.map((item) => setCartItems(item));
-  //   }
-  // }
-  //}
 
   return (
     <>

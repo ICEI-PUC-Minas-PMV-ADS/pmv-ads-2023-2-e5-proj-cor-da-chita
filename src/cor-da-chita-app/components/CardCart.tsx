@@ -30,7 +30,7 @@ export default function CardCart({ ...props }: any) {
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
@@ -39,32 +39,41 @@ export default function CardCart({ ...props }: any) {
 
       setItem(data);
 
-    
-
       return data;
     };
 
     fetchData();
   }, [setItem, cart]);
-//Chama essa função pelo botao de teste
-  const saveCartItemsInContext = async()=>{
-    const products :Produto[]= []
-    
-    if(cart!=null)
-    {
-     for( let id of cart){
-      const produto = await getProductDataById(id) as Produto[]
-      products.push(produto[0])
-     }
 
+  // Salvando no context do carrinho
+  useEffect(() => {
+    if (cart != null) {
+      const fetchData = async () => {
+        const products = [];
+        for (let id of cart) {
+          const produto = (await getProductDataById(id)) as Produto[];
+          products.push(produto[0]);
+        }
+        console.log(products);
+        setCartItems(products);
+      };
+      fetchData();
     }
-    setCartItems(products)
- 
-  }
-  
-  // function teste() {
-  //   item?.map((item) => console.log(item));
-  // }
+  }, [setCartItems, cart]);
+
+  // Chama essa função pelo botao de teste
+  // const saveCartItemsInContext = async () => {
+  //   const products: Produto[] = [];
+
+  //   if (cart != null) {
+  //     for (let id of cart) {
+  //       const produto = (await getProductDataById(id)) as Produto[];
+  //       products.push(produto[0]);
+  //     }
+  //   }
+  //   setCartItems(products);
+  //   console.log(cartItems);
+  // };
 
   function handleRemoveItemCart(id: string): void {
     const arrItens: string[] = JSON.parse(
@@ -84,7 +93,6 @@ export default function CardCart({ ...props }: any) {
   }
   return (
     <>
-      <button onClick={saveCartItemsInContext}>teste</button>
       {item && (
         <Card className="py-4 ">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">

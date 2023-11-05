@@ -1,7 +1,7 @@
 // EM TESTES
 // Dados do pedido na finalização da compra
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -9,28 +9,16 @@ import { useRouter } from "next/navigation";
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import postOrder from "@/database/order/postOrder";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
+import { Produto } from "@/lib/interface";
 
 export default function SummaryOrder() {
   const route = useRouter();
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
-
-  {
-    /* <p>{user.name}</p>
-          <p>
-            {address.street}, {address.num}
-          </p>
-          <p>{address.neighborhood}</p>
-          <p>{address.complement ? address.complement : ""}</p>
-          <p>{address.cep}</p>
-          <p>
-            {address.city} - {address.uf}
-          </p>
-          <p>{user.phone}</p>
-          <p>{user.email}</p>
-        </div> */
-  }
+  const cartItems = useContext(CartItemsContext);
+  const [product, setProduct] = useState<CartProps>();
 
   function handleOrder() {
     const order = {
@@ -38,10 +26,10 @@ export default function SummaryOrder() {
         {
           productId: "6542a425fd304a865bb986f0",
           productName: "TESTE 1",
-          productPrice: 29
-        }
+          productPrice: 29,
+        },
       ],
-      userName: user.name,      
+      userName: user.name,
       userEmail: user.email,
       street: address.street,
       neighborhood: address.neighborhood,
@@ -58,7 +46,7 @@ export default function SummaryOrder() {
       orderDate: "2023-11-04T14:13:00.684Z",
       phoneNumber: user.phone,
     };
-    
+
     const fetchData = async () => {
       const data = await postOrder(order);
       console.log(data);
@@ -68,26 +56,46 @@ export default function SummaryOrder() {
     fetchData();
   }
 
-  //useEffect(() => {}, []);
+  useEffect(() => {
+    // PEGAR ITENS DO CARRINHO
+  }, []);
 
   return (
     <section>
       <article>
-        <h2>Resumo do Pedido</h2>
+        <h2>
+          <strong>Resumo do Pedido</strong>
+        </h2>
 
         <div>
-          <p>Produto 1</p>
+          {/* INSERIR ITENS DO CARRINHO AQUI */}
+          {/* <p>Produto 1</p>
           <p>preço</p>
           <p>Produto 2</p>
           <p>preço</p>
           <p>Produto 3</p>
-          <p>preço</p>
+          <p>preço</p> */}
 
           <Divider />
           <div>
-            <p>Dados de Envio</p>
-            <p>Frete</p>
-            <p>Total com Frete</p>
+            <h2>
+              <strong>Dados de Envio</strong>
+            </h2>
+            <p>
+              {address.street}, {address.num}
+            </p>
+            <p>{address.neighborhood}</p>
+            <p>{address.complement ? address.complement : ""}</p>
+            <p>{address.cep}</p>
+            <p>
+              {address.city} - {address.uf}
+            </p>
+            <p>
+              <strong>Frete</strong>
+            </p>
+            <p>
+              <strong>Total com Frete</strong>
+            </p>
           </div>
         </div>
 
@@ -101,19 +109,13 @@ export default function SummaryOrder() {
       <Divider />
 
       <article>
-        <h2>Seus Dados</h2>
+        <h2>
+          <strong>Seus Dados</strong>
+        </h2>
 
         <div>
           <p>{user.name}</p>
-          <p>
-            {address.street}, {address.num}
-          </p>
-          <p>{address.neighborhood}</p>
-          <p>{address.complement ? address.complement : ""}</p>
-          <p>{address.cep}</p>
-          <p>
-            {address.city} - {address.uf}
-          </p>
+
           <p>{user.phone}</p>
           <p>{user.email}</p>
         </div>
