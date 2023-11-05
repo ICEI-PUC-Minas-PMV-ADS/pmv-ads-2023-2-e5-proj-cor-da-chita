@@ -5,10 +5,5 @@ export default function ShopCartLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div>
-      <h1>ShopCartLayout</h1>
-      {children}
-    </div>
-  );
+  return <div className="flex flex-col max-w-sm p-10">{children}</div>;
 }
