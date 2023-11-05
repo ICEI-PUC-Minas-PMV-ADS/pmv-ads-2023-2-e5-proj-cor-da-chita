@@ -18,7 +18,6 @@ export default function SummaryOrder() {
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
   const cartItems = useContext(CartItemsContext);
-  const [product, setProduct] = useState<CartProps>();
 
   function handleOrder() {
     const order = {
