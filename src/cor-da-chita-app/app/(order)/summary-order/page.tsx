@@ -17,7 +17,9 @@ export default function SummaryOrder() {
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
-  const cartItems = useContext(CartItemsContext);
+  const { cartItems } = useContext(CartItemsContext);
+
+  const total = 0;
 
   function handleOrder() {
     const order = {
@@ -55,10 +57,6 @@ export default function SummaryOrder() {
     fetchData();
   }
 
-  useEffect(() => {
-    // PEGAR ITENS DO CARRINHO
-  }, []);
-
   return (
     <section>
       <article>
@@ -67,6 +65,21 @@ export default function SummaryOrder() {
         </h2>
 
         <div>
+          {cartItems?.map((item, index) => (
+            <div key={index} className="flex justify-between">
+              <p>{item.nome}</p>
+              <p>{item.preco.toFixed(2)}</p>
+            </div>
+          ))}
+          <div>
+            <h2>
+              <strong>Frete</strong>
+            </h2>
+            <h2>
+              <strong>Total com Frete</strong>
+            </h2>
+          </div>
+
           {/* INSERIR ITENS DO CARRINHO AQUI */}
           {/* <p>Produto 1</p>
           <p>preço</p>
@@ -88,12 +101,6 @@ export default function SummaryOrder() {
             <p>{address.cep}</p>
             <p>
               {address.city} - {address.uf}
-            </p>
-            <p>
-              <strong>Frete</strong>
-            </p>
-            <p>
-              <strong>Total com Frete</strong>
             </p>
           </div>
         </div>
@@ -129,7 +136,9 @@ export default function SummaryOrder() {
       <Divider />
 
       <article>
-        <h2>Modo de Pagamento</h2>
+        <h2>
+          <strong>Modo de Pagamento</strong>
+        </h2>
 
         <div>
           <Button

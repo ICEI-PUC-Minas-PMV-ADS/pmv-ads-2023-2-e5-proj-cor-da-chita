@@ -1,3 +1,4 @@
+import { Produto } from "@/lib/interface";
 import React, {
   ReactNode,
   createContext,
@@ -11,7 +12,7 @@ type CartItemsContextProps = {
 };
 
 type CartItemsContextType = {
-  cartItems: string[];
+  cartItems: Produto[];
   setCartItems: Dispatch<SetStateAction<any>>;
 };
 
