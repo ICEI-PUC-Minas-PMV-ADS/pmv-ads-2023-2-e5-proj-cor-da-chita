@@ -1,7 +1,9 @@
 
+interface ButtonProps {
+    textButton: string;
+  }
 
-
-const Button = (props)=>{
+const Button = (props: ButtonProps)=>{
 
     return(
     

@@ -45,7 +45,7 @@ export default function ShopCart(...props: any) {
         {!cart.length ? (
           <p>Seu carrinho está vazio</p>
         ) : (
-          cart?.map((idItem: string) => <CardCart id={idItem} />)
+          cart?.map((idItem: string, index) => <CardCart key={index} id={idItem} />)
         )}
       </div>
 
