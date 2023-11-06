@@ -1,90 +1,21 @@
+"use client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
+import Banner from "../components/Banner";
+import LPGrid from "../components/LPGrid";
 
-'use client';
-import { useEffect } from "react";
-import { Produto } from "./lib/interface";
-import { client } from "./lib/sanity";
-import Card from "./components/Card";
-import Header from "./components/Header";
-
-const getData =  async()=> {
- 
- //AQUI REALIZA UM QUERY SIMPLES E PEGA OS PRODUTOS CRIADOS,AONDE
-  try{
-    const query = `*[_type == "produto"]{
-      _id,
-      nome,
-      categoria,
-      descricao,
-      estoque,
-      'imagem':imagem.asset->url
-    }`;
-  
-    const data = await client.fetch(query);
-    
-    
-return data
-  } 
-  catch(e)
-{
-  console.log(e)
-
-}
-  
-}
-   
-export default async  function Home() {
-  
-
-
-const createProduct =  async ()=>{
-  const product= {
-    _type:'produto',
-    nome: 'orange',
-    descricao: 'none',
-    categoria:'test',
-    estoque: 2,
-    peso:2,
-    preco:2 ,
-    comprimento:2,
-    largura:2,
-    altura:2,
-    imagem:null,
-
-       }
-       console.log("oii")
-  const created =  await client.create(product).then(x=>console.log(x))
-
-
-
-}
-  useEffect(()=>{
-
-   
-    createProduct().then()
-
-
-
-  },[])
-
-
-  const data = (await getData()) as Produto[];
-  
-  console.log(data)
+export default function Home() {
+  const route = useRouter();
   return (
-    <>
-  <Header/>
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold  text-blue-600  text-center">
-       Todos meus produtos
-      </h1>
-      {/* {data.map((produto)=>(
-    <Card props={produto}/>
-
-    ))} */}
-    </div>
-    
-   
-    </>
-  )
-
+    <main className="bg-light">
+      <Banner />
+      <LPGrid />
+      <div className="bg-dark  text-center">
+        <Link href="/all-products">
+          <h2 className="text-3xl text-white p-20 ">Ver todos os produtos</h2>
+        </Link>
+      </div>
+    </main>
+  );
 }

@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>cor-da-chita-api</name>
+    </assembly>
+    <members>
+        <member name="T:cor_da_chita_api.Controllers.EmailSenderController">
+            <summary>
+            Controller to send Email to an user when transaction happens
+            </summary>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.EmailSenderController.Post(cor_da_chita_api.Models.EmailInputModel)">
+            <summary>
+            Post email
+            </summary>
+            <param name="id">Id</param>
+            <returns>The paymnet client Entity</returns>
+        </member>
+        <member name="T:cor_da_chita_api.Controllers.OrderController">
+            <summary>
+            Controller to manage Order Services
+            </summary>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.GetAll">
+            <summary>
+            Endpoint to Get All Orders
+            </summary>
+            <returns>List of Orders</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Get(System.String)">
+            <summary>
+            Endpoint To Get Order By Id
+            </summary>
+            <param name="id">The order Id to be Found</param>
+            <returns>The order finded</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Post(cor_da_chita_api.Controllers.Requests.OrderRequest)">
+            <summary>
+            Endpoint To Create Order
+            </summary>
+            <param name="newOrder">Order to be created</param>
+            <returns>The order created</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Put(System.String,cor_da_chita_api.Models.OrderDto)">
+            <summary>
+            Endpoint to Get Update the order
+            </summary>
+            <param name="id">The order Id to be Found</param>
+            <param name="order">The order with changes to me made</param>
+            <returns>The order finded</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.Delete(System.String)">
+            <summary>
+            Endpoint to Delete ORDER
+            </summary>
+            <param name="id">The if of the order to be deleted</param>
+        </member>
+        <member name="T:cor_da_chita_api.Controllers.PaymentController">
+            <summary>
+            Controller to Management Pix Payment
+            </summary>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.PaymentController.Get(System.Int64)">
+            <summary>
+            Get the payment by the payment Id
+            </summary>
+            <param name="id">Id</param>
+            <returns>The paymnet client Entity</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.PaymentController.CreatePayment(cor_da_chita_api.Models.OrderDto)">
+            <summary>
+            Create The Payment With PIX in Mercado Pago returning the QrCode Key 
+            </summary>
+            <param name="id">The entity </param>
+            <returns>Payment Client Data</returns>
+            <response code="200">Payment found</response>
+            <response code="404">Payment Not found</response>
+            <response code="500">Server Error</response>
+            <response code="403">Not Authorized</response>
+            
+        </member>
+        <member name="M:cor_da_chita_api.Extensions.ResponseExtensions.ToValidationErrorReponse(FluentValidation.Results.ValidationResult)">
+            <summary>
+            Handle with validation objects
+            </summary>
+            <param name="validationResult">The validation result</param>
+            <returns>The default validation response</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:cor_da_chita_api.Extensions.ResponseExtensions.ToNotFoundReponse(Microsoft.AspNetCore.Mvc.NotFoundResult,System.String)" -->
+        <member name="M:cor_da_chita_api.Extensions.ResponseExtensions.ToErrorReponse(System.Exception)">
+            <summary>
+            Handle the exceptions to a readable format
+            </summary>
+            <param name="exception">The exception object</param>
+            <returns>The exception default response</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.GetAllAsync">
+            <summary>
+            Get All Orders
+            </summary>
+            <returns>List of Orders</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.GetAsync(System.String)">
+            <summary>
+            Get All Orders
+            </summary>
+            <param name="id">Id of the order to be found </param>
+            <returns>Order finded</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.CreateAsync(cor_da_chita_api.Controllers.Requests.OrderRequest)">
+            <summary>
+            Get All Orders
+            </summary>
+            <param name="newOrder">Object that contains the data from order </param>
+            <returns>Order finded</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.UpdateAsync(cor_da_chita_api.Models.OrderDto)">
+            <summary>
+            Update Order
+            </summary>
+            <param name="order">The entity order to be updated </param>
+            <returns>Order Updated</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Service.OrderService.RemoveAsync(System.String)">
+            <summary>
+            Delete Order
+            </summary>
+            <param name="id">Id of the order to be deleted</param>
+        </member>
+    </members>
+</doc>

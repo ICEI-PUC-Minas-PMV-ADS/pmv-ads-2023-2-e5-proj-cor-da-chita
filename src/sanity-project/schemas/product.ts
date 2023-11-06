@@ -1,92 +1,105 @@
-export default{
-    name:'produto',
-    type:'document',
-    title:'Produto',
-    fields:
-    [
+export default {
+  name: 'produto',
+  type: 'document',
+  title: 'Produto',
+  fields: [
+    {
+      name: 'nome',
+      type: 'string',
+      title: 'Nome do Produto',
+      validation: (Rule: any) =>
+        Rule.min(3)
+          .max(30)
+          .error('O nome do produto não pode ter menos de 3 ou mais de 30 caracteres'),
+    },
+    {
+      name: 'descricao',
+      type: 'array',
+      title: 'Descrição',
+      of: [
         {
-
-            name:'nome',
-            type:'string',
-            title:'Nome do Produto',
-            validation :Rule =>Rule.min(3).max(30).error("O nome do produto precisa possuir pelo menos 30 caracteres")
+          type: 'block',
         },
-    {
-
-        name:'descricao',
-        type:'string',
-        title:'Descrição',
-        validation :Rule =>Rule.min(3).max(50).error("A descrição do produto não pode possuir mais de 50 caracteres")
+      ],
+      validation: (Rule: any) =>
+        Rule.required()
+          .max(120)
+          .error('A descrição é obrigatória e não pode passar de 120 caracteres'),
     },
     {
-        name: 'categoria',
-        type: 'string',
-        title:'Categoria do produto',
-        options :{
-            list:['Estandartes','Cama','EcoBags E Carteiras','Outros']
-        },
-        validation :Rule =>Rule.min(3).required().error("A Categoria é Obrigatória")
-    },
-    {
-        name: 'estoque',
-        type: 'number',
-        title:'Estoque disponível',
-        validation :Rule =>Rule.positive().error("A quantidade em estoque necessária precisa ser maior ou igual a 0")
-    },
-    {
-        name: 'peso',
-        type: 'number',
-        title:'Peso do Produto',
-        validation :(Rule) =>Rule.positive().greaterThan(0).error("O peso do produto precisar ser maior 0 que e precisa ter valor positivo")
-    },
-    {
-        name: 'preco',
-        type: 'number',
-        title:'Preço do Produto',
-        validation :Rule =>Rule.positive().greaterThan(0).error("O preço do produto precisar ser maior 0 que e precisa ter valor positivo")
-    },
-    {
-        name: 'comprimento',
-        type: 'number',
-        title:'Comprimento do Produto',
-        validation :Rule =>Rule.positive().greaterThan(0).error("O comprimento do produto precisar ser maior 0 que e precisa ter valor positivo")
-    },
-    {
-        name: 'largura',
-        type: 'number',
-        title:'Largura do Produto',
-        validation :Rule =>Rule.positive().greaterThan(0).error("A largura do produto precisar ser maior 0 que e precisa ter valor positivo")
-    },
-    {
-        name: 'altura',
-        type: 'number',
-        title:'Altura do produto',
-        validation :Rule =>Rule.positive().greaterThan(0).error("A altura do produto precisar ser maior 0 que e precisa ter valor positivo")
-    },
-    //Data cadastro será pego automáticamente
-
-    {
-        title: 'imagem',
-        name: 'imagem',
-        type: 'image',
-        options: {
-          hotspot: true // <-- Defaults to false
-        },
-        fields: [
-          {
-            name: 'legenda',
-            type: 'string',
-            title: 'Legenda da Imagem do Produto',
-          },
-         
-        ]
+      name: 'categoria',
+      type: 'string',
+      title: 'Categoria do produto',
+      options: {
+        list: ['Estandartes', 'Cama e Mesa', 'Ecobags e Carteiras', 'Natalinos', 'Outros'],
       },
-
-   
-
-]
- 
-
-
-
+      validation: (Rule: any) => Rule.required().error('A Categoria é obrigatória'),
+    },
+    {
+      name: 'estoque',
+      type: 'number',
+      title: 'Estoque',
+      validation: (Rule: any) =>
+        Rule.positive().error('A quantidade em estoque precisa ser maior ou igual a zero'),
+    },
+    {
+      name: 'preco',
+      type: 'number',
+      title: 'Preço (R$)',
+      validation: (Rule: any) => Rule.greaterThan(0).error('O preço precisa ser maior do que zero'),
+    },
+    {
+      name: 'peso',
+      type: 'number',
+      title: 'Peso (g)',
+      validation: (Rule: any) => Rule.greaterThan(0).error('O peso precisa ser maior do que zero'),
+    },
+    {
+      name: 'comprimento',
+      type: 'number',
+      title: 'Comprimento do Produto (cm)',
+      validation: (Rule: any) =>
+        Rule.greaterThan(0).error('O comprimento precisa ser maior do que zero'),
+    },
+    {
+      name: 'largura',
+      type: 'number',
+      title: 'Largura do Produto (cm)',
+      validation: (Rule: any) =>
+        Rule.greaterThan(0).error('A largura precisa ser maior do que zero'),
+    },
+    {
+      name: 'altura',
+      type: 'number',
+      title: 'Altura do Produto (cm)',
+      validation: (Rule: any) =>
+        Rule.greaterThan(0).error('A altura precisa ser maior do que zero'),
+    },
+    {
+      name: 'imagem',
+      type: 'image',
+      title: 'imagem',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'legenda',
+          type: 'string',
+          title: 'Legenda',
+        },
+      ],
+    },
+    // Não está funcionando - rever
+    {
+      // Para gerar URL amigável
+      name: 'slug',
+      type: 'slug',
+      title: 'Gerar Link',
+      options: {
+        source: 'nome',
+      },
+      validation: (Rule: any) => Rule.required().error('Necessário gerar o link'),
+    },
+  ],
 }
