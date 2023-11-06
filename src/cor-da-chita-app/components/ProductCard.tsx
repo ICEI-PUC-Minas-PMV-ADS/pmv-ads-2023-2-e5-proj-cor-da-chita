@@ -75,25 +75,25 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
       {productData?.map((product) => (
         <div key={product._id} className="ml-20"  >
-          <Card className="ml-5  flex-wrap  " isPressable onPress={() => handleClick(product)}>
+          <Card className="ml-5  flex-wrap m-5 w-60  " isPressable onPress={() => handleClick(product)}>
             <CardBody className="overflow-visible p-4">
               <Image
                 alt="Card background"
-                className="object-cover rounded-xl w-48 h-48 "
+                className="object-cover rounded-xl w-52 h-48  "
                 src={product.imagem}
                 
               />
-              <CardFooter className="pb-0 pt-4 flex-col items-start">
+              <CardFooter className="pb-0 pt-2 flex-col items-start">
                 <p className="font-bold text-medium">{product.nome}</p>
                 
               </CardFooter>
             </CardBody>
-            <div className="flex flex-row mb-5 mt-5  ">
+            <div className="flex flex-row mb-3  ">
 
-            <p className="mt-3 ml-7 text-medium">R$ {product.preco.toFixed(2)}</p>
+            <p className="mt-4 ml-7 text-medium">R$ {product.preco.toFixed(2)}</p>
            
               <Link
-                className=" ml-20 mb-4 "
+                className=" ml-24 mb-4 " 
                 onClick={() => handleStorageProductCart(product._id,product.nome)}
               >
                 <div className="bg-green p-1 rounded-md ">
