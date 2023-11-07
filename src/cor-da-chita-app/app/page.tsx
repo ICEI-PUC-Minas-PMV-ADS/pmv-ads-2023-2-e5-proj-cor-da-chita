@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import Banner from "../components/Banner";
 import LPGrid from "../components/LPGrid";
+import QuotesTabs from "../components/Tabs";
 
 export default function Home() {
   const route = useRouter();
@@ -16,6 +17,7 @@ export default function Home() {
           <h2 className="text-3xl text-white p-20 ">Ver todos os produtos</h2>
         </Link>
       </div>
+      <QuotesTabs />
     </main>
   );
 }
