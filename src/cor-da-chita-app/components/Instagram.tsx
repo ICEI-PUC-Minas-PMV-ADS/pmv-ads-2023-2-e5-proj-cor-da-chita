@@ -1,6 +1,9 @@
+require('dotenv').config();
+
 import { useEffect, useState } from 'react';
 import { Image } from '@nextui-org/react';
 import Link from 'next/link';
+
 
 export default function Instagram() {
   const [feed, setFeed] = useState(null);
@@ -8,7 +11,7 @@ export default function Instagram() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://graph.instagram.com/v18.0/me?fields=id,media_type,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`;
+        const url = `https://graph.instagram.com/v12.0/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`;
         const response = await fetch(url);
         const data = await response.json();
         setFeed(data);
