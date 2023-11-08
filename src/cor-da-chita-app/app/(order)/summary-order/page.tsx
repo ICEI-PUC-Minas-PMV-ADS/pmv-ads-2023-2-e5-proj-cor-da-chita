@@ -19,17 +19,34 @@ export default function SummaryOrder() {
   const address = useContext(AddressContext);
   const { cartItems, sumCartItems } = useContext(CartItemsContext);
 
-  const total = 0;
-
   function handleOrder() {
+    // Somando largura dos Itens
+    const totalWithFreightSum = cartItems.reduce(
+      (sum, item) => sum + item.largura,
+      0
+    );
+
+    const totalHeightFreight = cartItems.reduce(
+      (sum, item) => sum + item.altura,
+      0
+    );
+
+    const totalLengthFreight = cartItems.reduce(
+      (sum, item) => sum + item.comprimento,
+      0
+    );
+
+    const totalWheightFreight = cartItems.reduce(
+      (sum, item) => sum + item.peso,
+      0
+    );
+
     const order = {
-      items: [
-        {
-          productId: "6542a425fd304a865bb986f0",
-          productName: "TESTE 1",
-          productPrice: 29,
-        },
-      ],
+      items: [] as Array<{
+        productId: string;
+        productName: string;
+        productPrice: number;
+      }>,
       userName: user.name,
       userEmail: user.email,
       street: address.street,
@@ -40,13 +57,27 @@ export default function SummaryOrder() {
       cep: address.cep,
       complement: address.complement,
       freight: {
-        totalWithFreight: 10,
-        freightValue: 10,
+        totalWithFreight: totalWithFreightSum,
+        totalHeightFreight: totalHeightFreight,
+        totalLengthFreight: totalLengthFreight,
+        totalWheightFreight: totalWheightFreight,
+        freightValue: 0,
       },
       orderPixId: 5555513245,
-      orderDate: "2023-11-04T14:13:00.684Z",
+      orderDate: new Date(),
       phoneNumber: user.phone,
     };
+
+    // Itens do Pedido
+    cartItems.forEach((item) => {
+      const newItem = {
+        productId: item._id,
+        productName: item.nome,
+        productPrice: item.preco,
+      };
+
+      order.items.push(newItem);
+    });
 
     const fetchData = async () => {
       const data = await postOrder(order);
