@@ -5,14 +5,10 @@
       "AWSSDK.Core/3.7.100.14": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
         }
       },
       "AWSSDK.SecurityToken/3.7.100.14": {
@@ -21,27 +17,19 @@
           "AWSSDK.Core": "[3.7.100.14, 4.0.0)"
         },
         "compile": {
-          "lib/netcoreapp3.1/AWSSDK.SecurityToken.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/AWSSDK.SecurityToken.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/AWSSDK.SecurityToken.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/AWSSDK.SecurityToken.dll": {}
         }
       },
       "BouncyCastle.Cryptography/2.2.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/BouncyCastle.Cryptography.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {}
         },
         "runtime": {
-          "lib/net6.0/BouncyCastle.Cryptography.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {}
         }
       },
       "DnsClient/1.6.1": {
@@ -50,14 +38,10 @@
           "Microsoft.Win32.Registry": "5.0.0"
         },
         "compile": {
-          "lib/net5.0/DnsClient.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/DnsClient.dll": {}
         },
         "runtime": {
-          "lib/net5.0/DnsClient.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/DnsClient.dll": {}
         }
       },
       "FluentEmail.Core/3.0.2": {
@@ -87,14 +71,10 @@
       "FluentValidation/11.8.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/FluentValidation.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/FluentValidation.dll": {}
         },
         "runtime": {
-          "lib/net6.0/FluentValidation.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/FluentValidation.dll": {}
         }
       },
       "MailKit/4.2.0": {
@@ -103,14 +83,10 @@
           "MimeKit": "4.2.0"
         },
         "compile": {
-          "lib/net6.0/MailKit.dll": {
-            "related": ".dll.config;.pdb;.xml"
-          }
+          "lib/net6.0/MailKit.dll": {}
         },
         "runtime": {
-          "lib/net6.0/MailKit.dll": {
-            "related": ".dll.config;.pdb;.xml"
-          }
+          "lib/net6.0/MailKit.dll": {}
         }
       },
       "mercadopago-sdk/2.3.3": {
@@ -120,91 +96,28 @@
           "System.Configuration.ConfigurationManager": "5.0.0"
         },
         "compile": {
-          "lib/net5.0/MercadoPago.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/MercadoPago.dll": {}
         },
         "runtime": {
-          "lib/net5.0/MercadoPago.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
-      "Microsoft.AspNet.WebApi.Client/5.2.3": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "6.0.4"
-        },
-        "compile": {
-          "lib/net45/System.Net.Http.Formatting.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/System.Net.Http.Formatting.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNet.WebApi.Core/5.2.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.WebApi.Client": "5.2.3"
-        },
-        "compile": {
-          "lib/net45/System.Web.Http.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/System.Web.Http.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNet.WebApi.Versioning/5.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.WebApi.Core": "[5.2.3, 6.0.0)"
-        },
-        "compile": {
-          "lib/net45/Microsoft.AspNet.WebApi.Versioning.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net45/Microsoft.AspNet.WebApi.Versioning.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/MercadoPago.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Versioning.ApiExplorer/5.1.0": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.WebApi.Versioning": "5.1.0"
-        },
         "compile": {
-          "lib/net45/Microsoft.AspNet.WebApi.Versioning.ApiExplorer.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net45/Microsoft.AspNet.WebApi.Versioning.ApiExplorer.dll": {}
         },
         "runtime": {
-          "lib/net45/Microsoft.AspNet.WebApi.Versioning.ApiExplorer.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net45/Microsoft.AspNet.WebApi.Versioning.ApiExplorer.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.Versioning/5.1.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -216,14 +129,10 @@
           "Microsoft.AspNetCore.Mvc.Versioning": "5.1.0"
         },
         "compile": {
-          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll": {}
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
@@ -240,27 +149,19 @@
       "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/2.0.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/5.0.0": {
@@ -275,14 +176,10 @@
       "Microsoft.OpenApi/1.2.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
       "Microsoft.Win32.Registry/5.0.0": {
@@ -292,14 +189,10 @@
           "System.Security.Principal.Windows": "5.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {}
         },
         "runtimeTargets": {
           "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
@@ -314,14 +207,10 @@
           "Microsoft.NETCore.Platforms": "5.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/_._": {
-            "related": ".xml"
-          }
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {}
         },
         "runtimeTargets": {
           "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll": {
@@ -339,14 +228,10 @@
           "System.Text.Encoding.CodePages": "7.0.0"
         },
         "compile": {
-          "lib/net6.0/MimeKit.dll": {
-            "related": ".dll.config;.pdb;.xml"
-          }
+          "lib/net6.0/MimeKit.dll": {}
         },
         "runtime": {
-          "lib/net6.0/MimeKit.dll": {
-            "related": ".dll.config;.pdb;.xml"
-          }
+          "lib/net6.0/MimeKit.dll": {}
         }
       },
       "MongoDB.Bson/2.21.0": {
@@ -356,14 +241,10 @@
           "System.Runtime.CompilerServices.Unsafe": "5.0.0"
         },
         "compile": {
-          "lib/netstandard2.1/MongoDB.Bson.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MongoDB.Bson.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.1/MongoDB.Bson.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MongoDB.Bson.dll": {}
         }
       },
       "MongoDB.Driver/2.21.0": {
@@ -375,14 +256,10 @@
           "MongoDB.Libmongocrypt": "1.8.0"
         },
         "compile": {
-          "lib/netstandard2.1/MongoDB.Driver.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MongoDB.Driver.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.1/MongoDB.Driver.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MongoDB.Driver.dll": {}
         }
       },
       "MongoDB.Driver.Core/2.21.0": {
@@ -399,14 +276,10 @@
           "ZstdSharp.Port": "0.6.2"
         },
         "compile": {
-          "lib/netstandard2.1/MongoDB.Driver.Core.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MongoDB.Driver.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.1/MongoDB.Driver.Core.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MongoDB.Driver.Core.dll": {}
         }
       },
       "MongoDB.Libmongocrypt/1.8.0": {
@@ -445,14 +318,10 @@
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "SharpCompress/0.30.1": {
@@ -467,14 +336,10 @@
       "Snappier/1.0.0": {
         "type": "package",
         "compile": {
-          "lib/net5.0/Snappier.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/Snappier.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Snappier.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/Snappier.dll": {}
         }
       },
       "Swashbuckle.AspNetCore/6.2.3": {
@@ -495,14 +360,10 @@
           "Microsoft.OpenApi": "1.2.3"
         },
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -514,27 +375,19 @@
           "Swashbuckle.AspNetCore.Swagger": "6.2.3"
         },
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
         }
       },
       "Swashbuckle.AspNetCore.SwaggerUI/6.2.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -556,14 +409,10 @@
           "System.Security.Permissions": "5.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         }
       },
       "System.Drawing.Common/5.0.0": {
@@ -572,14 +421,10 @@
           "Microsoft.Win32.SystemEvents": "5.0.0"
         },
         "compile": {
-          "ref/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
+          "ref/netcoreapp3.0/System.Drawing.Common.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.0/System.Drawing.Common.dll": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
@@ -595,14 +440,10 @@
       "System.Formats.Asn1/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Formats.Asn1.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Formats.Asn1.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Formats.Asn1.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Formats.Asn1.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -620,14 +461,10 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -640,14 +477,10 @@
           "System.Security.Principal.Windows": "5.0.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Security.AccessControl.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard2.0/System.Security.AccessControl.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Security.AccessControl.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.AccessControl.dll": {}
         },
         "runtimeTargets": {
           "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll": {
@@ -662,14 +495,10 @@
           "System.Formats.Asn1": "7.0.0"
         },
         "compile": {
-          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -684,14 +513,10 @@
       "System.Security.Cryptography.ProtectedData/5.0.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/_._": {
-            "related": ".xml"
-          }
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
         },
         "runtimeTargets": {
           "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
@@ -707,27 +532,19 @@
           "System.Windows.Extensions": "5.0.0"
         },
         "compile": {
-          "ref/net5.0/System.Security.Permissions.dll": {
-            "related": ".xml"
-          }
+          "ref/net5.0/System.Security.Permissions.dll": {}
         },
         "runtime": {
-          "lib/net5.0/System.Security.Permissions.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/System.Security.Permissions.dll": {}
         }
       },
       "System.Security.Principal.Windows/5.0.0": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp3.0/System.Security.Principal.Windows.dll": {
-            "related": ".xml"
-          }
+          "ref/netcoreapp3.0/System.Security.Principal.Windows.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netcoreapp2.1/System.Security.Principal.Windows.dll": {
@@ -746,14 +563,10 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/System.Text.Encoding.CodePages.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Text.Encoding.CodePages.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Text.Encoding.CodePages.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Text.Encoding.CodePages.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -771,14 +584,10 @@
           "System.Drawing.Common": "5.0.0"
         },
         "compile": {
-          "ref/netcoreapp3.0/System.Windows.Extensions.dll": {
-            "related": ".xml"
-          }
+          "ref/netcoreapp3.0/System.Windows.Extensions.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/System.Windows.Extensions.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.0/System.Windows.Extensions.dll": {}
         },
         "runtimeTargets": {
           "runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll": {
@@ -999,52 +808,6 @@
         "lib/netstandard2.0/MercadoPago.xml",
         "mercadopago-sdk.2.3.3.nupkg.sha512",
         "mercadopago-sdk.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebApi.Client/5.2.3": {
-      "sha512": "3kiI8peSXbXHDDrRuo+QaX0iCEVRe0nvn2dBDRw656uPX32UalbBlSIDUDlJxu05eau4tnuhsikiUuugvvoUoQ==",
-      "type": "package",
-      "path": "microsoft.aspnet.webapi.client/5.2.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/System.Net.Http.Formatting.dll",
-        "lib/net45/System.Net.Http.Formatting.xml",
-        "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.dll",
-        "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
-        "microsoft.aspnet.webapi.client.5.2.3.nupkg.sha512",
-        "microsoft.aspnet.webapi.client.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebApi.Core/5.2.3": {
-      "sha512": "o90QYlRV8VKR1S7+EcJw9w8WSyVFLl+IIzN8ILZ+n2t6rsc/KS8kBxRzA7wCFPRUHhebCfLqilBk39phvanx3g==",
-      "type": "package",
-      "path": "microsoft.aspnet.webapi.core/5.2.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/web.config.transform",
-        "lib/net45/System.Web.Http.dll",
-        "lib/net45/System.Web.Http.xml",
-        "microsoft.aspnet.webapi.core.5.2.3.nupkg.sha512",
-        "microsoft.aspnet.webapi.core.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebApi.Versioning/5.1.0": {
-      "sha512": "Tm7oX+THRma5FVHiDrxzZ2ZTlwPPNtSHcFNmFGPYNr0YOzDg+8wYo9ttNG1bnVSfOvp8Xx08AomzZML056davA==",
-      "type": "package",
-      "path": "microsoft.aspnet.webapi.versioning/5.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.txt",
-        "README.md",
-        "icon.png",
-        "lib/net45/Microsoft.AspNet.WebApi.Versioning.dll",
-        "lib/net45/Microsoft.AspNet.WebApi.Versioning.pdb",
-        "lib/net45/Microsoft.AspNet.WebApi.Versioning.xml",
-        "microsoft.aspnet.webapi.versioning.5.1.0.nupkg.sha512",
-        "microsoft.aspnet.webapi.versioning.nuspec"
       ]
     },
     "Microsoft.AspNet.WebApi.Versioning.ApiExplorer/5.1.0": {
@@ -2028,19 +1791,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\carlo\\.nuget\\packages\\": {}
+    "C:\\Users\\ezequiel.silva\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
+      "projectUniqueName": "C:\\Users\\ezequiel.silva\\Documents\\cor-da-chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
       "projectName": "cor-da-chita-api",
-      "projectPath": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
-      "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\",
+      "projectPath": "C:\\Users\\ezequiel.silva\\Documents\\cor-da-chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
+      "packagesPath": "C:\\Users\\ezequiel.silva\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ezequiel.silva\\Documents\\cor-da-chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ezequiel.silva\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2117,8 +1880,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -2130,7 +1892,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -2139,37 +1901,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'Microsoft.AspNet.WebApi.Client 5.2.3' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net6.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
-      "libraryId": "Microsoft.AspNet.WebApi.Client",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "O pacote 'Microsoft.AspNet.WebApi.Core 5.2.3' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net6.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
-      "libraryId": "Microsoft.AspNet.WebApi.Core",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "O pacote 'Microsoft.AspNet.WebApi.Versioning 5.1.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net6.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
-      "libraryId": "Microsoft.AspNet.WebApi.Versioning",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "O pacote 'Microsoft.AspNet.WebApi.Versioning.ApiExplorer 5.1.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net6.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "Package 'Microsoft.AspNet.WebApi.Versioning.ApiExplorer 5.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.Versioning.ApiExplorer",
       "targetGraphs": [
         "net6.0"
