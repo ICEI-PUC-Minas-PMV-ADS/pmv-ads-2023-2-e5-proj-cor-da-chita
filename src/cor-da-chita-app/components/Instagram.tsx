@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 
 import { useEffect, useState } from 'react';
 import { Image } from '@nextui-org/react';
