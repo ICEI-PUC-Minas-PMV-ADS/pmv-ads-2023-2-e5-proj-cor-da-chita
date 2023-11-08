@@ -5,7 +5,7 @@ import React from "react";
 import Banner from "../components/Banner";
 import LPGrid from "../components/LPGrid";
 import QuotesTabs from "../components/Tabs";
-import Instagram from "../components/Instagram";
+import InstagramComponent from "../components/InstagramComponent";
 
 export default function Home() {
   const route = useRouter();
@@ -14,7 +14,7 @@ export default function Home() {
       <Banner />
       <QuotesTabs />
       <LPGrid />
-      <Instagram />
+      <InstagramComponent />
       <div className="bg-dark  text-center">
         <Link href="/all-products">
           <h2 className="text-3xl text-white p-20 ">Ver todos os produtos</h2>
