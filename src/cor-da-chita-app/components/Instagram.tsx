@@ -1,9 +1,5 @@
-
-
 import { useEffect, useState } from 'react';
-import { Image } from '@nextui-org/react';
-import Link from 'next/link';
-
+import getInstaData from '../app/api/instagram/instagram'; 
 
 export default function Instagram() {
   const [feed, setFeed] = useState(null);
@@ -11,9 +7,7 @@ export default function Instagram() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://graph.instagram.com/v12.0/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`;
-        const response = await fetch(url);
-        const data = await response.json();
+        const data = await getInstaData(); // Call the function directly
         setFeed(data);
         console.log(data);
       } catch (error) {
@@ -26,8 +20,12 @@ export default function Instagram() {
 
   return (
     <div className="flex justify-center bg-light">
-      <Link href="/">oi</Link>
-      <Image src="" alt="" />
+      {/* Render your Instagram feed data here
+      {feed && feed.data.map(item => (
+        <div key={item.id}>
+          <img src={item.media_url} alt={item.username} />
+        </div>
+      ))} */}
     </div>
   );
 }
