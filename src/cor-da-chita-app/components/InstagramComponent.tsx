@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const InstagramComponent: React.FC = () => {
+  const [instagramData, setInstagramData] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('/api/instagram');
         const data = await response.json();
-        console.log(data);
-        // Handle the data in your component state or perform any actions
+        setInstagramData(data.data.slice(0, 3)); // Take the first three items
       } catch (error) {
         console.error('Error fetching Instagram data:', error);
       }
@@ -16,7 +17,16 @@ const InstagramComponent: React.FC = () => {
     fetchData();
   }, []);
 
-  return <div>Your Instagram component content here</div>;
+  return (
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      {instagramData.map((item) => (
+        <div key={item.id} style={{ marginRight: '10px' }}>
+          <img src={item.media_url} alt={`Instagram post by ${item.username}`} style={{ width: '50%', height: 'auto' }} />
+          <p style={{ textAlign: 'center' }}>{item.username}</p>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default InstagramComponent;
