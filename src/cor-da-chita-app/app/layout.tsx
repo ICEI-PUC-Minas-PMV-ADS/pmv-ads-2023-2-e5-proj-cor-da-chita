@@ -21,7 +21,7 @@ export default function RootLayout({
         src={`https://www.googletagmanager.com/gtag/js?id=G-19VJCQS2H4`}
       />
 
-      <Script strategy="lazyOnload">
+      <Script strategy="lazyOnload" id="gtag-script">
         {`
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
