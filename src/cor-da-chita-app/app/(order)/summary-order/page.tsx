@@ -17,7 +17,7 @@ export default function SummaryOrder() {
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
-  const { cartItems } = useContext(CartItemsContext);
+  const { cartItems, sumCartItems } = useContext(CartItemsContext);
 
   const total = 0;
 
@@ -75,7 +75,18 @@ export default function SummaryOrder() {
       </div>
 
       <div className="mb-5">
-        <div className="flex justify-between ">
+        <div>
+          <div className="flex justify-between ">
+            <p>
+              <strong>Total</strong>
+            </p>
+            <p>
+              <strong>R$</strong> {sumCartItems.toFixed(2)}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-between mt-2">
           <p>
             <strong>Frete</strong>
           </p>
@@ -84,7 +95,7 @@ export default function SummaryOrder() {
           </p>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-2">
           <p>
             <strong>Total com Frete</strong>
           </p>
@@ -156,7 +167,7 @@ export default function SummaryOrder() {
       <Divider />
 
       <div className="flex flex-col gap-3 my-5">
-      <h2 className="mb-2">
+        <h2 className="mb-2">
           <strong>Modo de Pagamento</strong>
         </h2>
 
@@ -170,7 +181,7 @@ export default function SummaryOrder() {
         </Button>
 
         <Button
-          className="mx-20"
+          className="mx-12"
           color="success"
           variant="solid"
           onClick={() => alert("Programar Cartão")}

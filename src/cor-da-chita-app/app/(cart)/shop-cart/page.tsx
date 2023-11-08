@@ -32,10 +32,14 @@ import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 export default function ShopCart(...props: any) {
   const router = useRouter();
   const { cart, setCart } = useContext(CartContext);
+  const { sumCartItems } = useContext(CartItemsContext);
+
+  // Ativa ou inativa o campo de Frete
+  const [radioValue, setRadioValue] = useState(false);
 
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-    console.log(arrItens);
+    //    console.log(arrItens);
     setCart(arrItens);
   }, []);
 
@@ -45,7 +49,9 @@ export default function ShopCart(...props: any) {
         {!cart.length ? (
           <p>Seu carrinho está vazio</p>
         ) : (
-          cart?.map((idItem: string, index) => <CardCart key={index} id={idItem} />)
+          cart?.map((idItem: string, index) => (
+            <CardCart key={index} id={idItem} />
+          ))
         )}
       </div>
 
@@ -58,10 +64,18 @@ export default function ShopCart(...props: any) {
 
         <div className="mt-2">
           <RadioGroup defaultValue={"combinar"}>
-            <Radio size="sm" value="combinar">
+            <Radio
+              size="sm"
+              value="combinar"
+              onClick={() => setRadioValue(false)}
+            >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
             </Radio>
-            <Radio size="sm" value="correios">
+            <Radio
+              size="sm"
+              value="correios"
+              onClick={() => setRadioValue(true)}
+            >
               <p className="text-sm ml-2">Correios</p>
             </Radio>
           </RadioGroup>
@@ -72,6 +86,7 @@ export default function ShopCart(...props: any) {
             <strong>Frete</strong>
           </p>
           <Input
+            isDisabled={!radioValue}
             className="ml-20 place-self-end"
             size="sm"
             type="email"
@@ -81,7 +96,7 @@ export default function ShopCart(...props: any) {
         </div>
 
         <div className="mt-2 place-self-end">
-          <Button color="success" variant="bordered">
+          <Button color="success" variant="bordered" isDisabled={!radioValue}>
             Calcular
           </Button>
         </div>
@@ -103,7 +118,7 @@ export default function ShopCart(...props: any) {
               <strong>Total</strong>
             </p>
             <p className="mt-2">
-              <strong>R$ 0,00</strong>
+              <strong>R$ {sumCartItems.toFixed(2)}</strong>
             </p>
           </div>
         </div>

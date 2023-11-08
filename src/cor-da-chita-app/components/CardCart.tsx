@@ -23,7 +23,8 @@ export default function CardCart({ ...props }: any) {
   const { cart, setCart } = useContext(CartContext);
 
   // Salvar no context todos itens do carrinho
-  const { cartItems, setCartItems } = useContext(CartItemsContext);
+  const { cartItems, setCartItems, setSumCartItems } =
+    useContext(CartItemsContext);
 
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Produto[] | undefined>();
@@ -31,6 +32,7 @@ export default function CardCart({ ...props }: any) {
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
 
+  // Renderiza os cards do carrinho
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
@@ -61,6 +63,13 @@ export default function CardCart({ ...props }: any) {
     }
   }, [setCartItems, cart]);
 
+  useEffect(() => {
+    cartItems?.map((x) => console.log(x));
+    const sum = cartItems.reduce((total, item) => total + item.preco, 0);
+    //console.log(sum);
+    setSumCartItems(sum);
+  });
+
   // Chama essa função pelo botao de teste
   // const saveCartItemsInContext = async () => {
   //   const products: Produto[] = [];
@@ -75,7 +84,7 @@ export default function CardCart({ ...props }: any) {
   //   console.log(cartItems);
   // };
 
-  function handleRemoveItemCart(id: string,nome:string): void {
+  function handleRemoveItemCart(id: string, nome: string): void {
     const arrItens: string[] = JSON.parse(
       localStorage.getItem("cartItens") || "[]"
     );
@@ -116,9 +125,11 @@ export default function CardCart({ ...props }: any) {
                   color="danger"
                   isIconOnly
                   size="sm"
-                  onPress={() => handleRemoveItemCart(item[0]._id,item[0].nome)}
+                  onPress={() =>
+                    handleRemoveItemCart(item[0]._id, item[0].nome)
+                  }
                 >
-                  <IconBagX  />
+                  <IconBagX />
                 </Button>
               </div>
             </div>
