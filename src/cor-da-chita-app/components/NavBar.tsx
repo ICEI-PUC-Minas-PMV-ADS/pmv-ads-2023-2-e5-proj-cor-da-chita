@@ -3,6 +3,10 @@
 
 import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import CartIcon from "@/assets/icons/CartIcon";
+import OrdersIcon from "@/assets/icons/OrdersIcon";
+import HelpIcon from "@/assets/icons/HelpIcon";
+
 
 import {
   Navbar,
@@ -26,6 +30,7 @@ export default function NavBar() {
   const { data: session } = useSession();
   const route = useRouter();
   const [isClicked, setIsClicked] = useState(false);
+  const iconClasses = "h-4";
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -44,7 +49,7 @@ export default function NavBar() {
         <SearchInput />
 
         {session && session.user ? (
-          <Dropdown placement="bottom-end" className="p-0">
+          <Dropdown placement="bottom-end" className="p-0 rounded-md shadow-none">
             <DropdownTrigger>
               <Avatar
                 as="button"
@@ -53,24 +58,26 @@ export default function NavBar() {
                 src={session.user.image ?? ""}
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="bordered"  className="bg-light" color="success">
-              <DropdownItem key="profile">
-                <p className="font-semibold">{session.user.name}</p>
+            <DropdownMenu aria-label="Profile Actions" variant="bordered"  className="bg-light" color="success" disabledKeys={[""]}>
+              <DropdownItem key="profile" className="text-end" color="default">
+                <p className="font-semibold text-tiny">{session.user.name}</p>
               </DropdownItem>
               <DropdownItem
                 key="my_Cart"
                 onClick={() => route.push("/shop-cart")}
-              >
+                endContent={<CartIcon className={iconClasses} />}
+              ><p className="text-tiny p-4">
                 Carrinho
+                </p>
               </DropdownItem>
-              <DropdownItem key="my_orders">Meus Pedidos</DropdownItem>
-              <DropdownItem key="help">Ajuda</DropdownItem>
+              <DropdownItem key="my_orders" endContent={<OrdersIcon className={iconClasses} />}><p className="text-tiny p-4">Meus Pedidos</p></DropdownItem>
+              <DropdownItem key="help" endContent={<HelpIcon className={iconClasses}/>}><p className="text-tiny p-4">Ajuda</p></DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"
                 onClick={() => signOut()}
-              >
-                Sair
+              ><p className="text-tiny p-1">
+                Sair</p>
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

@@ -29,6 +29,15 @@ const config: Config = {
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],
       },
+      boxShadow: {
+        DEFAULT: 'none',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+      },
+      borderRadius: {
+        DEFAULT: '0',
+      },
     },
     fontFamily: {
       roboto: ['Roboto', 'sans-serif'],
@@ -42,7 +51,7 @@ const config: Config = {
         radius: {
           small: '2px', // rounded-small
           medium: '2px', // rounded-medium
-          large: '2px', // rounded-large
+          large: '5px', // rounded-large
           DEFAULT: '2px', // rounded by default
         },
         borderWidth: {
@@ -51,6 +60,9 @@ const config: Config = {
           large: '1px', // border-large
           DEFAULT: '1px', // border by default
         },
+        boxShadow: {
+          DEFAULT: 'none',
+        }
       },
     }),
   ],
