@@ -44,17 +44,16 @@ export default function NavBar() {
         <SearchInput />
 
         {session && session.user ? (
-          <Dropdown placement="bottom-end">
+          <Dropdown placement="bottom-end" className="p-0">
             <DropdownTrigger>
               <Avatar
                 as="button"
                 className="transition-transform"
                 name={session.user.name ?? ""}
-                radius="full"
                 src={session.user.image ?? ""}
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="light" color="success"  className="bg-light">
+            <DropdownMenu aria-label="Profile Actions" variant="bordered"  className="bg-light" color="success">
               <DropdownItem key="profile">
                 <p className="font-semibold">{session.user.name}</p>
               </DropdownItem>
