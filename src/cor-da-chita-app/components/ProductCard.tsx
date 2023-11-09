@@ -2,14 +2,15 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
-
-import CartPlusIcon from "../assets/icons/CartPlusIcon";
-import { Produto } from "../lib/interface";
 import { useRouter } from "next/navigation";
-import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+
+import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
+
+import { Produto } from "../lib/interface";
+import CartPlusIcon from "../assets/icons/CartPlusIcon";
+import { ProductContext } from "@/contexts/ProductContext/ProductContext";
 
 interface ProductCardProps {
   data: Produto[] | undefined;
@@ -17,7 +18,7 @@ interface ProductCardProps {
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
-  
+
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
@@ -51,7 +52,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
-  const handleStorageProductCart = (id: string,nome:string) => {
+  const handleStorageProductCart = (id: string, nome: string) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
     if (arrItens.includes(id)) {
@@ -64,7 +65,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
       setSeveridadeAlert("success");
 
-      setMessageAlert(nome+ " adiciona no seu carrinho com sucesso");
+      setMessageAlert(nome + " adiciona no seu carrinho com sucesso");
 
       setOpenSnackBar(true);
     }
@@ -72,40 +73,39 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   return (
     <>
-
       {productData?.map((product) => (
-        <div key={product._id} className="ml-20"  >
-          <Card className="ml-5  flex-wrap m-5 w-60  " isPressable onPress={() => handleClick(product)}>
+        <div key={product._id} className="ml-20">
+          <Card
+            className="ml-5  flex-wrap m-5 w-60  "
+            isPressable
+            onPress={() => handleClick(product)}
+          >
             <CardBody className="overflow-visible p-4">
               <Image
                 alt="Card background"
                 className="object-cover rounded-xl w-52 h-48  "
                 src={product.imagem}
-                
               />
               <CardFooter className="pb-0 pt-2 flex-col items-start">
                 <p className="font-bold text-medium">{product.nome}</p>
-                
               </CardFooter>
             </CardBody>
             <div className="flex flex-row mb-3  ">
+              <p className="mt-4 ml-7 text-medium">
+                R$ {product.preco.toFixed(2)}
+              </p>
 
-            <p className="mt-4 ml-7 text-medium">R$ {product.preco.toFixed(2)}</p>
-           
               <Link
-                className=" ml-24 mb-4 " 
-                onClick={() => handleStorageProductCart(product._id,product.nome)}
+                className=" ml-24 mb-4 "
+                onClick={() =>
+                  handleStorageProductCart(product._id, product.nome)
+                }
               >
                 <div className="bg-green p-1 rounded-md ">
-                  <CartPlusIcon
-                  fill="white"
-                  
-                   />
+                  <CartPlusIcon fill="white" />
                 </div>
               </Link>
-           
             </div>
-
           </Card>
 
           <div className=" m-auto ">
@@ -125,7 +125,6 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
           </div>
         </div>
       ))}
-
     </>
   );
 }

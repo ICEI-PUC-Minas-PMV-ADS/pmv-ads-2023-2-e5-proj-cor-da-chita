@@ -4,8 +4,13 @@ import {
   CardHeader,
   CardBody,
   Image,
-  Spinner,
   Button,
+  Modal,
+  useDisclosure,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "@nextui-org/react";
 import QuantityManagerCart from "./QuantityManagerCart";
 import { Produto } from "@/lib/interface";
@@ -15,8 +20,6 @@ import { CartContext } from "@/contexts/CartContext/CartContext";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
-import { fetchData } from "next-auth/client/_utils";
-import { get } from "http";
 
 export default function CardCart({ ...props }: any) {
   // Usado para passar os Ids dos itens do carrinho da page pra cá
@@ -28,9 +31,14 @@ export default function CardCart({ ...props }: any) {
 
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Produto[] | undefined>();
+
+  // Snack
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
+
+  // Modal
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   // Renderiza os cards do carrinho
   useEffect(() => {
@@ -64,25 +72,9 @@ export default function CardCart({ ...props }: any) {
   }, [setCartItems, cart]);
 
   useEffect(() => {
-    cartItems?.map((x) => console.log(x));
     const sum = cartItems.reduce((total, item) => total + item.preco, 0);
-    //console.log(sum);
     setSumCartItems(sum);
   });
-
-  // Chama essa função pelo botao de teste
-  // const saveCartItemsInContext = async () => {
-  //   const products: Produto[] = [];
-
-  //   if (cart != null) {
-  //     for (let id of cart) {
-  //       const produto = (await getProductDataById(id)) as Produto[];
-  //       products.push(produto[0]);
-  //     }
-  //   }
-  //   setCartItems(products);
-  //   console.log(cartItems);
-  // };
 
   function handleRemoveItemCart(id: string, nome: string): void {
     const arrItens: string[] = JSON.parse(
@@ -94,8 +86,8 @@ export default function CardCart({ ...props }: any) {
     );
 
     setCart(newArrItens);
-    //setMessageAlert(`${item[0].nome} foi removido do seu carrinho`);
-    setMessageAlert(`${nome} foi removido do seu carrinho`);
+
+    setMessageAlert(`O item ${nome} foi removido do seu carrinho`);
     setSeveridadeAlert("success");
     setOpenSnackBar(true);
     localStorage.setItem("cartItens", JSON.stringify(newArrItens));
@@ -103,48 +95,84 @@ export default function CardCart({ ...props }: any) {
   return (
     <>
       {item && (
-        <Card className="py-4 ">
-          <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-            <p className="text-tiny uppercase font-bold">{item[0].nome}</p>
-            <small className="text-default-500">
-              R$ {item[0].preco.toFixed(2)}
-            </small>
-          </CardHeader>
+        <>
+          <Card className="py-4 ">
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+              <p className="text-tiny uppercase font-bold">{item[0].nome}</p>
+              <small className="text-default-500">
+                R$ {item[0].preco.toFixed(2)}
+              </small>
+            </CardHeader>
 
-          <CardBody className="overflow-visible py-2">
-            <div className="flex">
-              <Image
-                alt="Card background"
-                className="object-cover rounded-xl"
-                src={item[0].imagem}
-                width={150}
-              />
-              <div className="ml-3 ">
-                <Button
-                  className="py-0.5"
-                  color="danger"
-                  isIconOnly
-                  size="sm"
-                  onPress={() =>
-                    handleRemoveItemCart(item[0]._id, item[0].nome)
-                  }
-                >
-                  <IconBagX />
-                </Button>
+            <CardBody className="overflow-visible py-2">
+              <div className="flex">
+                <Image
+                  alt="Card background"
+                  className="object-cover rounded-xl"
+                  src={item[0].imagem}
+                  width={150}
+                />
+                <div className="ml-3 ">
+                  <Button
+                    className="py-0.5"
+                    color="danger"
+                    isIconOnly
+                    size="sm"
+                    onPress={() => onOpen()}
+                  >
+                    <IconBagX />
+                  </Button>
+                </div>
               </div>
-            </div>
-          </CardBody>
-          <QuantityManagerCart />
-        </Card>
+            </CardBody>
+            <QuantityManagerCart />
+          </Card>
+
+          <Modal
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            size="sm"
+            className="p-4"
+          >
+            <ModalContent>
+              {(onClose) => (
+                <>
+                  <ModalBody>
+                    <p>
+                      Tem certeza que deseja excluir o item do seu carrinho?
+                    </p>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="danger"
+                      variant="light"
+                      onPress={() => {
+                        {
+                          handleRemoveItemCart(item[0]._id, item[0].nome),
+                            onClose();
+                        }
+                      }}
+                    >
+                      Sim
+                    </Button>
+                    <Button color="success" variant="light" onPress={onClose}>
+                      Não
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
+            </ModalContent>
+          </Modal>
+        </>
       )}
 
       <Snackbar
         open={openSnackBar}
         autoHideDuration={2000}
-        onClose={(e) => setOpenSnackBar(false)}
+        onClose={() => setOpenSnackBar(false)}
       >
         <MuiAlert
-          onClose={(e) => setOpenSnackBar(false)}
+          onClose={() => setOpenSnackBar(false)}
           severity={severidadeAlert}
           sx={{ width: "100%" }}
         >

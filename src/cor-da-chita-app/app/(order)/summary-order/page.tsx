@@ -1,7 +1,6 @@
-// EM TESTES
 // Dados do pedido na finalização da compra
 "use client";
-import React, { use, useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -10,7 +9,6 @@ import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import postOrder from "@/database/order/postOrder";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
-import { Produto } from "@/lib/interface";
 
 export default function SummaryOrder() {
   const route = useRouter();
@@ -20,7 +18,7 @@ export default function SummaryOrder() {
   const { cartItems, sumCartItems } = useContext(CartItemsContext);
 
   function handleOrder() {
-    // Somando largura dos Itens
+    // Somando dados da cubagem do pedido
     const totalWithFreightSum = cartItems.reduce(
       (sum, item) => sum + item.largura,
       0
@@ -189,7 +187,11 @@ export default function SummaryOrder() {
         </div>
 
         <div className="mt-2">
-          <Button color="success" variant="ghost" onClick={() => route.back()}>
+          <Button
+            color="success"
+            variant="ghost"
+            onClick={() => route.push("/your-data")}
+          >
             Editar Dados
           </Button>
         </div>

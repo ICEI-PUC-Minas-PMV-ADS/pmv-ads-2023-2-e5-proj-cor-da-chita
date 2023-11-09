@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { Produto } from "@/lib/interface";
 import { SearchContext } from "@/contexts/ProductContext/SearchContext";
 import ProductCard from "@/components/ProductCard";
+
 import getProductCardData from "../../../../database/products/getProductData";
 import getProductDataByCategory from "@/database/products/getProductDataByCategory";
 import getProductDataSearch from "@/database/products/getProductDataSearch";
@@ -22,11 +23,9 @@ async function getData(
   search: string
 ) {
   // categoryNameOrSearch é vazia quando está em "Todos os Produtos"
-
   if (categoryNameOrSearch.includes("search")) {
     // Consulta feita via SeachInput
     const data = (await getProductDataSearch(search)) as Produto[];
-    //console.log(data);
 
     setProductData(data);
   } else if (categoryNameOrSearch != "") {
@@ -34,13 +33,11 @@ async function getData(
     const data = (await getProductDataByCategory(
       categoryNameOrSearch
     )) as Produto[];
-    // console.log(data);
 
     setProductData(data);
   } else {
     // Todos os produtos
     const data = (await getProductCardData()) as Produto[];
-    //console.log(data);
 
     setProductData(data);
   }
