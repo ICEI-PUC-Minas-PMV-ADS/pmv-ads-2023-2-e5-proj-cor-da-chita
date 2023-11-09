@@ -30,7 +30,6 @@ export default function SearchInput({ children, ...props }: any) {
   return (
     <Input
       color="default"
-      size="sm"
       placeholder="Busca"
       variant="bordered"
       labelPlacement="inside"

@@ -53,7 +53,6 @@ export default function NavBar() {
             <DropdownTrigger>
               <Avatar
                 as="button"
-                size="sm"
                 className="transition-transform"
                 name={session.user.name ?? ""}
                 src={session.user.image ?? ""}
@@ -83,7 +82,7 @@ export default function NavBar() {
             </DropdownMenu>
           </Dropdown>
         ) : (
-          <Button size="sm" color="secondary" variant="ghost" onClick={() => signIn("google")}>
+          <Button color="secondary" variant="ghost" onClick={() => signIn("google")}>
             Entrar
           </Button>
         )}
