@@ -47,10 +47,8 @@ export default function NavBar() {
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
-                isBordered
                 as="button"
                 className="transition-transform"
-                color="success"
                 name={session.user.name ?? ""}
                 size="sm"
                 radius="full"

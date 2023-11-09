@@ -32,7 +32,6 @@ export default function SearchInput({ children, ...props }: any) {
       size="sm"
       label="Busca"
       labelPlacement="inside"
-      variant="underlined"
       endContent={
         <Link  onPress={handleClickSearch} color="foreground" isBlock>
           <SearchIcon size={18}/>
