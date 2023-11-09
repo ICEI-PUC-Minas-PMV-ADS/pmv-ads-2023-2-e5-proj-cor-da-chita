@@ -16,15 +16,21 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        white: "#FFFFFF",
-        black: "#000000",
+        white: "#FBFEF9",
+        black: "#100C08",
         light: "#FBFEF9",
         dark: "#100C08",
-        green: "#3d9970",
+        green: "#4cb69f",
         grey: "#3b4849",
+        foreground: "#100C08",
+        success: "#4cb69f",
+        secondary: "#EE4266",
       },
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],
+      },
+      borderRadius: {
+        DEFAULT: '0.375rem', 
       },
     },
     fontFamily:{
