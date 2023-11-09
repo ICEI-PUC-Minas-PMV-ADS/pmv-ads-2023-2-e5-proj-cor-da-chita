@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Banner() {
   return (
     <div className="relative h-screen bg-dark">
-      <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden'}}>
+      <div style={{ position: 'relative', height: '100%', overflow: 'hidden'}}>
         <Image
           src="/Chita/IMG_6811 (1).png"
           alt="Cor da Chita"

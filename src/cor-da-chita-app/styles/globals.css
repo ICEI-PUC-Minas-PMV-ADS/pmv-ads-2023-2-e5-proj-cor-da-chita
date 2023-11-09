@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .grid-box {
-  height: 250px;
+  height: 400px;
 }
 
 /* header.px-6 {
