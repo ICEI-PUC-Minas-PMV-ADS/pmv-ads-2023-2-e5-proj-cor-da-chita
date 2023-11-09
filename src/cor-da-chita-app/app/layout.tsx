@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body suppressHydrationWarning={true}>
+      <body  className="bg-light" suppressHydrationWarning={true}>
         <Providers>
         <Script
         strategy="lazyOnload"

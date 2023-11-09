@@ -31,10 +31,12 @@ export default function SearchInput({ children, ...props }: any) {
     <Input
       size="sm"
       label="Busca"
+      variant="underlined"
       labelPlacement="inside"
+      className="text-xs"
       endContent={
         <Link  onPress={handleClickSearch} color="foreground" isBlock>
-          <SearchIcon size={18}/>
+          <SearchIcon size={14}/>
         </Link>
       }
       value={productName}

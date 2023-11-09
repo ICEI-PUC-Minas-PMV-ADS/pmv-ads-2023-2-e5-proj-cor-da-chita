@@ -50,7 +50,6 @@ export default function NavBar() {
                 as="button"
                 className="transition-transform"
                 name={session.user.name ?? ""}
-                size="sm"
                 radius="full"
                 src={session.user.image ?? ""}
               />
@@ -77,9 +76,9 @@ export default function NavBar() {
             </DropdownMenu>
           </Dropdown>
         ) : (
-          <MyButton size="md" color="dark" onClick={() => signIn("google")}>
+          <Button size="md" color="secondary" onClick={() => signIn("google")}>
             Entrar
-          </MyButton>
+          </Button>
         )}
       </NavbarContent>
     </Navbar>
