@@ -35,12 +35,6 @@ export default function SearchInput({ children, ...props }: any) {
       variant="bordered"
       labelPlacement="inside"
       classNames={{
-        label: "text-black/50 dark:text-white/90",
-        input: [
-          "bg-transparent",
-          "text-black/90 dark:text-white/90",
-          "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-        ],
         innerWrapper: "bg-transparent",
         inputWrapper: [
           "shadow-none",
