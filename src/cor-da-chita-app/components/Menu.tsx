@@ -2,7 +2,7 @@
 "use client"
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Link, } from "@nextui-org/react";
+import { Link, Button } from "@nextui-org/react";
 
 export const category = [
   {
@@ -42,21 +42,24 @@ export default function Menu(props: any) {
   return (
     <nav {...props}>
       <div className="text-tiny">
-        <div>
-          <ul className="flex flex-auto	justify-around">
-            {category.map((category) => (
-              <li key={category.id}>
-                <Link isBlock  color="foreground" size="sm"
-                  className="p-4 m-3 tracking-wide"
-                  onClick={() => handleClick(category.id, category.name)}
-                >
-                  {category.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+    <div>
+      <ul className="flex flex-auto justify-around">
+        {category.map((category) => (
+          <li key={category.id}>
+            <Link
+              color="success"
+              size="sm"
+              as="button"
+              className="p-4 m-3 tracking-wide text-dark hover:text-success"
+              onClick={() => handleClick(category.id, category.name)}
+            >
+              {category.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
     </nav>
   );
 }
