@@ -82,7 +82,7 @@ export default function NavBar() {
             </DropdownMenu>
           </Dropdown>
         ) : (
-          <Button size="md" color="secondary" onClick={() => signIn("google")}>
+          <Button size="sm" color="secondary" variant="ghost" onClick={() => signIn("google")}>
             Entrar
           </Button>
         )}
