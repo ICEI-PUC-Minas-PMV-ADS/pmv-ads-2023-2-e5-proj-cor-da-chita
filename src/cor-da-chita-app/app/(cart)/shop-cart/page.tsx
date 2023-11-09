@@ -31,15 +31,28 @@ import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export default function ShopCart(...props: any) {
   const router = useRouter();
-  const { cart, setCart } = useContext(CartContext);
-  const { sumCartItems } = useContext(CartItemsContext);
+  const { cart, setCart } = useContext(CartContext); // Array Ids
+  const { sumCartItems } = useContext(CartItemsContext); // Soma dos preços dos itens
 
-  // Ativa ou inativa o campo de Frete
-  const [radioValue, setRadioValue] = useState(false);
+  // Frete e CEP
+  const [radioValue, setRadioValue] = useState(false); // Ativa/ Inativa campo
+  const [cep, setCep] = useState(""); // Input CEP
+
+  // Terminar
+  const [missInfo, setMissInfo] = useState(false); // Controla erros no campo
+
+  function handleCep() {
+    const formattedCep = cep.replace(/[^0-9]+/g, "");
+
+    if (formattedCep.length != 8) {
+      setMissInfo(true);
+    }
+
+    alert("Calcular frete e somar no campo VALOR DO FRETE");
+  }
 
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-    //    console.log(arrItens);
     setCart(arrItens);
   }, []);
 
@@ -67,7 +80,9 @@ export default function ShopCart(...props: any) {
             <Radio
               size="sm"
               value="combinar"
-              onClick={() => setRadioValue(false)}
+              onClick={() => {
+                setRadioValue(false), setMissInfo(false), setCep("");
+              }}
             >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
             </Radio>
@@ -86,17 +101,33 @@ export default function ShopCart(...props: any) {
             <strong>Frete</strong>
           </p>
           <Input
+            isClearable
             isDisabled={!radioValue}
             className="ml-20 place-self-end"
             size="sm"
-            type="email"
+            type="text"
             label=""
             placeholder="Digite seu CEP"
+            value={cep}
+            onChange={(e) => {
+              setCep(e.target.value);
+            }}
+            onClear={() => setCep("")}
+            color={
+              missInfo && cep.length != 8 && radioValue ? "danger" : undefined
+            }
+            errorMessage={missInfo && "Favor preencher o CEP"}
           />
         </div>
 
         <div className="mt-2 place-self-end">
-          <Button color="success" variant="bordered" isDisabled={!radioValue}>
+          <Button
+            color="success"
+            variant="bordered"
+            isDisabled={!radioValue}
+            onPress={handleCep}
+            onKeyDown={handleCep}
+          >
             Calcular
           </Button>
         </div>
