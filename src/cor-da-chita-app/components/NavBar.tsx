@@ -54,8 +54,8 @@ export default function NavBar() {
                 src={session.user.image ?? ""}
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
+            <DropdownMenu aria-label="Profile Actions" variant="light" color="success"  className="bg-light">
+              <DropdownItem key="profile">
                 <p className="font-semibold">{session.user.name}</p>
               </DropdownItem>
               <DropdownItem

@@ -15,17 +15,6 @@ export default function Banner() {
           <MyButton color="green">Ver todos os produtos</MyButton>
         </Link>
       </div>
-      <div className="absolute bottom-0">
-        <div
-          className="bg-light"
-          style={{
-            width: "900px",
-            height: "450px",
-          }}
-        >
-          <Image src="" alt="Banner Image" />
-        </div>
-      </div>
     </div>
   );
 }
