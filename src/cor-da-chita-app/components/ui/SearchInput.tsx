@@ -29,11 +29,23 @@ export default function SearchInput({ children, ...props }: any) {
 
   return (
     <Input
+      color="success"
       size="sm"
-      label="Busca"
-      variant="underlined"
+      placeholder="Busca"
+      variant="bordered"
       labelPlacement="inside"
-      className="text-xs"
+      classNames={{
+        label: "text-black/50 dark:text-white/90",
+        input: [
+          "bg-transparent",
+          "text-black/90 dark:text-white/90",
+          "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+        ],
+        innerWrapper: "bg-transparent",
+        inputWrapper: [
+          "shadow-none",
+        ],
+      }}
       endContent={
         <Link  onPress={handleClickSearch} color="foreground" isBlock>
           <SearchIcon size={14}/>
