@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Image } from '@nextui-org/react';
 
 const InstagramComponent: React.FC = () => {
   const [instagramData, setInstagramData] = useState([]);
@@ -18,13 +19,39 @@ const InstagramComponent: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      {instagramData.map((item) => (
-        <div key={item.id} style={{ marginRight: '10px' }}>
-          <img src={item.media_url} alt={`Instagram post by ${item.username}`} style={{ width: '50%', height: 'auto' }} />
-          <p style={{ textAlign: 'center' }}>{item.username}</p>
-        </div>
-      ))}
+    <div className="w-full">
+      <div className="flex flex-auto justify-around space-x-4">
+        {instagramData.map((item) => (
+          <a
+            key={item.id}
+            href={item.permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center text-center"
+          >
+            <div
+              style={{
+                width: '300px', // Adjust the width as needed
+                height: '300px', // Fixed height for the square
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={item.media_url}
+                alt={`Instagram post by ${item.username}`}
+                width="300"
+                height="300"
+                layout="responsive"
+                style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="mt-2">
+              <p className="font-semibold">{item.username}</p>
+              <p className="text-sm">{item.caption}</p>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   );
 };
