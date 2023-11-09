@@ -19,6 +19,7 @@ import {
   Radio,
   Input,
   Divider,
+  Tooltip,
 } from "@nextui-org/react";
 
 import CardCart from "@/components/CardCart";
@@ -29,26 +30,22 @@ import getProductDataCart from "@/database/products/getProductDataById";
 import { useRouter } from "next/navigation";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
+import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
+
 export default function ShopCart(...props: any) {
   const router = useRouter();
-  const { cart, setCart } = useContext(CartContext); // Array Ids
+
+  const { cart, setCart } = useContext(CartContext); // Array IDs produtos
   const { sumCartItems } = useContext(CartItemsContext); // Soma dos preços dos itens
 
   // Frete e CEP
-  const [radioValue, setRadioValue] = useState(false); // Ativa/ Inativa campo
+  const [radioValue, setRadioValue] = useState(false); // RadioButton
   const [cep, setCep] = useState(""); // Input CEP
 
-  // Terminar
-  const [missInfo, setMissInfo] = useState(false); // Controla erros no campo
-
   function handleCep() {
-    const formattedCep = cep.replace(/[^0-9]+/g, "");
-
-    if (formattedCep.length != 8) {
-      setMissInfo(true);
-    }
-
-    alert("Calcular frete e somar no campo VALOR DO FRETE");
+    alert(
+      "Calcular frete e somar no campo VALOR DO FRETE ou retornar aviso de frete incorreto ou inválido, conforme retorno da API do Frete"
+    );
   }
 
   useEffect(() => {
@@ -81,7 +78,7 @@ export default function ShopCart(...props: any) {
               size="sm"
               value="combinar"
               onClick={() => {
-                setRadioValue(false), setMissInfo(false), setCep("");
+                setRadioValue(false), setCep("");
               }}
             >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
@@ -97,26 +94,31 @@ export default function ShopCart(...props: any) {
         </div>
 
         <div className="flex mt-3">
-          <p className="text-sm">
+          <p className="text-sm mr-2">
             <strong>Frete</strong>
           </p>
+          <Tooltip content="Somente números">
+            <div>
+              <IconQuestionCircle />
+            </div>
+          </Tooltip>
+
           <Input
+            maxLength={8}
             isClearable
             isDisabled={!radioValue}
             className="ml-20 place-self-end"
             size="sm"
             type="text"
-            label=""
             placeholder="Digite seu CEP"
             value={cep}
+            // onChange={(e) => {
+            //   setCep(e.target.value);
+            // }}
             onChange={(e) => {
-              setCep(e.target.value);
+              !/[^0-9]+/g.test(e.target.value) ? setCep(e.target.value) : "";
             }}
             onClear={() => setCep("")}
-            color={
-              missInfo && cep.length != 8 && radioValue ? "danger" : undefined
-            }
-            errorMessage={missInfo && "Favor preencher o CEP"}
           />
         </div>
 
@@ -124,9 +126,10 @@ export default function ShopCart(...props: any) {
           <Button
             color="success"
             variant="bordered"
-            isDisabled={!radioValue}
-            onPress={handleCep}
-            onKeyDown={handleCep}
+            isDisabled={!radioValue || cep.length != 8}
+            //onPress={handleCep}
+            onPress={() => handleCep()}
+            //onKeyDown={handleCep}
           >
             Calcular
           </Button>
