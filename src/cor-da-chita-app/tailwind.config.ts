@@ -24,7 +24,8 @@ const config: Config = {
         grey: "#3b4849",
         foreground: "#100C08",
         success: "#4cb69f",
-        secondary: "#EE4266",
+        secondary: "#D8315B",
+        danger: "#D8315B",
       },
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],
@@ -65,6 +66,7 @@ const config: Config = {
         }
       },
     }),
+    
   ],
 };
 

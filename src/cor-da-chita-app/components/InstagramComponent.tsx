@@ -21,7 +21,7 @@ const InstagramComponent: React.FC = () => {
   return (
     <div className="w-full bg-light py-10">
       <div className="text-center py-8">
-          <h2>siga o Cor da Chita no Instagram!</h2>
+          <h2>Siga o Cor da Chita no Instagram!</h2>
           <Link   isExternal
            aria-label="Instagram Cor da Chita"
            color="foreground"
