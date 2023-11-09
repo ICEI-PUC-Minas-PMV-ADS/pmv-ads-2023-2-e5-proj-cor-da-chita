@@ -53,6 +53,7 @@ export default function NavBar() {
             <DropdownTrigger>
               <Avatar
                 as="button"
+                size="sm"
                 className="transition-transform"
                 name={session.user.name ?? ""}
                 src={session.user.image ?? ""}
