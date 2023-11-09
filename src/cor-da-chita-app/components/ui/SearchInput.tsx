@@ -29,15 +29,15 @@ export default function SearchInput({ children, ...props }: any) {
 
   return (
     <Input
-      placeholder="Busca"
       size="sm"
+      label="Busca"
+      labelPlacement="inside"
       variant="underlined"
       endContent={
-        <Link  onPress={handleClickSearch} color="foreground">
+        <Link  onPress={handleClickSearch} color="foreground" isBlock>
           <SearchIcon size={18}/>
         </Link>
       }
-      type="search"
       value={productName}
       onChange={(e) => setProductName(e.target.value)}
       onKeyDown={handleKeyPress}
