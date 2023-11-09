@@ -24,6 +24,7 @@ const InstagramComponent: React.FC = () => {
           <h2>siga o Cor da Chita no Instagram!</h2>
           <Link   isExternal
            aria-label="Instagram Cor da Chita"
+           color="foreground"
             href="https://www.instagram.com/cor.da.chita/"><p className="font-semibold">@cor.da.chita</p></Link>
       </div>
       <div className="flex flex-auto justify-around space-x-4 px-10">
