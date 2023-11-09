@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.grid-box {
-  height: 400px;
-}
-
 /* header.px-6 {
   padding-left: 0;
   padding-right: 0;
