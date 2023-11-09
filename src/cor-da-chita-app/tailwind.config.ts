@@ -49,10 +49,10 @@ const config: Config = {
       addCommonColors: true,
       layout: {
         radius: {
-          small: '2px', // rounded-small
-          medium: '2px', // rounded-medium
-          large: '5px', // rounded-large
-          DEFAULT: '2px', // rounded by default
+          small: '1px', // rounded-small
+          medium: '1px', // rounded-medium
+          large: '1px', // rounded-large
+          DEFAULT: '1px', // rounded by default
         },
         borderWidth: {
           small: '1px', // border-small
