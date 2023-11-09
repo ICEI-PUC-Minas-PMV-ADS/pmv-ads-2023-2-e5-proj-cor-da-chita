@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+
 import IconMinusSquare from "@/assets/icons/IconMinusSquare";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
-import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
 
 export default function QuantityManagerCart({ props }: any) {
   const [quantidade, setQuantidade] = useState<number>(1);
 
   const handleIncreaseQuantity = () => {
-    //Depois definir regra para colocar definir um valor máximo por pedido,ou não deixar escoolher mais que a quantidade disponível
+    // Falta definir apenas a quantidade máx do estoque
     setQuantidade(quantidade + 1);
   };
+
   const handleDecreaseQuantity = () => {
     if (quantidade == 1) {
       setQuantidade(1);
@@ -19,29 +20,22 @@ export default function QuantityManagerCart({ props }: any) {
   };
 
   return (
-    <div className="w-full ml-2">
-      <ButtonOnlyIcon
-        className="h-6 mt-2 ml-1"
-        isIconOnly
-        color="primary"
-        variant="ghost"
-        size="sm"
-        onClick={() => handleDecreaseQuantity()}
-      >
-        <IconMinusSquare />
-      </ButtonOnlyIcon>
-      <span className="m-2">{quantidade}</span>
+    <div className="flex items-center">
+      <div>
+        <IconMinusSquare
+          className="cursor-pointer hover:bg-rose-100"
+          onClick={() => handleDecreaseQuantity()}
+        />
+      </div>
 
-      <ButtonOnlyIcon
-        className="h-6 mt-2"
-        isIconOnly
-        color="primary"
-        size="sm"
-        variant="ghost"
-        onClick={() => handleIncreaseQuantity()}
-      >
-        <IconPlusSquare />
-      </ButtonOnlyIcon>
+      <span className="text-tiny m-2">{quantidade}</span>
+
+      <div>
+        <IconPlusSquare
+          className="cursor-pointer hover:bg-emerald-100"
+          onClick={() => handleIncreaseQuantity()}
+        />
+      </div>
     </div>
   );
 }

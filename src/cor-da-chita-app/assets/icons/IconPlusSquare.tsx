@@ -1,19 +1,17 @@
-
-
-// icon:plus-square | Bootstrap https://icons.getbootstrap.com/ | Bootstrap
+// icon:plus-square | Ant Design Icons https://ant.design/components/icon/ | Ant Design
 import * as React from "react";
 
-function IconPlusSquare(props:React.SVGProps<SVGSVGElement> ) {
+function IconPlusSquare(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      fill="currentColor"
-      viewBox="0 0 16 16"
+      viewBox="0 0 1024 1024"
+      fill="#3d9970"
       height="1em"
       width="1em"
       {...props}
     >
-      <path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H2a1 1 0 01-1-1V2a1 1 0 011-1h12zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z" />
-      <path d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z" />
+      <path d="M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" />
+      <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" />
     </svg>
   );
 }

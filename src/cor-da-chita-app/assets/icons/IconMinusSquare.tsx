@@ -1,11 +1,11 @@
 // icon:minus-square | Ant Design Icons https://ant.design/components/icon/ | Ant Design
 import * as React from "react";
 
-function IconMinusSquare(props:React.SVGProps<SVGSVGElement>) {
+function IconMinusSquare(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 1024 1024"
-      fill="currentColor"
+      fill="#F31260"
       height="1em"
       width="1em"
       {...props}

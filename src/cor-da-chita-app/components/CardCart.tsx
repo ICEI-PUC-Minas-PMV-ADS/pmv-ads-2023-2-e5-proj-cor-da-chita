@@ -1,8 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  Card,
-  CardHeader,
-  CardBody,
   Image,
   Button,
   Modal,
@@ -10,25 +7,31 @@ import {
   ModalContent,
   ModalBody,
   ModalFooter,
+  Tooltip,
+  Spinner,
 } from "@nextui-org/react";
-import QuantityManagerCart from "./QuantityManagerCart";
-import { Produto } from "@/lib/interface";
-import getProductDataById from "@/database/products/getProductDataById";
-import IconBagX from "@/assets/icons/IconBagX";
-import { CartContext } from "@/contexts/CartContext/CartContext";
+
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
+
+import { Produto } from "@/lib/interface";
+import { CartContext } from "@/contexts/CartContext/CartContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
+import getProductDataById from "@/database/products/getProductDataById";
+
+import IconCartX from "@/assets/icons/IconCartX";
+import QuantityManagerCart from "./QuantityManagerCart";
+
 export default function CardCart({ ...props }: any) {
-  // Usado para passar os Ids dos itens do carrinho da page pra cá
+  // Pegar os Ids dos itens do carrinho da page
   const { cart, setCart } = useContext(CartContext);
 
   // Salvar no context todos itens do carrinho
   const { cartItems, setCartItems, setSumCartItems } =
     useContext(CartItemsContext);
 
-  const [loading, setLoading] = useState(true);
+  // Render itens
   const [item, setItem] = useState<Produto[] | undefined>();
 
   // Snack
@@ -43,9 +46,6 @@ export default function CardCart({ ...props }: any) {
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
-
-      if (data) setLoading(false);
-
       setItem(data);
 
       return data;
@@ -63,13 +63,14 @@ export default function CardCart({ ...props }: any) {
           const produto = (await getProductDataById(id)) as Produto[];
           products.push(produto[0]);
         }
-        console.log(products);
+
         setCartItems(products);
       };
       fetchData();
     }
   }, [setCartItems, cart]);
 
+  // Soma do valor total dos itens do carrinho
   useEffect(() => {
     const sum = cartItems.reduce((total, item) => total + item.preco, 0);
     setSumCartItems(sum);
@@ -93,39 +94,34 @@ export default function CardCart({ ...props }: any) {
   }
   return (
     <>
-      {item && (
+      {item ? (
         <>
-          <Card className="py-4 ">
-            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-              <p className="text-tiny uppercase font-bold">{item[0].nome}</p>
-              <small className="text-default-500">
-                R$ {item[0].preco.toFixed(2)}
-              </small>
-            </CardHeader>
+          <div className="flex items-center w-full">
+            <div className="flex flex-col items-center p-2 ">
+              <Image
+                alt="Card background"
+                className="object-cover rounded-xl place-self-center"
+                src={item[0].imagem}
+                width={80}
+                height={80}
+              />
+              <QuantityManagerCart className="place-self-start" />
+            </div>
 
-            <CardBody className="overflow-visible py-2">
-              <div className="flex">
-                <Image
-                  alt="Card background"
-                  className="object-cover rounded-xl"
-                  src={item[0].imagem}
-                  width={150}
+            <div className="p-4">
+              <h2 className="text-sm">{item[0].nome}</h2>
+              <p className="text-tiny mt-2">R$ {item[0].preco.toFixed(2)}</p>
+            </div>
+
+            <Tooltip content="Excluir Item">
+              <div className="p-2 place-self-start">
+                <IconCartX
+                  className="cursor-pointer hover:bg-rose-100"
+                  onClick={() => onOpen()}
                 />
-                <div className="ml-3 ">
-                  <Button
-                    className="py-0.5"
-                    color="danger"
-                    isIconOnly
-                    size="sm"
-                    onPress={() => onOpen()}
-                  >
-                    <IconBagX />
-                  </Button>
-                </div>
               </div>
-            </CardBody>
-            <QuantityManagerCart />
-          </Card>
+            </Tooltip>
+          </div>
 
           <Modal
             isOpen={isOpen}
@@ -163,6 +159,8 @@ export default function CardCart({ ...props }: any) {
             </ModalContent>
           </Modal>
         </>
+      ) : (
+        <Spinner />
       )}
 
       <Snackbar

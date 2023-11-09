@@ -22,6 +22,7 @@ const config: Config = {
         dark: "#100C08",
         green: "#3d9970",
         grey: "#3b4849",
+        red: "#F31260"
       },
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],
