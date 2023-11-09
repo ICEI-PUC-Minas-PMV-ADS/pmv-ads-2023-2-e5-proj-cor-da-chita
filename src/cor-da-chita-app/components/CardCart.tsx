@@ -8,7 +8,6 @@ import {
   Modal,
   useDisclosure,
   ModalContent,
-  ModalHeader,
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";

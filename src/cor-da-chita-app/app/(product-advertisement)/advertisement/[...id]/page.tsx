@@ -1,108 +1,96 @@
-// EM TESTES
 // Tela do anúncio individual de um  produto
 "use client";
-import React, { useContext, useEffect } from "react";
-import { Button } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Produto } from "@/lib/interface";
-import { ProductContext } from "@/contexts/ProductContext/ProductContext";
-import Link from "next/link";
+import { Button, Image } from "@nextui-org/react";
+import { Snackbar } from "@mui/material";
+import MuiAlert, { AlertColor } from "@mui/material/Alert";
 
-interface ProductCart {
-  id: string;
-  name: string;
-  description: string;
-  category: string;
-  stock: number;
-  weightProduct: number;
-  price: number;
-  lengthProduct: number;
-  widthProduct: number;
-  heightProduct: number;
-  imageProduct: any;
-  slug: string;
-}
+import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
 
 export default function ProductAdvertisement() {
   const route = useRouter();
   const product = useContext(ProductContext);
 
-  useEffect(() => {
-    console.log(product.id);
-    console.log(product.name);
-    console.log(product.category);
-    // const a = JSON.parse(localStorage.getItem("cartItens"));
-  }, []);
+  // Snack Bar: Adicionar no carrinho
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+  const [messageAlert, setMessageAlert] = useState<string>("");
+  const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
 
-  // Pega todos os dados do produto usando a interface
-  // const handleCartAdd = (product: ProductCart) => {
-  //   console.log(product);
+  const handleStorageProductCart = (id: string, nome: string) => {
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-  //   const itens = JSON.parse(localStorage.getItem("itensCart") || "[]");
+    if (arrItens.includes(id)) {
+      setMessageAlert("Este item já está no seu carrinho");
+      setSeveridadeAlert("warning");
+      setOpenSnackBar(true);
+    } else {
+      arrItens.push(id);
 
-  //   itens.push(product);
+      localStorage.setItem("cartItens", JSON.stringify(arrItens));
+      setSeveridadeAlert("success");
 
-  //   localStorage.setItem("itensCart", JSON.stringify(itens));
+      setMessageAlert(
+        "O item " + nome + " foi adicionado no seu carrinho com sucesso!"
+      );
 
-  //   console.log(itens);
-
-  //   // console.log(productId);
-  //   // itensCart.push(productId);
-  //   // // console.log(itensCart)
-  //   // localStorage.setItem("cartItens", JSON.stringify(itensCart));
-  //   // const a = JSON.parse(localStorage.getItem("cartItens"));
-
-  //   // console.log(a.includes(productId));
-  //   //route.push("/shop-cart");
-  // };
-
-  // Pega só o ID
-  const handleCartAdd = (productId: string) => {
-    console.log(productId);
-
-    const itens = JSON.parse(localStorage.getItem("itensCart") || "[]");
-
-    itens.push(productId);
-
-    localStorage.setItem("itensCart", JSON.stringify(itens));
-
-    console.log(itens);
+      setOpenSnackBar(true);
+    }
   };
 
   return (
-    <section>
-      <h1>Tela de anúncio do produto aqui</h1>
-      <button type="button" onClick={() => route.back()}>
-        Retornar para produtos
+    <>
+      <button
+        type="button"
+        className="flex gap-3 p-2"
+        onClick={() => route.back()}
+      >
+        <ArrowLeft /> Retornar
       </button>
-      <div>
+      <div className="flex gap-1 justify-center items-center p-4">
         <Image
           isZoomed
           alt="Foto do Produto"
-          className="object-cover rounded-xl"
+          className="object-cover rounded-xl mr-"
           src={product.imageProduct}
           width={300}
           height={300}
         />
+        <div className="p-10">
+          <p className="text-lg">{product.name}</p>
+          <p className="text-sm">{product.description}</p>
+          <p className="text-tiny mt-4 text-gray-500">
+            {product.lengthProduct} cm x {product.widthProduct} cm
+          </p>
+
+          <Button
+            className="mt-8 "
+            color="success"
+            size="md"
+            onClick={() => handleStorageProductCart(product.id, product.name)}
+          >
+            Adicionar ao Carrinho
+          </Button>
+        </div>
       </div>
-      <div>
-        <p>{product.name}</p>
-        <p>{product.description}</p>
-        <p>
-          {product.lengthProduct} cm x {product.widthProduct} cm
-        </p>
-      </div>
-      <div>
-        <Button
-          color="success"
-          variant="solid"
-          //onClick={() => handleCartAdd(product)}
-          onClick={() => handleCartAdd(product.id)}
+
+      {/* Snack Bar */}
+      <div className=" m-auto ">
+        <Snackbar
+          open={openSnackBar}
+          autoHideDuration={30000}
+          onClose={(e) => setOpenSnackBar(false)}
         >
-          Adicionar ao Carrinho
-        </Button>
+          <MuiAlert
+            onClose={(e) => setOpenSnackBar(false)}
+            severity={severidadeAlert}
+            sx={{ width: "100%" }}
+          >
+            {messageAlert}
+          </MuiAlert>
+        </Snackbar>
       </div>
-    </section>
+    </>
   );
 }

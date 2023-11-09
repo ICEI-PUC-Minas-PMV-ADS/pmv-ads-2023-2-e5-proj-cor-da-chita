@@ -19,6 +19,7 @@ interface ProductCardProps {
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const route = useRouter();
 
+  // Snack Bar: Adicionar no carrinho
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
@@ -56,7 +57,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
     if (arrItens.includes(id)) {
-      setMessageAlert("Este item já esta no seu carrinho");
+      setMessageAlert("Este item já está no seu carrinho");
       setSeveridadeAlert("warning");
       setOpenSnackBar(true);
     } else {
@@ -65,7 +66,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
       setSeveridadeAlert("success");
 
-      setMessageAlert(nome + " adiciona no seu carrinho com sucesso");
+      setMessageAlert("O item " + nome + " foi adicionado no seu carrinho com sucesso!");
 
       setOpenSnackBar(true);
     }
