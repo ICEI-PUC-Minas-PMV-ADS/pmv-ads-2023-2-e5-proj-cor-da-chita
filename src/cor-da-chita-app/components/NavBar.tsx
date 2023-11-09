@@ -39,10 +39,10 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar shouldHideOnScroll className="bg-light">
-      <NavbarBrand onClick={handleClick}>
+    <Navbar shouldHideOnScroll className="bg-light px-0 w-full">
+      <NavbarBrand onClick={handleClick} className="bg-light p-0">
         <CorChitaFlor />
-        <CorChitaTexto />
+        {/* <CorChitaTexto /> */}
       </NavbarBrand>
 
       <NavbarContent>
@@ -53,6 +53,7 @@ export default function NavBar() {
             <DropdownTrigger>
               <Avatar
                 as="button"
+                size="sm"
                 className="transition-transform"
                 name={session.user.name ?? ""}
                 src={session.user.image ?? ""}
@@ -90,3 +91,6 @@ export default function NavBar() {
     </Navbar>
   );
 }
+
+
+
