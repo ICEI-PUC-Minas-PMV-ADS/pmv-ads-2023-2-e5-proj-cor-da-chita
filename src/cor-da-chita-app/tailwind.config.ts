@@ -29,22 +29,31 @@ const config: Config = {
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],
       },
-      borderRadius: {
-        DEFAULT: '0.375rem', 
-      },
     },
-    fontFamily:{
-      roboto:['Roboto','sans-serif'],
-     
-    }
+    fontFamily: {
+      roboto: ['Roboto', 'sans-serif'],
+    },
   },
   darkMode: "class",
   plugins: [
     nextui({
       addCommonColors: true,
+      layout: {
+        radius: {
+          small: '2px', // rounded-small
+          medium: '2px', // rounded-medium
+          large: '2px', // rounded-large
+          DEFAULT: '2px', // rounded by default
+        },
+        borderWidth: {
+          small: '1px', // border-small
+          medium: '1px', // border-medium
+          large: '1px', // border-large
+          DEFAULT: '1px', // border by default
+        },
+      },
     }),
-    nextui(),
   ],
 };
 
-export default config;[]
+export default config;
