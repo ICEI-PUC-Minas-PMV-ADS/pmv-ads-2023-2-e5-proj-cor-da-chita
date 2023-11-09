@@ -11,6 +11,7 @@ export default function Banner() {
           src="/Chita/IMG_6811 (1).png"
           alt="Cor da Chita"
           layout="fill"
+          className="brightness-50"
           objectFit="cover"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 p-20">
