@@ -3,6 +3,10 @@
 
 import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import CartIcon from "@/assets/icons/CartIcon";
+import OrdersIcon from "@/assets/icons/OrdersIcon";
+import HelpIcon from "@/assets/icons/HelpIcon";
+
 
 import {
   Navbar,
@@ -26,6 +30,7 @@ export default function NavBar() {
   const { data: session } = useSession();
   const route = useRouter();
   const [isClicked, setIsClicked] = useState(false);
+  const iconClasses = "h-4";
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -34,56 +39,57 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar shouldHideOnScroll className="bg-light">
-      <NavbarBrand onClick={handleClick}>
+    <Navbar shouldHideOnScroll className="bg-light px-0 w-full">
+      <NavbarBrand onClick={handleClick} className="bg-light p-0">
         <CorChitaFlor />
-        <CorChitaTexto />
+        {/* <CorChitaTexto /> */}
       </NavbarBrand>
 
       <NavbarContent>
         <SearchInput />
 
         {session && session.user ? (
-          <Dropdown placement="bottom-end">
+          <Dropdown placement="bottom-end" className="p-0 rounded-md shadow-none">
             <DropdownTrigger>
               <Avatar
-                isBordered
                 as="button"
                 className="transition-transform"
-                color="success"
                 name={session.user.name ?? ""}
-                size="sm"
-                radius="full"
                 src={session.user.image ?? ""}
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">{session.user.name}</p>
+            <DropdownMenu aria-label="Profile Actions" variant="bordered"  className="bg-light" color="success" disabledKeys={[""]}>
+              <DropdownItem key="profile" className="text-end" color="default">
+                <p className="font-semibold text-tiny">{session.user.name}</p>
               </DropdownItem>
               <DropdownItem
                 key="my_Cart"
                 onClick={() => route.push("/shop-cart")}
-              >
+                endContent={<CartIcon className={iconClasses} />}
+              ><p className="text-tiny p-4">
                 Carrinho
+                </p>
               </DropdownItem>
-              <DropdownItem key="my_orders">Meus Pedidos</DropdownItem>
-              <DropdownItem key="help">Ajuda</DropdownItem>
+              <DropdownItem key="my_orders" endContent={<OrdersIcon className={iconClasses} />}><p className="text-tiny p-4">Meus Pedidos</p></DropdownItem>
+              <DropdownItem key="help" endContent={<HelpIcon className={iconClasses}/>}><p className="text-tiny p-4">Ajuda</p></DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"
                 onClick={() => signOut()}
-              >
-                Sair
+              ><p className="text-tiny p-1">
+                Sair</p>
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         ) : (
-          <MyButton size="md" color="dark" onClick={() => signIn("google")}>
+          <Button variant="ghost" onClick={() => signIn("google")}>
             Entrar
-          </MyButton>
+          </Button>
         )}
       </NavbarContent>
     </Navbar>
   );
 }
+
+
+

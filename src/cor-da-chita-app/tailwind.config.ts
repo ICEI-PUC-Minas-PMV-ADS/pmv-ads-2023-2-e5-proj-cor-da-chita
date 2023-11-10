@@ -16,30 +16,58 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        white: "#FFFFFF",
-        black: "#000000",
+        white: "#FBFEF9",
+        black: "#100C08",
         light: "#FBFEF9",
         dark: "#100C08",
-        green: "#3d9970",
+        green: "#4cb69f",
         grey: "#3b4849",
-        red: "#F31260"
+        foreground: "#100C08",
+        success: "#4cb69f",
+        secondary: "#D8315B",
+        danger: "#D8315B",
       },
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],
       },
+      boxShadow: {
+        DEFAULT: 'none',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+      },
+      borderRadius: {
+        DEFAULT: '0',
+      },
     },
-    fontFamily:{
-      roboto:['Roboto','sans-serif'],
-     
-    }
+    fontFamily: {
+      roboto: ['Roboto', 'sans-serif'],
+    },
   },
   darkMode: "class",
   plugins: [
     nextui({
       addCommonColors: true,
+      layout: {
+        radius: {
+          small: '1px', // rounded-small
+          medium: '1px', // rounded-medium
+          large: '1px', // rounded-large
+          DEFAULT: '1px', // rounded by default
+        },
+        borderWidth: {
+          small: '1px', // border-small
+          medium: '1px', // border-medium
+          large: '1px', // border-large
+          DEFAULT: '1px', // border by default
+        },
+        boxShadow: {
+          DEFAULT: 'none',
+        }
+      },
     }),
-    nextui(),
+    
   ],
 };
 
-export default config;[]
+export default config;
