@@ -36,6 +36,8 @@ type ProductContextType = {
   setImage: Dispatch<SetStateAction<string>>;
   slug: string;
   setSlug: Dispatch<SetStateAction<string>>;
+  quantity: number;
+  setQuantity: Dispatch<SetStateAction<number>>;
 };
 
 const initialValue = {
@@ -63,6 +65,8 @@ const initialValue = {
   setImage: () => {},
   slug: "",
   setSlug: () => {},
+  quantity: 1,
+  setQuantity: () => {},
 };
 
 export const ProductContext = createContext<ProductContextType>(initialValue);
@@ -82,6 +86,7 @@ export default function ProductContextProvider({
   const [heightProduct, setHeight] = useState(initialValue.heightProduct);
   const [imageProduct, setImage] = useState(initialValue.imageProduct);
   const [slug, setSlug] = useState(initialValue.slug);
+  const [quantity, setQuantity] = useState(initialValue.quantity);
 
   return (
     <ProductContext.Provider
@@ -110,6 +115,8 @@ export default function ProductContextProvider({
         setImage,
         slug,
         setSlug,
+        quantity,
+        setQuantity,
       }}
     >
       {children}

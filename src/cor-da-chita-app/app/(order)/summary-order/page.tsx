@@ -15,7 +15,8 @@ export default function SummaryOrder() {
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
-  const { cartItems, sumCartItems } = useContext(CartItemsContext);
+  const { cartItems, sumCartItems, quantityCartItems } =
+    useContext(CartItemsContext);
 
   function handleOrder() {
     // Somando dados da cubagem do pedido
@@ -65,6 +66,11 @@ export default function SummaryOrder() {
       orderDate: new Date(),
       phoneNumber: user.phone,
     };
+
+    const quantityString = quantityCartItems.toString();
+    for (const char of quantityString) {
+      console.log(char);
+    }
 
     // Itens do Pedido
     cartItems.forEach((item) => {

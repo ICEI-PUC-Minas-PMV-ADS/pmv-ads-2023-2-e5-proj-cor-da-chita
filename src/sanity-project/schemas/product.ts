@@ -39,6 +39,7 @@ export default {
       name: 'estoque',
       type: 'number',
       title: 'Estoque',
+      initialValue: 1,
       validation: (Rule: any) =>
         Rule.positive().error('A quantidade em estoque precisa ser maior ou igual a zero'),
     },
@@ -90,7 +91,6 @@ export default {
         },
       ],
     },
-    // Não está funcionando - rever
     {
       // Para gerar URL amigável
       name: 'slug',
@@ -100,6 +100,14 @@ export default {
         source: 'nome',
       },
       validation: (Rule: any) => Rule.required().error('Necessário gerar o link'),
+    },
+    {
+      // Campo hidden, apenas para trabalhar a quantidade do item do pedido
+      name: 'quantidade',
+      type: 'number',
+      title: 'Quantidade',
+      hidden: true,
+      initialValue: 1,
     },
   ],
 }

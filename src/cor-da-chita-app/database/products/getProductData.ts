@@ -19,7 +19,8 @@ export default async function getProductCardData() {
       largura,
       altura,
       'imagem':imagem.asset->url,
-      slug   
+      slug,
+      quantidade
     }`;
 
     const data = await client.fetch(query);

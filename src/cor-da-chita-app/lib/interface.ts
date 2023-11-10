@@ -19,4 +19,5 @@ export interface Produto {
   slug: {
     current: string;
   };
+  quantidade: number;
 }

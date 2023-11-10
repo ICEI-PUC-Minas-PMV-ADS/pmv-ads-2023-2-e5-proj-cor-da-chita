@@ -49,11 +49,16 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     productAds.setHeight(product.altura);
     productAds.setImage(product.imagem);
     productAds.setSlug(product.slug.current);
+    productAds.setQuantity(product.quantidade);
 
     route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
-  const handleStorageProductCart = (id: string, nome: string) => {
+  const handleStorageProductCart = (
+    id: string,
+    nome: string,
+    quantidade: number
+  ) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
     if (arrItens.includes(id)) {
@@ -61,12 +66,20 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       setSeveridadeAlert("warning");
       setOpenSnackBar(true);
     } else {
-      arrItens.push(id);
+      const item = {
+        id: id,
+        nome: nome,
+        quantidade: quantidade,
+      };
+
+      arrItens.push(item);
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
       setSeveridadeAlert("success");
 
-      setMessageAlert("O item " + nome + " foi adicionado no seu carrinho com sucesso!");
+      setMessageAlert(
+        "O item " + nome + " foi adicionado no seu carrinho com sucesso!"
+      );
 
       setOpenSnackBar(true);
     }
@@ -99,7 +112,11 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
               <Link
                 className=" ml-24 mb-4 "
                 onClick={() =>
-                  handleStorageProductCart(product._id, product.nome)
+                  handleStorageProductCart(
+                    product._id,
+                    product.nome,
+                    product.quantidade
+                  )
                 }
               >
                 <div className="bg-green p-1 rounded-md ">

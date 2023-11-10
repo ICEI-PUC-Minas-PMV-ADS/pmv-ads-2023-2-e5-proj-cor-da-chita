@@ -18,7 +18,11 @@ export default function ProductAdvertisement() {
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
 
-  const handleStorageProductCart = (id: string, nome: string) => {
+  const handleStorageProductCart = (
+    id: string,
+    nome: string,
+    quantidade: number
+  ) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
     if (arrItens.includes(id)) {
@@ -26,7 +30,14 @@ export default function ProductAdvertisement() {
       setSeveridadeAlert("warning");
       setOpenSnackBar(true);
     } else {
-      arrItens.push(id);
+      // ALterado aqui
+      const item = {
+        id: id,
+        nome: nome,
+        quantidade: quantidade,
+      };
+
+      arrItens.push(item);
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
       setSeveridadeAlert("success");
@@ -68,7 +79,13 @@ export default function ProductAdvertisement() {
             className="mt-8 "
             color="success"
             size="md"
-            onClick={() => handleStorageProductCart(product.id, product.name)}
+            onClick={() =>
+              handleStorageProductCart(
+                product.id,
+                product.name,
+                product.quantity
+              )
+            }
           >
             Adicionar ao Carrinho
           </Button>

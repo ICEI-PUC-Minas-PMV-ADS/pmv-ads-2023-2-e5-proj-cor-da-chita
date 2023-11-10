@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import {
   Image,
   Button,
@@ -76,24 +77,41 @@ export default function CardCart({ ...props }: any) {
     setSumCartItems(sum);
   });
 
+  // Para pegar o ID do item a ser excluído do carrinho
+  function handleJson(item: any) {
+    const itemIdString: string = JSON.stringify(item);
+    const itemObj: { id: string } = JSON.parse(itemIdString);
+    const idDoObjeto: string = itemObj.id;
+    console.log(idDoObjeto);
+
+    return idDoObjeto;
+  }
+
+  // Remove item e atualiza LocalStorage
   function handleRemoveItemCart(id: string, nome: string): void {
     const arrItens: string[] = JSON.parse(
       localStorage.getItem("cartItens") || "[]"
     );
 
-    const newArrItens: string[] = arrItens.filter(
-      (item: string) => item !== id
-    );
+    const newArrItens: string[] = arrItens.filter((item: string) => {
+      const idDoObjeto = handleJson(item);
+      if (idDoObjeto != id) {
+        return item;
+      }
+    });
 
     setCart(newArrItens);
 
     setMessageAlert(`O item ${nome} foi removido do seu carrinho`);
     setSeveridadeAlert("success");
     setOpenSnackBar(true);
+
     localStorage.setItem("cartItens", JSON.stringify(newArrItens));
   }
+
   return (
     <>
+      {/* Principal */}
       {item ? (
         <>
           <div className="flex items-center w-full">
@@ -105,7 +123,11 @@ export default function CardCart({ ...props }: any) {
                 width={80}
                 height={80}
               />
-              <QuantityManagerCart className="place-self-start" />
+              <QuantityManagerCart
+                id={item[0]._id}
+                quantidade={item[0].quantidade}
+                className="place-self-start"
+              />
             </div>
 
             <div className="p-4">
@@ -123,6 +145,7 @@ export default function CardCart({ ...props }: any) {
             </Tooltip>
           </div>
 
+          {/* Confirmação de excluir item */}
           <Modal
             isOpen={isOpen}
             onOpenChange={onOpenChange}
@@ -160,9 +183,10 @@ export default function CardCart({ ...props }: any) {
           </Modal>
         </>
       ) : (
-        <Spinner />
+        <Spinner className="py-6" />
       )}
 
+      {/* Aviso de item removido */}
       <Snackbar
         open={openSnackBar}
         autoHideDuration={2000}

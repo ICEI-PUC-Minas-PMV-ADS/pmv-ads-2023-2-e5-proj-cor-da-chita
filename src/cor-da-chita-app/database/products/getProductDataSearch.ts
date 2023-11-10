@@ -21,7 +21,8 @@ export default async function getProductDataSearch(search: string | undefined) {
         altura,        
         'imagem':imagem.asset->url,
         _createdAt,
-        slug
+        slug,
+        quantidade,
       }`;
 
     const data = await client.fetch(query);
