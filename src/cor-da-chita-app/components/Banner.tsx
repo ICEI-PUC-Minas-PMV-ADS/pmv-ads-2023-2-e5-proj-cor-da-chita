@@ -12,7 +12,7 @@ export default function Banner() {
           alt="Cor da Chita"
           layout="fill"
           objectFit="cover"
-          style={{ opacity: 0.5, maxWidth: '100%' }}
+          style={{  maxWidth: '100%' }}
           className="responsive-image"
         />
       </div>
