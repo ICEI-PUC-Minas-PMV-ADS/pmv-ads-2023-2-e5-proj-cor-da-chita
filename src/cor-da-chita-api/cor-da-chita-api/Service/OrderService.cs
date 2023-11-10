@@ -54,7 +54,8 @@ namespace cor_da_chita_api.Service
                 PhoneNumber = newOrder.PhoneNumber,
                 Street = newOrder.Street,
                 UserEmail = newOrder.UserEmail,
-                UserName = newOrder.UserName
+                UserName = newOrder.UserName,
+                TotalPriceProducts = newOrder.TotalPriceProducts
             };
 
             var orderCreated = await _orderRepository.CreateAsync(orderDto);

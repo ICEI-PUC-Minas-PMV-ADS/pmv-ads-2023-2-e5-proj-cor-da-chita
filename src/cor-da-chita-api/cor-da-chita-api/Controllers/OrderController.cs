@@ -32,8 +32,7 @@ namespace cor_da_chita_api.Controllers
         private readonly IOrderService _ordersService;
         private readonly IEmailService _emailService;
         private const string EMAIL_SUBJECT = "Seu pedido foi recebido e está sendo processado!";
-        private const string cepOrigem = "33010515";
-        private string urlFrete = "https://cepcerto.com/ws/json-frete";
+        
         public OrderController(IOrderService ordersService, IEmailService emailService)
         {
             _ordersService = ordersService;
@@ -94,23 +93,7 @@ namespace cor_da_chita_api.Controllers
                 var orderCreated = await _ordersService.CreateAsync(newOrder);
 
                 //Mudar Chave para variavel de ambiente depois com a conta da mãe da illa
-                string url = $"{urlFrete}/{cepOrigem}/{newOrder.CEP}/{newOrder.Freight.TotalWheightFreight}/{newOrder.Freight.TotalHeightFreight}/{newOrder.Freight.TotalWidthFreight}/{newOrder.Freight.TotalLengthFreight}/4c320e58829a1695d0e327812f2dc29ebfd3abc1";
-
-                
-
-                using (WebClient client = new WebClient())
-                {
-
-                    string xmlData = client.DownloadString(url);
-
-                    XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.Load(xmlData);
-
-
-                    XmlNodeList nodes = xmlDoc.GetElementsByTagName("valorpac"); // Exemplo do valor pac
-
-
-                }
+              
 
 
 
