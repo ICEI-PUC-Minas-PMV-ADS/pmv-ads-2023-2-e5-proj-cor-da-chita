@@ -21,13 +21,10 @@ namespace cor_da_chita_api.Models
         public Freight? Freight { get; set; }
         public long? OrderPixId {  get; set; }
         public DateTime OrderDate { get; set; }
-<<<<<<< HEAD
-        public string? PhoneNumber { get; set; }
-=======
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }       
 
         public decimal TotalPriceProducts { get; set; }
->>>>>>> d4ed51cca0d9627d7f23c1306411be6acde1259e
+
     }
 
     public class Items
