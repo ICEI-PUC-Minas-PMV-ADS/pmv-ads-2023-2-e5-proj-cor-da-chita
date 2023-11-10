@@ -93,42 +93,42 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   return (
     <>
       {productData?.map((product) => (
-        <div key={product._id} className="ml-20">
+        <div key={product._id}>
           <Card
-            className="ml-5  flex-wrap m-5 w-60  "
+            shadow="none"
+            className="flex-wrap"
             isPressable
             onPress={() => handleClick(product)}
           >
-            <CardBody className="overflow-visible p-4">
+            <CardBody className="overflow-hidden">
               <Image
                 alt="Card background"
-                className="object-cover rounded-xl w-52 h-48  "
+                className="object-cover w-52 h-48  "
                 src={product.imagem}
               />
-              <CardFooter className="pb-0 pt-2 flex-col items-start">
-                <p className="font-bold text-medium">{product.nome}</p>
+              <p className="p-3 text-tiny font-semibold">{product.nome}</p>
+              <CardFooter>
+                <div className="flex justify-between items-end w-full"> 
+                  <p className="text-tiny">
+                    R$ {product.preco.toFixed(2)}
+                  </p>
+                  <Link
+                      className=""
+                      onClick={() =>
+                        handleStorageProductCart(
+                          product._id,
+                          product.nome,
+                          product.quantidade
+                        )
+                      }
+                    >
+                      <div className="bg-green p-1">
+                        <CartPlusIcon fill="white" />
+                      </div>
+                  </Link>
+                </div>
               </CardFooter>
             </CardBody>
-            <div className="flex flex-row mb-3  ">
-              <p className="mt-4 ml-7 text-medium">
-                R$ {product.preco.toFixed(2)}
-              </p>
-
-              <Link
-                className=" ml-24 mb-4 "
-                onClick={() =>
-                  handleStorageProductCart(
-                    product._id,
-                    product.nome,
-                    product.quantidade
-                  )
-                }
-              >
-                <div className="bg-green p-1 rounded-md ">
-                  <CartPlusIcon fill="white" />
-                </div>
-              </Link>
-            </div>
           </Card>
 
           <div className=" m-auto ">
