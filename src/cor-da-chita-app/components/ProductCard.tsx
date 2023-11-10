@@ -17,6 +17,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const route = useRouter();
 
   // Snack Bar: Adicionar no carrinho
@@ -93,7 +94,9 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   return (
     <>
       {productData?.map((product) => (
-        <div key={product._id}>
+        <div key={product._id}
+        onMouseEnter={() => setHoveredProductId(product._id)}
+        onMouseLeave={() => setHoveredProductId(null)}>
           <Card
             className="flex-wrap font-open border bg-light"
             isPressable
@@ -110,19 +113,21 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       overflow: 'hidden',
     }}
   >
-    <Image
-      removeWrapper
-      alt="Card background"
-      className="z-0 w-full h-full object-cover transition-transform hover:scale-125"
-      src={product.imagem}
-    />
-    <div
-      className="overlay absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 text-white flex flex-col items-center justify-center opacity-0 filter hover:opacity-100"
-    >
-      <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
-      <p className="text-small">{`Peso: ${product.peso} kg`}</p>
-      <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
-    </div>
+      <Image
+            removeWrapper
+            alt="Card background"
+            className={`z-0 w-full h-full object-cover transition-transform ${
+              hoveredProductId === product._id ? "hover:scale-125" : ""
+            }`}
+            src={product.imagem}
+          />
+         {hoveredProductId === product._id && (
+            <div className="overlay absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 text-white flex flex-col items-center justify-center pointer-events-none">
+              <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
+              <p className="text-small">{`Peso: ${product.peso} kg`}</p>
+              <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
+            </div>
+          )}
   </div>
 
               <p className="font-semibold px-3 pt-5">{product.nome}</p>
