@@ -39,19 +39,14 @@ namespace cor_da_chita_api
 
                     <h2>Informações do Cliente:</h2>
                     <p>Nome: ##USERNAME##</p>
-                    <p>Endereço: ##SENDADRESS##</p>
+                    <p>Endereço: ##SENDADDRESS##</p>
                     <p>E-mail: ##USEREMAIL##</p>
                     <p>Telefone: ##USERPHONENUMBER##</p>
 
                     <h2>Resumo Financeiro:</h2>
-                    <p>Subtotal: {{SUBTOTAL}}</p>
-                    <p>Descontos: {{DESCONTOS}}</p>
+                    <p>Subtotal: ##SUBTOTAL## </p>
                     <p>Taxas de Envio: ##FREIGHT##</p>
                     <p>Total do Pedido: ##ORDERTOTALPRICE##</p>
-
-                    <h2>Método de Pagamento:</h2>
-                    <p>Tipo de Pagamento: {{TIPO_DE_PAGAMENTO}}</p>
-                    <p>Últimos Dígitos do Cartão: {{ULTIMOS_DIGITOS_DO_CARTAO}}</p>
 
                     <h2>Informações de Envio:</h2>
                     <p>Método de Envio: {{METODO_DE_ENVIO}}</p>
@@ -73,9 +68,12 @@ namespace cor_da_chita_api
             var dictionary = orderDetails.Items.GroupBy(i => i.ProductId)
                         .ToDictionary(x => x.Key, i => i.ToList());
 
+            decimal subTotal = 0;
+
             foreach (var item in dictionary)
             {
                 var totalPrice = item.Value.Sum(x => x.ProductPrice);
+                subTotal += totalPrice;
 
                 productTable += TABLE_WITH_PRODUCT_INFO
                                 .Replace("##PRODUCTNAME##", item.Value.First().ProductName)
@@ -84,14 +82,19 @@ namespace cor_da_chita_api
                                 .Replace("##TOTALPRICE##", totalPrice.ToString()) + "/n";
             }
 
+            var orderTotalPrice = orderDetails.Freight.FreightValue + subTotal;
+
             var result = MAIN_EMAIL_BODY
                         .Replace("##USERNAME##", orderDetails.UserName)
                         .Replace("##ORDERNUMBER##", orderDetails.Id)
                         .Replace("##ORDERDATE##", orderDetails.OrderDate.ToString())
                         .Replace("##TABLE##", productTable)
-                        .Replace("##SENDADRESS##", orderDetails.Neighborhood)
+                        .Replace("##SENDADDRESS##", orderDetails.Neighborhood)
                         .Replace("##USEREMAIL##", orderDetails.UserEmail)
-                        .Replace("##USERPHONENUMBER##", orderDetails.PhoneNumber);
+                        .Replace("##USERPHONENUMBER##", orderDetails.PhoneNumber)
+                        .Replace("##SUBTOTAL##", subTotal.ToString())
+                        .Replace("##FREIGHT##", orderDetails.Freight.FreightValue.ToString())
+                        .Replace("##ORDERTOTALPRICE##", orderTotalPrice.ToString());
 
             return result;
         }
