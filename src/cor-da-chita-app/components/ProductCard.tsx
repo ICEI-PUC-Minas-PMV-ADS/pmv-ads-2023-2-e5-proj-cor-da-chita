@@ -100,7 +100,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
           <Card
             className="flex-wrap font-open border bg-light"
             isPressable
-            shadow="none"
+            shadow="sm"
             onPress={() => handleClick(product)}
             style={{ width: '380px', height: '440px' }}
           >
@@ -117,12 +117,12 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             removeWrapper
             alt="Card background"
             className={`z-0 w-full h-full object-cover transition-transform ${
-              hoveredProductId === product._id ? "hover:scale-125" : ""
+              hoveredProductId === product._id ? "hover:scale-125 hover:blur" : ""
             }`}
             src={product.imagem}
           />
          {hoveredProductId === product._id && (
-            <div className="overlay absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 text-white flex flex-col items-center justify-center pointer-events-none">
+            <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
               <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
               <p className="text-small">{`Peso: ${product.peso} kg`}</p>
               <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
