@@ -101,22 +101,29 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             onPress={() => handleClick(product)}
             style={{ width: '380px', height: '440px' }}
           >
-            <CardBody className="flex flex-col overflow-hidden p-4" >
-              <div
-                className="image-container"
-                style={{
-                  height: '320px', 
-                  width: '100%', 
-                  overflow: 'hidden',
-                }}
-              >
-                <Image
-                  removeWrapper
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src={product.imagem}
-                />
-              </div>
+            <CardBody className="flex flex-col overflow-hidden p-4 relative">
+  <div
+    className="image-container relative"
+    style={{
+      height: '320px',
+      width: '100%',
+      overflow: 'hidden',
+    }}
+  >
+    <Image
+      removeWrapper
+      alt="Card background"
+      className="z-0 w-full h-full object-cover transition-transform hover:scale-125"
+      src={product.imagem}
+    />
+    <div
+      className="overlay absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 text-white flex flex-col items-center justify-center opacity-0 filter hover:opacity-100"
+    >
+      <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
+      <p className="text-small">{`Peso: ${product.peso} kg`}</p>
+      <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
+    </div>
+  </div>
 
               <p className="font-semibold px-3 pt-5">{product.nome}</p>
               <CardFooter className="mt-auto">
