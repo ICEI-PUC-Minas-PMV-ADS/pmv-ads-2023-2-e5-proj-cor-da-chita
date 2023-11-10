@@ -1,20 +1,9 @@
-// EM ANDAMENTO
 "use client";
-import React, {
-  useEffect,
-  useState,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import Link from "next/link";
-import IconBagX from "@/assets/icons/IconBagX";
+
+import React, { useEffect, useState, useContext } from "react";
+
 import {
-  Card,
-  CardBody,
-  Image,
   Button,
-  Progress,
   RadioGroup,
   Radio,
   Input,
@@ -22,17 +11,15 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 
-import CardCart from "@/components/CardCart";
-import { Produto } from "@/lib/interface";
-import { UserContext } from "@/contexts/UserContext/UserContext";
-import { CartContext } from "@/contexts/CartContext/CartContext";
-import getProductDataCart from "@/database/products/getProductDataById";
 import { useRouter } from "next/navigation";
+
+import { CartContext } from "@/contexts/CartContext/CartContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
+import CardCart from "@/components/CardCart";
 import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
 
-export default function ShopCart(...props: any) {
+export default function ShopCart() {
   const router = useRouter();
 
   const { cart, setCart } = useContext(CartContext); // Array IDs produtos
@@ -48,6 +35,17 @@ export default function ShopCart(...props: any) {
     );
   }
 
+  // Validação Botão Calcular
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleCep();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && cep.length == 8) {
+      handleCep();
+    }
+  };
+
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     setCart(arrItens);
@@ -55,7 +53,8 @@ export default function ShopCart(...props: any) {
 
   return (
     <>
-      <div className="flex flex-col gap-3">
+      {/* Renderizar itens do carrinho */}
+      <div className="flex flex-col items-center">
         {!cart.length ? (
           <p>Seu carrinho está vazio</p>
         ) : (
@@ -72,6 +71,7 @@ export default function ShopCart(...props: any) {
           <strong>Modo de Envio</strong>
         </h2>
 
+        {/* Radio Group */}
         <div className="mt-2">
           <RadioGroup defaultValue={"combinar"}>
             <Radio
@@ -93,16 +93,20 @@ export default function ShopCart(...props: any) {
           </RadioGroup>
         </div>
 
+        {/* Cep */}
         <div className="flex mt-3">
-          <p className="text-sm mr-2">
-            <strong>Frete</strong>
+          <p className={`text-sm mr-2 ${!radioValue ? "text-gray-400" : ""}`}>
+            <strong>CEP</strong>
           </p>
           <Tooltip content="Somente números">
             <div>
-              <IconQuestionCircle />
+              <IconQuestionCircle
+                className={`${!radioValue ? "text-gray-400" : ""}`}
+              />
             </div>
           </Tooltip>
 
+          {/* Input CEP */}
           <Input
             maxLength={8}
             isClearable
@@ -112,24 +116,21 @@ export default function ShopCart(...props: any) {
             type="text"
             placeholder="Digite seu CEP"
             value={cep}
-            // onChange={(e) => {
-            //   setCep(e.target.value);
-            // }}
             onChange={(e) => {
               !/[^0-9]+/g.test(e.target.value) ? setCep(e.target.value) : "";
             }}
             onClear={() => setCep("")}
+            onKeyDown={handleKeyDown}
           />
         </div>
 
+        {/* Botão Calcular Frete */}
         <div className="mt-2 place-self-end">
           <Button
             color="success"
             variant="bordered"
             isDisabled={!radioValue || cep.length != 8}
-            //onPress={handleCep}
-            onPress={() => handleCep()}
-            //onKeyDown={handleCep}
+            onClick={handleClick}
           >
             Calcular
           </Button>
@@ -137,6 +138,7 @@ export default function ShopCart(...props: any) {
 
         <Divider className="mt-5" />
 
+        {/* Valor do Frete e Total */}
         <div className="mt-3 text-sm">
           <div className="flex justify-between">
             <p className="mt-2">
@@ -158,6 +160,7 @@ export default function ShopCart(...props: any) {
         </div>
       </div>
 
+      {/* Ir para Pagamento */}
       <div className="mt-5 place-self-center">
         <Button color="success" onPress={() => router.push("/your-data")}>
           Ir para Pagamento
