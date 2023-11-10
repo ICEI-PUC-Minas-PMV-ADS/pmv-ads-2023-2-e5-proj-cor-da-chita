@@ -5,27 +5,39 @@ import Link from "next/link";
 
 export default function Banner() {
   return (
-    <div className="relative h-screen bg-dark">
-      <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
+    <div className="relative h-screen bg-dark flex">
+      <div className="flex-1/2 relative overflow-hidden">
         <Image
           src="/Chita/IMG_6811 (1).png"
           alt="Cor da Chita"
           layout="fill"
           objectFit="cover"
-          style={{ opacity: 0.5 }} // Adjust the opacity directly on the Image component
+          style={{ opacity: 0.5, maxWidth: '100%' }}
+          className="responsive-image"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 p-20">
-          <div>
-            <h1 className="text-4xl text-white">
-              Arte com Chita & Cia para alegrar a vida o ano todo
-            </h1>
-            <p className="text-tiny text-white p-10 font-semibold">Por Madriana Nóbrega</p>
-            <Link href="/all-products">
-              <MyButton color="green">Ver todos os produtos</MyButton>
-            </Link>
-          </div>
+      </div>
+      <div className="flex flex-col items-center justify-center text-center z-10 p-20">
+        <div>
+          <h1 className="text-4xl text-white">
+            Arte com Chita & Cia para alegrar a vida o ano todo
+          </h1>
+          <p className="text-tiny text-white p-10 font-semibold">Por Madriana Nóbrega</p>
+          <Link href="/all-products">
+            <MyButton color="green">Ver todos os produtos</MyButton>
+          </Link>
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 640px) {
+          .flex {
+            flex-direction: column;
+          }
+          .responsive-image {
+            height: 100%;
+            width: 100%;
+          }
+        }
+      `}</style>
     </div>
   );
 }
