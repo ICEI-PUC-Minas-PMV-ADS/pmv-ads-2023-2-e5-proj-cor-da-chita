@@ -18,7 +18,7 @@ export default function Banner() {
       </div>
       <div className="flex flex-col items-center justify-center text-center z-10 p-20">
         <div>
-          <h1 className="text-4xl text-white">
+          <h1 className="text-4xl text-white font-serif">
             Arte com Chita & Cia para alegrar a vida o ano todo
           </h1>
           <p className="text-tiny text-white p-10 font-semibold">

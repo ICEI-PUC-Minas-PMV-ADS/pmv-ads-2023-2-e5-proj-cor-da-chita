@@ -9,7 +9,7 @@ export default function ProductLayout({
 }) {
   return (
     <main className="container mx-auto">
-      <section className="grid grid-cols-4 gap-3">
+      <section className="grid grid-cols-4 gap-5">
         {children}
         {/* <h1>ProductLayout AQUI</h1>s
       <p>Esse layout será para as telas que renderizam os cards de produtos</p>

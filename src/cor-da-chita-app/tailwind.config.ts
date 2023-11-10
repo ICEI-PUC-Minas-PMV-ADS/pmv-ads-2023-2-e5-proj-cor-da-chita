@@ -29,6 +29,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Roboto', 'Sans-serif'],
+        exo: ['Exo', 'Sans-serif'],
       },
       boxShadow: {
         DEFAULT: 'none',
@@ -42,6 +43,8 @@ const config: Config = {
     },
     fontFamily: {
       roboto: ['Roboto', 'sans-serif'],
+      open: ['Open Sans', 'sans-serif'],
+      serif: ['Merriweather', 'serif'],
     },
   },
   darkMode: "class",

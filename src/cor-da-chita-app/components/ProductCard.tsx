@@ -96,7 +96,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
         <div key={product._id}>
           <Card
             shadow="none"
-            className="flex-wrap"
+            className="flex-wrap font-open"
             isPressable
             onPress={() => handleClick(product)}
           >
@@ -106,10 +106,10 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                 className="object-cover w-52 h-48  "
                 src={product.imagem}
               />
-              <p className="p-3 text-tiny font-semibold">{product.nome}</p>
+              <p className="p-3  font-semibold">{product.nome}</p>
               <CardFooter>
                 <div className="flex justify-between items-end w-full"> 
-                  <p className="text-tiny">
+                  <p className="">
                     R$ {product.preco.toFixed(2)}
                   </p>
                   <Link

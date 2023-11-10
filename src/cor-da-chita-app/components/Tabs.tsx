@@ -32,7 +32,7 @@ export default function QuotesTabs() {
         {quotes.map((quoteData, index) => (
           <Tab key={index + 1} title={<SquareIcon />} className="flex flex-col items-center">
             <div className="flex-1 text-center p-2">
-              <blockquote className="text-2xl font-light tracking-wide italic p-4">
+              <blockquote className="text-2xl font-light tracking-wide italic p-4 font-serif">
                 {quoteData.quote}
               </blockquote>
               <p className="text-medium font-medium text-gray-500 p-2">— {quoteData.author}</p>
