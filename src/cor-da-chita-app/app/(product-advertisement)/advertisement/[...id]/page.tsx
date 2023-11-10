@@ -1,7 +1,8 @@
 // Tela do anúncio individual de um  produto
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { Button, Image } from "@nextui-org/react";
 import { Snackbar } from "@mui/material";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
@@ -18,6 +19,7 @@ export default function ProductAdvertisement() {
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
 
+  // Salva produto no local storage
   const handleStorageProductCart = (
     id: string,
     nome: string,
@@ -25,23 +27,25 @@ export default function ProductAdvertisement() {
   ) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    if (arrItens.includes(id)) {
+    // Verifica se o item já está no carrinho
+    const itemExistente = arrItens.find((item: any) => item.id === id);
+
+    if (itemExistente) {
       setMessageAlert("Este item já está no seu carrinho");
       setSeveridadeAlert("warning");
       setOpenSnackBar(true);
     } else {
-      // ALterado aqui
-      const item = {
+      const novoItem = {
         id: id,
         nome: nome,
         quantidade: quantidade,
       };
 
-      arrItens.push(item);
+      arrItens.push(novoItem);
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
-      setSeveridadeAlert("success");
 
+      setSeveridadeAlert("success");
       setMessageAlert(
         "O item " + nome + " foi adicionado no seu carrinho com sucesso!"
       );
@@ -59,6 +63,8 @@ export default function ProductAdvertisement() {
       >
         <ArrowLeft /> Retornar
       </button>
+
+      {/* Item */}
       <div className="flex gap-1 justify-center items-center p-4">
         <Image
           isZoomed

@@ -1,3 +1,4 @@
+// Card dos produtos dentro do carrinho
 import React, { useContext, useEffect, useState } from "react";
 
 import {
@@ -77,12 +78,11 @@ export default function CardCart({ ...props }: any) {
     setSumCartItems(sum);
   });
 
-  // Para pegar o ID do item a ser excluído do carrinho
+  // Pegar o ID do item a ser excluído do carrinho
   function handleJson(item: any) {
     const itemIdString: string = JSON.stringify(item);
     const itemObj: { id: string } = JSON.parse(itemIdString);
     const idDoObjeto: string = itemObj.id;
-    console.log(idDoObjeto);
 
     return idDoObjeto;
   }

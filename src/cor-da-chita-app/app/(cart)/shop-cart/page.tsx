@@ -1,3 +1,4 @@
+// Página com todas as informações do carrinho
 "use client";
 
 import React, { useEffect, useState, useContext } from "react";
@@ -29,6 +30,7 @@ export default function ShopCart() {
   const [radioValue, setRadioValue] = useState(false); // RadioButton
   const [cep, setCep] = useState(""); // Input CEP
 
+  // ------->  Programar a parte do FRETE
   function handleCep() {
     alert(
       "Calcular frete e somar no campo VALOR DO FRETE ou retornar aviso de frete incorreto ou inválido, conforme retorno da API do Frete"

@@ -12,7 +12,7 @@ export default function Banner() {
           alt="Cor da Chita"
           layout="fill"
           objectFit="cover"
-          style={{  maxWidth: '100%' }}
+          style={{ maxWidth: "100%" }}
           className="responsive-image"
         />
       </div>
@@ -21,7 +21,9 @@ export default function Banner() {
           <h1 className="text-4xl text-white">
             Arte com Chita & Cia para alegrar a vida o ano todo
           </h1>
-          <p className="text-tiny text-white p-10 font-semibold">Por Madriana Nóbrega</p>
+          <p className="text-tiny text-white p-10 font-semibold">
+            Por Madriana Nóbrega
+          </p>
           <Link href="/all-products">
             <MyButton color="green">Ver todos os produtos</MyButton>
           </Link>

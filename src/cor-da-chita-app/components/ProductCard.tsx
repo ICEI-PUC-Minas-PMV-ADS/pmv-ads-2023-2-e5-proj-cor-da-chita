@@ -34,6 +34,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     // handleSeeLc();
   });
 
+  // Salvando no context
   function handleClick(product: Produto) {
     console.log(product);
 
@@ -54,6 +55,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     route.push(`/advertisement/${product.slug.current}/${product._id}`);
   }
 
+  // Salva produto no local storage
   const handleStorageProductCart = (
     id: string,
     nome: string,
@@ -61,22 +63,25 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   ) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    if (arrItens.includes(id)) {
+    // Verifica se o item já está no carrinho
+    const itemExistente = arrItens.find((item: any) => item.id === id);
+
+    if (itemExistente) {
       setMessageAlert("Este item já está no seu carrinho");
       setSeveridadeAlert("warning");
       setOpenSnackBar(true);
     } else {
-      const item = {
+      const novoItem = {
         id: id,
         nome: nome,
         quantidade: quantidade,
       };
 
-      arrItens.push(item);
+      arrItens.push(novoItem);
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
-      setSeveridadeAlert("success");
 
+      setSeveridadeAlert("success");
       setMessageAlert(
         "O item " + nome + " foi adicionado no seu carrinho com sucesso!"
       );

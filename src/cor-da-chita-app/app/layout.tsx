@@ -7,6 +7,14 @@ import Footer from "../components/Footer";
 import { Providers } from "./api/providers/Providers";
 import Script from "next/script";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cor da Chita",
+  description: "Arte com Chita",
+  icons: "/favicon.ico",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -14,15 +22,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body  className="bg-light" suppressHydrationWarning={true}>
+      <body className="bg-light" suppressHydrationWarning={true}>
         <Providers>
-        <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-19VJCQS2H4`}
-      />
+          <Script
+            strategy="lazyOnload"
+            src={`https://www.googletagmanager.com/gtag/js?id=G-19VJCQS2H4`}
+          />
 
-      <Script strategy="lazyOnload" id="gtag-script">
-        {`
+          <Script strategy="lazyOnload" id="gtag-script">
+            {`
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
@@ -30,7 +38,7 @@ export default function RootLayout({
                     page_path: window.location.pathname,
                     });
                 `}
-      </Script>
+          </Script>
           <NavBar />
           <Menu />
           {children}

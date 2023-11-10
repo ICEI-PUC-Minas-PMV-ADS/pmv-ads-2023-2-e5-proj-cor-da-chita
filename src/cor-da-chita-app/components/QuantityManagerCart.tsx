@@ -1,58 +1,56 @@
-import React, { useContext, useState } from "react";
+// Controla a quantidade do item no carrinho dentro da page Shop-Cart
+import React, { useEffect, useState } from "react";
+
 import IconMinusSquare from "@/assets/icons/IconMinusSquare";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
-import ButtonOnlyIcon from "./ui/ButtonOnlyIcon";
-import { Tooltip } from "@nextui-org/react";
-import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
-import { CartContext } from "@/contexts/CartContext/CartContext";
 
 export default function QuantityManagerCart({ ...props }: any) {
-  const [quantidade, setQuantidade] = useState<number>(1);
+  const [quantidade, setQuantidade] = useState<number>(0);
 
-  // Contexto do Carrinho
-  const { cartItems } = useContext(CartItemsContext);
+  // Atualiza a quantidade com os dados vindo do local storage
+  useEffect(() => {
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-  // Context para uso no LocalStorage
-  const { cart, setCart } = useContext(CartContext);
+    const item = arrItens.find((item: any) => item.id === props.id);
 
-  // TERMINAR
-  function handleJson(item: any) {
-    const quantidadeString: string = JSON.stringify(item);
-    const itemObj: { quantidade: string } = JSON.parse(quantidadeString);
-    const quantidadeDoObjeto: string = itemObj.quantidade;
-    console.log(quantidadeDoObjeto);
+    if (item) {
+      setQuantidade(item.quantidade);
+    }
+  }, [props.id]);
 
-    return quantidadeDoObjeto;
-  }
-
+  // Soma quantidade do item no carrinho
   const handleIncreaseQuantity = () => {
-    // Encontra o item
-    const item = cartItems.filter((itemId) => itemId._id == props.id);
-    //console.log(item);
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    // CONTINUAR AQUI - ATUALIZAR O LOCALSTORAGE
-    //const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    // Index no local storage
+    const indexItem = arrItens.findIndex((item: any) => item.id === props.id);
 
-    // Muda a quantidade
-    item.forEach(() => {
-      item[0].quantidade += 1;
-      console.log(item[0].quantidade);
-    });
+    // Se o item está no carrinho
+    if (indexItem !== -1) {
+      arrItens[indexItem].quantidade += 1;
 
-    //Depois definir regra para colocar definir um valor máximo por pedido,ou não deixar escoolher mais que a quantidade disponível
-    setQuantidade(quantidade + 1);
+      localStorage.setItem("cartItens", JSON.stringify(arrItens));
+
+      setQuantidade(arrItens[indexItem].quantidade);
+    }
   };
+
+  // Diminuiu a quantidade do item no carrinho
   const handleDecreaseQuantity = () => {
-    const item = cartItems.filter((itemId) => itemId._id == props.id);
-    console.log(item);
-    if (quantidade == 1) {
-      setQuantidade(1);
-    } else {
-      item.forEach(() => {
-        item[0].quantidade -= 1;
-        console.log(item[0].quantidade);
-      });
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+
+    // Index no local storage
+    const indexItem = arrItens.findIndex((item: any) => item.id === props.id);
+
+    // Se o item está no carrinho e a quantidade é maior que 1
+    if (indexItem !== -1 && arrItens[indexItem].quantidade > 1) {
+      arrItens[indexItem].quantidade -= 1;
+
+      localStorage.setItem("cartItens", JSON.stringify(arrItens));
+
       setQuantidade(quantidade - 1);
+    } else {
+      setQuantidade(1);
     }
   };
 

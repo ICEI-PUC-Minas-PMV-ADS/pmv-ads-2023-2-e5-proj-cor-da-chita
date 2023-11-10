@@ -1,5 +1,6 @@
-// Tela pós landing page que mostra todos os produtos, os produtos baseado nos filtros do Menu ou na barra de busca
+// Tela que renderiza os cards de produtos
 "use client";
+
 import React, {
   Dispatch,
   SetStateAction,

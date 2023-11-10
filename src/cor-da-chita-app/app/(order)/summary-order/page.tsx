@@ -1,13 +1,15 @@
-// Dados do pedido na finalização da compra
+// Resumo do pedido
 "use client";
+
 import React, { useContext } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
+import postOrder from "@/database/order/postOrder";
+
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
-import postOrder from "@/database/order/postOrder";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export default function SummaryOrder() {
@@ -15,9 +17,9 @@ export default function SummaryOrder() {
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
-  const { cartItems, sumCartItems, quantityCartItems } =
-    useContext(CartItemsContext);
+  const { cartItems, sumCartItems } = useContext(CartItemsContext);
 
+  // Enviar pedido
   function handleOrder() {
     // Somando dados da cubagem do pedido
     const totalWithFreightSum = cartItems.reduce(
@@ -46,15 +48,15 @@ export default function SummaryOrder() {
         productName: string;
         productPrice: number;
       }>,
-      userName: user.name,
-      userEmail: user.email,
-      street: address.street,
-      neighborhood: address.neighborhood,
-      num: address.num,
-      city: address.city,
-      uf: address.uf,
-      cep: address.cep,
-      complement: address.complement,
+      userName: user.name.trim(),
+      userEmail: user.email.trim(),
+      street: address.street.trim(),
+      neighborhood: address.neighborhood.trim(),
+      num: address.num.trim(),
+      city: address.city.trim(),
+      uf: address.uf.trim(),
+      cep: address.cep.trim(),
+      complement: address.complement.trim(),
       freight: {
         totalWithFreight: totalWithFreightSum,
         totalHeightFreight: totalHeightFreight,
@@ -67,16 +69,11 @@ export default function SummaryOrder() {
       phoneNumber: user.phone,
     };
 
-    const quantityString = quantityCartItems.toString();
-    for (const char of quantityString) {
-      console.log(char);
-    }
-
     // Itens do Pedido
     cartItems.forEach((item) => {
       const newItem = {
-        productId: item._id,
-        productName: item.nome,
+        productId: item._id.trim(),
+        productName: item.nome.trim(),
         productPrice: item.preco,
       };
 
@@ -98,6 +95,7 @@ export default function SummaryOrder() {
         <strong>Resumo do Pedido</strong>
       </h2>
 
+      {/* Items do pedido */}
       <div className="my-5">
         {cartItems?.map((item, index) => (
           <div key={index} className="flex justify-between">
@@ -109,6 +107,7 @@ export default function SummaryOrder() {
         ))}
       </div>
 
+      {/* Totais */}
       <div className="mb-5">
         <div>
           <div className="flex justify-between ">
@@ -153,6 +152,7 @@ export default function SummaryOrder() {
 
       <Divider />
 
+      {/* Dados de Envio */}
       <div className="my-5">
         <h2 className="mb-2">
           <strong>Dados de Envio</strong>
@@ -180,6 +180,7 @@ export default function SummaryOrder() {
 
       <Divider />
 
+      {/* Dados do Cliente */}
       <div className="my-5">
         <h2 className="mb-2">
           <strong>Seus Dados</strong>
@@ -205,6 +206,7 @@ export default function SummaryOrder() {
 
       <Divider />
 
+      {/* Pagamento */}
       <div className="flex flex-col gap-3 my-5">
         <h2 className="mb-2">
           <strong>Modo de Pagamento</strong>
@@ -227,11 +229,11 @@ export default function SummaryOrder() {
         >
           Pagar com <strong>Cartão de Crédito</strong>
         </Button>
-
-        <Button color="primary" onClick={handleOrder}>
-          Botao para Teste API
-        </Button>
       </div>
+
+      <Button color="primary" onClick={handleOrder}>
+        Botao para Teste API
+      </Button>
     </section>
   );
 }
