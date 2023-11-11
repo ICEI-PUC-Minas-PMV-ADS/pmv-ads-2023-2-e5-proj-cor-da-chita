@@ -54,9 +54,9 @@ namespace cor_da_chita_api.Controllers
             try
             {
 
-                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
-
-               /* string url = $"{urlApi}/33010515/78005020/1000/20/20/20/775ba44c848ce5696094a3b35815bcff01b39d46";*/
+/*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
+*/
+                string url = $"{urlApi}/33010515/78005020/1000/20/20/20/775ba44c848ce5696094a3b35815bcff01b39d46";
 
 
             var a = await _httpClient.GetStringAsync(url);

@@ -68,7 +68,7 @@ namespace cor_da_chita_api
             var dictionary = orderDetails.Items.GroupBy(i => i.ProductId)
                         .ToDictionary(x => x.Key, i => i.ToList());
 
-            decimal subTotal = 0;
+            decimal? subTotal = 0;
 
             foreach (var item in dictionary)
             {
