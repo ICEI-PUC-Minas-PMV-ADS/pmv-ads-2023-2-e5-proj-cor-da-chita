@@ -3,7 +3,7 @@
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { Button, Image } from "@nextui-org/react";
+import { Button, Image, Link } from "@nextui-org/react";
 import { Snackbar } from "@mui/material";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
 
@@ -56,13 +56,14 @@ export default function ProductAdvertisement() {
 
   return (
     <>
-      <button
-        type="button"
-        className="flex gap-3 p-2"
+      <Link
+        size="sm"
+        as="button"
+        className="p-4 m-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
         onClick={() => route.back()}
       >
         <ArrowLeft /> Retornar
-      </button>
+      </Link>
 
       {/* Item */}
       <div className="flex gap-1 justify-center items-center p-4">
