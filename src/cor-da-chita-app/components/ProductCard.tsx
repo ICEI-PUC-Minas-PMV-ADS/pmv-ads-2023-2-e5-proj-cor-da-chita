@@ -98,42 +98,43 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
         onMouseEnter={() => setHoveredProductId(product._id)}
         onMouseLeave={() => setHoveredProductId(null)}>
           <Card
-            className="flex-wrap font-open border bg-light"
+            className="flex-wrap font-open border"
             isPressable
-            shadow="sm"
+            shadow="none"
             onPress={() => handleClick(product)}
-            style={{ width: '380px', height: '440px' }}
+            style={{ width: '380px', height: '480px' }}
           >
-            <CardBody className="flex flex-col overflow-hidden p-4 relative">
-  <div
-    className="image-container relative"
-    style={{
-      height: '320px',
-      width: '100%',
-      overflow: 'hidden',
-    }}
-  >
-      <Image
-            removeWrapper
-            alt="Card background"
-            className={`z-0 w-full h-full object-cover transition-transform ${
-              hoveredProductId === product._id ? "hover:scale-125 hover:blur" : ""
-            }`}
-            src={product.imagem}
-          />
-         {hoveredProductId === product._id && (
-            <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
-              <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
-              <p className="text-small">{`Peso: ${product.peso} kg`}</p>
-              <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
+            <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
+              <div
+                className="image-container relative"
+                style={{
+                  height: '400px',
+                  width: '100%',
+                  overflow: 'hidden',
+                }}
+              >
+                <Image
+                      removeWrapper
+                      alt="Card background"
+                      className={`z-0 w-full h-full object-cover transition-transform ${
+                        hoveredProductId === product._id ? "hover:scale-125 hover:blur" : ""
+                      }`}
+                      src={product.imagem}
+                    />
+                  {hoveredProductId === product._id && (
+                      <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
+                        <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
+                        <p className="text-small">{`Peso: ${product.peso} kg`}</p>
+                        <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
+                      </div>
+                    )}
             </div>
-          )}
-  </div>
-
-              <p className="font-semibold px-3 pt-5">{product.nome}</p>
-              <CardFooter className="mt-auto">
-                <div className="flex justify-between items-end w-full">
-                  <p className="">R$ {product.preco.toFixed(2)}</p>
+              <CardFooter className="">
+                <div className="flex justify-between w-full">
+                  <div>
+                    <p className="">{product.nome}</p>
+                    <p className="font-semibold">R$ {product.preco.toFixed(2)}</p>
+                  </div>
                   <Link
                     className=""
                     onClick={() =>
