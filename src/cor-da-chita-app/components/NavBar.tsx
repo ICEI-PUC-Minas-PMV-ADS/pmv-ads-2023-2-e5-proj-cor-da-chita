@@ -18,6 +18,7 @@ import {
   DropdownMenu,
   Avatar,
   Button,
+  NavbarItem,
 } from "@nextui-org/react";
 
 import { CorChitaFlor } from "./logo/CorChitaFlor";
@@ -39,17 +40,19 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar shouldHideOnScroll className="bg-light px-0 w-full">
-      <NavbarBrand onClick={handleClick} className="bg-light p-0">
+    <Navbar shouldHideOnScroll maxWidth="full" isBordered className="bg-light flex justify-between">
+       <div className="flex items-center">
+       <NavbarBrand onClick={handleClick} className="bg-light ">
         <CorChitaFlor />
-        {/* <CorChitaTexto /> */}
+        <CorChitaTexto />
       </NavbarBrand>
-
+       </div> 
+       <div className="flex items-center">
       <NavbarContent>
-        <SearchInput />
-
+         <SearchInput/>
+        <NavbarItem>
         {session && session.user ? (
-          <Dropdown placement="bottom-end" className="p-0 rounded-md shadow-none">
+          <Dropdown className="p-0 rounded-md shadow-none">
             <DropdownTrigger>
               <Avatar
                 as="button"
@@ -86,7 +89,9 @@ export default function NavBar() {
             Entrar
           </Button>
         )}
+        </NavbarItem>
       </NavbarContent>
+      </div>
     </Navbar>
   );
 }

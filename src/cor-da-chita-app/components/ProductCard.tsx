@@ -98,7 +98,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
         onMouseEnter={() => setHoveredProductId(product._id)}
         onMouseLeave={() => setHoveredProductId(null)}>
           <Card
-            className="flex-wrap font-open border"
+            className="flex-wrap font-open border bg-light"
             isPressable
             shadow="none"
             onPress={() => handleClick(product)}
