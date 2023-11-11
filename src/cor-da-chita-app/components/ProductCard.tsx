@@ -59,8 +59,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   const handleStorageProductCart = (
     id: string,
     nome: string,
-    quantidade: number,
-    preco: number
+    quantidade: number
   ) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
@@ -76,7 +75,6 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
         id: id,
         nome: nome,
         quantidade: quantidade,
-        preco: preco.toFixed(2),
       };
 
       arrItens.push(novoItem);
@@ -123,8 +121,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                   handleStorageProductCart(
                     product._id,
                     product.nome,
-                    product.quantidade,
-                    product.preco
+                    product.quantidade
                   )
                 }
               >
