@@ -2,6 +2,7 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { MyButton } from "@/components/ui/Button";
 
 import { Button, Image, Link } from "@nextui-org/react";
 import { Snackbar } from "@mui/material";
@@ -66,11 +67,11 @@ export default function ProductAdvertisement() {
       </Link>
 
       {/* Item */}
-    <div className="flex  justify-between font-open border bg-light">
-      <div  className="bg-dark"
+    <div className="flex  justify-between font-open border bg-dark">
+      <div  className="bg-dark flex-1"
                 style={{
-                  height: '600px',
-                  width: '720px',
+                  height: '700px',
+                  width: '920px',
                   overflow: 'hidden',
       }}>
         <Image
@@ -83,17 +84,19 @@ export default function ProductAdvertisement() {
         />
       </div>
                 
-      <div className="p-10">
-          <p className="text-lg">{product.name}</p>
-          <p className="text-sm">{product.description}</p>
-          <p className="text-tiny mt-4 text-gray-500">
-            {product.lengthProduct} cm x {product.widthProduct} cm
-          </p>
-
-          <Button
-            className="mt-8 "
-            color="success"
-            size="md"
+      <div className="items-center border p-20 bg-light flex-0"  style={{
+                  width: '400px',
+                  overflow: 'hidden',
+      }}>
+        <div>
+        <p className="text-3xl py-5">{product.name}</p>
+          <p className="text-lg">{product.description}</p>
+          <p className="text-tiny">
+            {product.lengthProduct}x{product.widthProduct}cm
+        </p>
+        </div>
+        <div className="pt-20">
+        <MyButton color="green"
             onClick={() =>
               handleStorageProductCart(
                 product.id,
@@ -103,7 +106,9 @@ export default function ProductAdvertisement() {
             }
           >
             Adicionar ao Carrinho
-          </Button>
+          </MyButton>
+
+        </div>
       </div>
      </div>
 
