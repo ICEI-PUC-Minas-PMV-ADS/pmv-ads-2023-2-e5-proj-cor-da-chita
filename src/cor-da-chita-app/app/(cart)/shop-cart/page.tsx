@@ -31,7 +31,7 @@ export default function ShopCart() {
   // Frete e CEP
   const [radioValue, setRadioValue] = useState(false); // RadioButton
   const [cep, setCep] = useState(""); // Input CEP
-  const [frete,setFrete] = useState()
+  const [frete,setFrete] = useState<any>()
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
 const handleCep = async()=>{
@@ -42,10 +42,9 @@ const handleCep = async()=>{
     totalHeightFreight: 20,
     totalLengthFreight: 30,
     totalWeightFreight: 800,
-
-
     
   };
+
 
 
 const res = await axios.post(`${url}/Freight/CalcFreight`,frete).then(r=>{
@@ -53,6 +52,7 @@ const res = await axios.post(`${url}/Freight/CalcFreight`,frete).then(r=>{
 }).catch(e=>console.log(e))
 
 console.log(res)
+setFrete(res)
 
 }
   // Validação Botão Calcular
@@ -166,20 +166,34 @@ console.log(res)
             </p>
             
           </div>
-          <div className="flex justify-between">
+          {frete != undefined &&(
+            <>
+ <div className="flex justify-between">
             
-            <p className="mt-2">
-              <strong>Valor Pac:</strong>
-            </p>
+ <p className="mt-2">
+   <strong>Valor Pac:R$ {frete.valorPac.toFixed(2)}</strong>
+ </p>
+ <p className="mt-2">
+   <strong>Prazo: {frete.prazoPac} Dias</strong>
+ </p>
+ 
+</div>
+<div className="flex justify-between">
+ 
+ <p className="mt-2">
+   <strong>Valor Sedex:R$ {frete.valorSedex.toFixed(2)}</strong>
+ </p>
+ 
+ <p className="mt-2">
+   <strong>Prazo: {frete.prazoSedex} Dias</strong>
+ </p>
+ 
+</div>
+</>
+          )
             
-          </div>
-          <div className="flex justify-between">
-            
-            <p className="mt-2">
-              <strong>Valor Sedex:</strong>
-            </p>
-            
-          </div>
+          }
+         
 
           <div className="flex justify-between">
             <p className="mt-2">

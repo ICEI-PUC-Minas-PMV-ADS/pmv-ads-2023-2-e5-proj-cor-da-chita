@@ -80,19 +80,19 @@ export default function CardCart({ ...props }: any) {
 
   // ERRO AQUI
   // Soma preço conforme a quantidade: para o total do carrinho
-  // useEffect(() => {
-  //   const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+  useEffect(() => {
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-  //   item?.map((item) => console.log(item.preco));
+    item?.map((item) => console.log(item.preco));
 
-  //   const sumQuantityItems = arrItens.reduce(
-  //     (total: number, item: any) => total + item.quantidade,
-  //     0
-  //   );
+    const sumQuantityItems = arrItens.reduce(
+      (total: number, item: any) => total + item.quantidade,
+      0
+    );
 
-  //   console.log(sumQuantityItems);
-  //   //console.log(sumPriceItems);
-  // }, [props.id, quantityCart]);
+    console.log(sumQuantityItems);
+    //console.log(sumPriceItems);
+  }, [props.id, quantityCart]);
 
   // Pegar o ID do item a ser excluído do carrinho
   function handleJson(item: any) {
