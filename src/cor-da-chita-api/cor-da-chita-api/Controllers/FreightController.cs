@@ -47,9 +47,9 @@ namespace cor_da_chita_api.Controllers
         [ProducesResponseType((int)HttpStatusCode.Forbidden)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
 
-        [HttpPost("getFreight")]
+        [HttpPost("CalcFreight")]
 
-        public async Task<ActionResult<FreightDeserialize>> GetFrete(OrderDto model)
+        public async Task<ActionResult<FreightDeserialize>> CalcFrete(OrderDto model)
         {
             try
             {

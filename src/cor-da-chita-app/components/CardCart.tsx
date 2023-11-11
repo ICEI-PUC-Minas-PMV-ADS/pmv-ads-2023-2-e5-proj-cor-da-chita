@@ -30,7 +30,7 @@ export default function CardCart({ ...props }: any) {
   const { cart, setCart } = useContext(CartContext);
 
   // Salvar no context todos itens do carrinho
-  const { cartItems, setCartItems, setSumCartItems } =
+  const { setCartItems, setSumCartItems, quantityCart } =
     useContext(CartItemsContext);
 
   // Render itens
@@ -72,11 +72,17 @@ export default function CardCart({ ...props }: any) {
     }
   }, [setCartItems, cart]);
 
-  // Soma do valor total dos itens do carrinho
+  // Soma preço conforme a quantidade: para o total do carrinho
   useEffect(() => {
-    const sum = cartItems.reduce((total, item) => total + item.preco, 0);
-    setSumCartItems(sum);
-  });
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+
+    const sum = arrItens.reduce(
+      (total: number, item: any) => total + item.preco * item.quantidade,
+      0
+    );
+
+    setSumCartItems(parseFloat(sum));
+  }, [props.id, quantityCart]);
 
   // Pegar o ID do item a ser excluído do carrinho
   function handleJson(item: any) {

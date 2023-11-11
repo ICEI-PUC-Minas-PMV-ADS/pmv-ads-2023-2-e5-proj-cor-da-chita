@@ -1,10 +1,12 @@
 // Controla a quantidade do item no carrinho dentro da page Shop-Cart
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import IconMinusSquare from "@/assets/icons/IconMinusSquare";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export default function QuantityManagerCart({ ...props }: any) {
+  const { setQuantityCart } = useContext(CartItemsContext);
   const [quantidade, setQuantidade] = useState<number>(0);
 
   // Atualiza a quantidade com os dados vindo do local storage
@@ -31,6 +33,9 @@ export default function QuantityManagerCart({ ...props }: any) {
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
+      // Pega a mudança de quantidade para mudar a soma do total no CardCart
+      setQuantityCart(arrItens[indexItem].quantidade);
+
       setQuantidade(arrItens[indexItem].quantidade);
     }
   };
@@ -47,6 +52,9 @@ export default function QuantityManagerCart({ ...props }: any) {
       arrItens[indexItem].quantidade -= 1;
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
+
+      // Pega a mudança de quantidade para mudar a soma do total no CardCart
+      setQuantityCart(arrItens[indexItem].quantidade);
 
       setQuantidade(quantidade - 1);
     } else {

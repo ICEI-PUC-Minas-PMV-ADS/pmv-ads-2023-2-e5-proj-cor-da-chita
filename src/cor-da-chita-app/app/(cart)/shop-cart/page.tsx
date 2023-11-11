@@ -15,11 +15,13 @@ import {
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { CartContext } from "@/contexts/CartContext/CartContext";
-import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
+
 import { url } from "@/app/api/backend/webApiUrl";
 import CardCart from "@/components/CardCart";
 import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
-
+import { AddressContext } from "@/contexts/AddressContext/AddressContext";
+import { UserContext } from "@/contexts/UserContext/UserContext";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 export default function ShopCart() {
   const router = useRouter();
 
@@ -30,39 +32,27 @@ export default function ShopCart() {
   const [radioValue, setRadioValue] = useState(false); // RadioButton
   const [cep, setCep] = useState(""); // Input CEP
   const [frete,setFrete] = useState()
+  const user = useContext(UserContext);
+  const address = useContext(AddressContext);
+const handleCep = async()=>{
 
-const HandleCep = async()=>{
+  const frete = {
+    cep:cep,
+    totalWidthFreight: 20,
+    totalHeightFreight: 20,
+    totalLengthFreight: 30,
+    totalWeightFreight: 800,
 
-  const order = {
-    items: [] as Array<{
-      productId: string;
-      productName: string;
-      productPrice: number;
-    }>,
-    userName: user.name.trim(),
-    userEmail: user.email.trim(),
-    street: address.street.trim(),
-    neighborhood: address.neighborhood.trim(),
-    num: address.num.trim(),
-    city: address.city.trim(),
-    uf: address.uf.trim(),
-    cep: address.cep.trim(),
-    complement: address.complement.trim(),
-    freight: {
-      totalWithFreight: totalWithFreightSum,
-      totalHeightFreight: totalHeightFreight,
-      totalLengthFreight: totalLengthFreight,
-      totalWheightFreight: totalWheightFreight,
-      freightValue: 0,
-    },
-    orderPixId: 5555513245,
-    orderDate: new Date(),
-    phoneNumber: user.phone,
+
+    
   };
 
 
-const res = await axios.post(`${url}/Freight/CalcFreight`,)
+const res = await axios.post(`${url}/Freight/CalcFreight`,frete).then(r=>{
+  return r.data
+}).catch(e=>console.log(e))
 
+console.log(res)
 
 }
   // Validação Botão Calcular
@@ -160,7 +150,7 @@ const res = await axios.post(`${url}/Freight/CalcFreight`,)
             color="success"
             variant="bordered"
             isDisabled={!radioValue || cep.length != 8}
-            onClick={handleClick}
+            onClick={handleCep}
           >
             Calcular
           </Button>
@@ -180,6 +170,13 @@ const res = await axios.post(`${url}/Freight/CalcFreight`,)
             
             <p className="mt-2">
               <strong>Valor Pac:</strong>
+            </p>
+            
+          </div>
+          <div className="flex justify-between">
+            
+            <p className="mt-2">
+              <strong>Valor Sedex:</strong>
             </p>
             
           </div>

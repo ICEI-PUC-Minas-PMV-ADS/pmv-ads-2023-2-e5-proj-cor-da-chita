@@ -16,6 +16,8 @@ type CartItemsContextType = {
   setCartItems: Dispatch<SetStateAction<any>>;
   sumCartItems: number;
   setSumCartItems: Dispatch<SetStateAction<number>>;
+  quantityCart: number;
+  setQuantityCart: Dispatch<SetStateAction<number>>;
 };
 
 const initialValue = {
@@ -23,6 +25,8 @@ const initialValue = {
   setCartItems: () => {},
   sumCartItems: 0,
   setSumCartItems: () => {},
+  quantityCart: 0,
+  setQuantityCart: () => {},
 };
 
 export const CartItemsContext =
@@ -33,10 +37,18 @@ export default function CartIdContextProvider({
 }: CartItemsContextProps) {
   const [cartItems, setCartItems] = useState(initialValue.cartItems);
   const [sumCartItems, setSumCartItems] = useState(initialValue.sumCartItems);
+  const [quantityCart, setQuantityCart] = useState(initialValue.quantityCart);
 
   return (
     <CartItemsContext.Provider
-      value={{ cartItems, setCartItems, sumCartItems, setSumCartItems }}
+      value={{
+        cartItems,
+        setCartItems,
+        sumCartItems,
+        setSumCartItems,
+        quantityCart,
+        setQuantityCart,
+      }}
     >
       {children}
     </CartItemsContext.Provider>
