@@ -60,7 +60,7 @@ export default function ProductAdvertisement() {
       <Link
         size="sm"
         as="button"
-        className="p-4 m-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
         onClick={() => route.back()}
       >
         <ArrowLeft /> Retornar
