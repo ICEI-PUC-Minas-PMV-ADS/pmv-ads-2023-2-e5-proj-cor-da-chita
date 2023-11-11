@@ -13,10 +13,10 @@ import {
 } from "@nextui-org/react";
 
 import { useRouter } from "next/navigation";
-
+import axios from "axios";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
-
+import { url } from "@/app/api/backend/webApiUrl";
 import CardCart from "@/components/CardCart";
 import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
 
@@ -29,14 +29,42 @@ export default function ShopCart() {
   // Frete e CEP
   const [radioValue, setRadioValue] = useState(false); // RadioButton
   const [cep, setCep] = useState(""); // Input CEP
+  const [frete,setFrete] = useState()
 
-  // ------->  Programar a parte do FRETE
-  function handleCep() {
-    alert(
-      "Calcular frete e somar no campo VALOR DO FRETE ou retornar aviso de frete incorreto ou inválido, conforme retorno da API do Frete"
-    );
-  }
+const HandleCep = async()=>{
 
+  const order = {
+    items: [] as Array<{
+      productId: string;
+      productName: string;
+      productPrice: number;
+    }>,
+    userName: user.name.trim(),
+    userEmail: user.email.trim(),
+    street: address.street.trim(),
+    neighborhood: address.neighborhood.trim(),
+    num: address.num.trim(),
+    city: address.city.trim(),
+    uf: address.uf.trim(),
+    cep: address.cep.trim(),
+    complement: address.complement.trim(),
+    freight: {
+      totalWithFreight: totalWithFreightSum,
+      totalHeightFreight: totalHeightFreight,
+      totalLengthFreight: totalLengthFreight,
+      totalWheightFreight: totalWheightFreight,
+      freightValue: 0,
+    },
+    orderPixId: 5555513245,
+    orderDate: new Date(),
+    phoneNumber: user.phone,
+  };
+
+
+const res = await axios.post(`${url}/Freight/CalcFreight`,)
+
+
+}
   // Validação Botão Calcular
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     handleCep();
@@ -146,9 +174,14 @@ export default function ShopCart() {
             <p className="mt-2">
               <strong>Valor do Frete</strong>
             </p>
+            
+          </div>
+          <div className="flex justify-between">
+            
             <p className="mt-2">
-              <strong>R$ 0,00</strong>
+              <strong>Valor Pac:</strong>
             </p>
+            
           </div>
 
           <div className="flex justify-between">

@@ -24,8 +24,8 @@ namespace cor_da_chita_api.Controllers
         /// <summary>
         /// Post email
         /// </summary>
-        /// <param name="id">Id</param>
-        /// <returns>The paymnet client Entity</returns>
+        /// <param name="id">Email Request</param>
+        /// <returns>Status Code</returns>
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -36,7 +36,7 @@ namespace cor_da_chita_api.Controllers
         {
             try
             {
-                _emailService.SendEmail(request);
+                 _emailService.SendEmail(request);
                 return Ok();
             }
             catch
