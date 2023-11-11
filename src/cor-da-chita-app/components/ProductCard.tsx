@@ -28,10 +28,10 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   const productAds = useContext(ProductContext);
   const [productData, setProductData] = useState<Produto[] | undefined>([]);
 
+  // Salva itens no productData para renderização
   useEffect(() => {
     setProductData(product.data);
     console.log(productData);
-    // handleSeeLc();
   });
 
   // Salvando no context
@@ -59,7 +59,8 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   const handleStorageProductCart = (
     id: string,
     nome: string,
-    quantidade: number
+    quantidade: number,
+    preco: number
   ) => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
@@ -75,6 +76,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
         id: id,
         nome: nome,
         quantidade: quantidade,
+        preco: preco.toFixed(2),
       };
 
       arrItens.push(novoItem);
@@ -94,6 +96,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
     <>
       {productData?.map((product) => (
         <div key={product._id} className="ml-20">
+          {/* Card itens */}
           <Card
             className="ml-5  flex-wrap m-5 w-60  "
             isPressable
@@ -120,7 +123,8 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                   handleStorageProductCart(
                     product._id,
                     product.nome,
-                    product.quantidade
+                    product.quantidade,
+                    product.preco
                   )
                 }
               >
@@ -131,6 +135,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </div>
           </Card>
 
+          {/* SnackBar */}
           <div className=" m-auto ">
             <Snackbar
               open={openSnackBar}
