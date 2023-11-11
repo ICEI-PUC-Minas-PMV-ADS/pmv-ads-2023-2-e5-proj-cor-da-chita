@@ -66,16 +66,23 @@ export default function ProductAdvertisement() {
       </Link>
 
       {/* Item */}
-      <div className="flex gap-1 justify-center items-center p-4">
+    <div className="flex  justify-between font-open border bg-light">
+      <div  className="bg-dark"
+                style={{
+                  height: '600px',
+                  width: '720px',
+                  overflow: 'hidden',
+      }}>
         <Image
           isZoomed
+          layout="fill"
           alt="Foto do Produto"
-          className="object-cover rounded-xl mr-"
+          className="object-cover h-full w-full" 
           src={product.imageProduct}
-          width={300}
-          height={300}
         />
-        <div className="p-10">
+      </div>
+                
+      <div className="p-10">
           <p className="text-lg">{product.name}</p>
           <p className="text-sm">{product.description}</p>
           <p className="text-tiny mt-4 text-gray-500">
@@ -96,8 +103,8 @@ export default function ProductAdvertisement() {
           >
             Adicionar ao Carrinho
           </Button>
-        </div>
       </div>
+     </div>
 
       {/* Snack Bar */}
       <div className=" m-auto ">
