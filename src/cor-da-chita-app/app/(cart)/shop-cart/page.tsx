@@ -30,6 +30,8 @@ export default function ShopCart() {
 
   // Frete e CEP
   const [radioValue, setRadioValue] = useState(false); // RadioButton
+  const [radiofreteChoose, setRadioFreteChoose] = useState("PAC"); // RadioButton
+
   const [cep, setCep] = useState(""); // Input CEP
   const [frete,setFrete] = useState<any>()
   const user = useContext(UserContext);
@@ -169,26 +171,46 @@ setFrete(res)
           {frete != undefined &&(
             <>
  <div className="flex justify-between">
-            
- <p className="mt-2">
+
+ <RadioGroup defaultValue={"PAC"}>
+            <Radio
+              size="sm"
+              value="PAC"
+              onClick={() => {
+                setRadioFreteChoose("PAC");
+              }}
+            >
+              <p className="mt-2">
    <strong>Valor Pac:R$ {frete.valorPac.toFixed(2)}</strong>
  </p>
  <p className="mt-2">
    <strong>Prazo: {frete.prazoPac} Dias</strong>
  </p>
+            </Radio>
+            <Radio
+              size="sm"
+              value="SEDEX"
+              onClick={() => setRadioFreteChoose("SEDEX")}
+            >
+           
+
+              
+<p className="mt-2">
+  <strong>Valor Sedex:R$ {frete.valorSedex.toFixed(2)}</strong>
+</p>
+
+          
+<p className="mt-2">
+  <strong>Prazo: {frete.prazoSedex} Dias</strong>
+</p>
+
+
+            </Radio>
+          </RadioGroup>     
+ 
  
 </div>
-<div className="flex justify-between">
- 
- <p className="mt-2">
-   <strong>Valor Sedex:R$ {frete.valorSedex.toFixed(2)}</strong>
- </p>
- 
- <p className="mt-2">
-   <strong>Prazo: {frete.prazoSedex} Dias</strong>
- </p>
- 
-</div>
+
 </>
           )
             

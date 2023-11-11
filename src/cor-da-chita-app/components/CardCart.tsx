@@ -54,8 +54,7 @@ export default function CardCart({ ...props }: any) {
       const data = (await getProductDataById(props.id)) as Produto[];
       setItem(data);
 
-      if (data) setLoading(true);
-
+  
       return data;
     };
 
@@ -80,9 +79,11 @@ export default function CardCart({ ...props }: any) {
 
   // ERRO AQUI
   // Soma preço conforme a quantidade: para o total do carrinho
+
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
+    console.log(arrItens)
     item?.map((item) => console.log(item.preco));
 
     const sumQuantityItems = arrItens.reduce(
