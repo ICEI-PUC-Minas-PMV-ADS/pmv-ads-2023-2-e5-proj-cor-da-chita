@@ -45,7 +45,6 @@ const config: Config = {
       roboto: ['Roboto', 'sans-serif'],
       open: ['Open Sans', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
-      logo: ['Bagel Fat One', 'sans-serif']
     },
   },
   darkMode: "class",
