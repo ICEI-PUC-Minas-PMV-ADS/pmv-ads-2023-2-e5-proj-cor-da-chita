@@ -24,13 +24,15 @@ import getProductDataById from "@/database/products/getProductDataById";
 
 import IconCartX from "@/assets/icons/IconCartX";
 import QuantityManagerCart from "./QuantityManagerCart";
+import { compress } from "@/next.config";
+import { COMPILER_NAMES } from "next/dist/shared/lib/constants";
 
 export default function CardCart({ ...props }: any) {
   // Pegar os Ids dos itens do carrinho da page
   const { cart, setCart } = useContext(CartContext);
 
   // Salvar no context todos itens do carrinho
-  const { setCartItems, setSumCartItems, quantityCart } =
+  const { cartItems, setCartItems, setSumCartItems, quantityCart } =
     useContext(CartItemsContext);
 
   // Render itens
@@ -44,11 +46,15 @@ export default function CardCart({ ...props }: any) {
   // Modal
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+  const [loading, setLoading] = useState(false);
+
   // Renderiza os cards do carrinho
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getProductDataById(props.id)) as Produto[];
       setItem(data);
+
+      if (data) setLoading(true);
 
       return data;
     };
@@ -72,17 +78,21 @@ export default function CardCart({ ...props }: any) {
     }
   }, [setCartItems, cart]);
 
+  // ERRO AQUI
   // Soma preço conforme a quantidade: para o total do carrinho
-  useEffect(() => {
-    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+  // useEffect(() => {
+  //   const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    const sum = arrItens.reduce(
-      (total: number, item: any) => total + item.preco * item.quantidade,
-      0
-    );
+  //   item?.map((item) => console.log(item.preco));
 
-    setSumCartItems(parseFloat(sum));
-  }, [props.id, quantityCart]);
+  //   const sumQuantityItems = arrItens.reduce(
+  //     (total: number, item: any) => total + item.quantidade,
+  //     0
+  //   );
+
+  //   console.log(sumQuantityItems);
+  //   //console.log(sumPriceItems);
+  // }, [props.id, quantityCart]);
 
   // Pegar o ID do item a ser excluído do carrinho
   function handleJson(item: any) {
