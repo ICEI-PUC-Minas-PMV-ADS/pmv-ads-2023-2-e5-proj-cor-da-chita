@@ -6,7 +6,7 @@ import LinkInstagram from "./links/LinkInstagram";
 export default function Footer({ children, ...props }: any) {
   return (
     <footer {...props}>
-      <div className="grid grid-cols-2  p-5 bg-green text-light text-tiny">
+      <div className="grid grid-cols-2  p-5 bg-dark text-light text-tiny">
         <div className="p-5">
           <h3>
             <strong>COR DA CHITA</strong>
