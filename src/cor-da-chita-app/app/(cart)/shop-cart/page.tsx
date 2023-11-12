@@ -31,7 +31,7 @@ export default function ShopCart() {
   const { sumCartItems } = useContext(CartItemsContext); // Soma dos preços dos itens
 
   // Frete e CEP
-  const [isCorreio, setIsCorreio] = useState(false); // RadioButton Modo envio
+  const [isCombinarFrete, setIsCombinarFrete] = useState(false); // RadioButton Modo envio
   const [chooseTypeFrete, setChooseTypeFrete] = useState("PAC"); // RadioButton Tipo de Frete
 
   const [cep, setCep] = useState(""); // Input CEP
@@ -79,6 +79,13 @@ export default function ShopCart() {
     setCart(arrItens);
   }, []);
 
+  // Ocultando campo de frete se o carrinho estiver vazio e o frete já ter sido calculado
+  useEffect(() => {
+    if (cart.length === 0) {
+      setIsCombinarFrete(false);
+    }
+  }, [cart]);
+
   return (
     <>
       {/* Renderizar itens do carrinho */}
@@ -116,7 +123,7 @@ export default function ShopCart() {
               size="sm"
               value="combinar"
               onClick={() => {
-                setIsCorreio(false), setCep("");
+                setIsCombinarFrete(false), setCep("");
               }}
             >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
@@ -125,7 +132,7 @@ export default function ShopCart() {
               isDisabled={cart.length === 0}
               size="sm"
               value="correios"
-              onClick={() => setIsCorreio(true)}
+              onClick={() => setIsCombinarFrete(true)}
             >
               <p className="text-sm ml-2">Correios</p>
             </Radio>
@@ -133,19 +140,21 @@ export default function ShopCart() {
         </div>
 
         {/* Cep / Input Cep / Botão Calcular */}
-        {isCorreio && (
+        {isCombinarFrete && (
           <>
             {/* CEP: Título e Tooltip */}
             <div className="flex mt-6 items-center ">
               <p
-                className={`text-sm mr-2 ${!isCorreio ? "text-gray-400" : ""}`}
+                className={`text-sm mr-2 ${
+                  !isCombinarFrete ? "text-gray-400" : ""
+                }`}
               >
                 <strong>CEP</strong>
               </p>
               <Tooltip content="Somente números">
                 <div>
                   <IconQuestionCircle
-                    className={`${!isCorreio ? "text-gray-400" : ""}`}
+                    className={`${!isCombinarFrete ? "text-gray-400" : ""}`}
                   />
                 </div>
               </Tooltip>
@@ -154,7 +163,7 @@ export default function ShopCart() {
               <Input
                 maxLength={8}
                 isClearable
-                isDisabled={!isCorreio}
+                isDisabled={!isCombinarFrete}
                 className="ml-20 place-self-end"
                 size="sm"
                 type="text"
@@ -175,7 +184,7 @@ export default function ShopCart() {
               <Button
                 color="success"
                 variant="bordered"
-                isDisabled={!isCorreio || cep.length != 8}
+                isDisabled={!isCombinarFrete || cep.length != 8}
                 onClick={handleCep}
               >
                 {loading ? <SpinnerForButton /> : "Calcular"}
@@ -187,14 +196,14 @@ export default function ShopCart() {
         <Divider className="mt-5" />
 
         {/* PAC / SEDEX */}
-        {isCorreio && (
+        {isCombinarFrete && (
           <>
             <div className="my-5">
               {/*Tipo de Envio> Título e Tooltip */}
               <div className="flex  items-center">
                 <h2
                   className={`mr-2  ${
-                    !frete || !isCorreio ? "text-gray-400" : ""
+                    !frete || !isCombinarFrete ? "text-gray-400" : ""
                   }`}
                 >
                   <strong>Selecione o tipo de envio:</strong>
@@ -204,7 +213,7 @@ export default function ShopCart() {
                     <div>
                       <IconQuestionCircle
                         className={`${
-                          !isCorreio || !frete ? "text-gray-400" : ""
+                          !isCombinarFrete || !frete ? "text-gray-400" : ""
                         }`}
                       />
                     </div>
@@ -217,13 +226,13 @@ export default function ShopCart() {
               {/* PAC / SEDEX / Valores calculados*/}
               <RadioGroup
                 className="mt-4"
-                isDisabled={!isCorreio}
+                isDisabled={!isCombinarFrete}
                 defaultValue={"PAC"}
               >
                 {/* PAC */}
                 <div className="flex justify-around">
                   <Radio
-                    isDisabled={!frete || !isCorreio}
+                    isDisabled={!frete || !isCombinarFrete}
                     size="sm"
                     value="PAC"
                     onClick={() => {
@@ -238,7 +247,7 @@ export default function ShopCart() {
                     {frete != undefined ? (
                       <p
                         className={`text-tiny ${
-                          !isCorreio ? "text-gray-400" : ""
+                          !isCombinarFrete ? "text-gray-400" : ""
                         }`}
                       >
                         <strong>R$</strong> {frete.valorPac.toFixed(2)} -
@@ -258,7 +267,7 @@ export default function ShopCart() {
                 {/* SEDEX */}
                 <div className="flex justify-around">
                   <Radio
-                    isDisabled={!frete || !isCorreio}
+                    isDisabled={!frete || !isCombinarFrete}
                     size="sm"
                     value="SEDEX"
                     onClick={() => setChooseTypeFrete("SEDEX")}
@@ -271,7 +280,7 @@ export default function ShopCart() {
                     {frete != undefined ? (
                       <p
                         className={`text-tiny ${
-                          !isCorreio ? "text-gray-400" : ""
+                          !isCombinarFrete ? "text-gray-400" : ""
                         }`}
                       >
                         <strong>R$</strong> {frete.valorSedex.toFixed(2)} -
@@ -302,7 +311,7 @@ export default function ShopCart() {
             <p className="mt-2">
               <strong>
                 R${" "}
-                {frete != undefined && isCorreio ? (
+                {frete != undefined && isCombinarFrete ? (
                   chooseTypeFrete == "PAC" ? (
                     frete.valorPac.toFixed(2)
                   ) : (
@@ -322,7 +331,7 @@ export default function ShopCart() {
             <p className="mt-2">
               <strong>
                 R${" "}
-                {frete != undefined && isCorreio ? (
+                {frete != undefined && isCombinarFrete ? (
                   chooseTypeFrete == "PAC" ? (
                     (frete.valorPac + sumCartItems).toFixed(2)
                   ) : (
@@ -339,7 +348,11 @@ export default function ShopCart() {
 
       {/* Ir para Pagamento */}
       <div className="mt-5 place-self-center">
-        <Button color="success" onPress={() => router.push("/your-data")}>
+        <Button
+          isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
+          color="success"
+          onPress={() => router.push("/your-data")}
+        >
           Ir para Pagamento
         </Button>
       </div>

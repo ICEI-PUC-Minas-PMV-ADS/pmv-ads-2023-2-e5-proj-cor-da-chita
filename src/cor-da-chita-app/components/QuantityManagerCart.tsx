@@ -18,9 +18,10 @@ export default function QuantityManagerCart({ ...props }: any) {
     // Acumula soma inicial
     let sum = 0;
     cartItems.forEach((element) => {
-      const item = arrItens.find((item: any) => item.id === element._id);
-      sum += item.quantidade * element.preco;
-      setSumCartItems(sum);
+      if (item.quantidade != undefined) {
+        sum += item.quantidade * element.preco;
+        setSumCartItems(sum);
+      }
     });
 
     if (item) {
