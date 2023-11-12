@@ -74,7 +74,7 @@ export default function NavBar() {
                 </p>
               </DropdownItem>
               <DropdownItem key="my_orders" endContent={<OrdersIcon className={iconClasses} />}><p className="text-tiny p-4">Meus Pedidos</p></DropdownItem>
-              <DropdownItem key="help" endContent={<HelpIcon className={iconClasses}/>}><p className="text-tiny p-4">Ajuda</p></DropdownItem>
+              <DropdownItem key="help" endContent={<HelpIcon className={iconClasses}/>}><p className="text-tiny p-4" onClick={() => route.push("/question")}>Perguntas Frequentes</p></DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"

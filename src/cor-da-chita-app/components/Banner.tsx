@@ -2,8 +2,11 @@ import React from "react";
 import { Image } from "@nextui-org/react";
 import { MyButton } from "./ui/Button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 export default function Banner() {
+  const route = useRouter();
   return (
     <div className="relative h-screen bg-dark flex">
       <div className="flex-1/2 relative overflow-hidden">
@@ -17,11 +20,11 @@ export default function Banner() {
         />
       </div>
       <div className="flex flex-col items-center justify-center text-center z-10 p-20">
-        <div>
+        <div >
           <h1 className="text-4xl text-white font-serif">
             Arte com Chita & Cia para alegrar a vida o ano todo
           </h1>
-          <p className="text-tiny text-white p-10 font-semibold">
+          <p className="text-tiny text-white p-10 font-semibold" onClick={() => route.push("/about")}>
             Por Madriana Nóbrega
           </p>
           <Link href="/all-products">
