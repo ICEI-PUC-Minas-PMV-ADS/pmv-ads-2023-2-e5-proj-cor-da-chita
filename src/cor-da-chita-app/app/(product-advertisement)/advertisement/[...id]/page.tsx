@@ -84,18 +84,19 @@ export default function ProductAdvertisement() {
         />
       </div>
                 
-      <div className="items-center border p-20 bg-light flex-0"  style={{
+      <div className="items-center border px-20 pt-20 bg-light flex-0"  style={{
                   width: '400px',
                   overflow: 'hidden',
       }}>
         <div>
         <p className="text-3xl py-5">{product.name}</p>
           <p className="text-lg">{product.description}</p>
-          <p className="text-tiny">
+          <p className="py-2">
             {product.lengthProduct}x{product.widthProduct}cm
         </p>
+        <p className="text-lg py-2">R$ {product.price}</p>
         </div>
-        <div className="pt-20">
+        <div className="pt-5">
         <MyButton color="green"
             onClick={() =>
               handleStorageProductCart(
