@@ -11,6 +11,7 @@ using System.Text.Json;
 using Newtonsoft.Json;
 using MongoDB.Bson;
 using cor_da_chita_api.Extensions;
+using cor_da_chita_api.Controllers.Requests;
 
 namespace cor_da_chita_api.Controllers
 {
@@ -47,16 +48,16 @@ namespace cor_da_chita_api.Controllers
         [ProducesResponseType((int)HttpStatusCode.Forbidden)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
 
-        [HttpPost("getFreight")]
+        [HttpPost("CalcFreight")]
 
-        public async Task<ActionResult<FreightDeserialize>> GetFrete(OrderDto model)
+        public async Task<ActionResult<FreightDeserialize>> CalcFrete(FreightRequest model)
         {
             try
             {
 
 /*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
 */
-                string url = $"{urlApi}/33010515/78005020/1000/20/20/20/775ba44c848ce5696094a3b35815bcff01b39d46";
+                string url = $"{urlApi}/33010515/02177060/1000/20/20/20/775ba44c848ce5696094a3b35815bcff01b39d46";
 
 
             var a = await _httpClient.GetStringAsync(url);

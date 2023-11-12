@@ -13,13 +13,15 @@ import {
 } from "@nextui-org/react";
 
 import { useRouter } from "next/navigation";
-
+import axios from "axios";
 import { CartContext } from "@/contexts/CartContext/CartContext";
-import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
+import { url } from "@/app/api/backend/webApiUrl";
 import CardCart from "@/components/CardCart";
 import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
-
+import { AddressContext } from "@/contexts/AddressContext/AddressContext";
+import { UserContext } from "@/contexts/UserContext/UserContext";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 export default function ShopCart() {
   const router = useRouter();
 
@@ -28,15 +30,33 @@ export default function ShopCart() {
 
   // Frete e CEP
   const [radioValue, setRadioValue] = useState(false); // RadioButton
+  const [radiofreteChoose, setRadioFreteChoose] = useState("PAC"); // RadioButton
+
   const [cep, setCep] = useState(""); // Input CEP
+  const [frete,setFrete] = useState<any>()
+  const user = useContext(UserContext);
+  const address = useContext(AddressContext);
+const handleCep = async()=>{
 
-  // ------->  Programar a parte do FRETE
-  function handleCep() {
-    alert(
-      "Calcular frete e somar no campo VALOR DO FRETE ou retornar aviso de frete incorreto ou inválido, conforme retorno da API do Frete"
-    );
-  }
+  const frete = {
+    cep:cep,
+    totalWidthFreight: 20,
+    totalHeightFreight: 20,
+    totalLengthFreight: 30,
+    totalWeightFreight: 800,
+    
+  };
 
+
+
+const res = await axios.post(`${url}/Freight/CalcFreight`,frete).then(r=>{
+  return r.data
+}).catch(e=>console.log(e))
+
+console.log(res)
+setFrete(res)
+
+}
   // Validação Botão Calcular
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     handleCep();
@@ -132,7 +152,7 @@ export default function ShopCart() {
             color="success"
             variant="bordered"
             isDisabled={!radioValue || cep.length != 8}
-            onClick={handleClick}
+            onClick={handleCep}
           >
             Calcular
           </Button>
@@ -146,10 +166,56 @@ export default function ShopCart() {
             <p className="mt-2">
               <strong>Valor do Frete</strong>
             </p>
-            <p className="mt-2">
-              <strong>R$ 0,00</strong>
-            </p>
+            
           </div>
+          {frete != undefined &&(
+            <>
+ <div className="flex justify-between">
+
+ <RadioGroup defaultValue={"PAC"}>
+            <Radio
+              size="sm"
+              value="PAC"
+              onClick={() => {
+                setRadioFreteChoose("PAC");
+              }}
+            >
+              <p className="mt-2">
+   <strong>Valor Pac:R$ {frete.valorPac.toFixed(2)}</strong>
+ </p>
+ <p className="mt-2">
+   <strong>Prazo: {frete.prazoPac} Dias</strong>
+ </p>
+            </Radio>
+            <Radio
+              size="sm"
+              value="SEDEX"
+              onClick={() => setRadioFreteChoose("SEDEX")}
+            >
+           
+
+              
+<p className="mt-2">
+  <strong>Valor Sedex:R$ {frete.valorSedex.toFixed(2)}</strong>
+</p>
+
+          
+<p className="mt-2">
+  <strong>Prazo: {frete.prazoSedex} Dias</strong>
+</p>
+
+
+            </Radio>
+          </RadioGroup>     
+ 
+ 
+</div>
+
+</>
+          )
+            
+          }
+         
 
           <div className="flex justify-between">
             <p className="mt-2">

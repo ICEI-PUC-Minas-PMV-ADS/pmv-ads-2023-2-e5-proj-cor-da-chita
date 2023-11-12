@@ -144,7 +144,7 @@ namespace cor_da_chita_api.Controllers
 
                 }
 
-                var orderUpdated = _ordersService.UpdateAsync(order);
+                var orderUpdated = await _ordersService.UpdateAsync(order);
 
                 return Ok(orderUpdated);
 
@@ -182,7 +182,7 @@ namespace cor_da_chita_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, validationResult.ToValidationErrorReponse());
                 }
 
-                _ordersService.RemoveAsync(id);
+                await _ordersService.RemoveAsync(id);
 
                 return Ok();
 

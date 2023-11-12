@@ -39,7 +39,7 @@ namespace cor_da_chita_api.Models
         public decimal? TotalWidthFreight { get; set; }       // cm    
         public decimal? TotalHeightFreight { get; set; }     // cm    
         public decimal? TotalLengthFreight { get; set; }     // cm
-        public decimal? TotalWheightFreight { get; set; }    // gramas
+        public decimal? TotalWeightFreight { get; set; }    // gramas
         public decimal? FreightValue { get; set; }
     }
 }
