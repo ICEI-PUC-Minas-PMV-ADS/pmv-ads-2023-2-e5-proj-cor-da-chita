@@ -60,6 +60,8 @@ export default function ShopCart() {
       })
       .catch((e) => console.log(e));
 
+    console.log(typeof data);
+
     if (data) {
       setLoading(false);
     }
@@ -167,45 +169,7 @@ export default function ShopCart() {
 
         <Divider className="mt-5" />
 
-        {/* {frete != undefined && (
-            <>
-              <div className="flex justify-between">
-                <RadioGroup defaultValue={"PAC"}>
-                  <Radio
-                    size="sm"
-                    value="PAC"
-                    onClick={() => {
-                      setRadioFreteChoose("PAC");
-                    }}
-                  >
-                    <p className="mt-2">
-                      <strong>Valor Pac:R$ {frete.valorPac.toFixed(2)}</strong>
-                    </p>
-                    <p className="mt-2">
-                      <strong>Prazo: {frete.prazoPac} Dias</strong>
-                    </p>
-                  </Radio>
-                  <Radio
-                    size="sm"
-                    value="SEDEX"
-                    onClick={() => setRadioFreteChoose("SEDEX")}
-                  >
-                    <p className="mt-2">
-                      <strong>
-                        Valor Sedex:R$ {frete.valorSedex.toFixed(2)}
-                      </strong>
-                    </p>
-
-                    <p className="mt-2">
-                      <strong>Prazo: {frete.prazoSedex} Dias</strong>
-                    </p>
-                  </Radio>
-                </RadioGroup>
-              </div>
-            </>
-          )} */}
-
-        {/* RadioGroup PAC / Sedex */}
+        {/* PAC / SEDEX */}
         <div className="my-6">
           <div className="flex">
             <p
@@ -213,23 +177,28 @@ export default function ShopCart() {
                 !frete || !radioValue ? "text-gray-400" : ""
               }`}
             >
-              {/* <p className="text-sm mb-2 mr-2  text-gray-400"> */}
               <strong>Selecione o tipo de envio:</strong>
             </p>
             <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
-              <div>
-                <IconQuestionCircle
-                  className={`${!radioValue || !frete ? "text-gray-400" : ""}`}
-                />
-              </div>
+              {!frete ? (
+                <div>
+                  <IconQuestionCircle
+                    className={`${
+                      !radioValue || !frete ? "text-gray-400" : ""
+                    }`}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </Tooltip>
           </div>
 
-          {/* PAC */}
           <RadioGroup isDisabled={!radioValue} defaultValue={"PAC"}>
+            {/* PAC */}
             <div className="flex justify-around">
               <Radio
-                isDisabled={!frete}
+                isDisabled={!frete || !radioValue}
                 size="sm"
                 value="PAC"
                 onClick={() => {
@@ -238,9 +207,15 @@ export default function ShopCart() {
               >
                 <p className="text-tiny mr-4">PAC</p>
               </Radio>
+
+              {/* Valor Calculado PAC */}
               <div className="flex">
                 {frete != undefined ? (
-                  <p className="text-tiny">
+                  <p
+                    className={`text-tiny ${
+                      !radioValue ? "text-gray-400" : ""
+                    }`}
+                  >
                     <strong>R$</strong> {frete.valorPac.toFixed(2)} -
                     <strong> Prazo: </strong> {frete.prazoPac}
                     {frete.prazoPac === 1 ? (
@@ -258,16 +233,22 @@ export default function ShopCart() {
             {/* SEDEX */}
             <div className="flex justify-around">
               <Radio
-                isDisabled={!frete}
+                isDisabled={!frete || !radioValue}
                 size="sm"
                 value="SEDEX"
                 onClick={() => setRadioFreteChoose("SEDEX")}
               >
                 <p className="text-tiny">SEDEX</p>
               </Radio>
+
+              {/* Valor Calculado SEDEX */}
               <div className="flex">
                 {frete != undefined ? (
-                  <p className="text-tiny">
+                  <p
+                    className={`text-tiny ${
+                      !radioValue ? "text-gray-400" : ""
+                    }`}
+                  >
                     <strong>R$</strong> {frete.valorSedex.toFixed(2)} -
                     <strong> Prazo: </strong>
                     {frete.prazoSedex}
@@ -292,7 +273,18 @@ export default function ShopCart() {
               <strong>Valor do Frete</strong>
             </p>
             <p className="mt-2">
-              TERMINAR - SETAR VALOR
+              <strong>
+                R${" "}
+                {frete != undefined && radioValue ? (
+                  radiofreteChoose == "PAC" ? (
+                    frete.valorPac.toFixed(2)
+                  ) : (
+                    frete.valorSedex.toFixed(2)
+                  )
+                ) : (
+                  <>0,00</>
+                )}
+              </strong>
             </p>
           </div>
 
@@ -301,7 +293,18 @@ export default function ShopCart() {
               <strong>Total</strong>
             </p>
             <p className="mt-2">
-              <strong>R$ {sumCartItems.toFixed(2)}</strong>
+              <strong>
+                R${" "}
+                {frete != undefined && radioValue ? (
+                  radiofreteChoose == "PAC" ? (
+                    (frete.valorPac + sumCartItems).toFixed(2)
+                  ) : (
+                    (frete.valorSedex + sumCartItems).toFixed(2)
+                  )
+                ) : (
+                  <>{sumCartItems.toFixed(2)}</>
+                )}
+              </strong>
             </p>
           </div>
         </div>
