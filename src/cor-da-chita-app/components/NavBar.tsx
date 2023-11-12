@@ -6,6 +6,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import CartIcon from "@/assets/icons/CartIcon";
 import OrdersIcon from "@/assets/icons/OrdersIcon";
 import HelpIcon from "@/assets/icons/HelpIcon";
+import FlowerIcon from "@/assets/icons/FlowerIcon";
+
 
 
 import {
@@ -75,6 +77,14 @@ export default function NavBar() {
               </DropdownItem>
               <DropdownItem key="my_orders" endContent={<OrdersIcon className={iconClasses} />}><p className="text-tiny p-4">Meus Pedidos</p></DropdownItem>
               <DropdownItem key="help" endContent={<HelpIcon className={iconClasses}/>}><p className="text-tiny p-4" onClick={() => route.push("/question")}>Perguntas Frequentes</p></DropdownItem>
+              <DropdownItem
+                key="about"
+                onClick={() => route.push("/about")}
+                endContent={<FlowerIcon className={iconClasses} />}
+              ><p className="text-tiny p-4">
+                Sobre o Cor da Chita
+                </p>
+                </DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"
