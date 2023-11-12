@@ -24,8 +24,6 @@ export default async function getProductDataById(itemId: string) {
 
     const data = await client.fetch(query);
 
-    console.log(data);
-
     return data.concat(data);
   } catch (e) {
     console.log(e);

@@ -6,21 +6,31 @@ import IconPlusSquare from "@/assets/icons/IconPlusSquare";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export default function QuantityManagerCart({ ...props }: any) {
-  const { setQuantityCart } = useContext(CartItemsContext);
+  const { setSumCartItems } = useContext(CartItemsContext);
+  const { cartItems } = useContext(CartItemsContext);
   const [quantidade, setQuantidade] = useState<number>(0);
 
-  // Atualiza a quantidade com os dados vindo do local storage
+  // Atualiza a quantidade com os itens vindo do local storage e preço vindo do banco
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
     const item = arrItens.find((item: any) => item.id === props.id);
 
+    console.log(cartItems);
+
+    let sum = 0;
+    cartItems.forEach((element) => {
+      const item = arrItens.find((item: any) => item.id === element._id);
+      sum += item.quantidade * element.preco;
+      setSumCartItems(sum);
+    });
+
     if (item) {
       setQuantidade(item.quantidade);
     }
-  }, [props.id]);
+  }, [cartItems]);
 
-  // Soma quantidade do item no carrinho
+  // Soma quantidade do item no carrinho e altera valor do carrinho
   const handleIncreaseQuantity = () => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
@@ -33,14 +43,18 @@ export default function QuantityManagerCart({ ...props }: any) {
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
-      // Pega a mudança de quantidade para mudar a soma do total no CardCart
-      setQuantityCart(arrItens[indexItem].quantidade);
+      const updatedSum = arrItens.reduce((acc: number, item: any) => {
+        const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
+        return acc + (cartItem?.preco || 0) * item.quantidade;
+      }, 0);
+
+      setSumCartItems(updatedSum);
 
       setQuantidade(arrItens[indexItem].quantidade);
     }
   };
 
-  // Diminuiu a quantidade do item no carrinho
+  // Diminuiu a quantidade do item no carrinho e altera valor do carrinho
   const handleDecreaseQuantity = () => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
@@ -53,8 +67,13 @@ export default function QuantityManagerCart({ ...props }: any) {
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
-      // Pega a mudança de quantidade para mudar a soma do total no CardCart
-      setQuantityCart(arrItens[indexItem].quantidade);
+      // Recalcule a soma total do carrinho
+      const updatedSum = arrItens.reduce((acc: number, item: any) => {
+        const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
+        return acc + (cartItem?.preco || 0) * item.quantidade;
+      }, 0);
+
+      setSumCartItems(updatedSum);
 
       setQuantidade(quantidade - 1);
     } else {

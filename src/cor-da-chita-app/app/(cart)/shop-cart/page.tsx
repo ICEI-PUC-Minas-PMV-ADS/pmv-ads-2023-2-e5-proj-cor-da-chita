@@ -33,35 +33,31 @@ export default function ShopCart() {
   const [radiofreteChoose, setRadioFreteChoose] = useState("PAC"); // RadioButton
 
   const [cep, setCep] = useState(""); // Input CEP
-  const [frete,setFrete] = useState<any>()
+  const [frete, setFrete] = useState<any>();
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
-const handleCep = async()=>{
 
-  const frete = {
-    cep:cep,
-    totalWidthFreight: 20,
-    totalHeightFreight: 20,
-    totalLengthFreight: 30,
-    totalWeightFreight: 800,
-    
+  const handleCep = async () => {
+    const frete = {
+      cep: cep,
+      totalWidthFreight: 20,
+      totalHeightFreight: 20,
+      totalLengthFreight: 30,
+      totalWeightFreight: 800,
+    };
+
+    const res = await axios
+      .post(`${url}/Freight/CalcFreight`, frete)
+      .then((r) => {
+        return r.data;
+      })
+      .catch((e) => console.log(e));
+
+    console.log(res);
+    setFrete(res);
   };
 
-
-
-const res = await axios.post(`${url}/Freight/CalcFreight`,frete).then(r=>{
-  return r.data
-}).catch(e=>console.log(e))
-
-console.log(res)
-setFrete(res)
-
-}
-  // Validação Botão Calcular
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    handleCep();
-  };
-
+  // Validação "Enter" input / botão calcular
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && cep.length == 8) {
       handleCep();
@@ -166,56 +162,44 @@ setFrete(res)
             <p className="mt-2">
               <strong>Valor do Frete</strong>
             </p>
-            
           </div>
-          {frete != undefined &&(
+          {frete != undefined && (
             <>
- <div className="flex justify-between">
+              <div className="flex justify-between">
+                <RadioGroup defaultValue={"PAC"}>
+                  <Radio
+                    size="sm"
+                    value="PAC"
+                    onClick={() => {
+                      setRadioFreteChoose("PAC");
+                    }}
+                  >
+                    <p className="mt-2">
+                      <strong>Valor Pac:R$ {frete.valorPac.toFixed(2)}</strong>
+                    </p>
+                    <p className="mt-2">
+                      <strong>Prazo: {frete.prazoPac} Dias</strong>
+                    </p>
+                  </Radio>
+                  <Radio
+                    size="sm"
+                    value="SEDEX"
+                    onClick={() => setRadioFreteChoose("SEDEX")}
+                  >
+                    <p className="mt-2">
+                      <strong>
+                        Valor Sedex:R$ {frete.valorSedex.toFixed(2)}
+                      </strong>
+                    </p>
 
- <RadioGroup defaultValue={"PAC"}>
-            <Radio
-              size="sm"
-              value="PAC"
-              onClick={() => {
-                setRadioFreteChoose("PAC");
-              }}
-            >
-              <p className="mt-2">
-   <strong>Valor Pac:R$ {frete.valorPac.toFixed(2)}</strong>
- </p>
- <p className="mt-2">
-   <strong>Prazo: {frete.prazoPac} Dias</strong>
- </p>
-            </Radio>
-            <Radio
-              size="sm"
-              value="SEDEX"
-              onClick={() => setRadioFreteChoose("SEDEX")}
-            >
-           
-
-              
-<p className="mt-2">
-  <strong>Valor Sedex:R$ {frete.valorSedex.toFixed(2)}</strong>
-</p>
-
-          
-<p className="mt-2">
-  <strong>Prazo: {frete.prazoSedex} Dias</strong>
-</p>
-
-
-            </Radio>
-          </RadioGroup>     
- 
- 
-</div>
-
-</>
-          )
-            
-          }
-         
+                    <p className="mt-2">
+                      <strong>Prazo: {frete.prazoSedex} Dias</strong>
+                    </p>
+                  </Radio>
+                </RadioGroup>
+              </div>
+            </>
+          )}
 
           <div className="flex justify-between">
             <p className="mt-2">
