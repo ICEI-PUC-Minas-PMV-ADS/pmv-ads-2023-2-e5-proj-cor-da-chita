@@ -98,14 +98,23 @@ export default function ShopCart() {
       <Divider className="mt-10" />
 
       <div className="flex flex-col mt-5">
-        <h2>
-          <strong>Modo de Envio</strong>
-        </h2>
+        <div className="flex items-center">
+          <h2 className="mr-2">
+            <strong>Modo de Envio</strong>
+          </h2>
+
+          <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
+            <div>
+              <IconQuestionCircle />
+            </div>
+          </Tooltip>
+        </div>
 
         {/* Radio Group Combinar / Correios */}
         <div className="mt-2">
           <RadioGroup defaultValue={"combinar"}>
             <Radio
+              isDisabled={cart.length === 0}
               size="sm"
               value="combinar"
               onClick={() => {
@@ -115,6 +124,7 @@ export default function ShopCart() {
               <p className="text-sm ml-2">Combinar com a vendedora</p>
             </Radio>
             <Radio
+              isDisabled={cart.length === 0}
               size="sm"
               value="correios"
               onClick={() => setRadioValue(true)}
@@ -125,146 +135,163 @@ export default function ShopCart() {
         </div>
 
         {/* Cep */}
-        <div className="flex mt-6">
-          <p className={`text-sm mr-2 ${!radioValue ? "text-gray-400" : ""}`}>
-            <strong>CEP</strong>
-          </p>
-          <Tooltip content="Somente números">
-            <div>
-              <IconQuestionCircle
-                className={`${!radioValue ? "text-gray-400" : ""}`}
+        {radioValue && (
+          <>
+            {" "}
+            <div className="flex mt-6 items-center ">
+              <p
+                className={`text-sm mr-2 ${!radioValue ? "text-gray-400" : ""}`}
+              >
+                <strong>CEP</strong>
+              </p>
+              <Tooltip content="Somente números">
+                <div>
+                  <IconQuestionCircle
+                    className={`${!radioValue ? "text-gray-400" : ""}`}
+                  />
+                </div>
+              </Tooltip>
+
+              {/* Input CEP */}
+              <Input
+                maxLength={8}
+                isClearable
+                isDisabled={!radioValue}
+                className="ml-20 place-self-end"
+                size="sm"
+                type="text"
+                placeholder="Digite seu CEP"
+                value={cep}
+                onChange={(e) => {
+                  !/[^0-9]+/g.test(e.target.value)
+                    ? setCep(e.target.value)
+                    : "";
+                }}
+                onClear={() => setCep("")}
+                onKeyDown={handleKeyDown}
               />
             </div>
-          </Tooltip>
-
-          {/* Input CEP */}
-          <Input
-            maxLength={8}
-            isClearable
-            isDisabled={!radioValue}
-            className="ml-20 place-self-end"
-            size="sm"
-            type="text"
-            placeholder="Digite seu CEP"
-            value={cep}
-            onChange={(e) => {
-              !/[^0-9]+/g.test(e.target.value) ? setCep(e.target.value) : "";
-            }}
-            onClear={() => setCep("")}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-
-        {/* Botão Calcular Frete */}
-        <div className="mt-4 place-self-end">
-          <Button
-            color="success"
-            variant="bordered"
-            isDisabled={!radioValue || cep.length != 8}
-            onClick={handleCep}
-          >
-            {loading ? <SpinnerForButton /> : "Calcular"}
-          </Button>
-        </div>
+            {/* Botão Calcular Frete */}
+            <div className="mt-4 place-self-end">
+              <Button
+                color="success"
+                variant="bordered"
+                isDisabled={!radioValue || cep.length != 8}
+                onClick={handleCep}
+              >
+                {loading ? <SpinnerForButton /> : "Calcular"}
+              </Button>
+            </div>
+          </>
+        )}
 
         <Divider className="mt-5" />
 
         {/* PAC / SEDEX */}
-        <div className="my-6">
-          <div className="flex">
-            <p
-              className={`text-sm mb-2 mr-2 ${
-                !frete || !radioValue ? "text-gray-400" : ""
-              }`}
-            >
-              <strong>Selecione o tipo de envio:</strong>
-            </p>
-            <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
-              {!frete ? (
-                <div>
-                  <IconQuestionCircle
-                    className={`${
-                      !radioValue || !frete ? "text-gray-400" : ""
-                    }`}
-                  />
+        {radioValue && (
+          <>
+            {" "}
+            <div className="my-6">
+              <div className="flex  items-center">
+                <h2
+                  className={`mr-2  ${
+                    !frete || !radioValue ? "text-gray-400" : ""
+                  }`}
+                >
+                  <strong>Selecione o tipo de envio:</strong>
+                </h2>
+                <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
+                  {!frete ? (
+                    <div>
+                      <IconQuestionCircle
+                        className={`${
+                          !radioValue || !frete ? "text-gray-400" : ""
+                        }`}
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </Tooltip>
+              </div>
+
+              <RadioGroup
+                className="mt-2"
+                isDisabled={!radioValue}
+                defaultValue={"PAC"}
+              >
+                {/* PAC */}
+                <div className="flex justify-around">
+                  <Radio
+                    isDisabled={!frete || !radioValue}
+                    size="sm"
+                    value="PAC"
+                    onClick={() => {
+                      setRadioFreteChoose("PAC");
+                    }}
+                  >
+                    <p className="text-tiny mr-4">PAC</p>
+                  </Radio>
+
+                  {/* Valor Calculado PAC */}
+                  <div className="flex">
+                    {frete != undefined ? (
+                      <p
+                        className={`text-tiny ${
+                          !radioValue ? "text-gray-400" : ""
+                        }`}
+                      >
+                        <strong>R$</strong> {frete.valorPac.toFixed(2)} -
+                        <strong> Prazo: </strong> {frete.prazoPac}
+                        {frete.prazoPac === 1 ? (
+                          <span> dia&nbsp;&nbsp;</span>
+                        ) : (
+                          " dias"
+                        )}
+                      </p>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                 </div>
-              ) : (
-                ""
-              )}
-            </Tooltip>
-          </div>
 
-          <RadioGroup isDisabled={!radioValue} defaultValue={"PAC"}>
-            {/* PAC */}
-            <div className="flex justify-around">
-              <Radio
-                isDisabled={!frete || !radioValue}
-                size="sm"
-                value="PAC"
-                onClick={() => {
-                  setRadioFreteChoose("PAC");
-                }}
-              >
-                <p className="text-tiny mr-4">PAC</p>
-              </Radio>
-
-              {/* Valor Calculado PAC */}
-              <div className="flex">
-                {frete != undefined ? (
-                  <p
-                    className={`text-tiny ${
-                      !radioValue ? "text-gray-400" : ""
-                    }`}
+                {/* SEDEX */}
+                <div className="flex justify-around">
+                  <Radio
+                    isDisabled={!frete || !radioValue}
+                    size="sm"
+                    value="SEDEX"
+                    onClick={() => setRadioFreteChoose("SEDEX")}
                   >
-                    <strong>R$</strong> {frete.valorPac.toFixed(2)} -
-                    <strong> Prazo: </strong> {frete.prazoPac}
-                    {frete.prazoPac === 1 ? (
-                      <span> dia&nbsp;&nbsp;</span>
-                    ) : (
-                      " dias"
-                    )}
-                  </p>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </div>
+                    <p className="text-tiny">SEDEX</p>
+                  </Radio>
 
-            {/* SEDEX */}
-            <div className="flex justify-around">
-              <Radio
-                isDisabled={!frete || !radioValue}
-                size="sm"
-                value="SEDEX"
-                onClick={() => setRadioFreteChoose("SEDEX")}
-              >
-                <p className="text-tiny">SEDEX</p>
-              </Radio>
-
-              {/* Valor Calculado SEDEX */}
-              <div className="flex">
-                {frete != undefined ? (
-                  <p
-                    className={`text-tiny ${
-                      !radioValue ? "text-gray-400" : ""
-                    }`}
-                  >
-                    <strong>R$</strong> {frete.valorSedex.toFixed(2)} -
-                    <strong> Prazo: </strong>
-                    {frete.prazoSedex}
-                    {frete.prazoSedex === 1 ? (
-                      <span> dia&nbsp;&nbsp;</span>
+                  {/* Valor Calculado SEDEX */}
+                  <div className="flex">
+                    {frete != undefined ? (
+                      <p
+                        className={`text-tiny ${
+                          !radioValue ? "text-gray-400" : ""
+                        }`}
+                      >
+                        <strong>R$</strong> {frete.valorSedex.toFixed(2)} -
+                        <strong> Prazo: </strong>
+                        {frete.prazoSedex}
+                        {frete.prazoSedex === 1 ? (
+                          <span> dia&nbsp;&nbsp;</span>
+                        ) : (
+                          " dias"
+                        )}
+                      </p>
                     ) : (
-                      " dias"
+                      <></>
                     )}
-                  </p>
-                ) : (
-                  <></>
-                )}
-              </div>
+                  </div>
+                </div>
+              </RadioGroup>
             </div>
-          </RadioGroup>
-        </div>
+          </>
+        )}
 
         {/* Valor do Frete e Total */}
         <div className="mt-3 text-sm">
