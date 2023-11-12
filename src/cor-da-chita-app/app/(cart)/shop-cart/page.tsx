@@ -10,6 +10,7 @@ import {
   Input,
   Divider,
   Tooltip,
+  Spinner,
 } from "@nextui-org/react";
 
 import { useRouter } from "next/navigation";
@@ -22,6 +23,7 @@ import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
+import SpinnerForButton from "@/components/SpinnerButton";
 export default function ShopCart() {
   const router = useRouter();
 
@@ -37,6 +39,9 @@ export default function ShopCart() {
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
 
+  const [loading, setLoading] = useState(false);
+
+  // Cálculo do Frete
   const handleCep = async () => {
     const frete = {
       cep: cep,
@@ -46,15 +51,20 @@ export default function ShopCart() {
       totalWeightFreight: 800,
     };
 
-    const res = await axios
+    setLoading(true);
+
+    const data = await axios
       .post(`${url}/Freight/CalcFreight`, frete)
-      .then((r) => {
-        return r.data;
+      .then((json) => {
+        return json.data;
       })
       .catch((e) => console.log(e));
 
-    console.log(res);
-    setFrete(res);
+    if (data) {
+      setLoading(false);
+    }
+    console.log(data);
+    setFrete(data);
   };
 
   // Validação "Enter" input / botão calcular
@@ -64,6 +74,7 @@ export default function ShopCart() {
     }
   };
 
+  // Pega IDs do local storage salva em setCart
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     setCart(arrItens);
@@ -89,7 +100,7 @@ export default function ShopCart() {
           <strong>Modo de Envio</strong>
         </h2>
 
-        {/* Radio Group */}
+        {/* Radio Group Combinar / Correios */}
         <div className="mt-2">
           <RadioGroup defaultValue={"combinar"}>
             <Radio
@@ -112,7 +123,7 @@ export default function ShopCart() {
         </div>
 
         {/* Cep */}
-        <div className="flex mt-3">
+        <div className="flex mt-6">
           <p className={`text-sm mr-2 ${!radioValue ? "text-gray-400" : ""}`}>
             <strong>CEP</strong>
           </p>
@@ -143,27 +154,20 @@ export default function ShopCart() {
         </div>
 
         {/* Botão Calcular Frete */}
-        <div className="mt-2 place-self-end">
+        <div className="mt-4 place-self-end">
           <Button
             color="success"
             variant="bordered"
             isDisabled={!radioValue || cep.length != 8}
             onClick={handleCep}
           >
-            Calcular
+            {loading ? <SpinnerForButton /> : "Calcular"}
           </Button>
         </div>
 
         <Divider className="mt-5" />
 
-        {/* Valor do Frete e Total */}
-        <div className="mt-3 text-sm">
-          <div className="flex justify-between">
-            <p className="mt-2">
-              <strong>Valor do Frete</strong>
-            </p>
-          </div>
-          {frete != undefined && (
+        {/* {frete != undefined && (
             <>
               <div className="flex justify-between">
                 <RadioGroup defaultValue={"PAC"}>
@@ -199,7 +203,98 @@ export default function ShopCart() {
                 </RadioGroup>
               </div>
             </>
-          )}
+          )} */}
+
+        {/* RadioGroup PAC / Sedex */}
+        <div className="my-6">
+          <div className="flex">
+            <p
+              className={`text-sm mb-2 mr-2 ${
+                !frete || !radioValue ? "text-gray-400" : ""
+              }`}
+            >
+              {/* <p className="text-sm mb-2 mr-2  text-gray-400"> */}
+              <strong>Selecione o tipo de envio:</strong>
+            </p>
+            <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
+              <div>
+                <IconQuestionCircle
+                  className={`${!radioValue || !frete ? "text-gray-400" : ""}`}
+                />
+              </div>
+            </Tooltip>
+          </div>
+
+          {/* PAC */}
+          <RadioGroup isDisabled={!radioValue} defaultValue={"PAC"}>
+            <div className="flex justify-around">
+              <Radio
+                isDisabled={!frete}
+                size="sm"
+                value="PAC"
+                onClick={() => {
+                  setRadioFreteChoose("PAC");
+                }}
+              >
+                <p className="text-tiny mr-4">PAC</p>
+              </Radio>
+              <div className="flex">
+                {frete != undefined ? (
+                  <p className="text-tiny">
+                    <strong>R$</strong> {frete.valorPac.toFixed(2)} -
+                    <strong> Prazo: </strong> {frete.prazoPac}
+                    {frete.prazoPac === 1 ? (
+                      <span> dia&nbsp;&nbsp;</span>
+                    ) : (
+                      " dias"
+                    )}
+                  </p>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
+
+            {/* SEDEX */}
+            <div className="flex justify-around">
+              <Radio
+                isDisabled={!frete}
+                size="sm"
+                value="SEDEX"
+                onClick={() => setRadioFreteChoose("SEDEX")}
+              >
+                <p className="text-tiny">SEDEX</p>
+              </Radio>
+              <div className="flex">
+                {frete != undefined ? (
+                  <p className="text-tiny">
+                    <strong>R$</strong> {frete.valorSedex.toFixed(2)} -
+                    <strong> Prazo: </strong>
+                    {frete.prazoSedex}
+                    {frete.prazoSedex === 1 ? (
+                      <span> dia&nbsp;&nbsp;</span>
+                    ) : (
+                      " dias"
+                    )}
+                  </p>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
+          </RadioGroup>
+        </div>
+
+        {/* Valor do Frete e Total */}
+        <div className="mt-3 text-sm">
+          <div className="flex justify-between">
+            <p className="mt-2">
+              <strong>Valor do Frete</strong>
+            </p>
+            <p className="mt-2">
+              TERMINAR - SETAR VALOR
+            </p>
+          </div>
 
           <div className="flex justify-between">
             <p className="mt-2">
