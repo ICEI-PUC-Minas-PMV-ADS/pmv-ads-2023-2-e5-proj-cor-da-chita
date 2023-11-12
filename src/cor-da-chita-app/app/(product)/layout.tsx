@@ -8,8 +8,8 @@ export default function ProductLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="container mx-auto p-3">
-      <section className="grid grid-cols-3 gap-3">
+    <main className="container mx-auto">
+      <section className="grid grid-cols-3 gap-10 py-20">
         {children}
         {/* <h1>ProductLayout AQUI</h1>s
       <p>Esse layout será para as telas que renderizam os cards de produtos</p>

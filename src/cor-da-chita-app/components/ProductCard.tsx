@@ -17,6 +17,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard(product: ProductCardProps, ...props: any) {
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const route = useRouter();
 
   // Snack Bar: Adicionar no carrinho
@@ -96,43 +97,62 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
         <div key={product._id} className="ml-20">
           {/* Card itens */}
           <Card
-            className="ml-5  flex-wrap m-5 w-60  "
+            className="flex-wrap font-open border bg-light"
             isPressable
+            shadow="none"
             onPress={() => handleClick(product)}
+            style={{ width: '380px', height: '480px' }}
           >
-            <CardBody className="overflow-visible p-4">
-              <Image
-                alt="Card background"
-                className="object-cover rounded-xl w-52 h-48  "
-                src={product.imagem}
-              />
-              <CardFooter className="pb-0 pt-2 flex-col items-start">
-                <p className="font-bold text-medium">{product.nome}</p>
+            <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
+              <div
+                className="image-container relative"
+                style={{
+                  height: '400px',
+                  width: '100%',
+                  overflow: 'hidden',
+                }}
+              >
+                <Image
+                      removeWrapper
+                      alt="Card background"
+                      className={`z-0 w-full h-full object-cover transition-transform ${
+                        hoveredProductId === product._id ? "hover:scale-125 hover:blur" : ""
+                      }`}
+                      src={product.imagem}
+                    />
+                  {hoveredProductId === product._id && (
+                      <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
+                        <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
+                        <p className="text-small">{`Peso: ${product.peso} kg`}</p>
+                        <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
+                      </div>
+                    )}
+            </div>
+              <CardFooter className="">
+                <div className="flex justify-between w-full">
+                  <div>
+                    <p className="">{product.nome}</p>
+                    <p className="font-semibold">R$ {product.preco.toFixed(2)}</p>
+                  </div>
+                  <Link
+                    className=""
+                    onClick={() =>
+                      handleStorageProductCart(
+                        product._id,
+                        product.nome,
+                        product.quantidade
+                      )
+                    }
+                  >
+                    <div className="bg-green p-3">
+                      <CartPlusIcon fill="white" />
+                    </div>
+                  </Link>
+                </div>
               </CardFooter>
             </CardBody>
-            <div className="flex flex-row mb-3  ">
-              <p className="mt-4 ml-7 text-medium">
-                R$ {product.preco.toFixed(2)}
-              </p>
-
-              <Link
-                className=" ml-24 mb-4 "
-                onClick={() =>
-                  handleStorageProductCart(
-                    product._id,
-                    product.nome,
-                    product.quantidade
-                  )
-                }
-              >
-                <div className="bg-green p-1 rounded-md ">
-                  <CartPlusIcon fill="white" />
-                </div>
-              </Link>
-            </div>
           </Card>
 
-          {/* SnackBar */}
           <div className=" m-auto ">
             <Snackbar
               open={openSnackBar}

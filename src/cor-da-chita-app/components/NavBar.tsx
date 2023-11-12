@@ -6,6 +6,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import CartIcon from "@/assets/icons/CartIcon";
 import OrdersIcon from "@/assets/icons/OrdersIcon";
 import HelpIcon from "@/assets/icons/HelpIcon";
+import FlowerIcon from "@/assets/icons/FlowerIcon";
+
 
 
 import {
@@ -18,6 +20,7 @@ import {
   DropdownMenu,
   Avatar,
   Button,
+  NavbarItem,
 } from "@nextui-org/react";
 
 import { CorChitaFlor } from "./logo/CorChitaFlor";
@@ -39,17 +42,19 @@ export default function NavBar() {
   };
 
   return (
-    <Navbar shouldHideOnScroll className="bg-light px-0 w-full">
-      <NavbarBrand onClick={handleClick} className="bg-light p-0">
+    <Navbar shouldHideOnScroll maxWidth="full" isBordered className="bg-light flex justify-between">
+       <div className="flex items-center">
+       <NavbarBrand onClick={handleClick} className="bg-light ">
         <CorChitaFlor />
-        {/* <CorChitaTexto /> */}
+        <CorChitaTexto />
       </NavbarBrand>
-
+       </div> 
+       <div className="flex items-center">
       <NavbarContent>
-        <SearchInput />
-
+         <SearchInput/>
+        <NavbarItem>
         {session && session.user ? (
-          <Dropdown placement="bottom-end" className="p-0 rounded-md shadow-none">
+          <Dropdown className="p-0 rounded-md shadow-none">
             <DropdownTrigger>
               <Avatar
                 as="button"
@@ -71,7 +76,15 @@ export default function NavBar() {
                 </p>
               </DropdownItem>
               <DropdownItem key="my_orders" endContent={<OrdersIcon className={iconClasses} />}><p className="text-tiny p-4">Meus Pedidos</p></DropdownItem>
-              <DropdownItem key="help" endContent={<HelpIcon className={iconClasses}/>}><p className="text-tiny p-4">Ajuda</p></DropdownItem>
+              <DropdownItem key="help" endContent={<HelpIcon className={iconClasses}/>}><p className="text-tiny p-4" onClick={() => route.push("/question")}>Perguntas Frequentes</p></DropdownItem>
+              <DropdownItem
+                key="about"
+                onClick={() => route.push("/about")}
+                endContent={<FlowerIcon className={iconClasses} />}
+              ><p className="text-tiny p-4">
+                Sobre o Cor da Chita
+                </p>
+                </DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"
@@ -86,7 +99,9 @@ export default function NavBar() {
             Entrar
           </Button>
         )}
+        </NavbarItem>
       </NavbarContent>
+      </div>
     </Navbar>
   );
 }
