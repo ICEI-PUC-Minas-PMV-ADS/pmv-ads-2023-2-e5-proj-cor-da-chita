@@ -6,9 +6,7 @@ export default function QuestionLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <h1>QuestionLayout AQUI</h1>
-      <p>(question/pages.tsx)</p>
+    <div  className="container mx-auto py-20">
       {children}
     </div>
   );
