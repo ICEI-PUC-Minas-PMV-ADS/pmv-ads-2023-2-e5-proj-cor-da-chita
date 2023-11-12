@@ -13,11 +13,9 @@ export default function QuantityManagerCart({ ...props }: any) {
   // Atualiza a quantidade com os itens vindo do local storage e preço vindo do banco
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-
     const item = arrItens.find((item: any) => item.id === props.id);
 
-    console.log(cartItems);
-
+    // Acumula soma inicial
     let sum = 0;
     cartItems.forEach((element) => {
       const item = arrItens.find((item: any) => item.id === element._id);

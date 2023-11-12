@@ -32,7 +32,7 @@ export default function CardCart({ ...props }: any) {
   const { cart, setCart } = useContext(CartContext);
 
   // Salvar no context todos itens do carrinho
-  const { setCartItems } = useContext(CartItemsContext);
+  const { setCartItems, setSumCartItems } = useContext(CartItemsContext);
 
   // Render itens
   const [item, setItem] = useState<Produto[] | undefined>();
@@ -94,6 +94,9 @@ export default function CardCart({ ...props }: any) {
         return item;
       }
     });
+
+    // Para zerar a soma quando carrinho está vazio
+    if (newArrItens.length === 0) setSumCartItems(0);
 
     setCart(newArrItens);
 
@@ -181,7 +184,7 @@ export default function CardCart({ ...props }: any) {
         <Spinner className="py-6" />
       )}
 
-      {/* Aviso de item removido */}
+      {/* Snack com aviso de item removido */}
       <Snackbar
         open={openSnackBar}
         autoHideDuration={2000}
