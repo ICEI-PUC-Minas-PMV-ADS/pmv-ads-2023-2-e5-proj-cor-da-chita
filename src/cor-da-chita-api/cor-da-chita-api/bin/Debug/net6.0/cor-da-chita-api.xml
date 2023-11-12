@@ -13,15 +13,15 @@
             <summary>
             Post email
             </summary>
-            <param name="id">Id</param>
-            <returns>The paymnet client Entity</returns>
+            <param name="id">Email Request</param>
+            <returns>Status Code</returns>
         </member>
         <member name="T:cor_da_chita_api.Controllers.FreightController">
             <summary>
             Controller to Management Pix Payment
             </summary>
         </member>
-        <member name="M:cor_da_chita_api.Controllers.FreightController.GetFrete(cor_da_chita_api.Models.OrderDto)">
+        <member name="M:cor_da_chita_api.Controllers.FreightController.CalcFrete(cor_da_chita_api.Controllers.Requests.FreightRequest)">
             <summary>
             Get values of freight
             </summary>

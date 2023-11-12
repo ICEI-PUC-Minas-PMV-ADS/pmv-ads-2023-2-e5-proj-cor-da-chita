@@ -24,14 +24,15 @@ import getProductDataById from "@/database/products/getProductDataById";
 
 import IconCartX from "@/assets/icons/IconCartX";
 import QuantityManagerCart from "./QuantityManagerCart";
+import { compress } from "@/next.config";
+import { COMPILER_NAMES } from "next/dist/shared/lib/constants";
 
 export default function CardCart({ ...props }: any) {
   // Pegar os Ids dos itens do carrinho da page
   const { cart, setCart } = useContext(CartContext);
 
   // Salvar no context todos itens do carrinho
-  const { cartItems, setCartItems, setSumCartItems } =
-    useContext(CartItemsContext);
+  const { setCartItems, setSumCartItems } = useContext(CartItemsContext);
 
   // Render itens
   const [item, setItem] = useState<Produto[] | undefined>();
@@ -72,12 +73,6 @@ export default function CardCart({ ...props }: any) {
     }
   }, [setCartItems, cart]);
 
-  // Soma do valor total dos itens do carrinho
-  useEffect(() => {
-    const sum = cartItems.reduce((total, item) => total + item.preco, 0);
-    setSumCartItems(sum);
-  });
-
   // Pegar o ID do item a ser excluído do carrinho
   function handleJson(item: any) {
     const itemIdString: string = JSON.stringify(item);
@@ -99,6 +94,9 @@ export default function CardCart({ ...props }: any) {
         return item;
       }
     });
+
+    // Para zerar a soma quando carrinho está vazio
+    if (newArrItens.length === 0) setSumCartItems(0);
 
     setCart(newArrItens);
 
@@ -186,7 +184,7 @@ export default function CardCart({ ...props }: any) {
         <Spinner className="py-6" />
       )}
 
-      {/* Aviso de item removido */}
+      {/* Snack com aviso de item removido */}
       <Snackbar
         open={openSnackBar}
         autoHideDuration={2000}

@@ -29,10 +29,10 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   const productAds = useContext(ProductContext);
   const [productData, setProductData] = useState<Produto[] | undefined>([]);
 
+  // Salva itens no productData para renderização
   useEffect(() => {
     setProductData(product.data);
     console.log(productData);
-    // handleSeeLc();
   });
 
   // Salvando no context
@@ -94,9 +94,8 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   return (
     <>
       {productData?.map((product) => (
-        <div key={product._id}
-        onMouseEnter={() => setHoveredProductId(product._id)}
-        onMouseLeave={() => setHoveredProductId(null)}>
+        <div key={product._id} className="ml-20">
+          {/* Card itens */}
           <Card
             className="flex-wrap font-open border bg-light"
             isPressable
@@ -153,7 +152,6 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
               </CardFooter>
             </CardBody>
           </Card>
-
 
           <div className=" m-auto ">
             <Snackbar

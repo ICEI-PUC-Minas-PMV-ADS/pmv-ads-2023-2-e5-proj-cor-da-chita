@@ -36,7 +36,12 @@ export default function CartIdContextProvider({
 
   return (
     <CartItemsContext.Provider
-      value={{ cartItems, setCartItems, sumCartItems, setSumCartItems }}
+      value={{
+        cartItems,
+        setCartItems,
+        sumCartItems,
+        setSumCartItems,
+      }}
     >
       {children}
     </CartItemsContext.Provider>
