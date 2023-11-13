@@ -17,7 +17,7 @@ export default function PaymentQrCode({ ...props }: any) {
   },[])
 const getPay = async()=>{
 //O id na rota será pego nas informações do pedido criado,no caso o id do pagamento do mercado pago
-  await axios.get(`${url}/Payment/66290326178`).then(r=>{
+  await axios.get(`${url}/Payment/66906438666`).then(r=>{
   console.log(r.data)
   setTotal(r.data.transactionAmount)
   setCodigoQrCode(r.data.pointOfInteraction.transactionData.qrCode)

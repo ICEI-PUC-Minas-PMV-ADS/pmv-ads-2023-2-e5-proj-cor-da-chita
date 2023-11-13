@@ -36,7 +36,7 @@ namespace cor_da_chita_api.Controllers
         {
 
             //Credenciais de produção da conta do BIEL,depois trocar para a conta da mãe da illa
-            MercadoPagoConfig.AccessToken = "APP_USR-1074535318686097-092619-f4d68b7a71ca6ac3c6b1fba004f9e81a-238459047";
+            MercadoPagoConfig.AccessToken = "APP_USR-6208199695202903-111220-76fa5c7f18fb2a55f99d26b51eea67c0-1545639555";
 
             var client = new PaymentClient();
             var payment = client.Get(id);
@@ -69,29 +69,25 @@ namespace cor_da_chita_api.Controllers
 
             try
             {
-                //Credenciais de produção da conta do BIEL,depois trocar para a conta da mãe da illa
+               
 
-                MercadoPagoConfig.AccessToken = "APP_USR-1074535318686097-092619-f4d68b7a71ca6ac3c6b1fba004f9e81a-238459047";
+                MercadoPagoConfig.AccessToken = "APP_USR-6208199695202903-111220-76fa5c7f18fb2a55f99d26b51eea67c0-1545639555";
                 //Define em 2 o numero de tentativas para realizar o pagamento
 
                 var defaultStrategy = new DefaultRetryStrategy(2);
-
+              
                 var request = new PaymentCreateRequest
                 {
                     TransactionAmount = order.Freight.FreightValue,
                     Description = "New Product",
                     PaymentMethodId = "pix",
-
+                    
                     Payer = new PaymentPayerRequest
                     {
                         Email = order.UserEmail,
                         FirstName = order.UserName.Split(' ')[0],
                         LastName = order.UserName.Split(' ')[1],
-                        Identification = new IdentificationRequest
-                        {
-                            Type = "CPF",
-                            Number = "233325454",
-                        },
+                        
                     },
                 };
 
