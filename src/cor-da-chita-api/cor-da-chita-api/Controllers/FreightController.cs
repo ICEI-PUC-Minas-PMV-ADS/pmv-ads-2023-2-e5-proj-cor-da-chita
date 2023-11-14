@@ -55,7 +55,7 @@ namespace cor_da_chita_api.Controllers
             try
             {
 
-                //7346efa436664606e89b6f907fad378553538d39
+                
 
                 //da0cd3db27b86a93497cbadd7d0edfe90e3b96b2
 
@@ -63,7 +63,7 @@ namespace cor_da_chita_api.Controllers
 
 /*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
 */
-                string url = $"{urlApi}/33010515/02177060/1000/20/20/20/7346efa436664606e89b6f907fad378553538d39";
+                string url = $"{urlApi}/33010515/02177060/1000/20/20/20/da0cd3db27b86a93497cbadd7d0edfe90e3b96b2";
 
 
             var a = await _httpClient.GetStringAsync(url);

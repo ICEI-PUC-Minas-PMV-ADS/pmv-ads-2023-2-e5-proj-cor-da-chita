@@ -1,7 +1,7 @@
 // Resumo do pedido
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ import postOrder from "@/database/order/postOrder";
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
+import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 
 export default function SummaryOrder() {
   const route = useRouter();
@@ -18,6 +19,7 @@ export default function SummaryOrder() {
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
   const { cartItems, sumCartItems } = useContext(CartItemsContext);
+  const { freteInContext, isPac } = useContext(FreteContext);
 
   // Enviar pedido
   function handleOrder() {
@@ -125,7 +127,10 @@ export default function SummaryOrder() {
             <strong>Frete</strong>
           </p>
           <p>
-            <strong>R$</strong> 0,00
+            <strong>R$ </strong>
+            {freteInContext != undefined && isPac == "PAC"
+              ? freteInContext.valorPac.toFixed(2)
+              : freteInContext.valorSedex.toFixed(2)}
           </p>
         </div>
 
@@ -134,7 +139,10 @@ export default function SummaryOrder() {
             <strong>Total com Frete</strong>
           </p>
           <p>
-            <strong>R$</strong> 0,00
+            <strong>R$ </strong>
+            {freteInContext != undefined && isPac == "PAC"
+              ? (freteInContext.valorPac + sumCartItems).toFixed(2)
+              : (freteInContext.valorSedex + sumCartItems).toFixed(2)}
           </p>
         </div>
 

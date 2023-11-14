@@ -39,12 +39,18 @@ export default function UserData() {
     return validateEmail(value) ? false : true;
   }, [value]);
 
+  // Se usuário logado pega os dados da session
   useEffect(() => {
     if (session) {
       user.setName(session?.user?.name ?? "");
       user.setEmail(session?.user?.email ?? "");
     }
   });
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter")
+      validadeData ? setMissInfo(true) : route.push("/shipping-data");
+  };
 
   return (
     <section>
@@ -104,8 +110,10 @@ export default function UserData() {
               }
             />
             <Input // Telefone
+              maxLength={11}
               type="tel"
               label="Telefone"
+              placeholder="DDD e Número"
               size="sm"
               value={user.phone}
               isRequired
@@ -115,7 +123,13 @@ export default function UserData() {
                 missInfo && !user.phone && "Favor preencher seu telefone"
               }
               onClear={() => user.setPhone("")}
-              onChange={(e) => user.setPhone(e.target.value)}
+              //onChange={(e) => user.setPhone(e.target.value)}
+              onChange={(e) => {
+                !/[^0-9]+/g.test(e.target.value)
+                  ? user.setPhone(e.target.value)
+                  : "";
+              }}
+              onKeyDown={handleKeyDown}
               startContent={
                 <PhoneIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
               }

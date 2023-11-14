@@ -2,8 +2,14 @@
 "use client";
 
 import React, { useEffect, useState, useContext } from "react";
+import {} from "@nextui-org/react";
 
 import {
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
   Button,
   RadioGroup,
   Radio,
@@ -23,24 +29,35 @@ import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 import CardCart from "@/components/CardCart";
 import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
 import SpinnerForButton from "@/components/SpinnerButton";
+import { CepContext } from "@/contexts/CepContext/CepContext";
+import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 
 export default function ShopCart() {
   const router = useRouter();
 
   const { cart, setCart } = useContext(CartContext); // Array IDs produtos
-  const { sumCartItems } = useContext(CartItemsContext); // Soma dos preços dos itens
+  const { sumCartItems } = useContext(CartItemsContext); // Soma preços itens
+
+  // Usar em shipping data
+  const { setSaveCepContext } = useContext(CepContext);
+  const { setIsPac, isPac, setFreteInContext } = useContext(FreteContext);
 
   // Frete e CEP
-  const [isCombinarFrete, setIsCombinarFrete] = useState(false); // RadioButton Modo envio
-  const [chooseTypeFrete, setChooseTypeFrete] = useState("PAC"); // RadioButton Tipo de Frete
+  const [isCombinarFrete, setIsCombinarFrete] = useState(false); // Modo Envio
+
+  // Modal CEP errado e Erro conexão API
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [textModal, setTextModal] = useState("");
 
   const [cep, setCep] = useState(""); // Input CEP
-  const [frete, setFrete] = useState<any>(); // HandleCep
+  const [frete, setFrete] = useState<any>(); // HandleCep - Frete
 
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
   // Cálculo do Frete
   const handleCep = async () => {
+    setSaveCepContext(cep); // Recebe a entrada do user e salva
+
     const frete = {
       cep: cep,
       totalWidthFreight: 20,
@@ -53,16 +70,33 @@ export default function ShopCart() {
 
     const data = await axios
       .post(`${url}/Freight/CalcFreight`, frete)
-      .then((json) => {
-        return json.data;
+      .then((response) => {
+        console.log(response.status);
+        if (response.data.cepDestino == null) {
+          setTextModal("O CEP está incorreto, verifique");
+          onOpen();
+          setLoading(false);
+
+          return;
+        }
+        return response.data;
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        setTextModal(
+          "Erro de conexão com servidor, tente novamente mais tarde"
+        );
+        onOpen();
+        setLoading(false);
+      });
 
     // Para spinner botão
     if (data) {
       setLoading(false);
     }
 
+    console.log(data);
+    setFreteInContext(data);
     setFrete(data);
   };
 
@@ -77,6 +111,8 @@ export default function ShopCart() {
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     setCart(arrItens);
+
+    setIsPac("PAC");
   }, []);
 
   // Ocultando campo de frete se o carrinho estiver vazio e o frete já ter sido calculado
@@ -98,7 +134,6 @@ export default function ShopCart() {
           ))
         )}
       </div>
-
       <Divider className="mt-10" />
 
       {/* Modo de envio: Título e tooltip */}
@@ -236,7 +271,8 @@ export default function ShopCart() {
                     size="sm"
                     value="PAC"
                     onClick={() => {
-                      setChooseTypeFrete("PAC");
+                      //setChooseTypeFrete("PAC"),
+                      setIsPac("PAC");
                     }}
                   >
                     <p className="text-tiny mr-4">PAC</p>
@@ -270,7 +306,10 @@ export default function ShopCart() {
                     isDisabled={!frete || !isCombinarFrete}
                     size="sm"
                     value="SEDEX"
-                    onClick={() => setChooseTypeFrete("SEDEX")}
+                    onClick={() => {
+                      //setChooseTypeFrete("SEDEX"),
+                      setIsPac("SEDEX");
+                    }}
                   >
                     <p className="text-tiny">SEDEX</p>
                   </Radio>
@@ -312,7 +351,7 @@ export default function ShopCart() {
               <strong>
                 R${" "}
                 {frete != undefined && isCombinarFrete ? (
-                  chooseTypeFrete == "PAC" ? (
+                  isPac == "PAC" ? (
                     frete.valorPac.toFixed(2)
                   ) : (
                     frete.valorSedex.toFixed(2)
@@ -332,7 +371,7 @@ export default function ShopCart() {
               <strong>
                 R${" "}
                 {frete != undefined && isCombinarFrete ? (
-                  chooseTypeFrete == "PAC" ? (
+                  isPac == "PAC" ? (
                     (frete.valorPac + sumCartItems).toFixed(2)
                   ) : (
                     (frete.valorSedex + sumCartItems).toFixed(2)
@@ -356,6 +395,24 @@ export default function ShopCart() {
           Ir para Pagamento
         </Button>
       </div>
+
+      {/* Modal CEP errado e Erro conexão */}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent className="p-4">
+          {(onClose) => (
+            <>
+              <ModalBody>
+                <p>{textModal}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onPress={onClose}>
+                  Voltar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 }

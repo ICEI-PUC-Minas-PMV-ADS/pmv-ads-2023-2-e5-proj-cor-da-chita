@@ -9,21 +9,27 @@ import ProductContextProvider from "@/contexts/ProductContext/ProductContext";
 import CartContextProvider from "@/contexts/CartContext/CartContext";
 import SearchContextProvider from "@/contexts/ProductContext/SearchContext";
 import CartIdContextProvider from "@/contexts/CartContext/CartItemsContext";
+import CepContextProvider from "@/contexts/CepContext/CepContext";
+import FreteContextProvider from "@/contexts/FreteContext/FreteContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
       <NextUIProvider>
         <ProductContextProvider>
-          <SearchContextProvider>
-            <UserContextProvider>
-              <AddressContextProvider>
-                <CartIdContextProvider>
-                  <CartContextProvider>{children}</CartContextProvider>
-                </CartIdContextProvider>
-              </AddressContextProvider>
-            </UserContextProvider>
-          </SearchContextProvider>
+          <CepContextProvider>
+            <SearchContextProvider>
+              <UserContextProvider>
+                <AddressContextProvider>
+                  <CartIdContextProvider>
+                    <CartContextProvider>
+                      <FreteContextProvider>{children}</FreteContextProvider>
+                    </CartContextProvider>
+                  </CartIdContextProvider>
+                </AddressContextProvider>
+              </UserContextProvider>
+            </SearchContextProvider>
+          </CepContextProvider>
         </ProductContextProvider>
       </NextUIProvider>
     </SessionProvider>

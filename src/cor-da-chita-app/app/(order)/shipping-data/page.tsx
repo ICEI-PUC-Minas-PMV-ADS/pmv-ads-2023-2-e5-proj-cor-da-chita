@@ -11,6 +11,7 @@ import { UserContext } from "@/contexts/UserContext/UserContext";
 import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { useRouter } from "next/navigation";
 import Cep from "@/app/api/cep/cep";
+import { CepContext } from "@/contexts/CepContext/CepContext";
 
 export default function ShippingData() {
   const { data: session } = useSession();
@@ -18,6 +19,7 @@ export default function ShippingData() {
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
+  const { saveCepContext } = useContext(CepContext); // Se envio por correios
 
   // Controla mensagem de erro
   const [missInfo, setMissInfo] = useState(false);
@@ -29,7 +31,7 @@ export default function ShippingData() {
     !address.uf ||
     !address.cep;
 
-  // Controla preenchimendo dos campos
+  // Controla preenchimento dos campos de endereço
   const handleCep = async (cep: string) => {
     const cepData: any[] = await Cep(cep);
 
@@ -40,17 +42,31 @@ export default function ShippingData() {
       address.setNeighborhood(cepData[0].bairro ?? "");
       address.setCity(cepData[0].localidade ?? "");
       address.setUf(cepData[0].uf ?? "");
+
+      // Se frete correios
+      if (saveCepContext) address.setCep(cepData[0].cep ?? "");
     }
-    console.log(cepData);
+    // console.log(cepData);
   };
 
+  // Valida 'Enter'em Buscar Cep
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") handleCep(address.cep);
+  };
+
+  // Carrega dados do usuário e se for envio via correios, também carrega endereço
   useEffect(() => {
     if (session && session.user) {
       user.setName(session.user.name ?? "");
       user.setEmail(session.user.email ?? "");
       user.setPhone(user.phone);
     }
-  });
+
+    if (saveCepContext.length !== 0) {
+      // Se frete correios
+      handleCep(saveCepContext);
+    }
+  }, []);
 
   return (
     <section>
@@ -58,23 +74,23 @@ export default function ShippingData() {
         <strong>Dados de Envio</strong>
       </h1>
 
+      {/* Dados do Usuário */}
       <article>
         <p>{user.name}</p>
         <p>{user.email}</p>
         <p>{user.phone}</p>
-        <Button
-          color="success"
-          variant="ghost"
-          onPress={() => route.back()}
-        >
+        <Button color="success" variant="ghost" onPress={() => route.back()}>
           Editar Dados
         </Button>
       </article>
 
+      {/* Endereço */}
       <article>
         <Form method="post">
           <div>
             <Input // CEP
+              maxLength={8}
+              isDisabled={saveCepContext.length > 0}
               type="text"
               label="CEP"
               size="sm"
@@ -85,9 +101,16 @@ export default function ShippingData() {
               color={missInfo && !address.cep ? "danger" : undefined}
               errorMessage={missInfo && !address.cep && "Favor preencher o CEP"}
               onClear={() => address.setCep("")}
-              onChange={(e) => address.setCep(e.target.value)}
+              onChange={(e) => {
+                !/[^0-9]+/g.test(e.target.value)
+                  ? address.setCep(e.target.value)
+                  : "";
+              }}
+              onKeyDown={handleKeyDown}
             />
+
             <Button // Buscar CEP
+              isDisabled={saveCepContext.length > 0}
               color="success"
               size="md"
               onClick={() => handleCep(address.cep)}
@@ -95,7 +118,9 @@ export default function ShippingData() {
               Buscar CEP
             </Button>
           </div>
+
           <Input // Rua
+            isDisabled={saveCepContext.length > 0}
             type="text"
             label="Rua"
             size="sm"
@@ -109,7 +134,9 @@ export default function ShippingData() {
             onClear={() => address.setStreet("")}
             onChange={(e) => address.setStreet(e.target.value)}
           />
+
           <Input // Bairro
+            isDisabled={saveCepContext.length > 0}
             type="text"
             label="Bairro"
             size="sm"
@@ -125,6 +152,7 @@ export default function ShippingData() {
             onClear={() => address.setNeighborhood("")}
             onChange={(e) => address.setNeighborhood(e.target.value)}
           />
+
           <Input // Número
             type="text"
             label="Número"
@@ -134,12 +162,21 @@ export default function ShippingData() {
             isClearable
             color={missInfo && !address.num ? "danger" : undefined}
             errorMessage={
-              missInfo && !address.num && "Favor preencher o número casa"
+              missInfo &&
+              !address.num &&
+              "Favor preencher o número da residência"
             }
             onClear={() => address.setNum("")}
             onChange={(e) => address.setNum(e.target.value)}
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if (e.key === "Enter") {
+                validadeData ? setMissInfo(true) : route.push("/summary-order");
+              }
+            }}
           />
+
           <Input // Cidade
+            isDisabled={saveCepContext.length > 0}
             type="text"
             label="Cidade"
             size="sm"
@@ -153,7 +190,9 @@ export default function ShippingData() {
             onClear={() => address.setCity("")}
             onChange={(e) => address.setCity(e.target.value)}
           />
+
           <Input // UF
+            isDisabled={saveCepContext.length > 0}
             type="text"
             label="UF"
             size="sm"
@@ -165,6 +204,7 @@ export default function ShippingData() {
             onClear={() => address.setUf("")}
             onChange={(e) => address.setUf(e.target.value)}
           />
+
           <Input // Complemento
             type="text"
             label="Complemento"
@@ -173,7 +213,13 @@ export default function ShippingData() {
             isClearable
             onClear={() => address.setComplement("")}
             onChange={(e) => address.setComplement(e.target.value)}
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if (e.key === "Enter") {
+                validadeData ? setMissInfo(true) : route.push("/summary-order");
+              }
+            }}
           />
+
           <Button // Confirmar Dados
             color="success"
             size="md"
