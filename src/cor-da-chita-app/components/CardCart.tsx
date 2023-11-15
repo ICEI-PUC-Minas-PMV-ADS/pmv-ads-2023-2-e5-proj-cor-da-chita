@@ -125,6 +125,7 @@ export default function CardCart({ ...props }: any) {
                 id={item[0]._id}
                 quantidade={item[0].quantidade}
                 className="place-self-start"
+                handleRemoveItemCart={handleRemoveItemCart}
               />
             </div>
 

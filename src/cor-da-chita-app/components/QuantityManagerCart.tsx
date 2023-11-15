@@ -5,7 +5,7 @@ import IconMinusSquare from "@/assets/icons/IconMinusSquare";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
-export default function QuantityManagerCart({ ...props }: any) {
+export default function QuantityManagerCart({ handleRemoveItemCart, ...props }: any) {
   const { setSumCartItems } = useContext(CartItemsContext);
   const { cartItems } = useContext(CartItemsContext);
   const [quantidade, setQuantidade] = useState<number>(0);
@@ -54,7 +54,6 @@ const handleIncreaseQuantity = () => {
   }
 };
 
-
 // Diminuiu a quantidade do item no carrinho e altera valor do carrinho
 const handleDecreaseQuantity = () => {
   const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
@@ -70,28 +69,23 @@ const handleDecreaseQuantity = () => {
 
     // Recalcule a soma total do carrinho
     const updatedSum = arrItens.reduce((acc: number, item: any) => {
-      const cartItem = cartItems.find((cartItem) => cartItem?._id === item.id);
+      const cartItem = cartItems.find((cartItem) => cartItem && cartItem._id === item.id);
       return acc + (cartItem?.preco || 0) * item.quantidade;
     }, 0);
 
     setSumCartItems(updatedSum);
 
     setQuantidade(quantidade - 1);
-  } else if (indexItem !== -1 && arrItens[indexItem].quantidade === 1) {
-    // Remove the item if the quantity is 1
-    arrItens.splice(indexItem, 1);
-    localStorage.setItem("cartItens", JSON.stringify(arrItens));
+  } else {
+    // If the quantity is 1, remove the item from the cart
+    const itemName = cartItems.find((cartItem) => cartItem._id === props.id)?.nome || "";
+    handleRemoveItemCart(props.id, itemName);
 
-    const updatedSum = arrItens.reduce((acc: number, item: any) => {
-      const cartItem = cartItems.find((cartItem) => cartItem?._id === item.id);
-      return acc + (cartItem?.preco || 0) * item.quantidade;
-    }, 0);
-
-    setSumCartItems(updatedSum);
-
-    setQuantidade(0); // Set quantity to 0 or handle as needed
+    // Optionally, reset the quantity to 0
+    setQuantidade(0);
   }
 };
+
 
 
   return (
