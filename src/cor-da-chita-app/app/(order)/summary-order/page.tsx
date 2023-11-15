@@ -24,6 +24,31 @@ export default function SummaryOrder() {
   const {cartFlow, setCartFlow } = useContext(CartContext);
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
+
+
+
+const handleRedirectWhatsApp = ()=>{
+console.log(user)
+//%0a Serve para pular linha no whatsapp
+  const typeFrete = isPac=="PAC" && !isCombinarFrete ?" pela modalidade de envio PAC:":"pela modalidade de envio SEDEX:"
+  let typeDelivery = `${isCombinarFrete?"Combinando diretamente com você a entrega":typeFrete}%0a`
+
+  let message = `Olá Cor da Chita,me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos `+ typeDelivery
+
+cartItems.map((product)=>{
+  //Verifica se é o ultimo item da lista para não inserir virgula no final
+ 
+
+    message+=` ${product.quantidade} ${product.quantidade>1?`Unidades`:`Unidade`} de ${product.nome},cada unidade custando R$${product.preco.toFixed(2)}%0a`
+  
+})
+
+message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
+
+   route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
+  
+}
+
   // Enviar pedido
   function handleOrder() {
     // Somando dados da cubagem do pedido
@@ -295,7 +320,7 @@ export default function SummaryOrder() {
           className="mx-12"
           color="success"
           variant="solid"
-          onClick={() => alert("Programar Cartão")}
+          onClick={() => handleRedirectWhatsApp()}
         >
           Pagar com <strong>Cartão de Crédito</strong>
         </Button>

@@ -53,7 +53,7 @@ export default function ShopCart() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [textModal, setTextModal] = useState("");
 
-  const [cep, setCep] = useState(""); // Input CEP
+  const [cep, setCep] = useState("12903834"); // Input CEP
   //const [frete, setFrete] = useState<any>(); // HandleCep - Frete
 
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
@@ -176,7 +176,7 @@ export default function ShopCart() {
               size="sm"
               value="combinar"
               onClick={() => {
-                setIsCombinarFrete(false);
+                setIsCombinarFrete(false), setCep(""), setIsPac("PAC");
               }}
             >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
@@ -185,7 +185,9 @@ export default function ShopCart() {
               isDisabled={cart.length === 0}
               size="sm"
               value="correios"
-              onClick={() => setIsCombinarFrete(true)}
+              onClick={() => {
+                setIsCombinarFrete(true);
+              }}
             >
               <p className="text-sm ml-2">Correios</p>
             </Radio>

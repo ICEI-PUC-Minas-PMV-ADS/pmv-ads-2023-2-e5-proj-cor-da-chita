@@ -8,7 +8,7 @@ export default function LinkWhatsApp({ children, ...props }: any) {
       {...props}
       isExternal
       aria-label="WhatsApp Cor da Chita"
-      href="https://wa.me/5583987261972"
+      href="https://api.whatsapp.com/send?phone=5583987261972"
     >
       <div className="flex flex-row items-center gap-1 text-light text-tiny py-1">
         <p>WhatsApp</p>
