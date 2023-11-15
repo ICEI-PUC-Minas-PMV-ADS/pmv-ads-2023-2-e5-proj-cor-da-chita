@@ -14,20 +14,19 @@ export default function QuantityManagerCart({ ...props }: any) {
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     const item = arrItens.find((item: any) => item.id === props.id);
-
+  
     // Acumula soma inicial
     let sum = 0;
-    cartItems.forEach((element) => {
-      if (item.quantidade != undefined) {
-        sum += item.quantidade * element.preco;
-        setSumCartItems(sum);
-      }
-    });
-
+    if (item && item.quantidade != undefined) {
+      sum += item.quantidade * cartItems[0]?.preco || 0;
+      setSumCartItems(sum);
+    }
+  
     if (item) {
       setQuantidade(item.quantidade);
     }
   }, [cartItems]);
+  
 
   // Soma quantidade do item no carrinho e altera valor do carrinho
   const handleIncreaseQuantity = () => {

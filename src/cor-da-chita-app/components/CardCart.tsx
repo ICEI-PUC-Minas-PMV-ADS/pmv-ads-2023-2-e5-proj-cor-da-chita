@@ -110,7 +110,7 @@ export default function CardCart({ ...props }: any) {
   return (
     <>
       {/* Principal */}
-      {item ? (
+      {item && item[0]?.imagem && item[0]?._id && item[0]?.nome && item[0]?.preco ? (
         <>
           <div className="flex items-center w-full">
             <div className="flex flex-col items-center p-2 ">
