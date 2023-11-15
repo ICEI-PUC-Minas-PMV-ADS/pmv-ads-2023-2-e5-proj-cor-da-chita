@@ -112,15 +112,23 @@ export default function CardCart({ ...props }: any) {
       {/* Principal */}
       {item && item[0]?.imagem && item[0]?._id && item[0]?.nome && item[0]?.preco ? (
         <>
-          <div className="flex items-center w-full">
+      <div className="flex justify-between w-full py-5">
+        <div
+                className="image-container relative"
+                style={{
+                  height: '250px',
+                  width: '400px',
+                  overflow: 'hidden',
+                }}
+              >
+                <Image
+                      removeWrapper
+                      alt="Card background"
+                      className={`z-0 w-full h-full object-cover`}
+                      src={item[0].imagem}
+                      />
+            </div>
             <div className="flex flex-col items-center p-2 ">
-              <Image
-                alt="Card background"
-                className="object-cover rounded-xl place-self-center"
-                src={item[0].imagem}
-                width={80}
-                height={80}
-              />
               <QuantityManagerCart
                 id={item[0]._id}
                 quantidade={item[0].quantidade}
