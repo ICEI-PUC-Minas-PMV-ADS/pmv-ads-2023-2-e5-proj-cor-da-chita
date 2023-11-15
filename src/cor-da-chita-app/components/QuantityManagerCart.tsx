@@ -14,70 +14,85 @@ export default function QuantityManagerCart({ ...props }: any) {
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     const item = arrItens.find((item: any) => item.id === props.id);
-  
+
     // Acumula soma inicial
     let sum = 0;
     if (item && item.quantidade != undefined) {
-      sum += item.quantidade * cartItems[0]?.preco || 0;
-      setSumCartItems(sum);
+      const cartItem = cartItems.find((ci) => ci?._id === item?.id);
+      if (cartItem) {
+        sum += item.quantidade * cartItem.preco || 0;
+        setSumCartItems(sum);
+      }
     }
-  
+    
     if (item) {
       setQuantidade(item.quantidade);
     }
   }, [cartItems]);
-  
 
-  // Soma quantidade do item no carrinho e altera valor do carrinho
-  const handleIncreaseQuantity = () => {
-    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+// Soma quantidade do item no carrinho e altera valor do carrinho
+const handleIncreaseQuantity = () => {
+  const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    // Index no local storage
-    const indexItem = arrItens.findIndex((item: any) => item.id === props.id);
+  // Index no local storage
+  const indexItem = arrItens.findIndex((item: any) => item.id === props.id);
 
-    // Se o item está no carrinho
-    if (indexItem !== -1) {
-      arrItens[indexItem].quantidade += 1;
+  // Se o item está no carrinho
+  if (indexItem !== -1) {
+    arrItens[indexItem].quantidade += 1;
 
-      localStorage.setItem("cartItens", JSON.stringify(arrItens));
+    localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
-      const updatedSum = arrItens.reduce((acc: number, item: any) => {
-        const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
-        return acc + (cartItem?.preco || 0) * item.quantidade;
-      }, 0);
+    const updatedSum = arrItens.reduce((acc: number, item: any) => {
+      const cartItem = cartItems.find((cartItem) => cartItem && cartItem._id === item.id);
+      return acc + (cartItem?.preco || 0) * item.quantidade;
+    }, 0);
 
-      setSumCartItems(updatedSum);
+    setSumCartItems(updatedSum);
 
-      setQuantidade(arrItens[indexItem].quantidade);
-    }
-  };
+    setQuantidade(arrItens[indexItem].quantidade);
+  }
+};
 
-  // Diminuiu a quantidade do item no carrinho e altera valor do carrinho
-  const handleDecreaseQuantity = () => {
-    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    // Index no local storage
-    const indexItem = arrItens.findIndex((item: any) => item.id === props.id);
+// Diminuiu a quantidade do item no carrinho e altera valor do carrinho
+const handleDecreaseQuantity = () => {
+  const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    // Se o item está no carrinho e a quantidade é maior que 1
-    if (indexItem !== -1 && arrItens[indexItem].quantidade > 1) {
-      arrItens[indexItem].quantidade -= 1;
+  // Index no local storage
+  const indexItem = arrItens.findIndex((item: any) => item.id === props.id);
 
-      localStorage.setItem("cartItens", JSON.stringify(arrItens));
+  // Se o item está no carrinho e a quantidade é maior que 1
+  if (indexItem !== -1 && arrItens[indexItem].quantidade > 1) {
+    arrItens[indexItem].quantidade -= 1;
 
-      // Recalcule a soma total do carrinho
-      const updatedSum = arrItens.reduce((acc: number, item: any) => {
-        const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
-        return acc + (cartItem?.preco || 0) * item.quantidade;
-      }, 0);
+    localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
-      setSumCartItems(updatedSum);
+    // Recalcule a soma total do carrinho
+    const updatedSum = arrItens.reduce((acc: number, item: any) => {
+      const cartItem = cartItems.find((cartItem) => cartItem?._id === item.id);
+      return acc + (cartItem?.preco || 0) * item.quantidade;
+    }, 0);
 
-      setQuantidade(quantidade - 1);
-    } else {
-      setQuantidade(1);
-    }
-  };
+    setSumCartItems(updatedSum);
+
+    setQuantidade(quantidade - 1);
+  } else if (indexItem !== -1 && arrItens[indexItem].quantidade === 1) {
+    // Remove the item if the quantity is 1
+    arrItens.splice(indexItem, 1);
+    localStorage.setItem("cartItens", JSON.stringify(arrItens));
+
+    const updatedSum = arrItens.reduce((acc: number, item: any) => {
+      const cartItem = cartItems.find((cartItem) => cartItem?._id === item.id);
+      return acc + (cartItem?.preco || 0) * item.quantidade;
+    }, 0);
+
+    setSumCartItems(updatedSum);
+
+    setQuantidade(0); // Set quantity to 0 or handle as needed
+  }
+};
+
 
   return (
     <div className="flex items-center">
