@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import {} from "@nextui-org/react";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
 
 import {
   Modal,
@@ -16,6 +17,7 @@ import {
   Input,
   Divider,
   Tooltip,
+  Link
 } from "@nextui-org/react";
 
 import { useRouter } from "next/navigation";
@@ -124,6 +126,15 @@ export default function ShopCart() {
 
   return (
     <>
+      <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => router.push("/all-products")}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+
       {/* Renderizar itens do carrinho */}
       <div className="flex flex-col items-center">
         {!cart.length ? (
