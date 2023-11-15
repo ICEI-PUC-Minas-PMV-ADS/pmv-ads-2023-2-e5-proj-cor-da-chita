@@ -39,10 +39,11 @@ export default function ShopCart() {
   const { sumCartItems } = useContext(CartItemsContext); // Soma preços itens
 
   // Usar em shipping data
-  const { setSaveCepContext } = useContext(CepContext);
+  const { saveCepContext, setSaveCepContext } = useContext(CepContext);
   const {
     setIsPac,
     isPac,
+    freteInContext,
     setFreteInContext,
     isCombinarFrete,
     setIsCombinarFrete,
@@ -53,7 +54,7 @@ export default function ShopCart() {
   const [textModal, setTextModal] = useState("");
 
   const [cep, setCep] = useState(""); // Input CEP
-  const [frete, setFrete] = useState<any>(); // HandleCep - Frete
+  //const [frete, setFrete] = useState<any>(); // HandleCep - Frete
 
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
@@ -82,6 +83,8 @@ export default function ShopCart() {
 
           return;
         }
+        console.log(response.data);
+
         return response.data;
       })
       .catch((e) => {
@@ -89,18 +92,15 @@ export default function ShopCart() {
         setTextModal(
           "Erro de conexão com servidor, tente novamente mais tarde"
         );
+        console.log(e);
         onOpen();
         setLoading(false);
       });
 
-    // Para spinner botão
     if (data) {
-      setLoading(false);
+      setLoading(false); // Para spinner botão
+      setFreteInContext(data);
     }
-
-    console.log(data);
-    setFreteInContext(data);
-    setFrete(data);
   };
 
   // Validação "Enter" input / botão calcular
@@ -127,10 +127,14 @@ export default function ShopCart() {
     setIsPac("PAC");
   }, []);
 
-  // Ocultando campo de frete se o carrinho estiver vazio e o frete já ter sido calculado
+  // Ocultando campo de frete se o carrinho estiver vazio e o frete já ter sido calculado. Exceto quando o flow vem do editar carrinho em summary order
   useEffect(() => {
     if (cart.length === 0) {
       setIsCombinarFrete(false);
+    }
+    if (cartFlow === "/summary-order" && freteInContext != "") {
+      setIsCombinarFrete(true);
+      setCep(saveCepContext);
     }
   }, [cart]);
 
@@ -164,13 +168,15 @@ export default function ShopCart() {
 
         {/* Radio Group Combinar / Correios */}
         <div className="mt-2">
-          <RadioGroup defaultValue={"combinar"}>
+          <RadioGroup
+            defaultValue={freteInContext == "" ? "combinar" : "correios"}
+          >
             <Radio
               isDisabled={cart.length === 0}
               size="sm"
               value="combinar"
               onClick={() => {
-                setIsCombinarFrete(false), setCep("");
+                setIsCombinarFrete(false);
               }}
             >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
@@ -248,21 +254,13 @@ export default function ShopCart() {
             <div className="my-5">
               {/*Tipo de Envio> Título e Tooltip */}
               <div className="flex  items-center">
-                <h2
-                  className={`mr-2  ${
-                    !frete || !isCombinarFrete ? "text-gray-400" : ""
-                  }`}
-                >
+                <h2 className="mr-2">
                   <strong>Selecione o tipo de envio:</strong>
                 </h2>
                 <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
-                  {!frete ? (
+                  {freteInContext == "" ? (
                     <div>
-                      <IconQuestionCircle
-                        className={`${
-                          !isCombinarFrete || !frete ? "text-gray-400" : ""
-                        }`}
-                      />
+                      <IconQuestionCircle />
                     </div>
                   ) : (
                     ""
@@ -279,7 +277,7 @@ export default function ShopCart() {
                 {/* PAC */}
                 <div className="flex justify-around">
                   <Radio
-                    isDisabled={!frete || !isCombinarFrete}
+                    isDisabled={freteInContext == "" || !isCombinarFrete}
                     size="sm"
                     value="PAC"
                     onClick={() => {
@@ -292,15 +290,15 @@ export default function ShopCart() {
 
                   {/* Valor Calculado PAC */}
                   <div className="flex">
-                    {frete != undefined ? (
+                    {freteInContext != "" ? (
                       <p
                         className={`text-tiny ${
                           !isCombinarFrete ? "text-gray-400" : ""
                         }`}
                       >
-                        <strong>R$</strong> {frete.valorPac.toFixed(2)} -
-                        <strong> Prazo: </strong> {frete.prazoPac}
-                        {frete.prazoPac === 1 ? (
+                        <strong>R$</strong> {freteInContext.valorPac.toFixed(2)}{" "}
+                        -<strong> Prazo: </strong> {freteInContext.prazoPac}
+                        {freteInContext.prazoPac === 1 ? (
                           <span> dia&nbsp;&nbsp;</span>
                         ) : (
                           " dias"
@@ -315,7 +313,7 @@ export default function ShopCart() {
                 {/* SEDEX */}
                 <div className="flex justify-around">
                   <Radio
-                    isDisabled={!frete || !isCombinarFrete}
+                    isDisabled={freteInContext == "" || !isCombinarFrete}
                     size="sm"
                     value="SEDEX"
                     onClick={() => {
@@ -328,16 +326,17 @@ export default function ShopCart() {
 
                   {/* Valor Calculado SEDEX */}
                   <div className="flex">
-                    {frete != undefined ? (
+                    {freteInContext != "" ? (
                       <p
                         className={`text-tiny ${
                           !isCombinarFrete ? "text-gray-400" : ""
                         }`}
                       >
-                        <strong>R$</strong> {frete.valorSedex.toFixed(2)} -
+                        <strong>R$</strong>{" "}
+                        {freteInContext.valorSedex.toFixed(2)} -
                         <strong> Prazo: </strong>
-                        {frete.prazoSedex}
-                        {frete.prazoSedex === 1 ? (
+                        {freteInContext.prazoSedex}
+                        {freteInContext.prazoSedex === 1 ? (
                           <span> dia&nbsp;&nbsp;</span>
                         ) : (
                           " dias"
@@ -362,11 +361,11 @@ export default function ShopCart() {
             <p className="mt-2">
               <strong>
                 R${" "}
-                {frete != undefined && isCombinarFrete ? (
+                {freteInContext != "" && isCombinarFrete ? (
                   isPac == "PAC" ? (
-                    frete.valorPac.toFixed(2)
+                    freteInContext.valorPac.toFixed(2)
                   ) : (
-                    frete.valorSedex.toFixed(2)
+                    freteInContext.valorSedex.toFixed(2)
                   )
                 ) : (
                   <>0,00</>
@@ -382,11 +381,11 @@ export default function ShopCart() {
             <p className="mt-2">
               <strong>
                 R${" "}
-                {frete != undefined && isCombinarFrete ? (
+                {freteInContext != "" && isCombinarFrete ? (
                   isPac == "PAC" ? (
-                    (frete.valorPac + sumCartItems).toFixed(2)
+                    (freteInContext.valorPac + sumCartItems).toFixed(2)
                   ) : (
-                    (frete.valorSedex + sumCartItems).toFixed(2)
+                    (freteInContext.valorSedex + sumCartItems).toFixed(2)
                   )
                 ) : (
                   <>{sumCartItems.toFixed(2)}</>
@@ -400,7 +399,9 @@ export default function ShopCart() {
       {/* Ir para Pagamento */}
       <div className="mt-5 place-self-center">
         <Button
-          isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
+          isDisabled={
+            cart.length === 0 || (isCombinarFrete && freteInContext == "")
+          }
           color="success"
           onPress={handleConfirmCartData}
         >

@@ -1,7 +1,7 @@
 // Resumo do pedido
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ export default function SummaryOrder() {
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
   const { cartItems, sumCartItems } = useContext(CartItemsContext);
-  const { setCartFlow } = useContext(CartContext);
+  const {cartFlow, setCartFlow } = useContext(CartContext);
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
   // Enviar pedido
@@ -109,6 +109,12 @@ export default function SummaryOrder() {
     setCartFlow(path);
     route.push("/shop-cart");
   }
+
+  useEffect(() => {
+    console.log(cartFlow);
+    setCartFlow("");
+    console.log(cartFlow);
+  }, []);
 
   return (
     <section className="flex flex-col">

@@ -167,7 +167,11 @@ export default function ShippingData() {
               "Favor preencher o número da residência"
             }
             onClear={() => address.setNum("")}
-            onChange={(e) => address.setNum(e.target.value)}
+            onChange={(e) => {
+              !/[^0-9]+/g.test(e.target.value)
+                ? address.setNum(e.target.value)
+                : "";
+            }}
             onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
               if (e.key === "Enter") {
                 validadeData ? setMissInfo(true) : route.push("/summary-order");
