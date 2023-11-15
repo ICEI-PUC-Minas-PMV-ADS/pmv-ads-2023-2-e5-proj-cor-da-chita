@@ -112,7 +112,7 @@ export default function CardCart({ ...props }: any) {
       {/* Principal */}
       {item && item[0]?.imagem && item[0]?._id && item[0]?.nome && item[0]?.preco ? (
         <>
-      <div className="flex justify-between w-full py-5">
+      <div className="flex justify-between w-full my-1">
         <div
                 className="image-container relative"
                 style={{
@@ -150,7 +150,7 @@ export default function CardCart({ ...props }: any) {
                 />
               </div>
             </Tooltip>
-          </div>
+      </div>
 
           {/* Confirmação de excluir item */}
           <Modal

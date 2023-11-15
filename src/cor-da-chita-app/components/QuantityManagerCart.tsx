@@ -1,5 +1,6 @@
 // Controla a quantidade do item no carrinho dentro da page Shop-Cart
 import React, { useContext, useEffect, useState } from "react";
+import { Button } from  "@nextui-org/react"
 
 import IconMinusSquare from "@/assets/icons/IconMinusSquare";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
@@ -88,23 +89,27 @@ const handleDecreaseQuantity = () => {
 
 
 
-  return (
-    <div className="flex items-center">
-      <div>
-        <IconMinusSquare
-          className="cursor-pointer hover:bg-rose-100"
-          onClick={() => handleDecreaseQuantity()}
-        />
-      </div>
+return (
+  <div className="flex items-center gap-5">
+    <Button
+      isIconOnly
+      className="text-white"
+      color="secondary"
+      onClick={() => handleDecreaseQuantity()}
+    >
+      <IconMinusSquare  />
+    </Button>
 
-      <span className="text-tiny m-2">{quantidade}</span>
+    <span className="">{quantidade}</span>
 
-      <div>
-        <IconPlusSquare
-          className="cursor-pointer hover:bg-emerald-100"
-          onClick={() => handleIncreaseQuantity()}
-        />
-      </div>
-    </div>
-  );
+    <Button
+      isIconOnly
+      className="text-white"
+      color="success"
+      onClick={() => handleIncreaseQuantity()}
+    >
+      <IconPlusSquare />
+    </Button>
+  </div>
+);
 }
