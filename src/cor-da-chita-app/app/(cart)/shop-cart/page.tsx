@@ -4,6 +4,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import {} from "@nextui-org/react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import { MyButton } from "@/components/ui/Button";
+
 
 import {
   Modal,
@@ -397,14 +399,14 @@ export default function ShopCart() {
       </div>
 
       {/* Ir para Pagamento */}
-      <div className="mt-5 place-self-center">
-        <Button
+      <div className="mt-5 flex justify-end">
+        <MyButton 
           isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
-          color="success"
+          color="green"
           onPress={() => router.push("/your-data")}
         >
           Ir para Pagamento
-        </Button>
+        </MyButton>
       </div>
 
       {/* Modal CEP errado e Erro conexão */}
