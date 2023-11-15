@@ -136,7 +136,7 @@ export default function ShopCart() {
       </Link>
 
       {/* Renderizar itens do carrinho */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center my-5">
         {!cart.length ? (
           <p>Seu carrinho está vazio</p>
         ) : (
@@ -145,24 +145,24 @@ export default function ShopCart() {
           ))
         )}
       </div>
-      <Divider className="mt-10" />
+      <Divider/>
 
       {/* Modo de envio: Título e tooltip */}
-      <div className="flex flex-col mt-5">
+      <div className="flex flex-col my-5">
         <div className="flex items-center">
-          <h2 className="mr-2">
+          <h2 className="py-1">
             <strong>Modo de Envio</strong>
           </h2>
 
           <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
-            <div>
+            <div className="p-3">
               <IconQuestionCircle />
             </div>
           </Tooltip>
         </div>
 
         {/* Radio Group Combinar / Correios */}
-        <div className="mt-2">
+        <div className="">
           <RadioGroup defaultValue={"combinar"}>
             <Radio
               isDisabled={cart.length === 0}
