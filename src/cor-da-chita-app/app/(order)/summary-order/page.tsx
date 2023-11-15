@@ -4,7 +4,7 @@
 import React, { useContext, useEffect } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import postOrder from "@/database/order/postOrder";
 
@@ -15,11 +15,13 @@ import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 
 export default function SummaryOrder() {
   const route = useRouter();
+  const path = usePathname();
+  console.log(path);
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
   const { cartItems, sumCartItems } = useContext(CartItemsContext);
-  const { freteInContext, isPac } = useContext(FreteContext);
+  const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
   // Enviar pedido
   function handleOrder() {
@@ -128,9 +130,15 @@ export default function SummaryOrder() {
           </p>
           <p>
             <strong>R$ </strong>
-            {freteInContext != undefined && isPac == "PAC"
-              ? freteInContext.valorPac.toFixed(2)
-              : freteInContext.valorSedex.toFixed(2)}
+            {freteInContext != undefined && isCombinarFrete ? (
+              isPac == "PAC" ? (
+                freteInContext.valorPac.toFixed(2)
+              ) : (
+                freteInContext.valorSedex.toFixed(2)
+              )
+            ) : (
+              <>0,00</>
+            )}
           </p>
         </div>
 
@@ -140,9 +148,15 @@ export default function SummaryOrder() {
           </p>
           <p>
             <strong>R$ </strong>
-            {freteInContext != undefined && isPac == "PAC"
-              ? (freteInContext.valorPac + sumCartItems).toFixed(2)
-              : (freteInContext.valorSedex + sumCartItems).toFixed(2)}
+            {freteInContext != undefined && isCombinarFrete ? (
+              isPac == "PAC" ? (
+                (freteInContext.valorPac + sumCartItems).toFixed(2)
+              ) : (
+                (freteInContext.valorSedex + sumCartItems).toFixed(2)
+              )
+            ) : (
+              <>0,00</>
+            )}
           </p>
         </div>
 
@@ -176,11 +190,7 @@ export default function SummaryOrder() {
         </p>
 
         <div className="mt-2">
-          <Button
-            color="success"
-            variant="ghost"
-            onClick={() => route.push("/shipping-data")}
-          >
+          <Button color="success" variant="ghost" onClick={() => route.back()}>
             Editar Endereço
           </Button>
         </div>

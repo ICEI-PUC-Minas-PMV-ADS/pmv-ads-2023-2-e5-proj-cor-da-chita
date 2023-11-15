@@ -40,10 +40,16 @@ export default function ShopCart() {
 
   // Usar em shipping data
   const { setSaveCepContext } = useContext(CepContext);
-  const { setIsPac, isPac, setFreteInContext } = useContext(FreteContext);
+  const {
+    setIsPac,
+    isPac,
+    setFreteInContext,
+    isCombinarFrete,
+    setIsCombinarFrete,
+  } = useContext(FreteContext);
 
   // Frete e CEP
-  const [isCombinarFrete, setIsCombinarFrete] = useState(false); // Modo Envio
+  // const [isCombinarFrete, setIsCombinarFrete] = useState(false); // Modo Envio
 
   // Modal CEP errado e Erro conexão API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
