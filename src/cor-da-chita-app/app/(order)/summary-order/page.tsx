@@ -1,7 +1,7 @@
 // Resumo do pedido
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,16 +12,16 @@ import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
+import { CartContext } from "@/contexts/CartContext/CartContext";
 
 export default function SummaryOrder() {
   const route = useRouter();
   const path = usePathname();
-  console.log(path);
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
   const { cartItems, sumCartItems } = useContext(CartItemsContext);
-  
+  const { setCartFlow } = useContext(CartContext);
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
 
@@ -48,7 +48,7 @@ cartItems.map((product)=>{
 
 console.log(message)
 
-//  route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
+ route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
   
 }
 
@@ -122,6 +122,22 @@ console.log(message)
     fetchData();
   }
 
+  // Lidar com rotas dos botões de edição
+  function handleRouteEditUserData(): void {
+    setCartFlow(path);
+    route.push("/your-data");
+  }
+
+  function handleRouteEditAddressData(): void {
+    setCartFlow(path);
+    route.push("/shipping-data");
+  }
+
+  function handleRouteEditCartData(): void {
+    setCartFlow(path);
+    route.push("/shop-cart");
+  }
+
   return (
     <section className="flex flex-col">
       <h2 className="place-self-center">
@@ -145,7 +161,7 @@ console.log(message)
         <div>
           <div className="flex justify-between ">
             <p>
-              <strong>Total</strong>
+              <strong>Total dos Itens</strong>
             </p>
             <p>
               <strong>R$</strong> {sumCartItems.toFixed(2)}
@@ -153,40 +169,65 @@ console.log(message)
           </div>
         </div>
 
+        {/* Frete */}
+        {/* Total com ou sem frete */}
         <div className="flex justify-between mt-2">
-          <p>
-            <strong>Frete</strong>
-          </p>
-          <p>
-            <strong>R$ </strong>
-            {freteInContext != undefined && isCombinarFrete ? (
-              isPac == "PAC" ? (
-                freteInContext.valorPac.toFixed(2)
-              ) : (
-                freteInContext.valorSedex.toFixed(2)
-              )
+          {/* Label */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            <p>
+              <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
+            </p>
+          ) : (
+            <p>
+              <strong>Frete a combinar</strong>
+            </p>
+          )}
+
+          {/* Valores Se tem frete via correios */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            isPac == "PAC" ? (
+              <p>
+                <strong>R$ </strong>
+                {freteInContext.valorPac.toFixed(2)}
+              </p>
             ) : (
-              <>0,00</>
-            )}
-          </p>
+              <p>
+                <strong>R$ </strong>
+                {freteInContext.valorSedex.toFixed(2)}
+              </p>
+            )
+          ) : (
+            <></>
+          )}
         </div>
 
+        {/* Total carrinho com ou sem frete */}
         <div className="flex justify-between mt-2">
-          <p>
-            <strong>Total com Frete</strong>
-          </p>
-          <p>
-            <strong>R$ </strong>
-            {freteInContext != undefined && isCombinarFrete ? (
-              isPac == "PAC" ? (
-                (freteInContext.valorPac + sumCartItems).toFixed(2)
-              ) : (
-                (freteInContext.valorSedex + sumCartItems).toFixed(2)
-              )
+          {/* Label */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            <p>
+              <strong>Total com frete</strong>
+            </p>
+          ) : (
+            <p></p>
+          )}
+
+          {/* Valores: Se frete é correios, PAC ou SEDEX */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            isPac == "PAC" ? (
+              <p>
+                <strong>R$ </strong>
+                {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+              </p>
             ) : (
-              <>0,00</>
-            )}
-          </p>
+              <p>
+                <strong>R$ </strong>
+                {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
+              </p>
+            )
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="mt-2">
@@ -194,7 +235,7 @@ console.log(message)
           <Button
             color="success"
             variant="ghost"
-            onPress={() => route.push("/shop-cart")}
+            onPress={handleRouteEditCartData}
           >
             Editar Carrinho
           </Button>
@@ -219,7 +260,11 @@ console.log(message)
         </p>
 
         <div className="mt-2">
-          <Button color="success" variant="ghost" onClick={() => route.back()}>
+          <Button
+            color="success"
+            variant="ghost"
+            onClick={handleRouteEditAddressData}
+          >
             Editar Endereço
           </Button>
         </div>
@@ -244,7 +289,7 @@ console.log(message)
           <Button
             color="success"
             variant="ghost"
-            onClick={() => route.push("/your-data")}
+            onClick={handleRouteEditUserData}
           >
             Editar Dados
           </Button>

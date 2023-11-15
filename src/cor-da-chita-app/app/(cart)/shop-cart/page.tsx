@@ -33,9 +33,9 @@ import { CepContext } from "@/contexts/CepContext/CepContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 
 export default function ShopCart() {
-  const router = useRouter();
+  const route = useRouter();
 
-  const { cart, setCart } = useContext(CartContext); // Array IDs produtos
+  const { cart, setCart, cartFlow } = useContext(CartContext); // Array IDs produtos
   const { sumCartItems } = useContext(CartItemsContext); // Soma preços itens
 
   // Usar em shipping data
@@ -47,9 +47,6 @@ export default function ShopCart() {
     isCombinarFrete,
     setIsCombinarFrete,
   } = useContext(FreteContext);
-
-  // Frete e CEP
-  // const [isCombinarFrete, setIsCombinarFrete] = useState(false); // Modo Envio
 
   // Modal CEP errado e Erro conexão API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -112,6 +109,15 @@ export default function ShopCart() {
       handleCep();
     }
   };
+
+  // Lidar com a rota vinda do summary-order ou não. Chamada no botão "Ir para o Pagamento"
+  function handleConfirmCartData(): void {
+    if (cartFlow == "/summary-order") {
+      route.push("/summary-order");
+    } else {
+      route.push("/your-data");
+    }
+  }
 
   // Pega IDs do local storage salva em setCart
   useEffect(() => {
@@ -398,7 +404,7 @@ export default function ShopCart() {
         <Button
           isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
           color="success"
-          onPress={() => router.push("/your-data")}
+          onPress={handleConfirmCartData}
         >
           Ir para Pagamento
         </Button>
