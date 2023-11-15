@@ -16,6 +16,8 @@ type FreteContextType = {
   setFreteInContext: Dispatch<SetStateAction<any>>;
   isPac: string;
   setIsPac: Dispatch<SetStateAction<string>>;
+  isCombinarFrete: boolean;
+  setIsCombinarFrete: Dispatch<SetStateAction<boolean>>;
 };
 
 const initialValue = {
@@ -23,6 +25,8 @@ const initialValue = {
   setFreteInContext: () => {},
   isPac: "PAC",
   setIsPac: () => {},
+  isCombinarFrete: false,
+  setIsCombinarFrete: () => {},
 };
 
 export const FreteContext = createContext<FreteContextType>(initialValue);
@@ -32,10 +36,20 @@ export default function FreteContextProvider({ children }: FreteContextProps) {
     initialValue.freteInContext
   );
   const [isPac, setIsPac] = useState(initialValue.isPac);
+  const [isCombinarFrete, setIsCombinarFrete] = useState(
+    initialValue.isCombinarFrete
+  );
 
   return (
     <FreteContext.Provider
-      value={{ freteInContext, setFreteInContext, isPac, setIsPac }}
+      value={{
+        freteInContext,
+        setFreteInContext,
+        isPac,
+        setIsPac,
+        isCombinarFrete,
+        setIsCombinarFrete,
+      }}
     >
       {children}
     </FreteContext.Provider>

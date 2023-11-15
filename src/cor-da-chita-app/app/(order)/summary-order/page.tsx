@@ -1,10 +1,10 @@
 // Resumo do pedido
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { Button, Divider } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import postOrder from "@/database/order/postOrder";
 
@@ -12,14 +12,42 @@ import { AddressContext } from "@/contexts/AddressContext/AddressContext";
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
+import { CartContext } from "@/contexts/CartContext/CartContext";
 
 export default function SummaryOrder() {
   const route = useRouter();
+  const path = usePathname();
 
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
   const { cartItems, sumCartItems } = useContext(CartItemsContext);
-  const { freteInContext, isPac } = useContext(FreteContext);
+  const { setCartFlow } = useContext(CartContext);
+  const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
+
+
+
+
+const handleRedirectWhatsApp = ()=>{
+console.log(user)
+//%0a Serve para pular linha no whatsapp
+  const typeFrete = isPac=="PAC" && !isCombinarFrete ?" pela modalidade de envio PAC:":"pela modalidade de envio SEDEX:"
+  let typeDelivery = `${isCombinarFrete?"Combinando diretamente com você a entrega":typeFrete}%0a`
+
+  let message = `Olá Cor da Chita,me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos `+ typeDelivery
+
+cartItems.map((product)=>{
+  //Verifica se é o ultimo item da lista para não inserir virgula no final
+ 
+
+    message+=` ${product.quantidade} ${product.quantidade>1?`Unidades`:`Unidade`} de ${product.nome},cada unidade custando R$${product.preco.toFixed(2)}%0a`
+  
+})
+
+message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
+
+   route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
+  
+}
 
   // Enviar pedido
   function handleOrder() {
@@ -91,6 +119,22 @@ export default function SummaryOrder() {
     fetchData();
   }
 
+  // Lidar com rotas dos botões de edição
+  function handleRouteEditUserData(): void {
+    setCartFlow(path);
+    route.push("/your-data");
+  }
+
+  function handleRouteEditAddressData(): void {
+    setCartFlow(path);
+    route.push("/shipping-data");
+  }
+
+  function handleRouteEditCartData(): void {
+    setCartFlow(path);
+    route.push("/shop-cart");
+  }
+
   return (
     <section className="flex flex-col">
       <h2 className="place-self-center">
@@ -114,7 +158,7 @@ export default function SummaryOrder() {
         <div>
           <div className="flex justify-between ">
             <p>
-              <strong>Total</strong>
+              <strong>Total dos Itens</strong>
             </p>
             <p>
               <strong>R$</strong> {sumCartItems.toFixed(2)}
@@ -122,28 +166,65 @@ export default function SummaryOrder() {
           </div>
         </div>
 
+        {/* Frete */}
+        {/* Total com ou sem frete */}
         <div className="flex justify-between mt-2">
-          <p>
-            <strong>Frete</strong>
-          </p>
-          <p>
-            <strong>R$ </strong>
-            {freteInContext != undefined && isPac == "PAC"
-              ? freteInContext.valorPac.toFixed(2)
-              : freteInContext.valorSedex.toFixed(2)}
-          </p>
+          {/* Label */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            <p>
+              <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
+            </p>
+          ) : (
+            <p>
+              <strong>Frete a combinar</strong>
+            </p>
+          )}
+
+          {/* Valores Se tem frete via correios */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            isPac == "PAC" ? (
+              <p>
+                <strong>R$ </strong>
+                {freteInContext.valorPac.toFixed(2)}
+              </p>
+            ) : (
+              <p>
+                <strong>R$ </strong>
+                {freteInContext.valorSedex.toFixed(2)}
+              </p>
+            )
+          ) : (
+            <></>
+          )}
         </div>
 
+        {/* Total carrinho com ou sem frete */}
         <div className="flex justify-between mt-2">
-          <p>
-            <strong>Total com Frete</strong>
-          </p>
-          <p>
-            <strong>R$ </strong>
-            {freteInContext != undefined && isPac == "PAC"
-              ? (freteInContext.valorPac + sumCartItems).toFixed(2)
-              : (freteInContext.valorSedex + sumCartItems).toFixed(2)}
-          </p>
+          {/* Label */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            <p>
+              <strong>Total com frete</strong>
+            </p>
+          ) : (
+            <p></p>
+          )}
+
+          {/* Valores: Se frete é correios, PAC ou SEDEX */}
+          {freteInContext != undefined && isCombinarFrete ? (
+            isPac == "PAC" ? (
+              <p>
+                <strong>R$ </strong>
+                {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+              </p>
+            ) : (
+              <p>
+                <strong>R$ </strong>
+                {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
+              </p>
+            )
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="mt-2">
@@ -151,7 +232,7 @@ export default function SummaryOrder() {
           <Button
             color="success"
             variant="ghost"
-            onPress={() => route.push("/shop-cart")}
+            onPress={handleRouteEditCartData}
           >
             Editar Carrinho
           </Button>
@@ -179,7 +260,7 @@ export default function SummaryOrder() {
           <Button
             color="success"
             variant="ghost"
-            onClick={() => route.push("/shipping-data")}
+            onClick={handleRouteEditAddressData}
           >
             Editar Endereço
           </Button>
@@ -205,7 +286,7 @@ export default function SummaryOrder() {
           <Button
             color="success"
             variant="ghost"
-            onClick={() => route.push("/your-data")}
+            onClick={handleRouteEditUserData}
           >
             Editar Dados
           </Button>
@@ -233,7 +314,7 @@ export default function SummaryOrder() {
           className="mx-12"
           color="success"
           variant="solid"
-          onClick={() => alert("Programar Cartão")}
+          onClick={() => handleRedirectWhatsApp()}
         >
           Pagar com <strong>Cartão de Crédito</strong>
         </Button>

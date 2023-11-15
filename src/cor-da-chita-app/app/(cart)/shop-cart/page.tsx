@@ -37,23 +37,26 @@ import { CepContext } from "@/contexts/CepContext/CepContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 
 export default function ShopCart() {
-  const router = useRouter();
+  const route = useRouter();
 
-  const { cart, setCart } = useContext(CartContext); // Array IDs produtos
+  const { cart, setCart, cartFlow } = useContext(CartContext); // Array IDs produtos
   const { sumCartItems } = useContext(CartItemsContext); // Soma preços itens
 
   // Usar em shipping data
   const { setSaveCepContext } = useContext(CepContext);
-  const { setIsPac, isPac, setFreteInContext } = useContext(FreteContext);
-
-  // Frete e CEP
-  const [isCombinarFrete, setIsCombinarFrete] = useState(false); // Modo Envio
+  const {
+    setIsPac,
+    isPac,
+    setFreteInContext,
+    isCombinarFrete,
+    setIsCombinarFrete,
+  } = useContext(FreteContext);
 
   // Modal CEP errado e Erro conexão API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [textModal, setTextModal] = useState("");
 
-  const [cep, setCep] = useState(""); // Input CEP
+  const [cep, setCep] = useState("12903834"); // Input CEP
   const [frete, setFrete] = useState<any>(); // HandleCep - Frete
 
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
@@ -110,6 +113,15 @@ export default function ShopCart() {
       handleCep();
     }
   };
+
+  // Lidar com a rota vinda do summary-order ou não. Chamada no botão "Ir para o Pagamento"
+  function handleConfirmCartData(): void {
+    if (cartFlow == "/summary-order") {
+      route.push("/summary-order");
+    } else {
+      route.push("/your-data");
+    }
+  }
 
   // Pega IDs do local storage salva em setCart
   useEffect(() => {
@@ -171,7 +183,7 @@ export default function ShopCart() {
               size="sm"
               value="combinar"
               onClick={() => {
-                setIsCombinarFrete(false), setCep("");
+                setIsCombinarFrete(false), setCep(""),setIsPac("PAC");
               }}
             >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
@@ -180,7 +192,9 @@ export default function ShopCart() {
               isDisabled={cart.length === 0}
               size="sm"
               value="correios"
-              onClick={() => setIsCombinarFrete(true)}
+              onClick={() =>{
+                setIsCombinarFrete(true)
+              } }
             >
               <p className="text-sm ml-2">Correios</p>
             </Radio>
@@ -403,7 +417,8 @@ export default function ShopCart() {
         <MyButton 
           isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
           color="green"
-          onPress={() => router.push("/your-data")}
+          color="success"
+          onPress={handleConfirmCartData}
         >
           Ir para Pagamento
         </MyButton>

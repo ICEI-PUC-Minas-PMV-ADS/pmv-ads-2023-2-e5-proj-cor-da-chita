@@ -31,11 +31,11 @@ namespace cor_da_chita_api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
 
         [HttpGet("{id}")]
-        //Tipo int não serve como parâmentro pois o Id do pagamento é muito grande
+
         public async Task<ActionResult<PaymentClient>> Get(long id)
         {
 
-            //Credenciais de produção da conta do BIEL,depois trocar para a conta da mãe da illa
+           
             MercadoPagoConfig.AccessToken = "APP_USR-6208199695202903-111220-76fa5c7f18fb2a55f99d26b51eea67c0-1545639555";
 
             var client = new PaymentClient();
@@ -78,8 +78,8 @@ namespace cor_da_chita_api.Controllers
               
                 var request = new PaymentCreateRequest
                 {
-                    TransactionAmount = order.Freight.FreightValue,
-                    Description = "New Product",
+                    TransactionAmount = order.Freight.FreightValue + order.TotalPriceProducts,
+                    
                     PaymentMethodId = "pix",
                     
                     Payer = new PaymentPayerRequest

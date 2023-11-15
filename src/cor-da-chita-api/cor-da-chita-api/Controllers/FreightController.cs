@@ -27,15 +27,61 @@ namespace cor_da_chita_api.Controllers
         private const string cepOrigem = "33010515";
 
         //URl DA API
-        private string urlApi = "https://cepcerto.com/ws/json-frete";
+        private string urlCalculoFrete = "https://cepcerto.com/ws/json-frete";
 
+
+        private string urlRastreio = "https://www.cepcerto.com/ws/encomenda-json";
         private readonly HttpClient _httpClient;
 
         public FreightController()
         {
             _httpClient = new HttpClient();
         }
+        // GET: FreightController
+        /// <summary>
+        /// Get values of freight
+        /// </summary>
+        /// <param name="Order"></param>
+        /// <returns>Freight Values</returns>
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
 
+        [HttpPost("TrackProduct")]
+
+        public async Task<ActionResult<FreightDeserialize>> GetTrack(string codigo)
+        {
+            try
+            {
+
+
+
+
+
+                //be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5
+                /*
+                                string url = $"{urlCalculoFrete}/{codigo}/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";*/
+
+                string url = $"{urlCalculoFrete}/QC689000425BR/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";
+
+
+                var a = await _httpClient.GetStringAsync(url);
+         
+             
+
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToErrorReponse());
+            }
+
+
+
+        }
         // GET: FreightController
         /// <summary>
         /// Get values of freight
@@ -57,13 +103,13 @@ namespace cor_da_chita_api.Controllers
 
                 
 
-                //da0cd3db27b86a93497cbadd7d0edfe90e3b96b2
+                //
 
-                //be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5
+                //
 
 /*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
 */
-                string url = $"{urlApi}/33010515/02177060/1000/20/20/20/da0cd3db27b86a93497cbadd7d0edfe90e3b96b2";
+                string url = $"{urlCalculoFrete}/33010515/02177060/1000/20/20/20/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";
 
 
             var a = await _httpClient.GetStringAsync(url);

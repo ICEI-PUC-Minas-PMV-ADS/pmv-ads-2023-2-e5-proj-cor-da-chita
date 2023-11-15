@@ -1,6 +1,8 @@
 // Dados do usuário na tela na finalização da compra
 "use client";
+
 import React, { useContext, useState, useMemo, useEffect } from "react";
+
 import { signIn, useSession } from "next-auth/react";
 import { Button, Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -13,12 +15,15 @@ import PhoneIcon from "../../../assets/icons/PhoneIcon";
 import GoogleIcon from "@/assets/icons/GoogleIcon";
 
 import { UserContext } from "@/contexts/UserContext/UserContext";
+import { CartContext } from "@/contexts/CartContext/CartContext";
 
 export default function UserData() {
   const { data: session } = useSession();
+  const route = useRouter();
 
   const user = useContext(UserContext);
-  const route = useRouter();
+  // Verificar se o fluxo vem do carrinho
+  const { cartFlow } = useContext(CartContext);
 
   // Habilita / Desabilita input de acordo com login
   const isDisabled = session && session.user ? true : false;
@@ -47,10 +52,19 @@ export default function UserData() {
     }
   });
 
+  // Lidar com botão Enter. Chamado no no input Tel ou Complemento
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter")
-      validadeData ? setMissInfo(true) : route.push("/shipping-data");
+    if (e.key === "Enter") handleConfirmUserData();
   };
+
+  // Lidar com a rota vinda do summary-order ou não. Chamada no botão "Confirmar Dados"
+  function handleConfirmUserData(): void {
+    if (cartFlow == "/summary-order") {
+      validadeData ? setMissInfo(true) : route.push("/summary-order");
+    } else {
+      validadeData ? setMissInfo(true) : route.push("/shipping-data");
+    }
+  }
 
   return (
     <section>
@@ -139,9 +153,7 @@ export default function UserData() {
             <Button // Confirmar Dados
               color="success"
               size="md"
-              onClick={() =>
-                validadeData ? setMissInfo(true) : route.push("/shipping-data")
-              }
+              onClick={handleConfirmUserData}
             >
               Confirmar Dados
             </Button>
@@ -149,6 +161,7 @@ export default function UserData() {
         </Form>
       </article>
 
+      {/* Continuar ou não com o Google */}
       <article>
         {session && session.user ? (
           <></>
