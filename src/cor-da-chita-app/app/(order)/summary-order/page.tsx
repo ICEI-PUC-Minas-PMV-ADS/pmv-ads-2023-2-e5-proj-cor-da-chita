@@ -28,27 +28,24 @@ export default function SummaryOrder() {
 
 
 const handleRedirectWhatsApp = ()=>{
+console.log(user)
+//%0a Serve para pular linha no whatsapp
+  const typeFrete = isPac=="PAC" && !isCombinarFrete ?" pela modalidade de envio PAC:":"pela modalidade de envio SEDEX:"
+  let typeDelivery = `${isCombinarFrete?"Combinando diretamente com você a entrega":typeFrete}%0a`
 
-
-  const typeFrete = isPac=="PAC" && !isCombinarFrete ?"pela modalidade de envio PAC:":"pela modalidade de envio SEDEX:"
-  let typeDelivery = `${isCombinarFrete?"Combinando diretamente com você a entrega":typeFrete}`
-
-  let message = `Olá Cor da Chita, gostaria de comprar no cartão de crédito os seguintes produtos `+ typeDelivery
+  let message = `Olá Cor da Chita,me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos `+ typeDelivery
 
 cartItems.map((product)=>{
   //Verifica se é o ultimo item da lista para não inserir virgula no final
-  if(product==cartItems[cartItems.length-1]){
-    message+=` ${product.quantidade} ${product.quantidade>1?`Unidades`:`Unidade`} de ${product.nome}.`
-  }
-  else{
+ 
 
-    message+=` ${product.quantidade} ${product.quantidade>1?`Unidades`:`Unidade`} de ${product.nome},`
-  }
+    message+=` ${product.quantidade} ${product.quantidade>1?`Unidades`:`Unidade`} de ${product.nome},cada unidade custando R$${product.preco.toFixed(2)}%0a`
+  
 })
 
-console.log(message)
+message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
 
- route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
+   route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
   
 }
 

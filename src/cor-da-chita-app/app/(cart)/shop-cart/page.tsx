@@ -170,7 +170,7 @@ export default function ShopCart() {
               size="sm"
               value="combinar"
               onClick={() => {
-                setIsCombinarFrete(true), setCep(""),setIsPac("PAC");
+                setIsCombinarFrete(false), setCep(""),setIsPac("PAC");
               }}
             >
               <p className="text-sm ml-2">Combinar com a vendedora</p>
@@ -180,7 +180,7 @@ export default function ShopCart() {
               size="sm"
               value="correios"
               onClick={() =>{
-                setIsCombinarFrete(false)
+                setIsCombinarFrete(true)
               } }
             >
               <p className="text-sm ml-2">Correios</p>
