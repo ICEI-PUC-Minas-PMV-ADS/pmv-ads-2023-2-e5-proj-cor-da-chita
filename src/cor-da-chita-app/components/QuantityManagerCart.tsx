@@ -6,7 +6,12 @@ import IconMinusSquare from "@/assets/icons/IconMinusSquare";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
-export default function QuantityManagerCart({ handleRemoveItemCart, ...props }: any) {
+export default function QuantityManagerCart ({
+  handleRemoveItemCart,
+  onOpen, 
+  ...props
+}: any) {
+
   const { setSumCartItems } = useContext(CartItemsContext);
   const { cartItems } = useContext(CartItemsContext);
   const [quantidade, setQuantidade] = useState<number>(0);
@@ -59,16 +64,16 @@ const handleIncreaseQuantity = () => {
 const handleDecreaseQuantity = () => {
   const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-  // Index no local storage
+  // Index in local storage
   const indexItem = arrItens.findIndex((item: any) => item.id === props.id);
 
-  // Se o item está no carrinho e a quantidade é maior que 1
+  // If the item is in the cart and the quantity is greater than 1
   if (indexItem !== -1 && arrItens[indexItem].quantidade > 1) {
     arrItens[indexItem].quantidade -= 1;
 
     localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
-    // Recalcule a soma total do carrinho
+    // Recalculate the total sum of the cart
     const updatedSum = arrItens.reduce((acc: number, item: any) => {
       const cartItem = cartItems.find((cartItem) => cartItem && cartItem._id === item.id);
       return acc + (cartItem?.preco || 0) * item.quantidade;
@@ -77,14 +82,12 @@ const handleDecreaseQuantity = () => {
     setSumCartItems(updatedSum);
 
     setQuantidade(quantidade - 1);
-  } else {
-    // If the quantity is 1, remove the item from the cart
-    const itemName = cartItems.find((cartItem) => cartItem._id === props.id)?.nome || "";
-    handleRemoveItemCart(props.id, itemName);
-
-    // Optionally, reset the quantity to 0
-    setQuantidade(0);
+  } else if (indexItem !== -1 && arrItens[indexItem].quantidade === 1) {
+    // If the quantity is 1, open the confirmation modal
+    onOpen();
   }
+  // Optionally, reset the quantity to 0
+  // setQuantidade(0);
 };
 
 

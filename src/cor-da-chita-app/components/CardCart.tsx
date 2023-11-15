@@ -143,6 +143,7 @@ export default function CardCart({ ...props }: any) {
                 id={item[0]._id}
                 quantidade={item[0].quantidade}
                 className="py-3 items-center"
+                onOpen={onOpen}
                 handleRemoveItemCart={handleRemoveItemCart}
               />
               </div>
