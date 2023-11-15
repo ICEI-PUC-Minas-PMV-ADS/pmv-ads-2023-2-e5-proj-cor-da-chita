@@ -90,7 +90,7 @@ export default function ShippingData() {
           <div>
             <Input // CEP
               maxLength={8}
-              isDisabled={saveCepContext.length > 0}
+              
               type="text"
               label="CEP"
               size="sm"
@@ -110,7 +110,7 @@ export default function ShippingData() {
             />
 
             <Button // Buscar CEP
-              isDisabled={saveCepContext.length > 0}
+           
               color="success"
               size="md"
               onClick={() => handleCep(address.cep)}

@@ -21,6 +21,13 @@
             Controller to Management Pix Payment
             </summary>
         </member>
+        <member name="M:cor_da_chita_api.Controllers.FreightController.GetTrack(cor_da_chita_api.Controllers.Requests.FreightRequest)">
+            <summary>
+            Get values of freight
+            </summary>
+            <param name="Order"></param>
+            <returns>Freight Values</returns>
+        </member>
         <member name="M:cor_da_chita_api.Controllers.FreightController.CalcFrete(cor_da_chita_api.Controllers.Requests.FreightRequest)">
             <summary>
             Get values of freight
