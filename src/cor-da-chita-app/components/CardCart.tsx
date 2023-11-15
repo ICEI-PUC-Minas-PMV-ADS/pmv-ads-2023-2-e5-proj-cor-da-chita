@@ -112,44 +112,57 @@ export default function CardCart({ ...props }: any) {
       {/* Principal */}
       {item && item[0]?.imagem && item[0]?._id && item[0]?.nome && item[0]?.preco ? (
         <>
-      <div className="flex justify-between w-full my-1">
+      <div className="flex justify-between w-full my-1 content-center">
+        <div>
         <div
                 className="image-container relative"
                 style={{
-                  height: '250px',
-                  width: '400px',
+                  height: '150px',
+                  width: '200px',
                   overflow: 'hidden',
                 }}
               >
-                <Image
-                      removeWrapper
-                      alt="Card background"
-                      className={`z-0 w-full h-full object-cover`}
-                      src={item[0].imagem}
-                      />
+                  <Image
+                        removeWrapper
+                        alt="Card background"
+                        className={`z-0 w-full h-full object-cover`}
+                        src={item[0].imagem}
+                  />
+              </div>
+              <div className="flex flex-col">
+              <h2 className="my-2">{item[0].nome}</h2>
+              <p className="my-2">R$ {item[0].preco.toFixed(2)}</p>
             </div>
-            <div className="flex flex-col items-center p-2 ">
+        </div>
+        
+
+            <div className="flex flex-col">
+              <h2 className="my-2">{item[0].nome}</h2>
+              <p className="my-2">R$ {item[0].preco.toFixed(2)}</p>
+            </div>
+
+            <div className="flex flex-col">
+              <div className="my-2">
               <QuantityManagerCart
                 id={item[0]._id}
                 quantidade={item[0].quantidade}
-                className="place-self-start"
+                className="py-3 items-center"
                 handleRemoveItemCart={handleRemoveItemCart}
               />
-            </div>
-
-            <div className="p-4">
-              <h2 className="text-sm">{item[0].nome}</h2>
-              <p className="text-tiny mt-2">R$ {item[0].preco.toFixed(2)}</p>
-            </div>
-
-            <Tooltip content="Excluir Item">
-              <div className="p-2 place-self-start">
-                <IconCartX
-                  className="cursor-pointer hover:bg-rose-100"
-                  onClick={() => onOpen()}
-                />
               </div>
-            </Tooltip>
+              <div className="my-2">
+              <Button
+                color="secondary"
+                variant="ghost"
+                onClick={() => onOpen()}
+              >
+                <IconCartX  />
+                Excluir item
+              </Button>
+              </div>
+            </div>
+
+
       </div>
 
           {/* Confirmação de excluir item */}
