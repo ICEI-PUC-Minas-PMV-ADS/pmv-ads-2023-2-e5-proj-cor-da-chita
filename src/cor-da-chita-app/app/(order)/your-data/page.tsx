@@ -4,8 +4,11 @@
 import React, { useContext, useState, useMemo, useEffect } from "react";
 
 import { signIn, useSession } from "next-auth/react";
-import { Button, Input } from "@nextui-org/react";
+import { Link, Button, Input, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+import { MyButton } from "@/components/ui/Button";
+
 
 import Form from "../../../components/ui/Form";
 
@@ -68,8 +71,15 @@ export default function UserData() {
 
   return (
     <section>
-      <h2>Seus Dados</h2>
-      <article>
+      <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.back()}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+      <div>
         <Form method="post">
           <div>
             <Input // Nome Completo
@@ -150,37 +160,37 @@ export default function UserData() {
             />
           </div>
           <div>
-            <Button // Confirmar Dados
-              color="success"
-              size="md"
+            <MyButton // Confirmar Dados
+              color="green"
+              size="xl"
               onClick={handleConfirmUserData}
             >
               Confirmar Dados
-            </Button>
+            </MyButton>
           </div>
         </Form>
-      </article>
+      </div>
 
       {/* Continuar ou não com o Google */}
-      <article>
+      <div>
         {session && session.user ? (
           <></>
         ) : (
           <div>
-            <p>________________ ou ________________</p>
-            <Button // Continuar com Google
+            <Divider/>
+            <MyButton // Continuar com Google
               color="secondary"
-              size="sm"
+              size="xl"
               onClick={() => signIn("google")}
               startContent={
                 <GoogleIcon className="text-2xl  pointer-events-none flex-shrink-0" />
               }
             >
               Continuar com Google
-            </Button>
+            </MyButton>
           </div>
         )}
-      </article>
+      </div>
     </section>
   );
 }
