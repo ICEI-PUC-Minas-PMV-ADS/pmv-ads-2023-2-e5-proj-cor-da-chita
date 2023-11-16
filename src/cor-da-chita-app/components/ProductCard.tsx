@@ -105,7 +105,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
           >
             <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
               <div
-                className="image-container "
+                className="image-container relative"
                 style={{
                   height: '400px',
                   width: '100%',
@@ -115,7 +115,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                 <Image
                       removeWrapper
                       alt="Card background"
-                      className={`z-0 w-full  object-cover transition-transform ${
+                      className={`z-0 w-full h-full object-cover transition-transform ${
                         hoveredProductId === product._id ? "hover:scale-125 hover:blur" : ""
                       }`}
                       src={product.imagem}

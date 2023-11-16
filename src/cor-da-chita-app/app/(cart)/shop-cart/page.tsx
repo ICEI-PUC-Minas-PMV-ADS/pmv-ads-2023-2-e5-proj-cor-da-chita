@@ -149,6 +149,10 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
+      <div className="font-serif">
+          <h2>Seus Carrinho</h2>
+      </div>
+
       {/* Renderizar itens do carrinho */}
       <div className="flex flex-col items-center my-5">
         {!cart.length ? (
@@ -413,7 +417,7 @@ export default function ShopCart() {
       </div>
 
       {/* Ir para Pagamento */}
-      <div className="mt-5 flex justify-end">
+      <div className="mt-5 flex justify-center">
         <MyButton 
           isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
           color="green"

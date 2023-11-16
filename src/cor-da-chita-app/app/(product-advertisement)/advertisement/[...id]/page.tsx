@@ -89,7 +89,7 @@ export default function ProductAdvertisement() {
                   overflow: 'hidden',
       }}>
         <div>
-        <p className="text-3xl py-5">{product.name}</p>
+        <p className="text-3xl py-5 font-serif">{product.name}</p>
           <p className="text-lg">{product.description}</p>
           <p className="py-2">
             {product.lengthProduct}x{product.widthProduct}cm
