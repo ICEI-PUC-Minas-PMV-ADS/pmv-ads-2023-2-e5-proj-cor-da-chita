@@ -109,7 +109,7 @@ export default function UserData() {
                 !isDisabled &&
                 missInfo &&
                 !user.name &&
-                "Favor preencher seu nome completo"
+                "Insira seu nome completo"
               }
               onClear={() => user.setName("")}
               onChange={(e) => {
@@ -141,7 +141,7 @@ export default function UserData() {
               }
               errorMessage={
                 isInvalid || (!isDisabled && missInfo && !user.email)
-                  ? "Favor entrar com um e-mail válido"
+                  ? "Insira um e-mail válido"
                   : ""
               }
               onValueChange={setValue}
@@ -168,7 +168,7 @@ export default function UserData() {
                 ],
               }}
               errorMessage={
-                missInfo && !user.phone && "Favor preencher seu telefone"
+                missInfo && !user.phone && "Insira seu número de telefone"
               }
               onClear={() => user.setPhone("")}
               //onChange={(e) => user.setPhone(e.target.value)}
@@ -205,7 +205,7 @@ export default function UserData() {
           <></>
         ) : (
           <div className="flex flex-col gap-3 text-center">
-            <h3 className="font-serif">ou</h3>
+            <h3 className="font-serif mb-1">ou</h3>
             <MyButton // Continuar com Google
               color="secondary"
               size="xl"
