@@ -63,9 +63,17 @@ namespace cor_da_chita_api
                         .summary {
                             font-weight: bold;
                         }
+                        
+                        .header-image {
+                            max-width: 100%; /* Ensure the image doesn't exceed its container */
+                            display: block; /* Make the image a block element */
+                            margin: 0 auto 10px; /* Center the image and add some space below it */
+                        }
                     </style>
                 </head>
                 <body>
+
+                    <img class=""header-image"" src=""pmv-ads-2023-2-e5-proj-cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\img\chita.jpeg"" alt=""Header Image"">
                     <h1>Olá <strong>##USERNAME##</strong>,</h1>
 
                     <p>O seu pedido número <strong>##ORDERNUMBER##</strong>, feito em <strong>##ORDERDATE##</strong>, está sendo processado.</p>
