@@ -16,8 +16,7 @@ namespace cor_da_chita_api
                     <td>##PRODUCTCOUNT##</td>
                     <td>##PRODUCTPRICE##</td>
                     <td>##TOTALPRICE##</td>
-                </tr>
-                ";
+                </tr>";
 
         private static string MAIN_EMAIL_BODY = @"
             <!DOCTYPE html>
@@ -64,16 +63,9 @@ namespace cor_da_chita_api
                             font-weight: bold;
                         }
                         
-                        .header-image {
-                            max-width: 100%; /* Ensure the image doesn't exceed its container */
-                            display: block; /* Make the image a block element */
-                            margin: 0 auto 10px; /* Center the image and add some space below it */
-                        }
                     </style>
                 </head>
                 <body>
-
-                    <img class=""header-image"" src=""pmv-ads-2023-2-e5-proj-cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\img\chita.jpeg"" alt=""Header Image"">
                     <h1>Olá <strong>##USERNAME##</strong>,</h1>
 
                     <p>O seu pedido número <strong>##ORDERNUMBER##</strong>, feito em <strong>##ORDERDATE##</strong>, está sendo processado.</p>
@@ -125,7 +117,8 @@ namespace cor_da_chita_api
                                 .Replace("##PRODUCTNAME##", item.Value.First().ProductName)
                                 .Replace("##PRODUCTCOUNT##", item.Value.Count.ToString())
                                 .Replace("##PRODUCTPRICE##", item.Value.First().ProductPrice.ToString())
-                                .Replace("##TOTALPRICE##", totalPrice.ToString()) + "/n";
+                                //.Replace("##TOTALPRICE##", totalPrice.ToString()) + "/n";
+                                .Replace("##TOTALPRICE##", totalPrice.ToString());
             }
 
             var orderTotalPrice = orderDetails.Freight.FreightValue + subTotal;
