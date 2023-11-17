@@ -6,14 +6,20 @@ import IconPlusSquare from "@/assets/icons/IconPlusSquare";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export default function QuantityManagerCart({ ...props }: any) {
-  const { setSumCartItems } = useContext(CartItemsContext);
+  const { setSumCartItems, setCopyCartItems, copyCartItems } =
+    useContext(CartItemsContext);
   const { cartItems } = useContext(CartItemsContext);
+
   const [quantidade, setQuantidade] = useState<number>(0);
 
   // Atualiza a quantidade com os itens vindo do local storage e preço vindo do banco
+
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     const item = arrItens.find((item: any) => item.id === props.id);
+
+    const copy = { ...cartItems };
+    setCopyCartItems(copy);
 
     // Acumula soma inicial
     let sum = 0;
@@ -43,7 +49,22 @@ export default function QuantityManagerCart({ ...props }: any) {
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
       const updatedSum = arrItens.reduce((acc: number, item: any) => {
-        const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
+        const cartItem = cartItems.find(
+          (cartItem: any) => cartItem._id === item.id
+        );
+
+        // // Salvando a quantidade na cópia do array
+        // for (const chave in copyCartItems) {
+        //   if (copyCartItems.hasOwnProperty(chave)) {
+        //     const item = copyCartItems[chave];
+        //     console.log(item);
+
+        //     if (cartItem?._id == item._id) {
+        //       item.quantidade = arrItens[indexItem].quantidade;
+        //     }
+        //   }
+        // }
+
         return acc + (cartItem?.preco || 0) * item.quantidade;
       }, 0);
 
@@ -69,6 +90,17 @@ export default function QuantityManagerCart({ ...props }: any) {
       // Recalcule a soma total do carrinho
       const updatedSum = arrItens.reduce((acc: number, item: any) => {
         const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
+
+        // // Salvando a quantidade na cópia do array
+        // for (const chave in copyCartItems) {
+        //   if (copyCartItems.hasOwnProperty(chave)) {
+        //     const item = copyCartItems[chave];
+
+        //     if (cartItem?._id == item._id) {
+        //       item.quantidade = arrItens[indexItem].quantidade;
+        //     }
+        //   }
+        // }
         return acc + (cartItem?.preco || 0) * item.quantidade;
       }, 0);
 

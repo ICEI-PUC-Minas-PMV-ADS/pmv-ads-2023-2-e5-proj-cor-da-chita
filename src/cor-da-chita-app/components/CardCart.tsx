@@ -32,7 +32,13 @@ export default function CardCart({ ...props }: any) {
   const { cart, setCart } = useContext(CartContext);
 
   // Salvar no context todos itens do carrinho
-  const { setCartItems, setSumCartItems } = useContext(CartItemsContext);
+  const {
+    setCartItems,
+    setSumCartItems,
+    cartItems,
+    setCopyCartItems,
+    copyCartItems,
+  } = useContext(CartItemsContext);
 
   // Render itens
   const [item, setItem] = useState<Produto[] | undefined>();

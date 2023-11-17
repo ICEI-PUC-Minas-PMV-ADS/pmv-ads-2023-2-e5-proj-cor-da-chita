@@ -36,7 +36,8 @@ export default function ShopCart() {
   const route = useRouter();
 
   const { cart, setCart, cartFlow } = useContext(CartContext); // Array IDs produtos
-  const { sumCartItems } = useContext(CartItemsContext); // Soma preços itens
+  const { sumCartItems, setCopyCartItems, cartItems } =
+    useContext(CartItemsContext); // Soma preços itens
 
   // Usar em shipping data
   const { saveCepContext, setSaveCepContext } = useContext(CepContext);
