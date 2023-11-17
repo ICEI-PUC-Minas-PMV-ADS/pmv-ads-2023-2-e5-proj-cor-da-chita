@@ -131,12 +131,27 @@ export default function ShopCart() {
     setIsPac("PAC");
   }, []);
 
-  // Ocultando campo de frete se o carrinho estiver vazio e o frete já ter sido calculado
   useEffect(() => {
     if (cart.length === 0) {
       setIsCombinarFrete(false);
     }
   }, [cart]);
+
+  useEffect(() => {
+    const calculateTotal = () => {
+      let totalCart = sumCartItems;
+
+      if (isCombinarFrete && frete) {
+        const freightPrice = isPac === "PAC" ? frete.valorPac : frete.valorSedex;
+        totalCart += freightPrice;
+      }
+
+      return totalCart.toFixed(2);
+    };
+
+    // Log the updated total whenever cart, isCombinarFrete, or frete changes
+    console.log("Updated Total:", calculateTotal());
+  }, [cart, isCombinarFrete, frete, sumCartItems]);
 
   return (
     <>
