@@ -230,7 +230,7 @@ export default function ShopCart() {
                   !isCombinarFrete ? "text-gray-400" : ""
                 }`}
               >
-                <strong>CEP</strong>
+                CEP
               </p>
               <Tooltip content="Somente números">
                 <div>
@@ -243,6 +243,13 @@ export default function ShopCart() {
               {/* Input CEP */}
               <Input
                 maxLength={8}
+                variant="bordered"
+                classNames={{
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-none",
+                ],
+              }}
                 isClearable
                 isDisabled={!isCombinarFrete}
                 className="ml-20 place-self-end"
