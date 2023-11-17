@@ -31,7 +31,9 @@ namespace cor_da_chita_api.Controllers
     {
         private readonly IOrderService _ordersService;
         private readonly IEmailService _emailService;
-        private const string EMAIL_SUBJECT = "Seu pedido foi recebido e está sendo processado!";
+        private const string EMAIL_SUBJECT = "Seu pedido foi recebido e estï¿½ sendo processado!";
+
+        private const string EMAIL_SUBJECT_OWNER = "Oba! Mais um pedido chegando.";
         
         public OrderController(IOrderService ordersService, IEmailService emailService)
         {
@@ -92,7 +94,7 @@ namespace cor_da_chita_api.Controllers
 
                 var orderCreated = await _ordersService.CreateAsync(newOrder);
 
-                //Mudar Chave para variavel de ambiente depois com a conta da mãe da illa
+                //Mudar Chave para variavel de ambiente depois com a conta da mï¿½e da illa
               
 
 
@@ -105,12 +107,20 @@ namespace cor_da_chita_api.Controllers
                     RecipientEmailAddress = newOrder.UserEmail
                 };
 
+                var emailPropertiesOwner = new EmailInputModel
+                {
+                    Subject = EMAIL_SUBJECT_OWNER,
+                    Body = EmailBodyBuilderOwner.EmailBodyTemplateOwner(orderCreated!),
+                    RecipientEmailAddress = 'ilanobregaeq@gmail.com'
+                };
+
 
 
 
 
 
                 _emailService.SendEmail(emailProperties);
+                _emailService.SendEmail(emailPropertiesOwner);
 
 
 
