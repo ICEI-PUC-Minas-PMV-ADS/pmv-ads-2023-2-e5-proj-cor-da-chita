@@ -67,62 +67,63 @@ export default function ProductAdvertisement() {
       </Link>
 
       {/* Item */}
-    <div className="flex  justify-between font-open border bg-dark">
-      <div  className="bg-dark flex-1"
-                style={{
-                  height: '700px',
-                  width: '920px',
-                  overflow: 'hidden',
-      }}>
-        <Image
-          isZoomed
-          removeWrapper
-          alt="Foto do Produto"
-          className="object-cover h-full w-full" 
-          src={product.imageProduct}
-          style={{ width: '100%', height: 'auto' }}
-        />
-      </div>
-                
-      <div className="items-center border px-20 pt-20 bg-light flex-0"  style={{
-                  width: '400px',
-                  overflow: 'hidden',
-      }}>
-        <div>
-        <p className="text-3xl py-5 font-serif">{product.name}</p>
-          <p className="text-lg">{product.description}</p>
-          <p className="py-2">
-            {product.lengthProduct}x{product.widthProduct}cm
-        </p>
-        <p className="text-lg py-2">R$ {product.price}</p>
-        </div>
-        <div className="pt-5 flex flex-col gap-3">
-        <MyButton color="green"
-            onClick={() =>
-              handleStorageProductCart(
-                product.id,
-                product.name,
-                product.quantity
-              )
-            }
-          >
-            Adicionar ao Carrinho
-          </MyButton>
+      <div className="flex flex-col md:flex-row justify-between font-open border bg-dark">
+  <div className="bg-dark md:flex-1 mb-5 md:mb-0">
+    <div
+      style={{
+        height: '700px',
+        width: '100%',
+        overflow: 'hidden',
+      }}
+    >
+      <Image
+        isZoomed
+        removeWrapper
+        alt="Foto do Produto"
+        className="object-cover h-full w-full"
+        src={product.imageProduct}
+        style={{ width: '100%', height: 'auto' }}
+      />
+    </div>
+  </div>
 
-          <Button color="success"
-            variant="ghost"
-            size="lg"
-            className="hover:text-white text-small"
-            onClick={() =>
-              route.push("/shop-cart")
-            }
-          >
-            Ir para Carrinho
-          </Button>
+  <div className="border px-5 md:px-20 pt-5 md:pt-20 bg-light flex-0">
+    <div>
+      <p className="text-3xl py-5 font-serif">{product.name}</p>
+      <p className="text-lg">{product.description}</p>
+      <p className="py-2">
+        {product.lengthProduct}x{product.widthProduct}cm
+      </p>
+      <p className="text-lg py-2">R$ {product.price}</p>
+    </div>
+    <div className="pt-5 flex flex-col gap-3">
+      <MyButton
+        color="green"
+        onClick={() =>
+          handleStorageProductCart(
+            product.id,
+            product.name,
+            product.quantity
+          )
+        }
+      >
+        Adicionar ao Carrinho
+      </MyButton>
 
-        </div>
-      </div>
-     </div>
+      <Button
+        color="success"
+        variant="ghost"
+        size="lg"
+        className="hover:text-white text-small"
+        onClick={() =>
+          route.push("/shop-cart")
+        }
+      >
+        Ir para Carrinho
+      </Button>
+    </div>
+  </div>
+</div>
 
       {/* Snack Bar */}
       <div className=" m-auto ">
