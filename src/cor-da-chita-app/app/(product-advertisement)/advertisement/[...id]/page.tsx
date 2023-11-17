@@ -77,10 +77,10 @@ export default function ProductAdvertisement() {
         <Image
           isZoomed
           removeWrapper
-          layout="fill"
           alt="Foto do Produto"
           className="object-cover h-full w-full" 
           src={product.imageProduct}
+          style={{ width: '100%', height: 'auto' }}
         />
       </div>
                 
