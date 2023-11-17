@@ -23,6 +23,7 @@ const LPGrid = () => {
               src="/Chita/IMG_6812 (1).png"
               layout="fill"
               objectFit="cover"
+              className={`z-0 w-full h-full object-cover`}
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             />
           </div>
