@@ -96,7 +96,7 @@ return (
   <div className="flex items-center gap-5">
     <Button
       isIconOnly
-      className="text-white"
+      variant="ghost"
       color="secondary"
       onClick={() => handleDecreaseQuantity()}
     >
@@ -107,7 +107,7 @@ return (
 
     <Button
       isIconOnly
-      className="text-white"
+      variant="ghost"
       color="success"
       onClick={() => handleIncreaseQuantity()}
     >

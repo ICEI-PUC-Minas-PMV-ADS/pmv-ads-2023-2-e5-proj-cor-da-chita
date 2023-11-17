@@ -121,7 +121,7 @@ export default function ShippingData() {
               isRequired
               isClearable
               color={missInfo && !address.cep ? "danger" : undefined}
-              errorMessage={missInfo && !address.cep && "Favor preencher o CEP"}
+              errorMessage={missInfo && !address.cep && "Insira o CEP"}
               onClear={() => address.setCep("")}
               onChange={(e) => {
                 !/[^0-9]+/g.test(e.target.value)
@@ -159,7 +159,7 @@ export default function ShippingData() {
             isClearable
             color={missInfo && !address.street ? "danger" : undefined}
             errorMessage={
-              missInfo && !address.street && "Favor preencher o nome da rua"
+              missInfo && !address.street && "Insira o nome da rua"
             }
             onClear={() => address.setStreet("")}
             onChange={(e) => address.setStreet(e.target.value)}
@@ -184,7 +184,7 @@ export default function ShippingData() {
             errorMessage={
               missInfo &&
               !address.neighborhood &&
-              "Favor preencher o nome do bairro"
+              "Insira o nome do bairro"
             }
             onClear={() => address.setNeighborhood("")}
             onChange={(e) => address.setNeighborhood(e.target.value)}
@@ -208,7 +208,7 @@ export default function ShippingData() {
             errorMessage={
               missInfo &&
               !address.num &&
-              "Favor preencher o número da residência"
+              "Insira o número da residência"
             }
             onClear={() => address.setNum("")}
             onChange={(e) => address.setNum(e.target.value)}
@@ -236,7 +236,7 @@ export default function ShippingData() {
             isClearable
             color={missInfo && !address.city ? "danger" : undefined}
             errorMessage={
-              missInfo && !address.city && "Favor preencher o nome da cidade"
+              missInfo && !address.city && "Insira o nome da cidade"
             }
             onClear={() => address.setCity("")}
             onChange={(e) => address.setCity(e.target.value)}
@@ -258,7 +258,7 @@ export default function ShippingData() {
             isRequired
             isClearable
             color={missInfo && !address.uf ? "danger" : undefined}
-            errorMessage={missInfo && !address.uf && "Favor preencher o estado"}
+            errorMessage={missInfo && !address.uf && "Insira o estado"}
             onClear={() => address.setUf("")}
             onChange={(e) => address.setUf(e.target.value)}
           />

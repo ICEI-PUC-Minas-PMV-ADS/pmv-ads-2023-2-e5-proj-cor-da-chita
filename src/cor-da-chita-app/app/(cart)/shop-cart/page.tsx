@@ -168,8 +168,8 @@ export default function ShopCart() {
       {/* Modo de envio: Título e tooltip */}
       <div className="flex flex-col my-5">
         <div className="flex items-center">
-          <h2 className="py-1">
-            <strong>Modo de Envio</strong>
+          <h2 className="py-3 font-serif">
+              Modo de Envio
           </h2>
 
           <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
@@ -375,9 +375,9 @@ export default function ShopCart() {
         {/* Valor do Frete e Total */}
         <div className="mt-3 text-sm">
           <div className="flex justify-between">
-            <p className="mt-2">
-              <strong>Valor do Frete</strong>
-            </p>
+          <h2 className="py-3 font-serif">
+              Valor do Frete
+            </h2>
             <p className="mt-2">
               <strong>
                 R${" "}
@@ -395,9 +395,9 @@ export default function ShopCart() {
           </div>
 
           <div className="flex justify-between">
-            <p className="mt-2">
+          <h2 className="py-3 font-serif">
               <strong>Total</strong>
-            </p>
+            </h2>
             <p className="mt-2">
               <strong>
                 R${" "}
