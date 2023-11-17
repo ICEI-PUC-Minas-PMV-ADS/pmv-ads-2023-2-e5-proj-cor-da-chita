@@ -144,7 +144,7 @@ export default function ShopCart() {
         size="sm"
         as="button"
         className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
-        onClick={() => router.push("/all-products")}
+        onClick={() => route.push("/all-products")}
       >
         <ArrowLeft /> Retornar
       </Link>
@@ -417,7 +417,6 @@ export default function ShopCart() {
         <MyButton 
           isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
           color="green"
-          color="success"
           onPress={handleConfirmCartData}
         >
           Ir para Pagamento
