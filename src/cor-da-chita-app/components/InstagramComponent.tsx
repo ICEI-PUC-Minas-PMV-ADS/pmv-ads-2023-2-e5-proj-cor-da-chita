@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Image, Link } from '@nextui-org/react';
+import { relative } from 'path';
 
 const InstagramComponent: React.FC = () => {
   const [instagramData, setInstagramData] = useState([]);
@@ -10,7 +11,7 @@ const InstagramComponent: React.FC = () => {
         const response = await fetch('/api/instagram');
         const data = await response.json();
         // Filter out items without URLs (assuming video media items don't have URLs)
-        const filteredData = data.data.filter((item) => item.media_type !== 'VIDEO');
+        const filteredData = data.data.filter((item: any) => item.media_type !== 'VIDEO');
         setInstagramData(filteredData.slice(0, 3)); // Take the first three image items
       } catch (error) {
         console.error('Error fetching Instagram data:', error);
@@ -34,7 +35,7 @@ const InstagramComponent: React.FC = () => {
         </Link>
       </div>
       <div className="flex flex-auto justify-around space-x-4 px-10">
-        {instagramData.map((item) => (
+        {instagramData.map((item: any) => (
           <a
             key={item.id}
             href={item.permalink}
@@ -55,8 +56,7 @@ const InstagramComponent: React.FC = () => {
                 alt={`Instagram post by ${item.username}`}
                 width="300"
                 height="300"
-                layout="responsive"
-                style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                style={{ objectFit: 'contain', width: '100%', height: '100%', position: 'relative' }}
               />
             </div>
             <div className="mt-2">

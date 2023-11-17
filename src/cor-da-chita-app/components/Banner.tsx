@@ -13,9 +13,7 @@ export default function Banner() {
         <Image
           src="/Chita/IMG_6811 (1).png"
           alt="Cor da Chita"
-          layout="fill"
-          objectFit="cover"
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: "100%", height: "100%", objectFit: "cover" }}
           className="responsive-image"
         />
       </div>
@@ -33,6 +31,21 @@ export default function Banner() {
         </div>
       </div>
       <style jsx>{`
+        .image-wrapper {
+          position: relative;
+          width: 100%;
+          height: 0;
+          padding-bottom: 100%;
+        }
+
+        .responsive-image {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
         @media (max-width: 640px) {
           .flex {
             flex-direction: column;

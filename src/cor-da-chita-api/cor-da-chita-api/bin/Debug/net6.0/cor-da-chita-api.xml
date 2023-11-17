@@ -21,7 +21,7 @@
             Controller to Management Pix Payment
             </summary>
         </member>
-        <member name="M:cor_da_chita_api.Controllers.FreightController.GetTrack(cor_da_chita_api.Controllers.Requests.FreightRequest)">
+        <member name="M:cor_da_chita_api.Controllers.FreightController.GetTrack(System.String)">
             <summary>
             Get values of freight
             </summary>

@@ -3,6 +3,8 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import {} from "@nextui-org/react";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+import { MyButton } from "@/components/ui/Button";
 
 import {
   Modal,
@@ -16,6 +18,7 @@ import {
   Input,
   Divider,
   Tooltip,
+  Link,
 } from "@nextui-org/react";
 
 import { useRouter } from "next/navigation";
@@ -141,8 +144,17 @@ export default function ShopCart() {
 
   return (
     <>
+      <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.push("/all-products")}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+
       {/* Renderizar itens do carrinho */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center my-5">
         {!cart.length ? (
           <p>Seu carrinho está vazio</p>
         ) : (
@@ -151,27 +163,25 @@ export default function ShopCart() {
           ))
         )}
       </div>
-      <Divider className="mt-10" />
+      <Divider />
 
       {/* Modo de envio: Título e tooltip */}
-      <div className="flex flex-col mt-5">
+      <div className="flex flex-col my-5">
         <div className="flex items-center">
-          <h2 className="mr-2">
+          <h2 className="py-1">
             <strong>Modo de Envio</strong>
           </h2>
 
           <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
-            <div>
+            <div className="p-3">
               <IconQuestionCircle />
             </div>
           </Tooltip>
         </div>
 
         {/* Radio Group Combinar / Correios */}
-        <div className="mt-2">
-          <RadioGroup
-            defaultValue={freteInContext == "" ? "combinar" : "correios"}
-          >
+        <div className="">
+          <RadioGroup defaultValue={"combinar"}>
             <Radio
               isDisabled={cart.length === 0}
               size="sm"
@@ -400,16 +410,14 @@ export default function ShopCart() {
       </div>
 
       {/* Ir para Pagamento */}
-      <div className="mt-5 place-self-center">
-        <Button
-          isDisabled={
-            cart.length === 0 || (isCombinarFrete && freteInContext == "")
-          }
-          color="success"
+      <div className="mt-5 flex justify-end">
+        <MyButton
+          isDisabled={cart.length === 0 || (isCombinarFrete && freteInContext == "")}
+          color="green"
           onPress={handleConfirmCartData}
         >
           Ir para Pagamento
-        </Button>
+        </MyButton>
       </div>
 
       {/* Modal CEP errado e Erro conexão */}

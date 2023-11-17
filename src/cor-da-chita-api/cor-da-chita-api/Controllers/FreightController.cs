@@ -27,7 +27,7 @@ namespace cor_da_chita_api.Controllers
         private const string cepOrigem = "33010515";
 
         //URl DA API
-        private string urlApi = "https://cepcerto.com/ws/json-frete";
+        private string urlCalculoFrete = "https://cepcerto.com/ws/json-frete";
 
 
         private string urlRastreio = "https://www.cepcerto.com/ws/encomenda-json";
@@ -51,35 +51,28 @@ namespace cor_da_chita_api.Controllers
 
         [HttpPost("TrackProduct")]
 
-        public async Task<ActionResult<FreightDeserialize>> GetTrack(FreightRequest model)
+        public async Task<ActionResult<FreightDeserialize>> GetTrack(string codigo)
         {
             try
             {
 
 
 
-                //da0cd3db27b86a93497cbadd7d0edfe90e3b96b2
+
 
                 //be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5
+                /*
+                                string url = $"{urlCalculoFrete}/{codigo}/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";*/
 
-                /*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
-                */
-                string url = $"{urlApi}/33010515/02177060/1000/20/20/20/da0cd3db27b86a93497cbadd7d0edfe90e3b96b2";
+                string url = $"{urlCalculoFrete}/QC689000425BR/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";
 
 
                 var a = await _httpClient.GetStringAsync(url);
-
-                var frete = JsonConvert.DeserializeObject<FreightDeserialize>(a);
-
-                //Necessita desta formula,pois o valor esta vindo em casa de milhar, ex 2930 ao invés de 29,30
-                decimal pacConvertido = frete.ValorPac / 1000 * 10;
-                decimal sedexConvertido = frete.ValorSedex / 1000 * 10;
-
-                frete.ValorPac = pacConvertido;
-                frete.ValorSedex = sedexConvertido;
+         
+             
 
 
-                return Ok(frete);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -110,13 +103,13 @@ namespace cor_da_chita_api.Controllers
 
                 
 
-                //da0cd3db27b86a93497cbadd7d0edfe90e3b96b2
+                //
 
-                //be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5
+                //
 
 /*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
 */
-                string url = $"{urlApi}/33010515/02177060/1000/20/20/20/da0cd3db27b86a93497cbadd7d0edfe90e3b96b2";
+                string url = $"{urlCalculoFrete}/33010515/02177060/1000/20/20/20/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";
 
 
             var a = await _httpClient.GetStringAsync(url);

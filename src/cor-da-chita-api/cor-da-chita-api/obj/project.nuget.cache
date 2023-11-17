@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "n+PF0n11cPmBDlBEsayQB2K4dpQ71xoFTDf4Y+svYT6Aj23nJ15rnpRGtY5Lhq7GF84MH0icEHajn0orPWTyag==",
+  "dgSpecHash": "Bv0TYDXYKNrvtF/gltCMnu+9K9DNasV5gXOWiCcb+MM/TJFJlL2OfK5CHI9TCLOWSKcgmmAJWH+KL3QSme3CQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gabri\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\gabri\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\fluentemail.core\\3.0.2\\fluentemail.core.3.0.2.nupkg.sha512",

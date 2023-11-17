@@ -78,7 +78,7 @@ namespace cor_da_chita_api.Controllers
               
                 var request = new PaymentCreateRequest
                 {
-                    TransactionAmount = order.Freight.FreightValue,
+                    TransactionAmount = order.Freight.FreightValue + order.TotalPriceProducts,
                     
                     PaymentMethodId = "pix",
                     
