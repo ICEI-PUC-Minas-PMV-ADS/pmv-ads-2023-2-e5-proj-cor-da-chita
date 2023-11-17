@@ -2,8 +2,11 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Link } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
+import { MyButton } from "@/components/ui/Button";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+
 
 import Form from "@/components/ui/Form";
 
@@ -70,27 +73,46 @@ export default function ShippingData() {
 
   return (
     <section>
-      <h1>
-        <strong>Dados de Envio</strong>
-      </h1>
+      <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.back()}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+
+      <div className="font-serif">
+          <h2>Seus Dados</h2>
+      </div>
 
       {/* Dados do Usuário */}
-      <article>
+      <div className="py-3">
         <p>{user.name}</p>
         <p>{user.email}</p>
         <p>{user.phone}</p>
-        <Button color="success" variant="ghost" onPress={() => route.back()}>
+        <br/>
+        <Button color="secondary" variant="bordered" onPress={() => route.back()}>
           Editar Dados
         </Button>
-      </article>
-
-      {/* Endereço */}
-      <article>
+      </div>
+      <br/>
+      <div className="font-serif py-3">
+          <h2>Dados de Envio</h2>
+      </div>
+        <div>
         <Form method="post">
-          <div>
-            <Input // CEP
-              maxLength={8}
-              
+        <div className="flex flex-col gap-3 py-5">
+          <div className="flex flex-row gap-3">
+          <Input // CEP
+              maxLength={8} 
+              variant="bordered"
+              classNames={{
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-none",
+                ],
+              }}
               type="text"
               label="CEP"
               size="sm"
@@ -109,17 +131,25 @@ export default function ShippingData() {
               onKeyDown={handleKeyDown}
             />
 
-            <Button // Buscar CEP
-           
+            <Button // Buscar CEP              
               color="success"
-              size="md"
+              variant="bordered"
+              size="lg"
               onClick={() => handleCep(address.cep)}
-            >
+              className="hover:text-white"
+              >
               Buscar CEP
             </Button>
           </div>
 
           <Input // Rua
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="Rua"
@@ -136,6 +166,13 @@ export default function ShippingData() {
           />
 
           <Input // Bairro
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="Bairro"
@@ -154,6 +191,13 @@ export default function ShippingData() {
           />
 
           <Input // Número
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             type="text"
             label="Número"
             size="sm"
@@ -176,6 +220,13 @@ export default function ShippingData() {
           />
 
           <Input // Cidade
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="Cidade"
@@ -192,6 +243,13 @@ export default function ShippingData() {
           />
 
           <Input // UF
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="UF"
@@ -205,7 +263,14 @@ export default function ShippingData() {
             onChange={(e) => address.setUf(e.target.value)}
           />
 
-          <Input // Complemento
+          <Input // 
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             type="text"
             label="Complemento"
             size="sm"
@@ -219,18 +284,20 @@ export default function ShippingData() {
               }
             }}
           />
-
-          <Button // Confirmar Dados
-            color="success"
-            size="md"
-            onClick={() =>
-              validadeData ? setMissInfo(true) : route.push("/summary-order")
-            }
-          >
-            Confirmar Dados
-          </Button>
+          </div>
         </Form>
-      </article>
+        <div className="my-5 flex justify-center">
+          <MyButton // Confirmar Dados
+              color="green"
+              size="xl"
+              onClick={() =>
+                validadeData ? setMissInfo(true) : route.push("/summary-order")
+              }
+            >
+              Confirmar Dados
+            </MyButton>
+          </div>
+      </div>
     </section>
   );
 }
