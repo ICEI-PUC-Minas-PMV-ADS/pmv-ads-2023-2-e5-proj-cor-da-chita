@@ -2,8 +2,9 @@
 "use client";
 
 import React, { useContext } from "react";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
 
-import { Button, Divider } from "@nextui-org/react";
+import { Button, Divider, Link } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
 
 import postOrder from "@/database/order/postOrder";
@@ -136,41 +137,50 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
   }
 
   return (
-    <section className="flex flex-col">
-      <h2 className="place-self-center">
-        <strong>Resumo do Pedido</strong>
-      </h2>
+    <>
+     <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.push("/all-products")}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+    <section className="">
+    <div className="font-serif">
+          <h2>Resumo do Pedido</h2>
+      </div>
 
       {/* Items do pedido */}
-      <div className="my-5">
+      <div className="pb-5">
+
+    <div className="my-3">
   {cartItems
     ?.filter(item => item.nome && item.preco) // Filter out items with empty or undefined properties
     .map((item, index) => (
       <div key={index} className="flex justify-between">
         <p>{item.nome}</p>
         <p>
-          <strong>R$</strong> {item.preco.toFixed(2)}
+          R${item.preco.toFixed(2)}
         </p>
       </div>
     ))}
 </div>
 
       {/* Totais */}
-      <div className="mb-5">
-        <div>
+      <div className="my-3">
           <div className="flex justify-between ">
             <p>
               <strong>Total dos Itens</strong>
             </p>
             <p>
-              <strong>R$</strong> {sumCartItems.toFixed(2)}
+              <strong>R$ {sumCartItems.toFixed(2)}</strong>
             </p>
           </div>
-        </div>
 
         {/* Frete */}
         {/* Total com ou sem frete */}
-        <div className="flex justify-between mt-2">
+        <div className="flex justify-between my-3">
           {/* Label */}
           {freteInContext != undefined && isCombinarFrete ? (
             <p>
@@ -178,7 +188,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
             </p>
           ) : (
             <p>
-              <strong>Frete a combinar</strong>
+              Frete a combinar
             </p>
           )}
 
@@ -201,7 +211,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
         </div>
 
         {/* Total carrinho com ou sem frete */}
-        <div className="flex justify-between mt-2">
+        <div className="flex justify-between my-3">
           {/* Label */}
           {freteInContext != undefined && isCombinarFrete ? (
             <p>
@@ -215,24 +225,25 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
           {freteInContext != undefined && isCombinarFrete ? (
             isPac == "PAC" ? (
               <p>
-                <strong>R$ </strong>
-                {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+                <strong>R$
+                {(freteInContext.valorPac + sumCartItems).toFixed(2)}</strong>
               </p>
             ) : (
               <p>
-                <strong>R$ </strong>
-                {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
+                <strong>R$
+                {(freteInContext.valorSedex + sumCartItems).toFixed(2)}</strong>\
               </p>
             )
           ) : (
             <></>
           )}
         </div>
+        
 
-        <div className="mt-2">
+        <div className="my-3">
           {/* Revisar Fluxo aqui */}
           <Button
-            color="success"
+            color="secondary"
             variant="ghost"
             onPress={handleRouteEditCartData}
           >
@@ -240,14 +251,15 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
           </Button>
         </div>
       </div>
+      </div>
 
       <Divider />
 
       {/* Dados de Envio */}
-      <div className="my-5">
-        <h2 className="mb-2">
-          <strong>Dados de Envio</strong>
-        </h2>
+      <div className="my-10">
+        <div className="font-serif py-3">
+            <h2>Dados de Envio</h2>
+        </div>
         <p>
           {address.street}, {address.num}
         </p>
@@ -258,9 +270,9 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
           {address.city} - {address.uf}
         </p>
 
-        <div className="mt-2">
+        <div className="my-3">
           <Button
-            color="success"
+            color="secondary"
             variant="ghost"
             onClick={handleRouteEditAddressData}
           >
@@ -272,10 +284,10 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
       <Divider />
 
       {/* Dados do Cliente */}
-      <div className="my-5">
-        <h2 className="mb-2">
-          <strong>Seus Dados</strong>
-        </h2>
+      <div className="my-10">
+      <div className="font-serif py-3">
+          <h2>Seus Dados</h2>
+      </div>
 
         <div>
           <p>{user.name}</p>
@@ -284,9 +296,9 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
           <p>{user.email}</p>
         </div>
 
-        <div className="mt-2">
+        <div className="my-3">
           <Button
-            color="success"
+            color="secondary"
             variant="ghost"
             onClick={handleRouteEditUserData}
           >
@@ -299,12 +311,11 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
 
       {/* Pagamento */}
       <div className="flex flex-col gap-3 my-5">
-        <h2 className="mb-2">
-          <strong>Modo de Pagamento</strong>
-        </h2>
+      <div className="font-serif py-3">
+          <h2>Forma de Pagamento</h2>
+      </div>
 
         <Button
-          className="mx-20"
           color="success"
           variant="solid"
           onClick={() => alert("Programar PIX")}
@@ -313,7 +324,6 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
         </Button>
 
         <Button
-          className="mx-12"
           color="success"
           variant="solid"
           onClick={() => handleRedirectWhatsApp()}
@@ -326,5 +336,6 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
         Botao para Teste API
       </Button>
     </section>
+    </>
   );
 }

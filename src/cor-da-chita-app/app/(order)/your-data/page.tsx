@@ -148,7 +148,7 @@ export default function UserData() {
               onClear={() => user.setEmail("")}
               onChange={(e) => user.setEmail(e.target.value)}
               endContent={
-                <MailIcon  />
+                <MailIcon />
               }
             />
             <Input // Telefone
@@ -179,7 +179,7 @@ export default function UserData() {
               }}
               onKeyDown={handleKeyDown}
               endContent={
-                <PhoneIcon  />
+                <PhoneIcon  className="mb-3" />
               }
             />
           </div>
