@@ -96,7 +96,7 @@ export default function ProductAdvertisement() {
         </p>
         <p className="text-lg py-2">R$ {product.price}</p>
         </div>
-        <div className="pt-5">
+        <div className="pt-5 flex flex-col gap-3">
         <MyButton color="green"
             onClick={() =>
               handleStorageProductCart(
@@ -108,6 +108,17 @@ export default function ProductAdvertisement() {
           >
             Adicionar ao Carrinho
           </MyButton>
+
+          <Button color="success"
+            variant="ghost"
+            size="lg"
+            className="hover:text-white text-small"
+            onClick={() =>
+              route.push("/shop-cart")
+            }
+          >
+            Ir para Carrinho
+          </Button>
 
         </div>
       </div>

@@ -113,6 +113,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                 }}
               >
                 <Image
+                      isZoomed
                       removeWrapper
                       alt="Card background"
                       className={`z-0 w-full h-full object-cover transition-transform ${
