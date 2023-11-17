@@ -143,15 +143,17 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
 
       {/* Items do pedido */}
       <div className="my-5">
-        {cartItems?.map((item, index) => (
-          <div key={index} className="flex justify-between">
-            <p>{item.nome}</p>
-            <p>
-              <strong>R$</strong> {item.preco.toFixed(2)}
-            </p>
-          </div>
-        ))}
+  {cartItems
+    ?.filter(item => item.nome && item.preco) // Filter out items with empty or undefined properties
+    .map((item, index) => (
+      <div key={index} className="flex justify-between">
+        <p>{item.nome}</p>
+        <p>
+          <strong>R$</strong> {item.preco.toFixed(2)}
+        </p>
       </div>
+    ))}
+</div>
 
       {/* Totais */}
       <div className="mb-5">
