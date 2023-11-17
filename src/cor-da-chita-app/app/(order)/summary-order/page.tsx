@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 
 import { Button, Divider, Link } from "@nextui-org/react";
+import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 
 import postOrder from "@/database/order/postOrder";
@@ -307,29 +308,26 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
         </div>
       </div>
 
-      <Divider />
 
       {/* Pagamento */}
       <div className="flex flex-col gap-3 my-5">
-      <div className="font-serif py-3">
-          <h2>Forma de Pagamento</h2>
-      </div>
 
-        <Button
-          color="success"
+
+        <MyButton
+          color="green"
           variant="solid"
           onClick={() => alert("Programar PIX")}
         >
           Pagar com <strong>PIX</strong>
-        </Button>
+        </MyButton>
 
-        <Button
-          color="success"
+        <MyButton
+          color="green"
           variant="solid"
           onClick={() => handleRedirectWhatsApp()}
         >
           Pagar com <strong>Cartão de Crédito</strong>
-        </Button>
+        </MyButton>
       </div>
 
       <Button color="primary" onClick={handleOrder}>
