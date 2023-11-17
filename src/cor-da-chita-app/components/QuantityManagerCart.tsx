@@ -4,36 +4,33 @@ import IconMinusSquare from "@/assets/icons/IconMinusSquare";
 import IconPlusSquare from "@/assets/icons/IconPlusSquare";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
-export default function QuantityManagerCart({
-  onOpen,
-  ...props
-}: any) {
+export default function QuantityManagerCart({ onOpen, ...props }: any) {
   const { setSumCartItems } = useContext(CartItemsContext);
   const { cartItems } = useContext(CartItemsContext);
   const [quantidade, setQuantidade] = useState<number>(0);
-  const [forceUpdate, setForceUpdate] = useState(false);
 
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     const item = arrItens.find((item: any) => item.id === props.id);
 
+    // Calculate the total sum based on the items in the cart
     let sum = 0;
-    if (item && item.quantidade != undefined) {
-      const cartItem = cartItems.find((ci) => ci?._id === item?.id);
-      if (cartItem) {
-        sum += item.quantidade * (cartItem.preco || 0);
-        setSumCartItems(sum);
+    cartItems.forEach((cartItem) => {
+      const localItem = arrItens.find((item) => item.id === cartItem._id);
+      if (localItem) {
+        sum += localItem.quantidade * cartItem.preco;
       }
-    }
+    });
+
+    setSumCartItems(sum);
 
     if (item) {
       setQuantidade(item.quantidade);
     }
-  }, [cartItems, setSumCartItems, props.id, forceUpdate]);
+  }, [cartItems, setSumCartItems, props.id]);
 
   const updateLocalStorageAndSum = (arrItens: any[]) => {
     localStorage.setItem("cartItens", JSON.stringify(arrItens));
-    setForceUpdate((prev) => !prev); // Toggle forceUpdate to trigger a re-render
   };
 
   const handleIncreaseQuantity = () => {
