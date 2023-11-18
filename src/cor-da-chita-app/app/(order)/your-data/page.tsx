@@ -7,6 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 import { Link, Button, Input, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
 import { MyButton } from "@/components/ui/Button";
 
 
@@ -185,17 +186,17 @@ export default function UserData() {
             />
           </div>
           
-          <div className="my-5 flex justify-end">
-            <MyButton // Confirmar Dados
-              color="green"
-              size="xl"
-              onClick={handleConfirmUserData}
-            >
-              Confirmar Dados
-            </MyButton>
-
-
-          </div>
+          <div className="mt-5 flex justify-end">
+        <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={handleConfirmUserData
+         }
+      >
+       Confirmar Dados <ArrowRight /> 
+      </Link>
+      </div>
           
         </Form>
       {/* Continuar ou não com o Google */}

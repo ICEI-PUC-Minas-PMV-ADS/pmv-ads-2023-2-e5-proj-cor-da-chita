@@ -6,6 +6,8 @@ import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import { MyButton } from "@/components/ui/Button";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
+
 
 import Form from "@/components/ui/Form";
 
@@ -298,18 +300,20 @@ export default function ShippingData() {
                 />
               </div>
             </Form>
-            <div className="my-5 flex justify-end">
-              <MyButton // Confirmar Dados
-                color="green"
-                size="xl"
-                onClick={() =>
-                  validadeData
-                    ? setMissInfo(true)
-                    : route.push("/summary-order")
-                }
-              >
-                Confirmar Dados
-              </MyButton>
+            <div className="mt-5 flex justify-end">
+              <Link
+              size="sm"
+              as="button"
+              className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+              onClick={() =>
+                validadeData
+                  ? setMissInfo(true)
+                  : route.push("/summary-order")
+              }
+              
+            >
+            Confirmar Dados <ArrowRight /> 
+            </Link>
             </div>
             </div>
           </div>

@@ -4,6 +4,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import {} from "@nextui-org/react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
 import { MyButton } from "@/components/ui/Button";
 
 import {
@@ -170,8 +171,8 @@ export default function ShopCart() {
       </Link>
 
       <div className="px-10 max-w-screen-lg ml-auto">
-        <div className="font-serif py-5">
-          <h2 className="text-2xl">Seu Carrinho</h2>
+        <div className="font-serif pb-5">
+          <h2 className="text-2xl">Checkout</h2>
         </div>
 
         <div className="mx-5">
@@ -437,16 +438,19 @@ export default function ShopCart() {
 
         {/* Ir para Pagamento */}
         <div className="mt-5 flex justify-end">
-          <MyButton
-            isDisabled={
-              cart.length === 0 || (isCombinarFrete && freteInContext == "")
-            }
-            color="green"
-            onPress={handleConfirmCartData}
-          >
-            Ir para Pagamento
-          </MyButton>
-        </div>
+        <Link
+        size="sm"
+        as="button"
+        isDisabled={
+          cart.length === 0 || (isCombinarFrete && freteInContext == "")
+        }
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={handleConfirmCartData
+         }
+      >
+       Ir para Pagamento <ArrowRight /> 
+      </Link>
+      </div>
       </div>
       </div>
 
