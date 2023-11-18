@@ -10,6 +10,7 @@ import MuiAlert, { AlertColor } from "@mui/material/Alert";
 
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
 
 export default function ProductAdvertisement() {
   const route = useRouter();
@@ -109,17 +110,16 @@ export default function ProductAdvertisement() {
         >
           Adicionar ao Carrinho
         </MyButton>
+        <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.push("/shop-cart")
+      }
+      >
+       Ir para Carrinho  <ArrowRight /> 
+      </Link>
 
-        <Button
-          color="success"
-          variant="ghost"
-          size="lg"
-          onClick={() =>
-            route.push("/shop-cart")
-          }
-        >
-          Ir para Carrinho
-        </Button>
       </div>
       </div>
 
