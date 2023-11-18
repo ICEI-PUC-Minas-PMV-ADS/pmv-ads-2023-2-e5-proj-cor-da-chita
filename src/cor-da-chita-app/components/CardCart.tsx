@@ -74,6 +74,7 @@ export default function CardCart({ ...props }: any) {
         }
 
         setCartItems(products);
+        setCopyCartItems(products);
       };
       fetchData();
     }
@@ -141,8 +142,10 @@ export default function CardCart({ ...props }: any) {
               </div>
             </div>
 
-            <div className="flex flex-col place-content-evenly justify-left h
-            w-24">
+            <div
+              className="flex flex-col place-content-evenly justify-left h
+            w-24"
+            >
               <h2 className="my-2">{item[0].nome}</h2>
               <p className="my-2">R$ {item[0].preco.toFixed(2)}</p>
             </div>

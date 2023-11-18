@@ -14,11 +14,11 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
   const [quantidade, setQuantidade] = useState<number>(0);
   const [localCopy, setLocalCopy] = useState<Produto[] | undefined>();
 
+  // Sempre atualiza a quantidade dos itens igual está no local storage
   useEffect(() => {
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     const item = arrItens.find((item: any) => item.id === props.id);
 
-    // Sempre atualiza a quantidade igual está no local storage
     setLocalCopy(cartItems);
 
     const cartProducts: any = [];
@@ -29,11 +29,14 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
       }
     });
     setCopyCartItems(localCopy); // Salva no context
-
     console.log(copyCartItems);
-    console.log(localCopy);
+  }, [copyCartItems]);
 
-    // Acumula soma inicial
+  // Acumula soma inicial do carrinho
+  useEffect(() => {
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    const item = arrItens.find((item: any) => item.id === props.id);
+
     let sum = 0;
     cartItems.forEach((element) => {
       if (item.quantidade != undefined) {
@@ -59,12 +62,10 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
-      // EM ANDAMENTO ------------------------------------
       // Criar uma função a parte
-      // Usada no map abaixo
+      // Para atualizar a quantidade do copyCartItems no context. Usado no summary-orer
       const cartProducts: any = [];
 
-      // Para atualizar a quantidade do copyCartItems no context. Usado no summary-orer
       copyCartItems?.map((copyItem: any, index: number) => {
         if (copyItem._id === item.id) {
           copyItem.quantidade = arrItens[indexItem].quantidade;
@@ -72,16 +73,15 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
           cartProducts.push(copyItem);
         }
       });
+
       setCopyCartItems(cartProducts);
-
-      console.log(copyCartItems);
-
-      // EM ANDAMENTO ------------------------------------
 
       const updatedSum = arrItens.reduce((acc: number, item: any) => {
         const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
         return acc + (cartItem?.preco || 0) * item.quantidade;
       }, 0);
+
+      console.log(updatedSum);
 
       setSumCartItems(updatedSum);
 
@@ -101,19 +101,19 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
 
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
 
-      // EM ANDAMENTO ------------------------------------
+      // Criar uma função a parte
+      // Para atualizar a quantidade do copyCartItems no context. Usado no summary-orer
       const cartProducts: any = [];
+
       copyCartItems?.map((copyItem: any, index: number) => {
         if (copyItem._id === item.id) {
           copyItem.quantidade = arrItens[indexItem].quantidade;
-          console.log(copyItem.quantidade);
-          console.log(arrItens[indexItem].quantidade);
+          console.log(copyCartItems);
           cartProducts.push(copyItem);
         }
-        setCopyCartItems(cartProducts);
       });
-      console.log(copyCartItems);
-      // EM ANDAMENTO ------------------------------------
+
+      setCopyCartItems(cartProducts);
 
       // Recalcule a soma total do carrinho
       const updatedSum = arrItens.reduce((acc: number, item: any) => {
@@ -122,7 +122,7 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
       }, 0);
 
       setSumCartItems(updatedSum);
-
+      console.log(updatedSum);
       setQuantidade(quantidade - 1);
     } else if (indexItem !== -1 && arrItens[indexItem].quantidade === 1) {
       onOpen();

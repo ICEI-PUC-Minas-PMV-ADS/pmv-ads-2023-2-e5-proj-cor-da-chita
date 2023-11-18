@@ -62,6 +62,11 @@ export default function ShopCart() {
 
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
+  useEffect(() => {
+    console.log(sumCartItems);
+    
+  }, [sumCartItems]);
+
   // Cálculo do Frete
   const handleCep = async () => {
     setSaveCepContext(cep); // Recebe a entrada do user e salva
@@ -141,22 +146,22 @@ export default function ShopCart() {
     }
   }, [cart]);
 
-  useEffect(() => {
-    const calculateTotal = () => {
-      let totalCart = sumCartItems;
+  // useEffect(() => {
+  //   const calculateTotal = () => {
+  //     let totalCart = sumCartItems;
 
-      if (isCombinarFrete && frete) {
-        const freightPrice =
-          isPac === "PAC" ? frete.valorPac : frete.valorSedex;
-        totalCart += freightPrice;
-      }
+  //     if (isCombinarFrete && frete) {
+  //       const freightPrice =
+  //         isPac === "PAC" ? frete.valorPac : frete.valorSedex;
+  //       totalCart += freightPrice;
+  //     }
 
-      return totalCart.toFixed(2);
-    };
+  //     return totalCart.toFixed(2);
+  //   };
 
-    // Log the updated total whenever cart, isCombinarFrete, or frete changes
-    console.log("Updated Total:", calculateTotal());
-  }, [cart, isCombinarFrete, frete, sumCartItems]);
+  //   // Log the updated total whenever cart, isCombinarFrete, or frete changes
+  //   console.log("Updated Total:", calculateTotal());
+  // }, [cart, isCombinarFrete, frete, sumCartItems]);
 
   return (
     <>

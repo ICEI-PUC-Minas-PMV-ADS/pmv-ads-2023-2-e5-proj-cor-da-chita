@@ -132,11 +132,12 @@ export default function SummaryOrder() {
     };
 
     // Itens do Pedido
-    cartItems.forEach((item) => {
+    copyCartItems.forEach((item) => {
       const newItem = {
         productId: item._id.trim(),
         productName: item.nome.trim(),
         productPrice: item.preco,
+        productQuantity: item.quantidade,
       };
 
       order.items.push(newItem);
@@ -196,13 +197,13 @@ export default function SummaryOrder() {
           {/* Items do pedido */}
           <div className="pb-5">
             <div className="my-3">
-              {cartItems
+              {copyCartItems
                 ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
                 .map((item, index) => (
                   <div key={index} className="flex justify-between">
                     <p>{item.nome}</p>
                     <p>R$ {item.preco.toFixed(2)}</p>
-                    {/* <p>QTD {item.quantidade}</p> */}
+                    <p>QTD {item.quantidade}</p>
                   </div>
                 ))}
             </div>
