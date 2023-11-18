@@ -52,7 +52,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
   // Enviar pedido
   function handleOrder() {
     // Somando dados da cubagem do pedido
-    const totalWithFreightSum = cartItems.reduce(
+    const totalWidthFreightSum = cartItems.reduce(
       (sum, item) => sum + item.largura,
       0
     );
@@ -67,7 +67,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
       0
     );
 
-    const totalWheightFreight = cartItems.reduce(
+    const totalWeightFreight = cartItems.reduce(
       (sum, item) => sum + item.peso,
       0
     );
@@ -88,15 +88,17 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
       cep: address.cep.trim(),
       complement: address.complement.trim(),
       freight: {
-        totalWithFreight: totalWithFreightSum,
+        totalWidthFreight: totalWidthFreightSum,
         totalHeightFreight: totalHeightFreight,
         totalLengthFreight: totalLengthFreight,
-        totalWheightFreight: totalWheightFreight,
+        totalWeightFreight: totalWeightFreight,
         freightValue: 0,
+        freightMethod: isPac=="PAC" ? "PAC" : "SEDEX"
       },
       orderPixId: 5555513245,
       orderDate: new Date(),
       phoneNumber: user.phone,
+      totalPriceProducts: 60
     };
 
     // Itens do Pedido
@@ -109,6 +111,8 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
 
       order.items.push(newItem);
     });
+
+    console.log(order)
 
     const fetchData = async () => {
       const data = await postOrder(order);

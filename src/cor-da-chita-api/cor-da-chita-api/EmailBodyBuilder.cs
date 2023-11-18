@@ -81,13 +81,17 @@ namespace cor_da_chita_api
                     <p><strong>Total do Pedido:</strong> ##ORDERTOTALPRICE##</p>
 
                     <h2>Informações de Envio:</h2>
-                    <p><strong>Método de Envio:</strong> {{METODO_DE_ENVIO}}</p>
-                    <p><strong>Número de Rastreamento:</strong> {{NUMERO_DE_RASTREAMENTO}}</p>
-                    <p><strong>Estimativa de Entrega:</strong> {{ESTIMATIVA_DE_ENTREGA}}</p>
+                    <p><strong>Método de Envio:</strong> ##METODO_DE_ENVIO##</p>
 
                     <h2>Políticas e Informações Adicionais:</h2>
-                    <p><strong>Política de Devolução/Troca:</strong> {{POLITICA_DE_DEVOLUCAO}}</p>
-                    <p><strong>Informações de Contato:</strong> {{INFORMACOES_DE_CONTATO}}</p>
+                    <p><strong>Política de Devolução/Troca:</strong> De acordo com o Código de Defesa do Consumidor, você tem até 7 (sete) dias para desistir das compras feitas pela Internet. Para devolução, é só entrar em contato através dos nossos canais (WhatsApp, e-mail e Direct do Instagram).</p>
+                    <p><strong>Informações de Contato:</strong></p>
+                    <ul style=""list-style-type: none; padding: 0; margin: 0; text-indent: 20px;"">
+                        <li><strong>Instagram:</strong><a href=""https://www.instagram.com/cor.da.chita/""> @cor.da.chita</a></li>
+                        <li><strong>Email:</strong> feitosamadriana@gmail.com</li>
+                        <li><strong>Telefone e Whatsapp:</strong> (83) 98726-1972</li>
+                        <!-- Add more information as needed -->
+                    </ul>
 
                     <h3>Agradecemos por escolher a nossa loja!</h3>
                 </body>
@@ -134,6 +138,8 @@ namespace cor_da_chita_api
 
             var orderTotalPrice = orderDetails.Freight.FreightValue + subTotal;
 
+            var freightMethod = orderDetails.Freight.FreightMethod;
+
             var result = MAIN_EMAIL_BODY
                         .Replace("##USERNAME##", orderDetails.UserName)
                         .Replace("##ORDERNUMBER##", orderDetails.Id)
@@ -144,7 +150,8 @@ namespace cor_da_chita_api
                         .Replace("##USERPHONENUMBER##", orderDetails.PhoneNumber)
                         .Replace("##SUBTOTAL##", subTotal.ToString())
                         .Replace("##FREIGHT##", orderDetails.Freight.FreightValue.ToString())
-                        .Replace("##ORDERTOTALPRICE##", orderTotalPrice.ToString());
+                        .Replace("##ORDERTOTALPRICE##", orderTotalPrice.ToString())
+                        .Replace("##METODO_DE_ENVIO##", freightMethod.ToString());
 
             return result;
         }
