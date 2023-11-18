@@ -32,19 +32,20 @@ namespace cor_da_chita_api.Controllers
         private readonly IOrderService _ordersService;
         private readonly IEmailService _emailService;
         private readonly IPaymentService _paymentService;
-        private const string EMAIL_SUBJECT = "Seu pedido foi recebido e est? sendo processado!";
+
+        private const string EMAIL_SUBJECT = "Seu pedido foi recebido e esta sendo processado!";
 
         private const string EMAIL_SUBJECT_OWNER = "Oba! Mais um pedido chegando.";
 
         private const string EMAIL_COR_DA_CHITA_OWNER = "ilanobregaeq@gmail.com";
 
 
-        public OrderController(IOrderService ordersService, IEmailService emailService,IPaymentService paymentService)
+        public OrderController(IOrderService ordersService, IEmailService emailService, IPaymentService paymentService)
         {
             _ordersService = ordersService;
             _emailService = emailService;
             _paymentService = paymentService;
-           
+
         }
 
         /// <summary>
@@ -58,10 +59,10 @@ namespace cor_da_chita_api.Controllers
             return await _ordersService.GetAllAsync();
         }
         /// <summary>
-        /// Endpoint to Get All Orders
+        /// Get all orders with user email
         /// </summary>
         /// <returns>List of Orders</returns>
-        [HttpGet("OrdersWithEmail")]
+        [HttpGet("OrdersWithEmail/{email}")]
         public async Task<List<OrderDto>> GetAllOrdersWithEmail(string email)
         {
 
@@ -107,9 +108,16 @@ namespace cor_da_chita_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, validatioResult.ToValidationErrorReponse());
                 }
 
+                var paymentCreated = await _paymentService.CreatePixPayment(newOrder);
+
+                newOrder.OrderPixId = paymentCreated.Id;
+
+
                 var orderCreated = await _ordersService.CreateAsync(newOrder);
 
-                //Mudar Chave para variavel de ambiente depois com a conta da m?e da illa
+
+
+                var a = 20;
 
 
 

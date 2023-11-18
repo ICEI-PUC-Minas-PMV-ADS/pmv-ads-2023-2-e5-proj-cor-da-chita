@@ -16,6 +16,7 @@ import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 
+
 export default function SummaryOrder() {
   const route = useRouter();
   const path = usePathname();
@@ -60,8 +61,11 @@ export default function SummaryOrder() {
   };
 
   // Enviar pedido
-  function handleOrder() {
+  async function  handleOrder () {
     // Somando dados da cubagem do pedido
+
+    console.log(freteInContext)
+    console.log(isPac)
     const totalWidthFreightSum = cartItems.reduce(
       (sum, item) => sum + item.largura,
       0
@@ -92,7 +96,7 @@ export default function SummaryOrder() {
             : "outro";
 
     console.log("freightMethod:", freightMethod);
-    
+
     const order = {
       items: [] as Array<{
         productId: string;
@@ -113,13 +117,14 @@ export default function SummaryOrder() {
         totalHeightFreight: totalHeightFreight,
         totalLengthFreight: totalLengthFreight,
         totalWeightFreight: totalWeightFreight,
-        freightValue: 0,
-        freightMethod: freightMethod
+        freightValue: isPac=="PAC"?freteInContext.valorPac:freteInContext.valorSedex,
+        freightMethod: freightMethod,
+        
       },
       orderPixId: 5555513245,
       orderDate: new Date(),
       phoneNumber: user.phone,
-      totalPriceProducts: 60
+      totalPriceProducts: sumCartItems
     };
 
     // Itens do Pedido
@@ -134,13 +139,13 @@ export default function SummaryOrder() {
       order.items.push(newItem);
     });
 
-    const fetchData = async () => {
-      const data = await postOrder(order);
-      console.log(data);
+    
+      const orderCreated = await postOrder(order);
+      console.log(orderCreated.orderPixId);
 
-      return data;
-    };
-    fetchData();
+
+    
+   
   }
 
   // Lidar com rotas dos botões de edição

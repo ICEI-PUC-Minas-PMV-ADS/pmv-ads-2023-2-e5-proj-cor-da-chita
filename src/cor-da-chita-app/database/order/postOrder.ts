@@ -1,20 +1,19 @@
 import { baseURL } from "../baseURL";
-
+import axios from "axios";
 const postOrder = async (params: any) => {
   console.log(params);
   console.log(`${baseURL}/api/v1/Order`);
 
-  return await fetch(`${baseURL}/api/v1/Order`, {
-    
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(params),
-  })
-    .then((response) => response.json)
-    .then((json) => console.log(json))
+  const res = await axios.post(`${baseURL}/api/v1/Order`,params)
+    .then((r) => {
+      console.log(r.data)
+      return r.data
+    })
     .catch((error) => console.error(error));
+
+    console.log(res)
+
+    return res
 };
 
 export default postOrder;

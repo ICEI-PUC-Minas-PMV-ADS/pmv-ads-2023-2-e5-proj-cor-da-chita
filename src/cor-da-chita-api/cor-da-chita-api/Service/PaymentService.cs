@@ -29,7 +29,7 @@ namespace cor_da_chita_api.Service
                     {
                         Email = order.UserEmail,
                         FirstName = order.UserName.Split(' ')[0],
-                        LastName = order.UserName.Split(' ')[1],
+                        
 
                     },
                 };
