@@ -39,9 +39,14 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
 
     let sum = 0;
     cartItems.forEach((element) => {
-      if (item.quantidade != undefined) {
-        sum += item.quantidade * element.preco;
-        setSumCartItems(sum);
+      if (cartItems[0]._id === item.id) {
+        if (item.quantidade != undefined) {
+          sum += item.quantidade * element.preco;
+          console.log(element.preco);
+          console.log(item.quantidade);
+          console.log(sum);
+          setSumCartItems(sum);
+        }
       }
     });
 

@@ -28,16 +28,6 @@ export default function SummaryOrder() {
   const { cartFlow, setCartFlow } = useContext(CartContext);
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
-  // useEffect(() => {
-  //   console.log('entrou')
-  //   for (const chave in copyCartItems) {
-  //     if (copyCartItems.hasOwnProperty(chave)) {
-  //       const item = copyCartItems[chave];
-  //       console.log(item);
-  //     }
-  //   }
-  // }, []);
-
   const handleRedirectWhatsApp = () => {
     console.log(user);
     //%0a Serve para pular linha no whatsapp
@@ -53,20 +43,8 @@ export default function SummaryOrder() {
       `Olá Cor da Chita,me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos ` +
       typeDelivery;
 
-    // for (const chave in copyCartItems) {
-    //   if (copyCartItems.hasOwnProperty(chave)) {
-    //     const item = copyCartItems[chave];
-
-    //     console.log(item);
-    //     message += ` ${item.quantidade} ${
-    //       item.quantidade > 1 ? `Unidades` : `Unidade`
-    //     } de ${item.nome}, cada unidade custando R$${item.preco.toFixed(2)}%0a`;
-    //   }
-    // }
-
-    cartItems.map((product) => {
+    copyCartItems.map((product) => {
       //Verifica se é o ultimo item da lista para não inserir virgula no final
-
       message += ` ${product.quantidade} ${
         product.quantidade > 1 ? `Unidades` : `Unidade`
       } de ${product.nome},cada unidade custando R$${product.preco.toFixed(
@@ -196,104 +174,108 @@ export default function SummaryOrder() {
           </div>
           {/* Items do pedido */}
           <div className="mx-5">
-          <div className="pb-5">
-            <div className="my-3">
-              {copyCartItems
-                ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
-                .map((item, index) => (
-                  <div key={index} className="flex justify-between">
-                    <p>{item.nome}</p>
-                    <p>R$ {item.preco.toFixed(2)}</p>
-                    <p>QTD {item.quantidade}</p>
-                  </div>
-                ))}
-            </div>
-
-            {/* Totais */}
-            <div className="my-3">
-              <div className="flex justify-between ">
-                <p>
-                  <strong>Total dos Itens</strong>
-                </p>
-                <p>
-                  <strong>R$ {sumCartItems.toFixed(2)}</strong>
-                </p>
-              </div>
-
-              {/* Frete */}
-              {/* Total com ou sem frete */}
-              <div className="flex justify-between my-3">
-                {/* Label */}
-                {freteInContext != undefined && isCombinarFrete ? (
-                  <p>
-                    <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
-                  </p>
-                ) : (
-                  <p>
-                    <strong>Frete a combinar</strong>
-                  </p>
-                )}
-
-                {/* Valores Se tem frete via correios */}
-                {freteInContext != undefined && isCombinarFrete ? (
-                  isPac == "PAC" ? (
-                    <p>
-                      <strong>R$ {freteInContext.valorPac.toFixed(2)}</strong>
-                    </p>
-                  ) : (
-                    <p>
-                      <strong>R$ {freteInContext.valorSedex.toFixed(2)}</strong>
-                    </p>
-                  )
-                ) : (
-                  <></>
-                )}
-              </div>
-
-              {/* Total carrinho com ou sem frete */}
-              <div className="flex justify-between my-3">
-                {/* Label */}
-                {freteInContext != undefined && isCombinarFrete ? (
-                  <p>
-                    <strong>Total com frete</strong>
-                  </p>
-                ) : (
-                  <p></p>
-                )}
-
-                {/* Valores: Se frete é correios, PAC ou SEDEX */}
-                {freteInContext != undefined && isCombinarFrete ? (
-                  isPac == "PAC" ? (
-                    <p>
-                      <strong>
-                        R$ {(freteInContext.valorPac + sumCartItems).toFixed(2)}
-                      </strong>
-                    </p>
-                  ) : (
-                    <p>
-                      <strong>
-                        R${" "}
-                        {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
-                      </strong>
-                    </p>
-                  )
-                ) : (
-                  <></>
-                )}
-              </div>
-
+            <div className="pb-5">
               <div className="my-3">
-                <Button
-                  color="secondary"
-                  variant="ghost"
-                  onPress={handleRouteEditCartData}
-                >
-                  Editar Carrinho
-                </Button>
+                {copyCartItems
+                  ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
+                  .map((item, index) => (
+                    <div key={index} className="flex justify-between">
+                      <p>{item.nome}</p>
+                      <p>{item.quantidade}x</p>
+                      <p>R$ {item.preco.toFixed(2)}</p>
+                    </div>
+                  ))}
+              </div>
+
+              {/* Totais */}
+              <div className="my-3">
+                <div className="flex justify-between ">
+                  <p>
+                    <strong>Total dos Itens</strong>
+                  </p>
+                  <p>
+                    <strong>R$ {sumCartItems.toFixed(2)}</strong>
+                  </p>
+                </div>
+
+                {/* Frete */}
+                {/* Total com ou sem frete */}
+                <div className="flex justify-between my-3">
+                  {/* Label */}
+                  {freteInContext != undefined && isCombinarFrete ? (
+                    <p>
+                      <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
+                    </p>
+                  ) : (
+                    <p>
+                      <strong>Frete a combinar</strong>
+                    </p>
+                  )}
+
+                  {/* Valores Se tem frete via correios */}
+                  {freteInContext != undefined && isCombinarFrete ? (
+                    isPac == "PAC" ? (
+                      <p>
+                        <strong>R$ {freteInContext.valorPac.toFixed(2)}</strong>
+                      </p>
+                    ) : (
+                      <p>
+                        <strong>
+                          R$ {freteInContext.valorSedex.toFixed(2)}
+                        </strong>
+                      </p>
+                    )
+                  ) : (
+                    <></>
+                  )}
+                </div>
+
+                {/* Total carrinho com ou sem frete */}
+                <div className="flex justify-between my-3">
+                  {/* Label */}
+                  {freteInContext != undefined && isCombinarFrete ? (
+                    <p>
+                      <strong>Total com frete</strong>
+                    </p>
+                  ) : (
+                    <p></p>
+                  )}
+
+                  {/* Valores: Se frete é correios, PAC ou SEDEX */}
+                  {freteInContext != undefined && isCombinarFrete ? (
+                    isPac == "PAC" ? (
+                      <p>
+                        <strong>
+                          R${" "}
+                          {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+                        </strong>
+                      </p>
+                    ) : (
+                      <p>
+                        <strong>
+                          R${" "}
+                          {(freteInContext.valorSedex + sumCartItems).toFixed(
+                            2
+                          )}
+                        </strong>
+                      </p>
+                    )
+                  ) : (
+                    <></>
+                  )}
+                </div>
+
+                <div className="my-3">
+                  <Button
+                    color="secondary"
+                    variant="ghost"
+                    onPress={handleRouteEditCartData}
+                  >
+                    Editar Carrinho
+                  </Button>
+                </div>
               </div>
             </div>
-            
-          </div>
           </div>
 
           {/* Dados de Envio */}
@@ -322,7 +304,7 @@ export default function SummaryOrder() {
                   Editar Endereço
                 </Button>
               </div>
-           </div>
+            </div>
           </div>
 
           {/* Dados do Cliente */}
@@ -332,53 +314,50 @@ export default function SummaryOrder() {
             </div>
 
             <div className="mx-5">
+              <div>
+                <p>{user.name}</p>
 
+                <p>{user.phone}</p>
+                <p>{user.email}</p>
+              </div>
 
-            <div>
-              <p>{user.name}</p>
-
-              <p>{user.phone}</p>
-              <p>{user.email}</p>
+              <div className="my-6">
+                <Button
+                  color="secondary"
+                  variant="ghost"
+                  onClick={handleRouteEditUserData}
+                >
+                  Editar Dados
+                </Button>
+              </div>
             </div>
 
-            <div className="my-6">
-              <Button
-                color="secondary"
-                variant="ghost"
-                onClick={handleRouteEditUserData}
+            {/* Pagamento */}
+            <div className="flex flex-col gap-3 my-5 items-center">
+              <MyButton
+                color="green"
+                variant="flat"
+                onClick={() => alert("Programar PIX")}
+                className="w-[400px]"
               >
-                Editar Dados
-              </Button>
+                Pagar com PIX
+              </MyButton>
+
+              <MyButton
+                color="green"
+                variant="flat"
+                className="w-[400px]"
+                onClick={() => handleRedirectWhatsApp()}
+              >
+                Pagar com Cartão de Crédito
+              </MyButton>
             </div>
+
+            <Button color="primary" onClick={handleOrder}>
+              Botao para Teste API
+            </Button>
           </div>
-
-          {/* Pagamento */}
-          <div className="flex flex-col gap-3 my-5 items-center">
-            <MyButton
-              color="green"
-              variant="flat"
-              onClick={() => alert("Programar PIX")}
-              className="w-[400px]"
-            >
-              Pagar com PIX
-            </MyButton>
-
-            <MyButton
-              color="green"
-              variant="flat"
-              className="w-[400px]"
-              onClick={() => handleRedirectWhatsApp()}
-            >
-              Pagar com Cartão de Crédito
-            </MyButton>
-          </div>
-
-          <Button color="primary" onClick={handleOrder}>
-            Botao para Teste API
-          </Button>
         </div>
-        </div>
-
       ) : (
         <Spinner className="flex" />
       )}
