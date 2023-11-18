@@ -189,11 +189,12 @@ export default function SummaryOrder() {
       </Link>
 
       {address.cep !== "" || cartItems.length !== 0 || user.email !== "" ? (
-        <div className="mx-20 max-w-screen-lg ml-auto">
+        <div className="px-10 max-w-screen-lg ml-auto">
           <div className="font-serif pb-10">
             <h2 className="text-2xl">Resumo do Pedido</h2>
           </div>
           {/* Items do pedido */}
+          <div className="mx-5">
           <div className="pb-5">
             <div className="my-3">
               {cartItems
@@ -290,43 +291,47 @@ export default function SummaryOrder() {
                 </Button>
               </div>
             </div>
+            
           </div>
-
-          <Divider />
+          </div>
 
           {/* Dados de Envio */}
           <div className="my-10">
             <div className="font-serif py-3">
-              <h2>Dados de Envio</h2>
+              <h2 className="text-2xl">Dados de Envio</h2>
             </div>
-            <p>
-              {address.street}, {address.num}
-            </p>
-            <p>{address.neighborhood}</p>
-            <p>{address.complement ? address.complement : ""}</p>
-            <p>{address.cep}</p>
-            <p>
-              {address.city} - {address.uf}
-            </p>
 
-            <div className="my-3">
-              <Button
-                color="secondary"
-                variant="ghost"
-                onClick={handleRouteEditAddressData}
-              >
-                Editar Endereço
-              </Button>
-            </div>
+            <div className="mx-5">
+              <p>
+                {address.street}, {address.num}
+              </p>
+              <p>{address.neighborhood}</p>
+              <p>{address.complement ? address.complement : ""}</p>
+              <p>{address.cep}</p>
+              <p>
+                {address.city} - {address.uf}
+              </p>
+
+              <div className="my-6">
+                <Button
+                  color="secondary"
+                  variant="ghost"
+                  onClick={handleRouteEditAddressData}
+                >
+                  Editar Endereço
+                </Button>
+              </div>
+           </div>
           </div>
-
-          <Divider />
 
           {/* Dados do Cliente */}
           <div className="my-10">
             <div className="font-serif py-3">
-              <h2>Seus Dados</h2>
+              <h2 className="text-2xl">Seus Dados</h2>
             </div>
+
+            <div className="mx-5">
+
 
             <div>
               <p>{user.name}</p>
@@ -335,7 +340,7 @@ export default function SummaryOrder() {
               <p>{user.email}</p>
             </div>
 
-            <div className="my-3">
+            <div className="my-6">
               <Button
                 color="secondary"
                 variant="ghost"
@@ -371,6 +376,8 @@ export default function SummaryOrder() {
             Botao para Teste API
           </Button>
         </div>
+        </div>
+
       ) : (
         <Spinner className="flex" />
       )}
