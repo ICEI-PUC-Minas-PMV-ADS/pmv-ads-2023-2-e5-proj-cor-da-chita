@@ -1,10 +1,10 @@
 // Resumo do pedido
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 
-import { Button, Divider, Link } from "@nextui-org/react";
+import { Button, Divider, Link, Spinner } from "@nextui-org/react";
 import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -170,7 +170,11 @@ export default function SummaryOrder() {
   // Limpando path cartFlow
   useEffect(() => {
     setCartFlow("");
-    console.log()
+
+    // Caso atualize a página retornar para ao carrinho
+    if (address.cep === "" || cartItems.length === 0 || user.email === "") {
+      route.push("/shop-cart");
+    }
   }, []);
 
   return (
@@ -183,190 +187,191 @@ export default function SummaryOrder() {
       >
         <ArrowLeft /> Retornar
       </Link>
-      <div className="mx-20 max-w-screen-lg ml-auto">
-        <div className="font-serif pb-10">
-          <h2 className="text-2xl">Resumo do Pedido</h2>
-        </div>
 
-        {/* Items do pedido */}
-        <div className="pb-5">
-          <div className="my-3">
-            {cartItems
-              ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
-              .map((item, index) => (
-                <div key={index} className="flex justify-between">
-                  <p>{item.nome}</p>
-                  <p>R${item.preco.toFixed(2)}</p>
-                </div>
-              ))}
+      {address.cep !== "" || cartItems.length !== 0 || user.email !== "" ? (
+        <div className="mx-20 max-w-screen-lg ml-auto">
+          <div className="font-serif pb-10">
+            <h2 className="text-2xl">Resumo do Pedido</h2>
+          </div>
+          {/* Items do pedido */}
+          <div className="pb-5">
+            <div className="my-3">
+              {cartItems
+                ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
+                .map((item, index) => (
+                  <div key={index} className="flex justify-between">
+                    <p>{item.nome}</p>
+                    <p>R$ {item.preco.toFixed(2)}</p>
+                  </div>
+                ))}
+            </div>
+
+            {/* Totais */}
+            <div className="my-3">
+              <div className="flex justify-between ">
+                <p>
+                  <strong>Total dos Itens</strong>
+                </p>
+                <p>
+                  <strong>R$ {sumCartItems.toFixed(2)}</strong>
+                </p>
+              </div>
+
+              {/* Frete */}
+              {/* Total com ou sem frete */}
+              <div className="flex justify-between my-3">
+                {/* Label */}
+                {freteInContext != undefined && isCombinarFrete ? (
+                  <p>
+                    <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
+                  </p>
+                ) : (
+                  <p>Frete a combinar</p>
+                )}
+
+                {/* Valores Se tem frete via correios */}
+                {freteInContext != undefined && isCombinarFrete ? (
+                  isPac == "PAC" ? (
+                    <p>
+                      <strong>R$ {freteInContext.valorPac.toFixed(2)}</strong>
+                    </p>
+                  ) : (
+                    <p>
+                      <strong>R$ {freteInContext.valorSedex.toFixed(2)}</strong>
+                    </p>
+                  )
+                ) : (
+                  <></>
+                )}
+              </div>
+
+              {/* Total carrinho com ou sem frete */}
+              <div className="flex justify-between my-3">
+                {/* Label */}
+                {freteInContext != undefined && isCombinarFrete ? (
+                  <p>
+                    <strong>Total com frete</strong>
+                  </p>
+                ) : (
+                  <p></p>
+                )}
+
+                {/* Valores: Se frete é correios, PAC ou SEDEX */}
+                {freteInContext != undefined && isCombinarFrete ? (
+                  isPac == "PAC" ? (
+                    <p>
+                      <strong>
+                        R$ {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+                      </strong>
+                    </p>
+                  ) : (
+                    <p>
+                      <strong>
+                        R${" "}
+                        {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
+                      </strong>
+                    </p>
+                  )
+                ) : (
+                  <></>
+                )}
+              </div>
+
+              <div className="my-3">
+                {/* Revisar Fluxo aqui */}
+                <Button
+                  color="secondary"
+                  variant="ghost"
+                  onPress={handleRouteEditCartData}
+                >
+                  Editar Carrinho
+                </Button>
+              </div>
+            </div>
           </div>
 
-          {/* Totais */}
-          <div className="my-3">
-            <div className="flex justify-between ">
-              <p>
-                <strong>Total dos Itens</strong>
-              </p>
-              <p>
-                <strong>R$ {sumCartItems.toFixed(2)}</strong>
-              </p>
+          <Divider />
+
+          {/* Dados de Envio */}
+          <div className="my-10">
+            <div className="font-serif py-3">
+              <h2>Dados de Envio</h2>
             </div>
-
-            {/* Frete */}
-            {/* Total com ou sem frete */}
-            <div className="flex justify-between my-3">
-              {/* Label */}
-              {freteInContext != undefined && isCombinarFrete ? (
-                <p>
-                  <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
-                </p>
-              ) : (
-                <p>Frete a combinar</p>
-              )}
-
-              {/* Valores Se tem frete via correios */}
-              {freteInContext != undefined && isCombinarFrete ? (
-                isPac == "PAC" ? (
-                  <p>
-                    <strong>R$ </strong>
-                    {freteInContext.valorPac.toFixed(2)}
-                  </p>
-                ) : (
-                  <p>
-                    <strong>R$ </strong>
-                    {freteInContext.valorSedex.toFixed(2)}
-                  </p>
-                )
-              ) : (
-                <></>
-              )}
-            </div>
-
-            {/* Total carrinho com ou sem frete */}
-            <div className="flex justify-between my-3">
-              {/* Label */}
-              {freteInContext != undefined && isCombinarFrete ? (
-                <p>
-                  <strong>Total com frete</strong>
-                </p>
-              ) : (
-                <p></p>
-              )}
-
-              {/* Valores: Se frete é correios, PAC ou SEDEX */}
-              {freteInContext != undefined && isCombinarFrete ? (
-                isPac == "PAC" ? (
-                  <p>
-                    <strong>
-                      R$
-                      {(freteInContext.valorPac + sumCartItems).toFixed(2)}
-                    </strong>
-                  </p>
-                ) : (
-                  <p>
-                    <strong>
-                      R$
-                      {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
-                    </strong>                    
-                  </p>
-                )
-              ) : (
-                <></>
-              )}
-            </div>
+            <p>
+              {address.street}, {address.num}
+            </p>
+            <p>{address.neighborhood}</p>
+            <p>{address.complement ? address.complement : ""}</p>
+            <p>{address.cep}</p>
+            <p>
+              {address.city} - {address.uf}
+            </p>
 
             <div className="my-3">
-              {/* Revisar Fluxo aqui */}
               <Button
                 color="secondary"
                 variant="ghost"
-                onPress={handleRouteEditCartData}
+                onClick={handleRouteEditAddressData}
               >
-                Editar Carrinho
+                Editar Endereço
               </Button>
             </div>
           </div>
-        </div>
 
-        <Divider />
+          <Divider />
 
-        {/* Dados de Envio */}
-        <div className="my-10">
-          <div className="font-serif py-3">
-            <h2>Dados de Envio</h2>
+          {/* Dados do Cliente */}
+          <div className="my-10">
+            <div className="font-serif py-3">
+              <h2>Seus Dados</h2>
+            </div>
+
+            <div>
+              <p>{user.name}</p>
+
+              <p>{user.phone}</p>
+              <p>{user.email}</p>
+            </div>
+
+            <div className="my-3">
+              <Button
+                color="secondary"
+                variant="ghost"
+                onClick={handleRouteEditUserData}
+              >
+                Editar Dados
+              </Button>
+            </div>
           </div>
-          <p>
-            {address.street}, {address.num}
-          </p>
-          <p>{address.neighborhood}</p>
-          <p>{address.complement ? address.complement : ""}</p>
-          <p>{address.cep}</p>
-          <p>
-            {address.city} - {address.uf}
-          </p>
 
-          <div className="my-3">
-            <Button
-              color="secondary"
-              variant="ghost"
-              onClick={handleRouteEditAddressData}
+          {/* Pagamento */}
+          <div className="flex flex-col gap-3 my-5 items-center">
+            <MyButton
+              color="green"
+              variant="flat"
+              onClick={() => alert("Programar PIX")}
+              className="w-[400px]"
             >
-              Editar Endereço
-            </Button>
-          </div>
-        </div>
+              Pagar com PIX
+            </MyButton>
 
-        <Divider />
-
-        {/* Dados do Cliente */}
-        <div className="my-10">
-          <div className="font-serif py-3">
-            <h2>Seus Dados</h2>
-          </div>
-
-          <div>
-            <p>{user.name}</p>
-
-            <p>{user.phone}</p>
-            <p>{user.email}</p>
-          </div>
-
-          <div className="my-3">
-            <Button
-              color="secondary"
-              variant="ghost"
-              onClick={handleRouteEditUserData}
+            <MyButton
+              color="green"
+              variant="flat"
+              className="w-[400px]"
+              onClick={() => handleRedirectWhatsApp()}
             >
-              Editar Dados
-            </Button>
+              Pagar com Cartão de Crédito
+            </MyButton>
           </div>
+
+          <Button color="primary" onClick={handleOrder}>
+            Botao para Teste API
+          </Button>
         </div>
-
-        {/* Pagamento */}
-        <div className="flex flex-col gap-3 my-5 items-center">
-          <MyButton
-            color="green"
-            variant="flat"
-            onClick={() => alert("Programar PIX")}
-            className="w-[400px]"
-          >
-            Pagar com PIX
-          </MyButton>
-
-          <MyButton
-            color="green"
-            variant="flat"
-            className="w-[400px]"
-            onClick={() => handleRedirectWhatsApp()}
-          >
-            Pagar com Cartão de Crédito
-          </MyButton>
-        </div>
-
-        <Button color="primary" onClick={handleOrder}>
-          Botao para Teste API
-        </Button>
-      </div>
+      ) : (
+        <Spinner className="flex" />
+      )}
     </>
   );
 }

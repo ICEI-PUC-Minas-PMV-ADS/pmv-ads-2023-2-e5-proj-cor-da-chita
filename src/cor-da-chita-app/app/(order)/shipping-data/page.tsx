@@ -2,11 +2,10 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 
-import { Button, Input, Link } from "@nextui-org/react";
+import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import { MyButton } from "@/components/ui/Button";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
-
 
 import Form from "@/components/ui/Form";
 
@@ -56,7 +55,7 @@ export default function ShippingData() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") handleCep(address.cep);
   };
-
+  const [waitingData, setWaitingData] = useState(false);
   // Carrega dados do usuário e se for envio via correios, também carrega endereço
   useEffect(() => {
     if (session && session.user) {
@@ -65,11 +64,20 @@ export default function ShippingData() {
       user.setPhone(user.phone);
     }
 
+    if (!session || user.email == "") {
+      setWaitingData(true);
+      route.push("/shop-cart");
+    }
+
     if (saveCepContext.length !== 0) {
       // Se frete correios
       handleCep(saveCepContext);
     }
   }, []);
+
+  if (waitingData) {
+    return <Spinner className="flex" />;
+  }
 
   return (
     <section>
@@ -81,229 +89,231 @@ export default function ShippingData() {
       >
         <ArrowLeft /> Retornar
       </Link>
-      <div className="mx-20 max-w-screen-lg ml-auto">
+      <div>{user.email}</div>
 
-      <div className="font-serif pb-10">
-          <h2 className="text-2xl">Seus Dados</h2>
-      </div>
+      {(session && session.user) || user.email ? (
+        <div className="mx-20 max-w-screen-lg ml-auto">
+          <div className="font-serif pb-10">
+            <h2 className="text-2xl">Seus Dados</h2>
+          </div>
 
-      {/* Dados do Usuário */}
-      <div className="py-3">
-        <p>{user.name}</p>
-        <p>{user.email}</p>
-        <p>{user.phone}</p>
-        <br/>
-        <Button color="secondary" variant="bordered" onPress={() => route.back()}>
-          Editar Dados
-        </Button>
-      </div>
-      <br/>
-      <div className="font-serif pb-10">
-          <h2 className="text-2xl">Dados de Envio</h2>
-      </div>
-        <div>
-        <Form method="post">
-        <div className="flex flex-col gap-3 py-5">
-          <div className="flex flex-row gap-3">
-          <Input // CEP
-              maxLength={8} 
+          {/* Dados do Usuário */}
+          <div className="py-3">
+            <p>{user.name}</p>
+            <p>{user.email}</p>
+            <p>{user.phone}</p>
+            <br />
+            <Button
+              color="secondary"
               variant="bordered"
-              classNames={{
-                innerWrapper: "bg-transparent",
-                inputWrapper: [
-                  "shadow-none",
-                ],
-              }}
-              type="text"
-              label="CEP"
-              size="sm"
-              autoFocus
-              value={address.cep}
-              isRequired
-              isClearable
-              color={missInfo && !address.cep ? "danger" : undefined}
-              errorMessage={missInfo && !address.cep && "Insira o CEP"}
-              onClear={() => address.setCep("")}
-              onChange={(e) => {
-                !/[^0-9]+/g.test(e.target.value)
-                  ? address.setCep(e.target.value)
-                  : "";
-              }}
-              onKeyDown={handleKeyDown}
-            />
-
-            <Button // Buscar CEP              
-              color="success"
-              variant="bordered"
-              size="lg"
-              onClick={() => handleCep(address.cep)}
-              className="hover:text-white"
-              >
-              Buscar CEP
+              onPress={() => route.back()}
+            >
+              Editar Dados
             </Button>
           </div>
-
-          <Input // Rua
-            variant="bordered"
-            classNames={{
-              innerWrapper: "bg-transparent",
-              inputWrapper: [
-                "shadow-none",
-              ],
-            }}
-            isDisabled={saveCepContext.length > 0}
-            type="text"
-            label="Rua"
-            size="sm"
-            value={address.street}
-            isRequired
-            isClearable
-            color={missInfo && !address.street ? "danger" : undefined}
-            errorMessage={
-              missInfo && !address.street && "Insira o nome da rua"
-            }
-            onClear={() => address.setStreet("")}
-            onChange={(e) => address.setStreet(e.target.value)}
-          />
-
-          <Input // Bairro
-            variant="bordered"
-            classNames={{
-              innerWrapper: "bg-transparent",
-              inputWrapper: [
-                "shadow-none",
-              ],
-            }}
-            isDisabled={saveCepContext.length > 0}
-            type="text"
-            label="Bairro"
-            size="sm"
-            value={address.neighborhood}
-            isRequired
-            isClearable
-            color={missInfo && !address.neighborhood ? "danger" : undefined}
-            errorMessage={
-              missInfo &&
-              !address.neighborhood &&
-              "Insira o nome do bairro"
-            }
-            onClear={() => address.setNeighborhood("")}
-            onChange={(e) => address.setNeighborhood(e.target.value)}
-          />
-
-          <Input // Número
-            variant="bordered"
-            classNames={{
-              innerWrapper: "bg-transparent",
-              inputWrapper: [
-                "shadow-none",
-              ],
-            }}
-            type="text"
-            label="Número"
-            size="sm"
-            value={address.num}
-            isRequired
-            isClearable
-            color={missInfo && !address.num ? "danger" : undefined}
-            errorMessage={
-              missInfo &&
-              !address.num &&
-              "Insira o número da residência"
-            }
-            onClear={() => address.setNum("")}
-            onChange={(e) => {
-              !/[^0-9]+/g.test(e.target.value)
-                ? address.setNum(e.target.value)
-                : "";
-            }}
-            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              if (e.key === "Enter") {
-                validadeData ? setMissInfo(true) : route.push("/summary-order");
-              }
-            }}
-          />
-
-          <Input // Cidade
-            variant="bordered"
-            classNames={{
-              innerWrapper: "bg-transparent",
-              inputWrapper: [
-                "shadow-none",
-              ],
-            }}
-            isDisabled={saveCepContext.length > 0}
-            type="text"
-            label="Cidade"
-            size="sm"
-            value={address.city}
-            isRequired
-            isClearable
-            color={missInfo && !address.city ? "danger" : undefined}
-            errorMessage={
-              missInfo && !address.city && "Insira o nome da cidade"
-            }
-            onClear={() => address.setCity("")}
-            onChange={(e) => address.setCity(e.target.value)}
-          />
-
-          <Input // UF
-            variant="bordered"
-            classNames={{
-              innerWrapper: "bg-transparent",
-              inputWrapper: [
-                "shadow-none",
-              ],
-            }}
-            isDisabled={saveCepContext.length > 0}
-            type="text"
-            label="UF"
-            size="sm"
-            value={address.uf}
-            isRequired
-            isClearable
-            color={missInfo && !address.uf ? "danger" : undefined}
-            errorMessage={missInfo && !address.uf && "Insira o estado"}
-            onClear={() => address.setUf("")}
-            onChange={(e) => address.setUf(e.target.value)}
-          />
-
-          <Input // 
-            variant="bordered"
-            classNames={{
-              innerWrapper: "bg-transparent",
-              inputWrapper: [
-                "shadow-none",
-              ],
-            }}
-            type="text"
-            label="Complemento"
-            size="sm"
-            value={address.complement}
-            isClearable
-            onClear={() => address.setComplement("")}
-            onChange={(e) => address.setComplement(e.target.value)}
-            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              if (e.key === "Enter") {
-                validadeData ? setMissInfo(true) : route.push("/summary-order");
-              }
-            }}
-          />
+          <br />
+          <div className="font-serif pb-10">
+            <h2 className="text-2xl">Dados de Envio</h2>
           </div>
-        </Form>
-        <div className="my-5 flex justify-end">
-          <MyButton // Confirmar Dados
-              color="green"
-              size="xl"
-              onClick={() =>
-                validadeData ? setMissInfo(true) : route.push("/summary-order")
-              }
-            >
-              Confirmar Dados
-            </MyButton>
+          <div>
+            <Form method="post">
+              <div className="flex flex-col gap-3 py-5">
+                <div className="flex flex-row gap-3">
+                  <Input // CEP
+                    maxLength={8}
+                    variant="bordered"
+                    classNames={{
+                      innerWrapper: "bg-transparent",
+                      inputWrapper: ["shadow-none"],
+                    }}
+                    type="text"
+                    label="CEP"
+                    size="sm"
+                    autoFocus
+                    value={address.cep}
+                    isRequired
+                    isClearable
+                    color={missInfo && !address.cep ? "danger" : undefined}
+                    errorMessage={missInfo && !address.cep && "Insira o CEP"}
+                    onClear={() => address.setCep("")}
+                    onChange={(e) => {
+                      !/[^0-9]+/g.test(e.target.value)
+                        ? address.setCep(e.target.value)
+                        : "";
+                    }}
+                    onKeyDown={handleKeyDown}
+                  />
+
+                  <Button // Buscar CEP
+                    isDisabled={address.cep.length < 8}
+                    color="success"
+                    variant="bordered"
+                    size="lg"
+                    onClick={() => handleCep(address.cep)}
+                    className="hover:text-white"
+                  >
+                    Buscar CEP
+                  </Button>
+                </div>
+
+                <Input // Rua
+                  variant="bordered"
+                  classNames={{
+                    innerWrapper: "bg-transparent",
+                    inputWrapper: ["shadow-none"],
+                  }}
+                  isDisabled={saveCepContext.length > 0}
+                  type="text"
+                  label="Rua"
+                  size="sm"
+                  value={address.street}
+                  isRequired
+                  isClearable
+                  color={missInfo && !address.street ? "danger" : undefined}
+                  errorMessage={
+                    missInfo && !address.street && "Insira o nome da rua"
+                  }
+                  onClear={() => address.setStreet("")}
+                  onChange={(e) => address.setStreet(e.target.value)}
+                />
+
+                <Input // Bairro
+                  variant="bordered"
+                  classNames={{
+                    innerWrapper: "bg-transparent",
+                    inputWrapper: ["shadow-none"],
+                  }}
+                  isDisabled={saveCepContext.length > 0}
+                  type="text"
+                  label="Bairro"
+                  size="sm"
+                  value={address.neighborhood}
+                  isRequired
+                  isClearable
+                  color={
+                    missInfo && !address.neighborhood ? "danger" : undefined
+                  }
+                  errorMessage={
+                    missInfo &&
+                    !address.neighborhood &&
+                    "Insira o nome do bairro"
+                  }
+                  onClear={() => address.setNeighborhood("")}
+                  onChange={(e) => address.setNeighborhood(e.target.value)}
+                />
+
+                <Input // Número
+                  variant="bordered"
+                  classNames={{
+                    innerWrapper: "bg-transparent",
+                    inputWrapper: ["shadow-none"],
+                  }}
+                  type="text"
+                  label="Número"
+                  size="sm"
+                  value={address.num}
+                  isRequired
+                  isClearable
+                  color={missInfo && !address.num ? "danger" : undefined}
+                  errorMessage={
+                    missInfo && !address.num && "Insira o número da residência"
+                  }
+                  onClear={() => address.setNum("")}
+                  onChange={(e) => {
+                    !/[^0-9]+/g.test(e.target.value)
+                      ? address.setNum(e.target.value)
+                      : "";
+                  }}
+                  onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                    if (e.key === "Enter") {
+                      validadeData
+                        ? setMissInfo(true)
+                        : route.push("/summary-order");
+                    }
+                  }}
+                />
+
+                <Input // Cidade
+                  variant="bordered"
+                  classNames={{
+                    innerWrapper: "bg-transparent",
+                    inputWrapper: ["shadow-none"],
+                  }}
+                  isDisabled={saveCepContext.length > 0}
+                  type="text"
+                  label="Cidade"
+                  size="sm"
+                  value={address.city}
+                  isRequired
+                  isClearable
+                  color={missInfo && !address.city ? "danger" : undefined}
+                  errorMessage={
+                    missInfo && !address.city && "Insira o nome da cidade"
+                  }
+                  onClear={() => address.setCity("")}
+                  onChange={(e) => address.setCity(e.target.value)}
+                />
+
+                <Input // UF
+                  variant="bordered"
+                  classNames={{
+                    innerWrapper: "bg-transparent",
+                    inputWrapper: ["shadow-none"],
+                  }}
+                  isDisabled={saveCepContext.length > 0}
+                  type="text"
+                  label="UF"
+                  size="sm"
+                  value={address.uf}
+                  isRequired
+                  isClearable
+                  color={missInfo && !address.uf ? "danger" : undefined}
+                  errorMessage={missInfo && !address.uf && "Insira o estado"}
+                  onClear={() => address.setUf("")}
+                  onChange={(e) => address.setUf(e.target.value)}
+                />
+
+                <Input //
+                  variant="bordered"
+                  classNames={{
+                    innerWrapper: "bg-transparent",
+                    inputWrapper: ["shadow-none"],
+                  }}
+                  type="text"
+                  label="Complemento"
+                  size="sm"
+                  value={address.complement}
+                  isClearable
+                  onClear={() => address.setComplement("")}
+                  onChange={(e) => address.setComplement(e.target.value)}
+                  onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                    if (e.key === "Enter") {
+                      validadeData
+                        ? setMissInfo(true)
+                        : route.push("/summary-order");
+                    }
+                  }}
+                />
+              </div>
+            </Form>
+            <div className="my-5 flex justify-end">
+              <MyButton // Confirmar Dados
+                color="green"
+                size="xl"
+                onClick={() =>
+                  validadeData
+                    ? setMissInfo(true)
+                    : route.push("/summary-order")
+                }
+              >
+                Confirmar Dados
+              </MyButton>
+            </div>
           </div>
-      </div>
-      </div>
+        </div>
+      ) : (
+        <Spinner className="flex" />
+      )}
     </section>
   );
 }
