@@ -276,7 +276,7 @@ export default function ShopCart() {
               <div className="mt-4 place-self-end">
                 <Button
                   color="success"
-                  variant="bordered"
+                  variant="ghost"
                   isDisabled={!isCombinarFrete || cep.length != 8}
                   onClick={handleCep}
                 >
