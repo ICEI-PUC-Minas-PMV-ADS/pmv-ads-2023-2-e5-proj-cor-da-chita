@@ -67,25 +67,26 @@ export default function ProductAdvertisement() {
       </Link>
 
       {/* Item */}
-      <div className="flex flex-col md:flex-row justify-between font-open border bg-dark">
-  <div className="bg-dark md:flex-1 mb-5 md:mb-0">
-    <div
-      style={{
-        height: '700px',
-        width: '100%',
-        overflow: 'hidden',
-      }}
-    >
-      <Image
-        isZoomed
-        removeWrapper
-        alt="Foto do Produto"
-        className="object-cover h-full w-full"
-        src={product.imageProduct}
-        style={{ width: '100%', height: 'auto' }}
-      />
-    </div>
-  </div>
+      <div className="mx-20 max-w-screen-lg ml-auto">
+      <div className="flex flex-col md:flex-row justify-between font-open border">
+        <div className="bg-dark md:flex-1 mb-5 md:mb-0">
+          <div
+            style={{
+              height: '500px',
+              width: '100%',
+              overflow: 'hidden',
+            }}
+          >
+            <Image
+              isZoomed
+              removeWrapper
+              alt="Foto do Produto"
+              className="object-cover h-full w-full"
+              src={product.imageProduct}
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </div>
+        </div>
 
   <div className="border px-5 md:px-20 pt-5 md:pt-20 bg-light flex-0">
     <div>
@@ -123,6 +124,7 @@ export default function ProductAdvertisement() {
       </Button>
     </div>
   </div>
+</div>
 </div>
 
       {/* Snack Bar */}

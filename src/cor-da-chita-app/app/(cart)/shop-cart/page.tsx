@@ -164,8 +164,9 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
-      <div className="font-serif">
-          <h2>Seus Carrinho</h2>
+      <div className="mx-20 max-w-screen-lg ml-auto">
+      <div className="font-serif py-5">
+          <h2 className="text-2xl">Seu Carrinho</h2>
       </div>
 
       {/* Renderizar itens do carrinho */}
@@ -439,7 +440,7 @@ export default function ShopCart() {
       </div>
 
       {/* Ir para Pagamento */}
-      <div className="mt-5 flex justify-center">
+      <div className="mt-5 flex justify-end">
         <MyButton 
           isDisabled={cart.length === 0 || (isCombinarFrete && !frete)}
           color="green"
@@ -448,6 +449,8 @@ export default function ShopCart() {
           Ir para Pagamento
         </MyButton>
       </div>
+      </div>
+
 
       {/* Modal CEP errado e Erro conexão */}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

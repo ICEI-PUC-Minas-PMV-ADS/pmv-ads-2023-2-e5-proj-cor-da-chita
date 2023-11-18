@@ -79,9 +79,9 @@ export default function UserData() {
       >
         <ArrowLeft /> Retornar
       </Link>
-      <div>
-        <div className="font-serif">
-          <h2>Seus Dados</h2>
+      <div className="mx-20 max-w-screen-lg ml-auto">
+        <div className="font-serif pb-5">
+          <h1 className="text-2xl">Seus Dados</h1>
         </div>
         <Form method="post">
           <div className="flex flex-col gap-3 py-5">
@@ -184,7 +184,7 @@ export default function UserData() {
             />
           </div>
           
-          <div className="my-5 flex justify-center">
+          <div className="my-5 flex justify-end">
             <MyButton // Confirmar Dados
               color="green"
               size="xl"
@@ -197,8 +197,6 @@ export default function UserData() {
           </div>
           
         </Form>
-      </div>
-
       {/* Continuar ou não com o Google */}
       <div>
         {session && session.user ? (
@@ -219,6 +217,8 @@ export default function UserData() {
         </div>
         )}
       </div>
+      </div>
+
     </section>
   );
 }

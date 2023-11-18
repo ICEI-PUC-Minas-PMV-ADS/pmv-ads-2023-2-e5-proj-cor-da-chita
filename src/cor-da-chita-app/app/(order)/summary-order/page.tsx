@@ -147,9 +147,9 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
       >
         <ArrowLeft /> Retornar
       </Link>
-    <section className="">
-    <div className="font-serif">
-          <h2>Resumo do Pedido</h2>
+      <div className="mx-20 max-w-screen-lg ml-auto">
+    <div className="font-serif pb-10">
+          <h2 className="text-2xl">Resumo do Pedido</h2>
       </div>
 
       {/* Items do pedido */}
@@ -318,7 +318,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
           variant="solid"
           onClick={() => alert("Programar PIX")}
         >
-          Pagar com <strong>PIX</strong>
+          Pagar com<strong>PIX</strong>
         </MyButton>
 
         <MyButton
@@ -333,7 +333,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
       <Button color="primary" onClick={handleOrder}>
         Botao para Teste API
       </Button>
-    </section>
+    </div>
     </>
   );
 }

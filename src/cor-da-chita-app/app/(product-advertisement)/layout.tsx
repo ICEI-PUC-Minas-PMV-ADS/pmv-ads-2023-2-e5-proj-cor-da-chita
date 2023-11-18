@@ -7,5 +7,5 @@ export default function AdvertisementLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="container mx-auto py-20">{children}</div>;
+  return <div className="container mx-auto pb-20">{children}</div>;
 }

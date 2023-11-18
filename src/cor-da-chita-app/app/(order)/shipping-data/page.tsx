@@ -81,9 +81,10 @@ export default function ShippingData() {
       >
         <ArrowLeft /> Retornar
       </Link>
+      <div className="mx-20 max-w-screen-lg ml-auto">
 
-      <div className="font-serif">
-          <h2>Seus Dados</h2>
+      <div className="font-serif pb-10">
+          <h2 className="text-2xl">Seus Dados</h2>
       </div>
 
       {/* Dados do Usuário */}
@@ -97,8 +98,8 @@ export default function ShippingData() {
         </Button>
       </div>
       <br/>
-      <div className="font-serif py-3">
-          <h2>Dados de Envio</h2>
+      <div className="font-serif pb-10">
+          <h2 className="text-2xl">Dados de Envio</h2>
       </div>
         <div>
         <Form method="post">
@@ -286,7 +287,7 @@ export default function ShippingData() {
           />
           </div>
         </Form>
-        <div className="my-5 flex justify-center">
+        <div className="my-5 flex justify-end">
           <MyButton // Confirmar Dados
               color="green"
               size="xl"
@@ -297,6 +298,7 @@ export default function ShippingData() {
               Confirmar Dados
             </MyButton>
           </div>
+      </div>
       </div>
     </section>
   );
