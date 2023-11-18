@@ -37,51 +37,7 @@ namespace cor_da_chita_api.Controllers
         {
             _httpClient = new HttpClient();
         }
-        // GET: FreightController
-        /// <summary>
-        /// Get values of freight
-        /// </summary>
-        /// <param name="Order"></param>
-        /// <returns>Freight Values</returns>
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-
-        [HttpPost("TrackProduct")]
-
-        public async Task<ActionResult<FreightDeserialize>> GetTrack(string codigo)
-        {
-            try
-            {
-
-
-
-
-
-                //be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5
-                /*
-                                string url = $"{urlCalculoFrete}/{codigo}/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";*/
-
-                string url = $"{urlCalculoFrete}/QC689000425BR/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";
-
-
-                var a = await _httpClient.GetStringAsync(url);
-         
-             
-
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToErrorReponse());
-            }
-
-
-
-        }
+      
         // GET: FreightController
         /// <summary>
         /// Get values of freight

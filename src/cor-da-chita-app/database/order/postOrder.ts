@@ -5,6 +5,7 @@ const postOrder = async (params: any) => {
   console.log(`${baseURL}/api/v1/Order`);
 
   return await fetch(`${baseURL}/api/v1/Order`, {
+    
     method: "POST",
     headers: {
       "Content-Type": "application/json",

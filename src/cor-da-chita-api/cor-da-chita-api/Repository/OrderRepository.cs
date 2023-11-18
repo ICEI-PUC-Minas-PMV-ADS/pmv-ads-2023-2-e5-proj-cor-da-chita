@@ -35,6 +35,15 @@ namespace cor_da_chita_api.Repository
             }
         }
 
+        public async Task<List<OrderDto>> GetAllOrderByEmail(string email)
+        {
+           return await _ordersCollection.Find(x=>x.UserEmail == email).ToListAsync();
+
+        }
+
+
+
+
         public async Task<OrderDto?> GetAsync(string id)
         {
             try

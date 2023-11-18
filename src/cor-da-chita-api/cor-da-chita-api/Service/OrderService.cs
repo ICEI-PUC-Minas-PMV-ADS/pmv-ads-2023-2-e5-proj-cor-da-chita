@@ -21,6 +21,12 @@ namespace cor_da_chita_api.Service
         {
             return await _orderRepository.GetAllAsync();
         }
+        public async Task<List<OrderDto>> GetAllOrderByEmail(string email)
+        {
+
+            return await _orderRepository.GetAllOrderByEmail(email);
+
+        }
 
         /// <summary>
         /// Get All Orders
