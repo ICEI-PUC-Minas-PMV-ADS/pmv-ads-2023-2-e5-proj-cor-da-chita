@@ -34,17 +34,18 @@ const InstagramComponent: React.FC = () => {
           <p className="font-semibold text-small">@Cor.Da.Chita</p>
         </Link>
       </div>
-      <div className="flex flex-auto justify-around space-x-4 px-10">
+      <div className="flex flex-wrap justify-around space-x-4 space-y-4 md:space-y-0 md:space-x-4 md:px-10">
         {instagramData.map((item: any) => (
           <a
             key={item.id}
             href={item.permalink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col"
+            className="flex flex-col w-full md:w-96"
             style={{ maxWidth: '300px' }}
           >
             <div
+              className="w-full h-48 md:h-64 overflow-hidden"
               style={{
                 width: '300px',
                 height: '300px',
