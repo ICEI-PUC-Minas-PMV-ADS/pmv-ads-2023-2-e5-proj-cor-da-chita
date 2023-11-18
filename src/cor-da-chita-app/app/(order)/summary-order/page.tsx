@@ -167,15 +167,15 @@ export default function SummaryOrder() {
     route.push("/shop-cart");
   }
 
+  // Limpando path cartFlow
   useEffect(() => {
-    console.log(cartFlow);
     setCartFlow("");
-    console.log(cartFlow);
+    console.log()
   }, []);
 
   return (
     <>
-     <Link
+      <Link
         size="sm"
         as="button"
         className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
@@ -184,194 +184,189 @@ export default function SummaryOrder() {
         <ArrowLeft /> Retornar
       </Link>
       <div className="mx-20 max-w-screen-lg ml-auto">
-    <div className="font-serif pb-10">
+        <div className="font-serif pb-10">
           <h2 className="text-2xl">Resumo do Pedido</h2>
-      </div>
+        </div>
 
-      {/* Items do pedido */}
-      <div className="pb-5">
-
-    <div className="my-3">
-  {cartItems
-    ?.filter(item => item.nome && item.preco) // Filter out items with empty or undefined properties
-    .map((item, index) => (
-      <div key={index} className="flex justify-between">
-        <p>{item.nome}</p>
-        <p>
-          R${item.preco.toFixed(2)}
-        </p>
-      </div>
-    ))}
-</div>
-
-      {/* Totais */}
-      <div className="my-3">
-          <div className="flex justify-between ">
-            <p>
-              <strong>Total dos Itens</strong>
-            </p>
-            <p>
-              <strong>R$ {sumCartItems.toFixed(2)}</strong>
-            </p>
+        {/* Items do pedido */}
+        <div className="pb-5">
+          <div className="my-3">
+            {cartItems
+              ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
+              .map((item, index) => (
+                <div key={index} className="flex justify-between">
+                  <p>{item.nome}</p>
+                  <p>R${item.preco.toFixed(2)}</p>
+                </div>
+              ))}
           </div>
 
-        {/* Frete */}
-        {/* Total com ou sem frete */}
-        <div className="flex justify-between my-3">
-          {/* Label */}
-          {freteInContext != undefined && isCombinarFrete ? (
-            <p>
-              <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
-            </p>
-          ) : (
-            <p>
-              Frete a combinar
-            </p>
-          )}
+          {/* Totais */}
+          <div className="my-3">
+            <div className="flex justify-between ">
+              <p>
+                <strong>Total dos Itens</strong>
+              </p>
+              <p>
+                <strong>R$ {sumCartItems.toFixed(2)}</strong>
+              </p>
+            </div>
 
-          {/* Valores Se tem frete via correios */}
-          {freteInContext != undefined && isCombinarFrete ? (
-            isPac == "PAC" ? (
-              <p>
-                <strong>R$ </strong>
-                {freteInContext.valorPac.toFixed(2)}
-              </p>
-            ) : (
-              <p>
-                <strong>R$ </strong>
-                {freteInContext.valorSedex.toFixed(2)}
-              </p>
-            )
-          ) : (
-            <></>
-          )}
+            {/* Frete */}
+            {/* Total com ou sem frete */}
+            <div className="flex justify-between my-3">
+              {/* Label */}
+              {freteInContext != undefined && isCombinarFrete ? (
+                <p>
+                  <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
+                </p>
+              ) : (
+                <p>Frete a combinar</p>
+              )}
+
+              {/* Valores Se tem frete via correios */}
+              {freteInContext != undefined && isCombinarFrete ? (
+                isPac == "PAC" ? (
+                  <p>
+                    <strong>R$ </strong>
+                    {freteInContext.valorPac.toFixed(2)}
+                  </p>
+                ) : (
+                  <p>
+                    <strong>R$ </strong>
+                    {freteInContext.valorSedex.toFixed(2)}
+                  </p>
+                )
+              ) : (
+                <></>
+              )}
+            </div>
+
+            {/* Total carrinho com ou sem frete */}
+            <div className="flex justify-between my-3">
+              {/* Label */}
+              {freteInContext != undefined && isCombinarFrete ? (
+                <p>
+                  <strong>Total com frete</strong>
+                </p>
+              ) : (
+                <p></p>
+              )}
+
+              {/* Valores: Se frete é correios, PAC ou SEDEX */}
+              {freteInContext != undefined && isCombinarFrete ? (
+                isPac == "PAC" ? (
+                  <p>
+                    <strong>
+                      R$
+                      {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+                    </strong>
+                  </p>
+                ) : (
+                  <p>
+                    <strong>
+                      R$
+                      {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
+                    </strong>                    
+                  </p>
+                )
+              ) : (
+                <></>
+              )}
+            </div>
+
+            <div className="my-3">
+              {/* Revisar Fluxo aqui */}
+              <Button
+                color="secondary"
+                variant="ghost"
+                onPress={handleRouteEditCartData}
+              >
+                Editar Carrinho
+              </Button>
+            </div>
+          </div>
         </div>
 
-        {/* Total carrinho com ou sem frete */}
-        <div className="flex justify-between my-3">
-          {/* Label */}
-          {freteInContext != undefined && isCombinarFrete ? (
-            <p>
-              <strong>Total com frete</strong>
-            </p>
-          ) : (
-            <p></p>
-          )}
+        <Divider />
 
-          {/* Valores: Se frete é correios, PAC ou SEDEX */}
-          {freteInContext != undefined && isCombinarFrete ? (
-            isPac == "PAC" ? (
-              <p>
-                <strong>R$
-                {(freteInContext.valorPac + sumCartItems).toFixed(2)}</strong>
-              </p>
-            ) : (
-              <p>
-                <strong>R$
-                {(freteInContext.valorSedex + sumCartItems).toFixed(2)}</strong>\
-              </p>
-            )
-          ) : (
-            <></>
-          )}
-        </div>
-        
-
-        <div className="my-3">
-          {/* Revisar Fluxo aqui */}
-          <Button
-            color="secondary"
-            variant="ghost"
-            onPress={handleRouteEditCartData}
-          >
-            Editar Carrinho
-          </Button>
-        </div>
-      </div>
-      </div>
-
-      <Divider />
-
-      {/* Dados de Envio */}
-      <div className="my-10">
-        <div className="font-serif py-3">
+        {/* Dados de Envio */}
+        <div className="my-10">
+          <div className="font-serif py-3">
             <h2>Dados de Envio</h2>
-        </div>
-        <p>
-          {address.street}, {address.num}
-        </p>
-        <p>{address.neighborhood}</p>
-        <p>{address.complement ? address.complement : ""}</p>
-        <p>{address.cep}</p>
-        <p>
-          {address.city} - {address.uf}
-        </p>
+          </div>
+          <p>
+            {address.street}, {address.num}
+          </p>
+          <p>{address.neighborhood}</p>
+          <p>{address.complement ? address.complement : ""}</p>
+          <p>{address.cep}</p>
+          <p>
+            {address.city} - {address.uf}
+          </p>
 
-        <div className="my-3">
-          <Button
-            color="secondary"
-            variant="ghost"
-            onClick={handleRouteEditAddressData}
+          <div className="my-3">
+            <Button
+              color="secondary"
+              variant="ghost"
+              onClick={handleRouteEditAddressData}
+            >
+              Editar Endereço
+            </Button>
+          </div>
+        </div>
+
+        <Divider />
+
+        {/* Dados do Cliente */}
+        <div className="my-10">
+          <div className="font-serif py-3">
+            <h2>Seus Dados</h2>
+          </div>
+
+          <div>
+            <p>{user.name}</p>
+
+            <p>{user.phone}</p>
+            <p>{user.email}</p>
+          </div>
+
+          <div className="my-3">
+            <Button
+              color="secondary"
+              variant="ghost"
+              onClick={handleRouteEditUserData}
+            >
+              Editar Dados
+            </Button>
+          </div>
+        </div>
+
+        {/* Pagamento */}
+        <div className="flex flex-col gap-3 my-5 items-center">
+          <MyButton
+            color="green"
+            variant="flat"
+            onClick={() => alert("Programar PIX")}
+            className="w-[400px]"
           >
-            Editar Endereço
-          </Button>
-        </div>
-      </div>
+            Pagar com PIX
+          </MyButton>
 
-      <Divider />
-
-      {/* Dados do Cliente */}
-      <div className="my-10">
-      <div className="font-serif py-3">
-          <h2>Seus Dados</h2>
-      </div>
-
-        <div>
-          <p>{user.name}</p>
-
-          <p>{user.phone}</p>
-          <p>{user.email}</p>
-        </div>
-
-        <div className="my-3">
-          <Button
-            color="secondary"
-            variant="ghost"
-            onClick={handleRouteEditUserData}
+          <MyButton
+            color="green"
+            variant="flat"
+            className="w-[400px]"
+            onClick={() => handleRedirectWhatsApp()}
           >
-            Editar Dados
-          </Button>
+            Pagar com Cartão de Crédito
+          </MyButton>
         </div>
+
+        <Button color="primary" onClick={handleOrder}>
+          Botao para Teste API
+        </Button>
       </div>
-
-
-      {/* Pagamento */}
-      <div className="flex flex-col gap-3 my-5 items-center">
-
-
-        <MyButton
-          color="green"
-          variant="flat"
-          onClick={() => alert("Programar PIX")}
-          className="w-[400px]"
-        >
-          Pagar com PIX
-        </MyButton>
-
-        <MyButton
-          color="green"
-          variant="flat"
-          className="w-[400px]"
-          onClick={() => handleRedirectWhatsApp()}
-        >
-          Pagar com Cartão de Crédito
-        </MyButton>
-      </div>
-
-      <Button color="primary" onClick={handleOrder}>
-        Botao para Teste API
-      </Button>
-    </div>
     </>
   );
 }
