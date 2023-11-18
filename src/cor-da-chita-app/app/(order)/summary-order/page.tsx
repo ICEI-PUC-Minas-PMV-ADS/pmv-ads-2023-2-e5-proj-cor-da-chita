@@ -310,23 +310,25 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
 
 
       {/* Pagamento */}
-      <div className="flex flex-col gap-3 my-5">
+      <div className="flex flex-col gap-3 my-5 items-center">
 
 
         <MyButton
           color="green"
-          variant="solid"
+          variant="flat"
           onClick={() => alert("Programar PIX")}
+          className="w-[400px]"
         >
-          Pagar com<strong>PIX</strong>
+          Pagar com PIX
         </MyButton>
 
         <MyButton
           color="green"
-          variant="solid"
+          variant="flat"
+          className="w-[400px]"
           onClick={() => handleRedirectWhatsApp()}
         >
-          Pagar com <strong>Cartão de Crédito</strong>
+          Pagar com Cartão de Crédito
         </MyButton>
       </div>
 

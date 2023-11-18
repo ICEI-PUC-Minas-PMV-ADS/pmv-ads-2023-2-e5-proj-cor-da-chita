@@ -202,11 +202,12 @@ export default function UserData() {
         {session && session.user ? (
           <></>
         ) : (
-          <div className="flex flex-col gap-3 text-center">
+          <div className="flex flex-col gap-3 items-center">
             <h3 className="font-serif mb-1">ou</h3>
             <MyButton // Continuar com Google
               color="secondary"
               size="xl"
+              className="w-[400px]"
               onClick={() => signIn("google")}
               startContent={
                 <GoogleIcon className="text-2xl" />

@@ -68,12 +68,11 @@ export default function ProductAdvertisement() {
 
       {/* Item */}
       <div className="mx-20 max-w-screen-lg ml-auto">
-      <div className="flex flex-col md:flex-row justify-between font-open border">
-        <div className="bg-dark md:flex-1 mb-5 md:mb-0">
-          <div
+        <div className="flex flex-col md:flex-row justify-between font-open border">
+          <div className="bg-dark md:flex-1 mb-5 md:mb-0"
             style={{
               height: '500px',
-              width: '100%',
+              width: '500px',
               overflow: 'hidden',
             }}
           >
@@ -83,23 +82,24 @@ export default function ProductAdvertisement() {
               alt="Foto do Produto"
               className="object-cover h-full w-full"
               src={product.imageProduct}
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: '100%', height: '100%' }}
             />
           </div>
-        </div>
 
   <div className="border px-5 md:px-20 pt-5 md:pt-20 bg-light flex-0">
     <div>
-      <p className="text-3xl py-5 font-serif">{product.name}</p>
-      <p className="text-lg">{product.description}</p>
+      <p className="text-xl py-5 font-serif">{product.name}</p>
+      <p className="">{product.description}</p>
       <p className="py-2">
         {product.lengthProduct}x{product.widthProduct}cm
       </p>
-      <p className="text-lg py-2">R$ {product.price}</p>
+      <p className="py-2">R$ {product.price}</p>
     </div>
-    <div className="pt-5 flex flex-col gap-3">
+    <div className="py-5 flex flex-col gap-3 place-content-evenly">
       <MyButton
         color="green"
+        className="w-[400px]"
+        size="sm"
         onClick={() =>
           handleStorageProductCart(
             product.id,
@@ -115,7 +115,7 @@ export default function ProductAdvertisement() {
         color="success"
         variant="ghost"
         size="lg"
-        className="hover:text-white text-small"
+        className="hover:text-white text-small w-[400px]"
         onClick={() =>
           route.push("/shop-cart")
         }
