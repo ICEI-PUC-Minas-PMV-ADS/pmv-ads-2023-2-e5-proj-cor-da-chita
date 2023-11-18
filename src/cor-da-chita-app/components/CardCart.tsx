@@ -116,27 +116,30 @@ export default function CardCart({ ...props }: any) {
   return (
     <>
       {/* Principal */}
-      {item && item[0]?.imagem && item[0]?._id && item[0]?.nome && item[0]?.preco ? (
+      {item &&
+      item[0]?.imagem &&
+      item[0]?._id &&
+      item[0]?.nome &&
+      item[0]?.preco ? (
         <>
-      <div className="flex justify-between w-full my-1 content-center">
-        <div>
-        <div
+          <div className="flex justify-between w-full my-1 content-center">
+            <div>
+              <div
                 className="image-container relative"
                 style={{
-                  height: '150px',
-                  width: '200px',
-                  overflow: 'hidden',
+                  height: "150px",
+                  width: "200px",
+                  overflow: "hidden",
                 }}
               >
-                  <Image
-                        removeWrapper
-                        alt="Card background"
-                        className={`z-0 w-full h-full object-cover`}
-                        src={item[0].imagem}
-                  />
+                <Image
+                  removeWrapper
+                  alt="Card background"
+                  className={`z-0 w-full h-full object-cover`}
+                  src={item[0].imagem}
+                />
               </div>
-        </div>
-        
+            </div>
 
             <div className="flex flex-col place-content-evenly">
               <h2 className="my-2">{item[0].nome}</h2>
@@ -145,28 +148,26 @@ export default function CardCart({ ...props }: any) {
 
             <div className="flex flex-col place-content-evenly">
               <div className="my-2">
-              <QuantityManagerCart
-                id={item[0]._id}
-                quantidade={item[0].quantidade}
-                className="py-3 items-center"
-                onOpen={onOpen}
-                handleRemoveItemCart={handleRemoveItemCart}
-              />
+                <QuantityManagerCart
+                  id={item[0]._id}
+                  quantidade={item[0].quantidade}
+                  className="py-3 items-center"
+                  onOpen={onOpen}
+                  handleRemoveItemCart={handleRemoveItemCart}
+                />
               </div>
               <div className="my-2">
-              <Button
-                color="secondary"
-                variant="ghost"
-                onClick={() => onOpen()}
-              >
-                <IconCartX  />
-                Excluir item
-              </Button>
+                <Button
+                  color="secondary"
+                  variant="ghost"
+                  onClick={() => onOpen()}
+                >
+                  <IconCartX />
+                  Excluir item
+                </Button>
               </div>
             </div>
-
-
-      </div>
+          </div>
 
           {/* Confirmação de excluir item */}
           <Modal
