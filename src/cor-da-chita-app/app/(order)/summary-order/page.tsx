@@ -202,6 +202,7 @@ export default function SummaryOrder() {
                   <div key={index} className="flex justify-between">
                     <p>{item.nome}</p>
                     <p>R$ {item.preco.toFixed(2)}</p>
+                    {/* <p>QTD {item.quantidade}</p> */}
                   </div>
                 ))}
             </div>
@@ -226,7 +227,9 @@ export default function SummaryOrder() {
                     <strong>Frete {isPac === "PAC" ? "PAC" : "SEDEX"}</strong>
                   </p>
                 ) : (
-                  <p>Frete a combinar</p>
+                  <p>
+                    <strong>Frete a combinar</strong>
+                  </p>
                 )}
 
                 {/* Valores Se tem frete via correios */}
@@ -278,7 +281,6 @@ export default function SummaryOrder() {
               </div>
 
               <div className="my-3">
-                {/* Revisar Fluxo aqui */}
                 <Button
                   color="secondary"
                   variant="ghost"
