@@ -1,5 +1,5 @@
 import React from "react";
 
 export const CorChitaTexto = () => (
-  <h2 className="font-pacifico text-3xl text-green font-black cursor-pointer">Cor da Chita</h2>
+  <h2 className="text-4xl text-green cursor-pointer pb-1" style={{ fontFamily: 'BagelFatOne' }}>Cor da Chita</h2>
 );
