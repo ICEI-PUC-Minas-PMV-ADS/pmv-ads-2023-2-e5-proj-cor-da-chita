@@ -9,7 +9,6 @@ import React, {
   useState,
 } from "react";
 import { usePathname } from "next/navigation";
-
 import { Produto } from "@/lib/interface";
 import { SearchContext } from "@/contexts/ProductContext/SearchContext";
 import ProductCard from "@/components/ProductCard";

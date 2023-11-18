@@ -296,3 +296,4 @@ C:\Users\gabri\OneDrive\Área de Trabalho\pmv-ads-2023-2-e5-proj-cor-da-chita\sr
 C:\Users\gabri\OneDrive\Área de Trabalho\pmv-ads-2023-2-e5-proj-cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\obj\Debug\net6.0\cor-da-chita-api.genruntimeconfig.cache
 C:\Users\gabri\OneDrive\Área de Trabalho\pmv-ads-2023-2-e5-proj-cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\obj\Debug\net6.0\ref\cor-da-chita-api.dll
 C:\Users\gabri\OneDrive\Área de Trabalho\pmv-ads-2023-2-e5-proj-cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\carlo\Documents\PUC\EIXO 5\projeto-cor-da-chita\src\cor-da-chita-api\cor-da-chita-api\bin\Debug\net6.0\BCrypt.Net-Next.dll

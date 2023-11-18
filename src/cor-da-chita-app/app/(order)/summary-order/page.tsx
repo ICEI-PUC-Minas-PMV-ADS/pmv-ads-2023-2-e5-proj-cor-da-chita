@@ -2,8 +2,10 @@
 "use client";
 
 import React, { useContext, useEffect } from "react";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
 
-import { Button, Divider } from "@nextui-org/react";
+import { Button, Divider, Link } from "@nextui-org/react";
+import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 
 import postOrder from "@/database/order/postOrder";
@@ -172,39 +174,50 @@ export default function SummaryOrder() {
   }, []);
 
   return (
-    <section className="flex flex-col">
-      <h2 className="place-self-center">
-        <strong>Resumo do Pedido</strong>
-      </h2>
-
-      {/* Items do pedido */}
-      <div className="my-5">
-        {cartItems?.map((item, index) => (
-          <div key={index} className="flex justify-between">
-            <p>{item.nome}</p>
-            <p>
-              <strong>R$</strong> {item.preco.toFixed(2)}
-            </p>
-          </div>
-        ))}
+    <>
+     <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.back()}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+      <div className="mx-20 max-w-screen-lg ml-auto">
+    <div className="font-serif pb-10">
+          <h2 className="text-2xl">Resumo do Pedido</h2>
       </div>
 
+      {/* Items do pedido */}
+      <div className="pb-5">
+
+    <div className="my-3">
+  {cartItems
+    ?.filter(item => item.nome && item.preco) // Filter out items with empty or undefined properties
+    .map((item, index) => (
+      <div key={index} className="flex justify-between">
+        <p>{item.nome}</p>
+        <p>
+          R${item.preco.toFixed(2)}
+        </p>
+      </div>
+    ))}
+</div>
+
       {/* Totais */}
-      <div className="mb-5">
-        <div>
+      <div className="my-3">
           <div className="flex justify-between ">
             <p>
               <strong>Total dos Itens</strong>
             </p>
             <p>
-              <strong>R$</strong> {sumCartItems.toFixed(2)}
+              <strong>R$ {sumCartItems.toFixed(2)}</strong>
             </p>
           </div>
-        </div>
 
         {/* Frete */}
         {/* Total com ou sem frete */}
-        <div className="flex justify-between mt-2">
+        <div className="flex justify-between my-3">
           {/* Label */}
           {freteInContext != undefined && isCombinarFrete ? (
             <p>
@@ -212,7 +225,7 @@ export default function SummaryOrder() {
             </p>
           ) : (
             <p>
-              <strong>Frete a combinar</strong>
+              Frete a combinar
             </p>
           )}
 
@@ -235,7 +248,7 @@ export default function SummaryOrder() {
         </div>
 
         {/* Total carrinho com ou sem frete */}
-        <div className="flex justify-between mt-2">
+        <div className="flex justify-between my-3">
           {/* Label */}
           {freteInContext != undefined && isCombinarFrete ? (
             <p>
@@ -249,24 +262,25 @@ export default function SummaryOrder() {
           {freteInContext != undefined && isCombinarFrete ? (
             isPac == "PAC" ? (
               <p>
-                <strong>R$ </strong>
-                {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+                <strong>R$
+                {(freteInContext.valorPac + sumCartItems).toFixed(2)}</strong>
               </p>
             ) : (
               <p>
-                <strong>R$ </strong>
-                {(freteInContext.valorSedex + sumCartItems).toFixed(2)}
+                <strong>R$
+                {(freteInContext.valorSedex + sumCartItems).toFixed(2)}</strong>\
               </p>
             )
           ) : (
             <></>
           )}
         </div>
+        
 
-        <div className="mt-2">
+        <div className="my-3">
           {/* Revisar Fluxo aqui */}
           <Button
-            color="success"
+            color="secondary"
             variant="ghost"
             onPress={handleRouteEditCartData}
           >
@@ -274,14 +288,15 @@ export default function SummaryOrder() {
           </Button>
         </div>
       </div>
+      </div>
 
       <Divider />
 
       {/* Dados de Envio */}
-      <div className="my-5">
-        <h2 className="mb-2">
-          <strong>Dados de Envio</strong>
-        </h2>
+      <div className="my-10">
+        <div className="font-serif py-3">
+            <h2>Dados de Envio</h2>
+        </div>
         <p>
           {address.street}, {address.num}
         </p>
@@ -292,9 +307,9 @@ export default function SummaryOrder() {
           {address.city} - {address.uf}
         </p>
 
-        <div className="mt-2">
+        <div className="my-3">
           <Button
-            color="success"
+            color="secondary"
             variant="ghost"
             onClick={handleRouteEditAddressData}
           >
@@ -306,10 +321,10 @@ export default function SummaryOrder() {
       <Divider />
 
       {/* Dados do Cliente */}
-      <div className="my-5">
-        <h2 className="mb-2">
-          <strong>Seus Dados</strong>
-        </h2>
+      <div className="my-10">
+      <div className="font-serif py-3">
+          <h2>Seus Dados</h2>
+      </div>
 
         <div>
           <p>{user.name}</p>
@@ -318,9 +333,9 @@ export default function SummaryOrder() {
           <p>{user.email}</p>
         </div>
 
-        <div className="mt-2">
+        <div className="my-3">
           <Button
-            color="success"
+            color="secondary"
             variant="ghost"
             onClick={handleRouteEditUserData}
           >
@@ -329,36 +344,34 @@ export default function SummaryOrder() {
         </div>
       </div>
 
-      <Divider />
 
       {/* Pagamento */}
-      <div className="flex flex-col gap-3 my-5">
-        <h2 className="mb-2">
-          <strong>Modo de Pagamento</strong>
-        </h2>
+      <div className="flex flex-col gap-3 my-5 items-center">
 
-        <Button
-          className="mx-20"
-          color="success"
-          variant="solid"
+
+        <MyButton
+          color="green"
+          variant="flat"
           onClick={() => alert("Programar PIX")}
+          className="w-[400px]"
         >
-          Pagar com <strong>PIX</strong>
-        </Button>
+          Pagar com PIX
+        </MyButton>
 
-        <Button
-          className="mx-12"
-          color="success"
-          variant="solid"
+        <MyButton
+          color="green"
+          variant="flat"
+          className="w-[400px]"
           onClick={() => handleRedirectWhatsApp()}
         >
-          Pagar com <strong>Cartão de Crédito</strong>
-        </Button>
+          Pagar com Cartão de Crédito
+        </MyButton>
       </div>
 
       <Button color="primary" onClick={handleOrder}>
         Botao para Teste API
       </Button>
-    </section>
+    </div>
+    </>
   );
 }
