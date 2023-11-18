@@ -62,7 +62,7 @@ export default function SummaryOrder() {
   // Enviar pedido
   function handleOrder() {
     // Somando dados da cubagem do pedido
-    const totalWithFreightSum = cartItems.reduce(
+    const totalWidthFreightSum = cartItems.reduce(
       (sum, item) => sum + item.largura,
       0
     );
@@ -77,11 +77,22 @@ export default function SummaryOrder() {
       0
     );
 
-    const totalWheightFreight = cartItems.reduce(
+    const totalWeightFreight = cartItems.reduce(
       (sum, item) => sum + item.peso,
       0
     );
 
+    const freightMethod =
+      isPac === "PAC" && !isCombinarFrete
+        ? "PAC"
+        : isPac === "SEDEX" && !isCombinarFrete
+          ? "SEDEX"
+          : !isPac && isCombinarFrete
+            ? "Combinar com a vendedora"
+            : "outro";
+
+    console.log("freightMethod:", freightMethod);
+    
     const order = {
       items: [] as Array<{
         productId: string;
@@ -98,15 +109,17 @@ export default function SummaryOrder() {
       cep: address.cep.trim(),
       complement: address.complement.trim(),
       freight: {
-        totalWithFreight: totalWithFreightSum,
+        totalWidthFreight: totalWidthFreightSum,
         totalHeightFreight: totalHeightFreight,
         totalLengthFreight: totalLengthFreight,
-        totalWheightFreight: totalWheightFreight,
+        totalWeightFreight: totalWeightFreight,
         freightValue: 0,
+        freightMethod: freightMethod
       },
       orderPixId: 5555513245,
       orderDate: new Date(),
       phoneNumber: user.phone,
+      totalPriceProducts: 60
     };
 
     // Itens do Pedido
