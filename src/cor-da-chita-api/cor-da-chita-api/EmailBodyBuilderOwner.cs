@@ -81,15 +81,9 @@ namespace cor_da_chita_api
                     <p><strong>Total do Pedido:</strong> ##ORDERTOTALPRICE##</p>
 
                     <h2>Informações de Envio:</h2>
-                    <p><strong>Método de Envio:</strong> {{METODO_DE_ENVIO}}</p>
-                    <p><strong>Número de Rastreamento:</strong> {{NUMERO_DE_RASTREAMENTO}}</p>
-                    <p><strong>Estimativa de Entrega:</strong> {{ESTIMATIVA_DE_ENTREGA}}</p>
+                    <p><strong>Método de Envio:</strong> ##METODO_DE_ENVIO##</p>
 
-                    <h2>Políticas e Informações Adicionais:</h2>
-                    <p><strong>Política de Devolução/Troca:</strong> {{POLITICA_DE_DEVOLUCAO}}</p>
-                    <p><strong>Informações de Contato:</strong> {{INFORMACOES_DE_CONTATO}}</p>
-
-                    <h3>Sugerimos a confirmação de pagamento e contato com o cliente para envio.</h3>
+                    <h3>Sugerimos contato com o cliente para confirmação de pagamento e repasse de informações de envio.</h3>
                 </body>
                 </html>";
 
@@ -127,6 +121,7 @@ namespace cor_da_chita_api
             // }
 
             var orderTotalPrice = orderDetails.Freight.FreightValue + subTotal;
+            var freightMethod = orderDetails.Freight.FreightMethod;
 
             var result = MAIN_EMAIL_BODY
                         .Replace("##USERNAME##", orderDetails.UserName)
@@ -138,7 +133,8 @@ namespace cor_da_chita_api
                         .Replace("##USERPHONENUMBER##", orderDetails.PhoneNumber)
                         .Replace("##SUBTOTAL##", subTotal.ToString())
                         .Replace("##FREIGHT##", orderDetails.Freight.FreightValue.ToString())
-                        .Replace("##ORDERTOTALPRICE##", orderTotalPrice.ToString());
+                        .Replace("##ORDERTOTALPRICE##", orderTotalPrice.ToString())
+                        .Replace("##METODO_DE_ENVIO##", freightMethod.ToString());
 
             return result;
         }

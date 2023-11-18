@@ -27,27 +27,27 @@ export default function SummaryOrder() {
 
 
 
-const handleRedirectWhatsApp = ()=>{
-console.log(user)
-//%0a Serve para pular linha no whatsapp
-  const typeFrete = isPac=="PAC" && !isCombinarFrete ?" pela modalidade de envio PAC:":"pela modalidade de envio SEDEX:"
-  let typeDelivery = `${isCombinarFrete?"Combinando diretamente com você a entrega":typeFrete}%0a`
+  const handleRedirectWhatsApp = () => {
+    console.log(user)
+    //%0a Serve para pular linha no whatsapp
+    const typeFrete = isPac == "PAC" && !isCombinarFrete ? " pela modalidade de envio PAC:" : "pela modalidade de envio SEDEX:"
+    let typeDelivery = `${isCombinarFrete ? "Combinando diretamente com você a entrega" : typeFrete}%0a`
 
-  let message = `Olá Cor da Chita,me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos `+ typeDelivery
+    let message = `Olá Cor da Chita,me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos ` + typeDelivery
 
-cartItems.map((product)=>{
-  //Verifica se é o ultimo item da lista para não inserir virgula no final
- 
+    cartItems.map((product) => {
+      //Verifica se é o ultimo item da lista para não inserir virgula no final
 
-    message+=` ${product.quantidade} ${product.quantidade>1?`Unidades`:`Unidade`} de ${product.nome},cada unidade custando R$${product.preco.toFixed(2)}%0a`
-  
-})
 
-message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
+      message += ` ${product.quantidade} ${product.quantidade > 1 ? `Unidades` : `Unidade`} de ${product.nome},cada unidade custando R$${product.preco.toFixed(2)}%0a`
 
-   route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
-  
-}
+    })
+
+    message += `Preço Total:R$${sumCartItems.toFixed(2)}`
+
+    route.push(`https://api.whatsapp.com/send?phone=5583987261972&text=${message}`)
+
+  }
 
   // Enviar pedido
   function handleOrder() {
@@ -72,6 +72,17 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
       0
     );
 
+    const freightMethod =
+      isPac === "PAC" && !isCombinarFrete
+        ? "PAC"
+        : isPac === "SEDEX" && !isCombinarFrete
+          ? "SEDEX"
+          : !isPac && isCombinarFrete
+            ? "Combinar com a vendedora"
+            : "outro";
+
+    console.log("freightMethod:", freightMethod);
+
     const order = {
       items: [] as Array<{
         productId: string;
@@ -93,7 +104,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
         totalLengthFreight: totalLengthFreight,
         totalWeightFreight: totalWeightFreight,
         freightValue: 0,
-        freightMethod: isPac=="PAC" ? "PAC" : "SEDEX"
+        freightMethod: freightMethod
       },
       orderPixId: 5555513245,
       orderDate: new Date(),

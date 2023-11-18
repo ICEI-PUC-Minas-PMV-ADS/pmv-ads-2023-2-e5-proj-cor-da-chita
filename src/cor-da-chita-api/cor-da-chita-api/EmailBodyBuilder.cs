@@ -92,6 +92,7 @@ namespace cor_da_chita_api
                         <li><strong>Telefone e Whatsapp:</strong> (83) 98726-1972</li>
                         <!-- Add more information as needed -->
                     </ul>
+                    <p> Pedimos que entre em contato por algum dos meios acima, para envio do comprovante de pagamento e recebimento do código de rastreio</p>
 
                     <h3>Agradecemos por escolher a nossa loja!</h3>
                 </body>
