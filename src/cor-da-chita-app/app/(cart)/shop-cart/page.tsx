@@ -131,12 +131,27 @@ export default function ShopCart() {
     setIsPac("PAC");
   }, []);
 
-  // Ocultando campo de frete se o carrinho estiver vazio e o frete já ter sido calculado
   useEffect(() => {
     if (cart.length === 0) {
       setIsCombinarFrete(false);
     }
   }, [cart]);
+
+  useEffect(() => {
+    const calculateTotal = () => {
+      let totalCart = sumCartItems;
+
+      if (isCombinarFrete && frete) {
+        const freightPrice = isPac === "PAC" ? frete.valorPac : frete.valorSedex;
+        totalCart += freightPrice;
+      }
+
+      return totalCart.toFixed(2);
+    };
+
+    // Log the updated total whenever cart, isCombinarFrete, or frete changes
+    console.log("Updated Total:", calculateTotal());
+  }, [cart, isCombinarFrete, frete, sumCartItems]);
 
   return (
     <>
@@ -144,10 +159,15 @@ export default function ShopCart() {
         size="sm"
         as="button"
         className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
-        onClick={() => route.push("/all-products")}
+        onClick={() => route.back()}
       >
         <ArrowLeft /> Retornar
       </Link>
+
+      <div className="mx-20 max-w-screen-lg ml-auto">
+      <div className="font-serif py-5">
+          <h2 className="text-2xl">Seu Carrinho</h2>
+      </div>
 
       {/* Renderizar itens do carrinho */}
       <div className="flex flex-col items-center my-5">
@@ -164,8 +184,8 @@ export default function ShopCart() {
       {/* Modo de envio: Título e tooltip */}
       <div className="flex flex-col my-5">
         <div className="flex items-center">
-          <h2 className="py-1">
-            <strong>Modo de Envio</strong>
+          <h2 className="py-3 font-serif">
+              Modo de Envio
           </h2>
 
           <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
@@ -211,7 +231,7 @@ export default function ShopCart() {
                   !isCombinarFrete ? "text-gray-400" : ""
                 }`}
               >
-                <strong>CEP</strong>
+                CEP
               </p>
               <Tooltip content="Somente números">
                 <div>
@@ -224,6 +244,13 @@ export default function ShopCart() {
               {/* Input CEP */}
               <Input
                 maxLength={8}
+                variant="bordered"
+                classNames={{
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-none",
+                ],
+              }}
                 isClearable
                 isDisabled={!isCombinarFrete}
                 className="ml-20 place-self-end"
@@ -371,9 +398,9 @@ export default function ShopCart() {
         {/* Valor do Frete e Total */}
         <div className="mt-3 text-sm">
           <div className="flex justify-between">
-            <p className="mt-2">
-              <strong>Valor do Frete</strong>
-            </p>
+          <h2 className="py-3 font-serif">
+              Valor do Frete
+            </h2>
             <p className="mt-2">
               <strong>
                 R${" "}
@@ -391,9 +418,9 @@ export default function ShopCart() {
           </div>
 
           <div className="flex justify-between">
-            <p className="mt-2">
+          <h2 className="py-3 font-serif">
               <strong>Total</strong>
-            </p>
+            </h2>
             <p className="mt-2">
               <strong>
                 R${" "}
@@ -422,6 +449,8 @@ export default function ShopCart() {
           Ir para Pagamento
         </MyButton>
       </div>
+      </div>
+
 
       {/* Modal CEP errado e Erro conexão */}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

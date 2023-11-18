@@ -2,8 +2,11 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Link } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
+import { MyButton } from "@/components/ui/Button";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+
 
 import Form from "@/components/ui/Form";
 
@@ -70,27 +73,47 @@ export default function ShippingData() {
 
   return (
     <section>
-      <h1>
-        <strong>Dados de Envio</strong>
-      </h1>
+      <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.back()}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+      <div className="mx-20 max-w-screen-lg ml-auto">
+
+      <div className="font-serif pb-10">
+          <h2 className="text-2xl">Seus Dados</h2>
+      </div>
 
       {/* Dados do Usuário */}
-      <article>
+      <div className="py-3">
         <p>{user.name}</p>
         <p>{user.email}</p>
         <p>{user.phone}</p>
-        <Button color="success" variant="ghost" onPress={() => route.back()}>
+        <br/>
+        <Button color="secondary" variant="bordered" onPress={() => route.back()}>
           Editar Dados
         </Button>
-      </article>
-
-      {/* Endereço */}
-      <article>
+      </div>
+      <br/>
+      <div className="font-serif pb-10">
+          <h2 className="text-2xl">Dados de Envio</h2>
+      </div>
+        <div>
         <Form method="post">
-          <div>
-            <Input // CEP
-              maxLength={8}
-              
+        <div className="flex flex-col gap-3 py-5">
+          <div className="flex flex-row gap-3">
+          <Input // CEP
+              maxLength={8} 
+              variant="bordered"
+              classNames={{
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-none",
+                ],
+              }}
               type="text"
               label="CEP"
               size="sm"
@@ -99,7 +122,7 @@ export default function ShippingData() {
               isRequired
               isClearable
               color={missInfo && !address.cep ? "danger" : undefined}
-              errorMessage={missInfo && !address.cep && "Favor preencher o CEP"}
+              errorMessage={missInfo && !address.cep && "Insira o CEP"}
               onClear={() => address.setCep("")}
               onChange={(e) => {
                 !/[^0-9]+/g.test(e.target.value)
@@ -109,17 +132,25 @@ export default function ShippingData() {
               onKeyDown={handleKeyDown}
             />
 
-            <Button // Buscar CEP
-           
+            <Button // Buscar CEP              
               color="success"
-              size="md"
+              variant="bordered"
+              size="lg"
               onClick={() => handleCep(address.cep)}
-            >
+              className="hover:text-white"
+              >
               Buscar CEP
             </Button>
           </div>
 
           <Input // Rua
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="Rua"
@@ -129,13 +160,20 @@ export default function ShippingData() {
             isClearable
             color={missInfo && !address.street ? "danger" : undefined}
             errorMessage={
-              missInfo && !address.street && "Favor preencher o nome da rua"
+              missInfo && !address.street && "Insira o nome da rua"
             }
             onClear={() => address.setStreet("")}
             onChange={(e) => address.setStreet(e.target.value)}
           />
 
           <Input // Bairro
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="Bairro"
@@ -147,13 +185,20 @@ export default function ShippingData() {
             errorMessage={
               missInfo &&
               !address.neighborhood &&
-              "Favor preencher o nome do bairro"
+              "Insira o nome do bairro"
             }
             onClear={() => address.setNeighborhood("")}
             onChange={(e) => address.setNeighborhood(e.target.value)}
           />
 
           <Input // Número
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             type="text"
             label="Número"
             size="sm"
@@ -164,7 +209,7 @@ export default function ShippingData() {
             errorMessage={
               missInfo &&
               !address.num &&
-              "Favor preencher o número da residência"
+              "Insira o número da residência"
             }
             onClear={() => address.setNum("")}
             onChange={(e) => address.setNum(e.target.value)}
@@ -176,6 +221,13 @@ export default function ShippingData() {
           />
 
           <Input // Cidade
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="Cidade"
@@ -185,13 +237,20 @@ export default function ShippingData() {
             isClearable
             color={missInfo && !address.city ? "danger" : undefined}
             errorMessage={
-              missInfo && !address.city && "Favor preencher o nome da cidade"
+              missInfo && !address.city && "Insira o nome da cidade"
             }
             onClear={() => address.setCity("")}
             onChange={(e) => address.setCity(e.target.value)}
           />
 
           <Input // UF
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             isDisabled={saveCepContext.length > 0}
             type="text"
             label="UF"
@@ -200,12 +259,19 @@ export default function ShippingData() {
             isRequired
             isClearable
             color={missInfo && !address.uf ? "danger" : undefined}
-            errorMessage={missInfo && !address.uf && "Favor preencher o estado"}
+            errorMessage={missInfo && !address.uf && "Insira o estado"}
             onClear={() => address.setUf("")}
             onChange={(e) => address.setUf(e.target.value)}
           />
 
-          <Input // Complemento
+          <Input // 
+            variant="bordered"
+            classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
             type="text"
             label="Complemento"
             size="sm"
@@ -219,18 +285,21 @@ export default function ShippingData() {
               }
             }}
           />
-
-          <Button // Confirmar Dados
-            color="success"
-            size="md"
-            onClick={() =>
-              validadeData ? setMissInfo(true) : route.push("/summary-order")
-            }
-          >
-            Confirmar Dados
-          </Button>
+          </div>
         </Form>
-      </article>
+        <div className="my-5 flex justify-end">
+          <MyButton // Confirmar Dados
+              color="green"
+              size="xl"
+              onClick={() =>
+                validadeData ? setMissInfo(true) : route.push("/summary-order")
+              }
+            >
+              Confirmar Dados
+            </MyButton>
+          </div>
+      </div>
+      </div>
     </section>
   );
 }

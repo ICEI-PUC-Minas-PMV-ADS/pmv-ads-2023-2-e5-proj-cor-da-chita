@@ -4,8 +4,11 @@
 import React, { useContext, useState, useMemo, useEffect } from "react";
 
 import { signIn, useSession } from "next-auth/react";
-import { Button, Input } from "@nextui-org/react";
+import { Link, Button, Input, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+import { MyButton } from "@/components/ui/Button";
+
 
 import Form from "../../../components/ui/Form";
 
@@ -68,11 +71,23 @@ export default function UserData() {
 
   return (
     <section>
-      <h2>Seus Dados</h2>
-      <article>
+      <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={() => route.back()}
+      >
+        <ArrowLeft /> Retornar
+      </Link>
+      <div className="mx-20 max-w-screen-lg ml-auto">
+        <div className="font-serif pb-5">
+          <h1 className="text-2xl">Seus Dados</h1>
+        </div>
         <Form method="post">
-          <div>
+          <div className="flex flex-col gap-3 py-5">
             <Input // Nome Completo
+              variant="bordered"
+
               type="text"
               label="Nome Completo"
               size="sm"
@@ -81,6 +96,12 @@ export default function UserData() {
               isRequired
               isDisabled={isDisabled}
               isClearable
+              classNames={{
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-none",
+                ],
+              }}
               color={
                 !isDisabled && missInfo && !user.name ? "danger" : undefined
               }
@@ -88,17 +109,24 @@ export default function UserData() {
                 !isDisabled &&
                 missInfo &&
                 !user.name &&
-                "Favor preencher seu nome completo"
+                "Insira seu nome completo"
               }
               onClear={() => user.setName("")}
               onChange={(e) => {
                 user.setName(e.target.value);
               }}
-              startContent={
-                <UserIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              endContent={
+                <UserIcon  />
               }
             />
             <Input // Email
+              variant="bordered"
+              classNames={{
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-none",
+              ],
+            }}
               type="email"
               label="Email"
               size="sm"
@@ -113,18 +141,18 @@ export default function UserData() {
               }
               errorMessage={
                 isInvalid || (!isDisabled && missInfo && !user.email)
-                  ? "Favor entrar com um e-mail válido"
+                  ? "Insira um e-mail válido"
                   : ""
               }
               onValueChange={setValue}
               onClear={() => user.setEmail("")}
               onChange={(e) => user.setEmail(e.target.value)}
-              startContent={
-                <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              endContent={
+                <MailIcon />
               }
             />
             <Input // Telefone
-              maxLength={11}
+              variant="bordered"
               type="tel"
               label="Telefone"
               placeholder="DDD e Número"
@@ -133,8 +161,14 @@ export default function UserData() {
               isRequired
               isClearable
               color={missInfo && !user.phone ? "danger" : undefined}
+              classNames={{
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-none",
+                ],
+              }}
               errorMessage={
-                missInfo && !user.phone && "Favor preencher seu telefone"
+                missInfo && !user.phone && "Insira seu número de telefone"
               }
               onClear={() => user.setPhone("")}
               //onChange={(e) => user.setPhone(e.target.value)}
@@ -144,43 +178,48 @@ export default function UserData() {
                   : "";
               }}
               onKeyDown={handleKeyDown}
-              startContent={
-                <PhoneIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              endContent={
+                <PhoneIcon  className="mb-3" />
               }
             />
           </div>
-          <div>
-            <Button // Confirmar Dados
-              color="success"
-              size="md"
+          
+          <div className="my-5 flex justify-end">
+            <MyButton // Confirmar Dados
+              color="green"
+              size="xl"
               onClick={handleConfirmUserData}
             >
               Confirmar Dados
-            </Button>
-          </div>
-        </Form>
-      </article>
+            </MyButton>
 
+
+          </div>
+          
+        </Form>
       {/* Continuar ou não com o Google */}
-      <article>
+      <div>
         {session && session.user ? (
           <></>
         ) : (
-          <div>
-            <p>________________ ou ________________</p>
-            <Button // Continuar com Google
+          <div className="flex flex-col gap-3 items-center">
+            <h3 className="font-serif mb-1">ou</h3>
+            <MyButton // Continuar com Google
               color="secondary"
-              size="sm"
+              size="xl"
+              className="w-[400px]"
               onClick={() => signIn("google")}
               startContent={
-                <GoogleIcon className="text-2xl  pointer-events-none flex-shrink-0" />
+                <GoogleIcon className="text-2xl" />
               }
             >
               Continuar com Google
-            </Button>
-          </div>
+            </MyButton>
+        </div>
         )}
-      </article>
+      </div>
+      </div>
+
     </section>
   );
 }

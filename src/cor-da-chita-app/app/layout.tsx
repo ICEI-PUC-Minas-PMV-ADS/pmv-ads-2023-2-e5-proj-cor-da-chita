@@ -3,6 +3,8 @@ import "../styles/globals.css";
 import NavBar from "@/components/NavBar";
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
+import Encomenda from "@/components/Encomenda";
+
 
 import { Providers } from "./api/providers/Providers";
 import Script from "next/script";
