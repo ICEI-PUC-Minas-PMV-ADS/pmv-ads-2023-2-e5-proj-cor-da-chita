@@ -21,13 +21,6 @@
             Controller to Management Pix Payment
             </summary>
         </member>
-        <member name="M:cor_da_chita_api.Controllers.FreightController.GetTrack(System.String)">
-            <summary>
-            Get values of freight
-            </summary>
-            <param name="Order"></param>
-            <returns>Freight Values</returns>
-        </member>
         <member name="M:cor_da_chita_api.Controllers.FreightController.CalcFrete(cor_da_chita_api.Controllers.Requests.FreightRequest)">
             <summary>
             Get values of freight
@@ -41,6 +34,12 @@
             </summary>
         </member>
         <member name="M:cor_da_chita_api.Controllers.OrderController.GetAll">
+            <summary>
+            Endpoint to Get All Orders
+            </summary>
+            <returns>List of Orders</returns>
+        </member>
+        <member name="M:cor_da_chita_api.Controllers.OrderController.GetAllOrdersWithEmail(System.String)">
             <summary>
             Endpoint to Get All Orders
             </summary>

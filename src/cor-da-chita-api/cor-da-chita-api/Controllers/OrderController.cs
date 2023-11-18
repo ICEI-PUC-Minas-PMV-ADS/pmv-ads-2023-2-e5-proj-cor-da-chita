@@ -31,12 +31,14 @@ namespace cor_da_chita_api.Controllers
     {
         private readonly IOrderService _ordersService;
         private readonly IEmailService _emailService;
+        private readonly IPaymentService _paymentService;
         private const string EMAIL_SUBJECT = "Seu pedido foi recebido e está sendo processado!";
         
-        public OrderController(IOrderService ordersService, IEmailService emailService)
+        public OrderController(IOrderService ordersService, IEmailService emailService,IPaymentService paymentService)
         {
             _ordersService = ordersService;
             _emailService = emailService;
+            _paymentService = paymentService;
            
         }
 
@@ -49,6 +51,16 @@ namespace cor_da_chita_api.Controllers
         {
 
             return await _ordersService.GetAllAsync();
+        }
+        /// <summary>
+        /// Endpoint to Get All Orders
+        /// </summary>
+        /// <returns>List of Orders</returns>
+        [HttpGet("OrdersWithEmail")]
+        public async Task<List<OrderDto>> GetAllOrdersWithEmail(string email)
+        {
+
+            return await _ordersService.GetAllOrderByEmail(email);
         }
         /// <summary>
         /// Endpoint To Get Order By Id
@@ -90,14 +102,15 @@ namespace cor_da_chita_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, validatioResult.ToValidationErrorReponse());
                 }
 
+
+                var paymentCreated = await _paymentService.CreatePixPayment(newOrder);
+
+                newOrder.OrderPixId = paymentCreated.Id;
+            
+
                 var orderCreated = await _ordersService.CreateAsync(newOrder);
 
-                //Mudar Chave para variavel de ambiente depois com a conta da mãe da illa
-              
-
-
-
-
+               
                 var emailProperties = new EmailInputModel
                 {
                     Subject = EMAIL_SUBJECT,
