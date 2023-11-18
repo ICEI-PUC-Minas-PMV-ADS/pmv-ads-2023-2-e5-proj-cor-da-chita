@@ -7,7 +7,7 @@ import Banner from "../components/Banner";
 import LPGrid from "../components/LPGrid";
 import QuotesTabs from "../components/Tabs";
 import InstagramComponent from "../components/InstagramComponent";
-import Encomenda from "../components/Encomenda";
+import Encomenda from "@/components/Encomenda";
 
 
 export default function Home() {

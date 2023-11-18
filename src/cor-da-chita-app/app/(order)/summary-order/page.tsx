@@ -143,7 +143,7 @@ message +=`Preço Total:R$${sumCartItems.toFixed(2)}`
         size="sm"
         as="button"
         className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
-        onClick={() => route.push("/all-products")}
+        onClick={() => route.back()}
       >
         <ArrowLeft /> Retornar
       </Link>
