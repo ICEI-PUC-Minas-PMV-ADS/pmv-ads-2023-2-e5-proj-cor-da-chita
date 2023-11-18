@@ -123,7 +123,7 @@ export default function CardCart({ ...props }: any) {
       item[0]?.nome &&
       item[0]?.preco ? (
         <>
-          <div className="flex justify-between w-full my-1 content-center">
+          <div className="flex flex-col md:flex-row justify-between w-full my-1 gap-3">
             <div>
               <div
                 className="image-container relative"

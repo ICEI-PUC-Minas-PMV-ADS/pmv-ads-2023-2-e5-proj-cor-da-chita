@@ -97,7 +97,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
         <div key={product._id} className="ml-20">
           {/* Card itens */}
           <Card
-            className="flex-wrap font-open border bg-light"
+            className="flex-wrap font-open bg-light"
             isPressable
             shadow="none"
             onPress={() => handleClick(product)}

@@ -7,6 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 import { Link, Button, Input, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
 import { MyButton } from "@/components/ui/Button";
 
 
@@ -79,10 +80,11 @@ export default function UserData() {
       >
         <ArrowLeft /> Retornar
       </Link>
-      <div className="mx-20 max-w-screen-lg ml-auto">
+      <div className="px-10 max-w-screen-lg ml-auto">
         <div className="font-serif pb-5">
           <h1 className="text-2xl">Seus Dados</h1>
         </div>
+        <div className="px-5">
         <Form method="post">
           <div className="flex flex-col gap-3 py-5">
             <Input // Nome Completo
@@ -184,17 +186,17 @@ export default function UserData() {
             />
           </div>
           
-          <div className="my-5 flex justify-end">
-            <MyButton // Confirmar Dados
-              color="green"
-              size="xl"
-              onClick={handleConfirmUserData}
-            >
-              Confirmar Dados
-            </MyButton>
-
-
-          </div>
+          <div className="mt-5 flex justify-end">
+        <Link
+        size="sm"
+        as="button"
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={handleConfirmUserData
+         }
+      >
+       Confirmar Dados <ArrowRight /> 
+      </Link>
+      </div>
           
         </Form>
       {/* Continuar ou não com o Google */}
@@ -219,7 +221,7 @@ export default function UserData() {
         )}
       </div>
       </div>
-
+      </div>
     </section>
   );
 }

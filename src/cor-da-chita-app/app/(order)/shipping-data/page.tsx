@@ -6,6 +6,8 @@ import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import { MyButton } from "@/components/ui/Button";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
+
 
 import Form from "@/components/ui/Form";
 
@@ -89,16 +91,17 @@ export default function ShippingData() {
       >
         <ArrowLeft /> Retornar
       </Link>
-      <div>{user.email}</div>
 
       {(session && session.user) || user.email ? (
-        <div className="mx-20 max-w-screen-lg ml-auto">
-          <div className="font-serif pb-10">
+        <div className="px-10 max-w-screen-lg ml-auto">
+          <div className="font-serif">
             <h2 className="text-2xl">Seus Dados</h2>
           </div>
 
+      <div className="mx-5">
           {/* Dados do Usuário */}
           <div className="py-3">
+          <p>{user.email}</p>
             <p>{user.name}</p>
             <p>{user.email}</p>
             <p>{user.phone}</p>
@@ -111,10 +114,12 @@ export default function ShippingData() {
               Editar Dados
             </Button>
           </div>
+      </div>
           <br />
-          <div className="font-serif pb-10">
+          <div className="font-serif">
             <h2 className="text-2xl">Dados de Envio</h2>
           </div>
+      <div className="mx-5">
           <div>
             <Form method="post">
               <div className="flex flex-col gap-3 py-5">
@@ -147,10 +152,9 @@ export default function ShippingData() {
                   <Button // Buscar CEP
                     isDisabled={address.cep.length < 8}
                     color="success"
-                    variant="bordered"
+                    variant="ghost"
                     size="lg"
                     onClick={() => handleCep(address.cep)}
-                    className="hover:text-white"
                   >
                     Buscar CEP
                   </Button>
@@ -296,24 +300,28 @@ export default function ShippingData() {
                 />
               </div>
             </Form>
-            <div className="my-5 flex justify-end">
-              <MyButton // Confirmar Dados
-                color="green"
-                size="xl"
-                onClick={() =>
-                  validadeData
-                    ? setMissInfo(true)
-                    : route.push("/summary-order")
-                }
-              >
-                Confirmar Dados
-              </MyButton>
+            <div className="mt-5 flex justify-end">
+              <Link
+              size="sm"
+              as="button"
+              className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+              onClick={() =>
+                validadeData
+                  ? setMissInfo(true)
+                  : route.push("/summary-order")
+              }
+              
+            >
+            Confirmar Dados <ArrowRight /> 
+            </Link>
+            </div>
             </div>
           </div>
         </div>
       ) : (
         <Spinner className="flex" />
-      )}
+      )
+      }
     </section>
   );
 }

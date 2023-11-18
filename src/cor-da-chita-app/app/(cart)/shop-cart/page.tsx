@@ -4,6 +4,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import {} from "@nextui-org/react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
 import { MyButton } from "@/components/ui/Button";
 
 import {
@@ -174,10 +175,12 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
-      <div className="mx-20 max-w-screen-lg ml-auto">
-        <div className="font-serif py-5">
-          <h2 className="text-2xl">Seu Carrinho</h2>
+      <div className="px-10 max-w-screen-lg ml-auto">
+        <div className="font-serif pb-5">
+          <h2 className="text-2xl">Checkout</h2>
         </div>
+
+        <div className="mx-5">
 
         {/* Renderizar itens do carrinho */}
         <div className="flex flex-col items-center my-5">
@@ -188,6 +191,7 @@ export default function ShopCart() {
               <CardCart key={index} id={idItem} />
             ))
           )}
+          
         </div>
         <Divider />
 
@@ -278,7 +282,7 @@ export default function ShopCart() {
               <div className="mt-4 place-self-end">
                 <Button
                   color="success"
-                  variant="bordered"
+                  variant="ghost"
                   isDisabled={!isCombinarFrete || cep.length != 8}
                   onClick={handleCep}
                 >
@@ -398,7 +402,7 @@ export default function ShopCart() {
           {/* Valor do Frete e Total */}
           <div className="mt-3 text-sm">
             <div className="flex justify-between">
-              <h2 className="py-3 font-serif">Valor do Frete</h2>
+              <h2 className="py-3">Valor do Frete</h2>
               <p className="mt-2">
                 <strong>
                   R${" "}
@@ -416,7 +420,7 @@ export default function ShopCart() {
             </div>
 
             <div className="flex justify-between">
-              <h2 className="py-3 font-serif">
+              <h2 className="py-3">
                 <strong>Total</strong>
               </h2>
               <p className="mt-2">
@@ -439,16 +443,20 @@ export default function ShopCart() {
 
         {/* Ir para Pagamento */}
         <div className="mt-5 flex justify-end">
-          <MyButton
-            isDisabled={
-              cart.length === 0 || (isCombinarFrete && freteInContext == "")
-            }
-            color="green"
-            onPress={handleConfirmCartData}
-          >
-            Ir para Pagamento
-          </MyButton>
-        </div>
+        <Link
+        size="sm"
+        as="button"
+        isDisabled={
+          cart.length === 0 || (isCombinarFrete && freteInContext == "")
+        }
+        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+        onClick={handleConfirmCartData
+         }
+      >
+       Ir para Pagamento <ArrowRight /> 
+      </Link>
+      </div>
+      </div>
       </div>
 
       {/* Modal CEP errado e Erro conexão */}
