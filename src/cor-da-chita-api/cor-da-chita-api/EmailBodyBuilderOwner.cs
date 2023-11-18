@@ -10,12 +10,6 @@ namespace cor_da_chita_api
                     <th>Quantidade</th>
                     <th>Preço Unitário</th>
                     <th>Total</th>
-                </tr>
-                <tr>
-                    <td>##PRODUCTNAME##</td>
-                    <td>##PRODUCTCOUNT##</td>
-                    <td>##PRODUCTPRICE##</td>
-                    <td>##TOTALPRICE##</td>
                 </tr>";
 
         private static string MAIN_EMAIL_BODY = @"
@@ -101,7 +95,8 @@ namespace cor_da_chita_api
 
         public static string EmailBodyTemplateOwner(OrderDto orderDetails)
         {
-            var productTable = string.Empty;
+            // var productTable = string.Empty;
+            var productTable = TABLE_WITH_PRODUCT_INFO;
 
             var dictionary = orderDetails.Items.GroupBy(i => i.ProductId)
                         .ToDictionary(x => x.Key, i => i.ToList());
@@ -113,13 +108,23 @@ namespace cor_da_chita_api
                 var totalPrice = item.Value.Sum(x => x.ProductPrice);
                 subTotal += totalPrice;
 
-                productTable += TABLE_WITH_PRODUCT_INFO
-                                .Replace("##PRODUCTNAME##", item.Value.First().ProductName)
-                                .Replace("##PRODUCTCOUNT##", item.Value.Count.ToString())
-                                .Replace("##PRODUCTPRICE##", item.Value.First().ProductPrice.ToString())
-                                //.Replace("##TOTALPRICE##", totalPrice.ToString()) + "/n";
-                                .Replace("##TOTALPRICE##", totalPrice.ToString());
+                // Append the table rows for each item
+                productTable += $@"
+                    <tr>
+                        <td>{item.Value.First().ProductName}</td>
+                        <td>{item.Value.Count}</td>
+                        <td>{item.Value.First().ProductPrice}</td>
+                        <td>{totalPrice}</td>
+                    </tr>";
             }
+
+
+            //     productTable += TABLE_WITH_PRODUCT_INFO
+            //                     .Replace("##PRODUCTNAME##", item.Value.First().ProductName)
+            //                     .Replace("##PRODUCTCOUNT##", item.Value.Count.ToString())
+            //                     .Replace("##PRODUCTPRICE##", item.Value.First().ProductPrice.ToString())
+            //                     .Replace("##TOTALPRICE##", totalPrice.ToString());
+            // }
 
             var orderTotalPrice = orderDetails.Freight.FreightValue + subTotal;
 
