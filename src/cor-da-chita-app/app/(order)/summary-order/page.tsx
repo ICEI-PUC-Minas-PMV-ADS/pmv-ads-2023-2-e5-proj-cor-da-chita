@@ -15,7 +15,7 @@ import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
-
+import { PixContext } from "@/contexts/PixContext/PixContext";
 
 export default function SummaryOrder() {
   const route = useRouter();
@@ -27,6 +27,7 @@ export default function SummaryOrder() {
   const { cartItems, sumCartItems, copyCartItems } =
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
+  const {setPixId} = useContext(PixContext)
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
   const handleRedirectWhatsApp = () => {
@@ -121,7 +122,6 @@ export default function SummaryOrder() {
         freightMethod: freightMethod,
         
       },
-      orderPixId: 5555513245,
       orderDate: new Date(),
       phoneNumber: user.phone,
       totalPriceProducts: sumCartItems
@@ -141,8 +141,9 @@ export default function SummaryOrder() {
 
     
       const orderCreated = await postOrder(order);
-      console.log(orderCreated.orderPixId);
+      setPixId(orderCreated.orderPixId)
 
+      route.push("/qrcode-payment")
 
     
    
@@ -355,7 +356,7 @@ export default function SummaryOrder() {
               <MyButton
                 color="green"
                 variant="flat"
-                onClick={() => alert("Programar PIX")}
+                onClick={handleOrder}
                 className="w-[400px]"
               >
                 Pagar com PIX
@@ -371,9 +372,7 @@ export default function SummaryOrder() {
               </MyButton>
             </div>
 
-            <Button color="primary" onClick={handleOrder}>
-              Botao para Teste API
-            </Button>
+          
           </div>
         </div>
       ) : (

@@ -25,7 +25,7 @@ const initialValue = {
 export const PixContext = createContext<PixContextType>(initialValue);
 
 export default function PixContextProvider({ children }: PixContextProps) {
-  const [pix, pixId] = useState(initialValue.pixId);
+  const [pixId,setPixId] = useState(initialValue.pixId);
 
 
   return (
