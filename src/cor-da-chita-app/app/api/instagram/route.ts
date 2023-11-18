@@ -10,7 +10,6 @@ export async function GET(request: Request) {
     const url = `https://graph.instagram.com/v12.0/me/media?fields=id,media_type,caption,permalink,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     return new Response(JSON.stringify(data), { status: 200, headers: { 'Content-Type': 'application/json' } });
   } catch (error) {
     console.error('Error fetching Instagram data:', error);
