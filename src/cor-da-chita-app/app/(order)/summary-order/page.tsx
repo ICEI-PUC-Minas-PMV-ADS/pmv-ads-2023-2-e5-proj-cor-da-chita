@@ -4,7 +4,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 
-import { Button, Divider, Link, Spinner } from "@nextui-org/react";
+import { Button, Divider, Link, Spinner,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
+  useDisclosure } from "@nextui-org/react";
 import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -16,13 +21,16 @@ import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 import { PixContext } from "@/contexts/PixContext/PixContext";
+import SpinnerForButton from "@/components/SpinnerButton";
 
 export default function SummaryOrder() {
   const route = useRouter();
   const path = usePathname();
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [textModal, setTextModal] = useState("");
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
+  const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
   const { cartItems, sumCartItems, copyCartItems } =
     useContext(CartItemsContext);
@@ -139,11 +147,28 @@ export default function SummaryOrder() {
       order.items.push(newItem);
     });
 
-    
-      const orderCreated = await postOrder(order);
-      setPixId(orderCreated.orderPixId)
+    setLoading(true)
 
-      route.push("/qrcode-payment")
+    try{
+      
+      const orderCreated = await postOrder(order);
+      //Se criou Pagamento então seta na variavel de context o id do pix para pegar posterirmente o codigo do pix e gerar o qrcode na tela
+      if(orderCreated)
+      {
+        setPixId(orderCreated.orderPixId)
+        setLoading(false)
+        //Caso o pedido tenha sido criado,então limpara o carrinho
+        localStorage.clear()
+        route.push("/qrcode-payment")
+
+      }
+    }
+    catch(e){
+      setTextModal("Erro ao criar pagamento,tente novamente mais tarde")
+    }
+
+    
+
 
     
    
@@ -359,7 +384,7 @@ export default function SummaryOrder() {
                 onClick={handleOrder}
                 className="w-[400px]"
               >
-                Pagar com PIX
+                {loading?<SpinnerForButton/>:"Pagar com PIX"}
               </MyButton>
 
               <MyButton
@@ -378,6 +403,22 @@ export default function SummaryOrder() {
       ) : (
         <Spinner className="flex" />
       )}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent className="p-4">
+          {(onClose) => (
+            <>
+              <ModalBody>
+                <p>{textModal}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onPress={onClose}>
+                  Voltar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 }
