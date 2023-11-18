@@ -89,16 +89,17 @@ export default function ShippingData() {
       >
         <ArrowLeft /> Retornar
       </Link>
-      <div>{user.email}</div>
 
       {(session && session.user) || user.email ? (
-        <div className="mx-20 max-w-screen-lg ml-auto">
-          <div className="font-serif pb-10">
+        <div className="px-10 max-w-screen-lg ml-auto">
+          <div className="font-serif">
             <h2 className="text-2xl">Seus Dados</h2>
           </div>
 
+      <div className="mx-5">
           {/* Dados do Usuário */}
           <div className="py-3">
+          <p>{user.email}</p>
             <p>{user.name}</p>
             <p>{user.email}</p>
             <p>{user.phone}</p>
@@ -111,10 +112,12 @@ export default function ShippingData() {
               Editar Dados
             </Button>
           </div>
+      </div>
           <br />
-          <div className="font-serif pb-10">
+          <div className="font-serif">
             <h2 className="text-2xl">Dados de Envio</h2>
           </div>
+      <div className="mx-5">
           <div>
             <Form method="post">
               <div className="flex flex-col gap-3 py-5">
@@ -147,10 +150,9 @@ export default function ShippingData() {
                   <Button // Buscar CEP
                     isDisabled={address.cep.length < 8}
                     color="success"
-                    variant="bordered"
+                    variant="ghost"
                     size="lg"
                     onClick={() => handleCep(address.cep)}
-                    className="hover:text-white"
                   >
                     Buscar CEP
                   </Button>
@@ -309,11 +311,13 @@ export default function ShippingData() {
                 Confirmar Dados
               </MyButton>
             </div>
+            </div>
           </div>
         </div>
       ) : (
         <Spinner className="flex" />
-      )}
+      )
+      }
     </section>
   );
 }

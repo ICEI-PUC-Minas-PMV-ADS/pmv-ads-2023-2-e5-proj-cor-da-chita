@@ -169,10 +169,12 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
-      <div className="mx-20 max-w-screen-lg ml-auto">
+      <div className="px-10 max-w-screen-lg ml-auto">
         <div className="font-serif py-5">
           <h2 className="text-2xl">Seu Carrinho</h2>
         </div>
+
+        <div className="mx-5">
 
         {/* Renderizar itens do carrinho */}
         <div className="flex flex-col items-center my-5">
@@ -183,6 +185,7 @@ export default function ShopCart() {
               <CardCart key={index} id={idItem} />
             ))
           )}
+          
         </div>
         <Divider />
 
@@ -393,7 +396,7 @@ export default function ShopCart() {
           {/* Valor do Frete e Total */}
           <div className="mt-3 text-sm">
             <div className="flex justify-between">
-              <h2 className="py-3 font-serif">Valor do Frete</h2>
+              <h2 className="py-3">Valor do Frete</h2>
               <p className="mt-2">
                 <strong>
                   R${" "}
@@ -411,7 +414,7 @@ export default function ShopCart() {
             </div>
 
             <div className="flex justify-between">
-              <h2 className="py-3 font-serif">
+              <h2 className="py-3">
                 <strong>Total</strong>
               </h2>
               <p className="mt-2">
@@ -444,6 +447,7 @@ export default function ShopCart() {
             Ir para Pagamento
           </MyButton>
         </div>
+      </div>
       </div>
 
       {/* Modal CEP errado e Erro conexão */}

@@ -79,10 +79,11 @@ export default function UserData() {
       >
         <ArrowLeft /> Retornar
       </Link>
-      <div className="mx-20 max-w-screen-lg ml-auto">
+      <div className="px-10 max-w-screen-lg ml-auto">
         <div className="font-serif pb-5">
           <h1 className="text-2xl">Seus Dados</h1>
         </div>
+        <div className="px-5">
         <Form method="post">
           <div className="flex flex-col gap-3 py-5">
             <Input // Nome Completo
@@ -219,7 +220,7 @@ export default function UserData() {
         )}
       </div>
       </div>
-
+      </div>
     </section>
   );
 }
