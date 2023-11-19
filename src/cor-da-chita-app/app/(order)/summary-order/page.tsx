@@ -130,6 +130,7 @@ export default function SummaryOrder() {
         freightMethod: freightMethod,
         
       },
+      orderPixId:0,
       orderDate: new Date(),
       phoneNumber: user.phone,
       totalPriceProducts: sumCartItems

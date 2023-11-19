@@ -53,8 +53,8 @@ getOrderByEmail()
     
       <div className="px-20">
       
-      <Table aria-label="Example table with custom cells">
-      <TableHeader columns={columns}>
+      <Table aria-label="Example table with custom cells" >
+      <TableHeader columns={columns} >
         {(column) => (
           <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
             {column.name}
@@ -62,7 +62,7 @@ getOrderByEmail()
         )}
       </TableHeader>
       {orders==undefined ?
-       <TableBody emptyContent={"Você não possui pedidos no momento"}>{[]}</TableBody>
+       <TableBody  emptyContent={"Você não possui pedidos no momento"}>{[]}</TableBody>
       
       :
       <TableBody emptyContent={"Você não possui pedidos no momento"}>{[]}</TableBody>
