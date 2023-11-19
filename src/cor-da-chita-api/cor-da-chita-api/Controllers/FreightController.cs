@@ -30,7 +30,7 @@ namespace cor_da_chita_api.Controllers
         private string urlCalculoFrete = "https://cepcerto.com/ws/json-frete";
 
 
-        private string urlRastreio = "https://www.cepcerto.com/ws/encomenda-json";
+    
         private readonly HttpClient _httpClient;
 
         public FreightController()

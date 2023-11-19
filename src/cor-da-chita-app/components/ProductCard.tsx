@@ -11,6 +11,7 @@ import MuiAlert, { AlertColor } from "@mui/material/Alert";
 import { Produto } from "../lib/interface";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
+import { Box } from "@mui/material";
 
 interface ProductCardProps {
   data: Produto[] | undefined;
@@ -154,9 +155,16 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </CardBody>
           </Card>
 
-          <div className=" m-auto ">
+        </div>
+      ))}
+   
+          <Box sx={{ display: 'flex', justifyContent: 'center',alignSelf: 'center',textAlign:'center' }}>
             <Snackbar
               open={openSnackBar}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center'
+              }}
               autoHideDuration={2000}
               onClose={(e) => setOpenSnackBar(false)}
             >
@@ -168,9 +176,8 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                 {messageAlert}
               </MuiAlert>
             </Snackbar>
-          </div>
-        </div>
-      ))}
+    
+          </Box>
     </>
   );
 }

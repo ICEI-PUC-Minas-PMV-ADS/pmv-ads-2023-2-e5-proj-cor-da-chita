@@ -19,7 +19,7 @@ namespace cor_da_chita_api.Models
         public string? CEP { get; set; }
         public string? Complement { get; set; }
         public Freight? Freight { get; set; }
-        public long? OrderPixId {  get; set; }
+        public long? OrderPixId { get; set; }
         public DateTime OrderDate { get; set; }
         public string? PhoneNumber { get; set; }
         public decimal? TotalPriceProducts { get; set; }
@@ -30,16 +30,18 @@ namespace cor_da_chita_api.Models
         public string? ProductId { get; set; }
         public string? ProductName { get; set; }
         public decimal? ProductPrice { get; set; }
-        public int? ProductQuantity { get; set; }        
+        public int? ProductQuantity { get; set; }
     }
 
     public class Freight
     {
-       
+
         public decimal? TotalWidthFreight { get; set; }       // cm    
         public decimal? TotalHeightFreight { get; set; }     // cm    
         public decimal? TotalLengthFreight { get; set; }     // cm
         public decimal? TotalWeightFreight { get; set; }    // gramas
         public decimal? FreightValue { get; set; }
+
+        public string? FreightMethod { get; set; }
     }
 }

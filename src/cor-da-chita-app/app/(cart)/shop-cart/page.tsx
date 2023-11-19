@@ -198,7 +198,7 @@ export default function ShopCart() {
         {/* Modo de envio: Título e tooltip */}
         <div className="flex flex-col my-5">
           <div className="flex items-center">
-            <h2 className="py-3 font-serif">Modo de Envio</h2>
+            <h2 className="py-3">Modo de Envio</h2>
 
             <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
               <div className="p-3">
@@ -301,7 +301,7 @@ export default function ShopCart() {
                 {/*Tipo de Envio> Título e Tooltip */}
                 <div className="flex  items-center">
                   <h2 className="mr-2">
-                    <strong>Selecione o tipo de envio:</strong>
+                    Selecione o tipo de envio:
                   </h2>
                   <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
                     {freteInContext == "" ? (

@@ -4,7 +4,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 
-import { Button, Divider, Link, Spinner } from "@nextui-org/react";
+import { Button, Divider, Link, Spinner,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
+  useDisclosure } from "@nextui-org/react";
 import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -15,17 +20,22 @@ import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
+import { PixContext } from "@/contexts/PixContext/PixContext";
+import SpinnerForButton from "@/components/SpinnerButton";
 
 export default function SummaryOrder() {
   const route = useRouter();
   const path = usePathname();
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [textModal, setTextModal] = useState("");
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
+  const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
   const { cartItems, sumCartItems, copyCartItems } =
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
+  const {setPixId} = useContext(PixContext)
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
   const handleRedirectWhatsApp = () => {
@@ -60,9 +70,12 @@ export default function SummaryOrder() {
   };
 
   // Enviar pedido
-  function handleOrder() {
+  async function  handleOrder () {
     // Somando dados da cubagem do pedido
-    const totalWithFreightSum = cartItems.reduce(
+
+    console.log(freteInContext)
+    console.log(isPac)
+    const totalWidthFreightSum = cartItems.reduce(
       (sum, item) => sum + item.largura,
       0
     );
@@ -77,10 +90,21 @@ export default function SummaryOrder() {
       0
     );
 
-    const totalWheightFreight = cartItems.reduce(
+    const totalWeightFreight = cartItems.reduce(
       (sum, item) => sum + item.peso,
       0
     );
+
+    const freightMethod =
+      isPac === "PAC" && !isCombinarFrete
+        ? "PAC"
+        : isPac === "SEDEX" && !isCombinarFrete
+          ? "SEDEX"
+          : !isPac && isCombinarFrete
+            ? "Combinar com a vendedora"
+            : "outro";
+
+    console.log("freightMethod:", freightMethod);
 
     const order = {
       items: [] as Array<{
@@ -98,15 +122,18 @@ export default function SummaryOrder() {
       cep: address.cep.trim(),
       complement: address.complement.trim(),
       freight: {
-        totalWithFreight: totalWithFreightSum,
+        totalWidthFreight: totalWidthFreightSum,
         totalHeightFreight: totalHeightFreight,
         totalLengthFreight: totalLengthFreight,
-        totalWheightFreight: totalWheightFreight,
-        freightValue: 0,
+        totalWeightFreight: totalWeightFreight,
+        freightValue: isPac=="PAC"?freteInContext.valorPac:freteInContext.valorSedex,
+        freightMethod: freightMethod,
+        
       },
-      orderPixId: 5555513245,
+      orderPixId:0,
       orderDate: new Date(),
       phoneNumber: user.phone,
+      totalPriceProducts: sumCartItems
     };
 
     // Itens do Pedido
@@ -119,17 +146,33 @@ export default function SummaryOrder() {
       };
 
       order.items.push(newItem);
-    });
+    }); 
 
-    console.log(order);
+    setLoading(true)
 
-    const fetchData = async () => {
-      const data = await postOrder(order);
-      console.log(data);
+    try{
+      
+      const orderCreated = await postOrder(order);
+      //Se criou Pagamento então seta na variavel de context o id do pix para pegar posterirmente o codigo do pix e gerar o qrcode na tela
+      if(orderCreated)
+      {
+        setPixId(orderCreated.orderPixId)
+        setLoading(false)
+        //Caso o pedido tenha sido criado,então limpara o carrinho
+        localStorage.clear()
+        route.push("/qrcode-payment")
 
-      return data;
-    };
-    fetchData();
+      }
+    }
+    catch(e){
+      setTextModal("Erro ao criar pagamento,tente novamente mais tarde")
+    }
+
+    
+
+
+    
+   
   }
 
   // Lidar com rotas dos botões de edição
@@ -182,8 +225,10 @@ export default function SummaryOrder() {
                   ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
                   .map((item, index) => (
                     <div key={index} className="flex justify-between">
-                      <p>{item.nome}</p>
-                      <p>{item.quantidade}x</p>
+                      <div className="flex gap-2 justify-between">
+                        <p>{item.nome}</p>
+                        <p>{item.quantidade}x</p>
+                      </div>
                       <p>R$ {item.preco.toFixed(2)}</p>
                     </div>
                   ))}
@@ -339,10 +384,10 @@ export default function SummaryOrder() {
               <MyButton
                 color="green"
                 variant="flat"
-                onClick={() => alert("Programar PIX")}
+                onClick={handleOrder}
                 className="w-[400px]"
               >
-                Pagar com PIX
+                {loading?<SpinnerForButton/>:"Pagar com PIX"}
               </MyButton>
 
               <MyButton
@@ -355,14 +400,28 @@ export default function SummaryOrder() {
               </MyButton>
             </div>
 
-            <Button color="primary" onClick={handleOrder}>
-              Botao para Teste API
-            </Button>
+          
           </div>
         </div>
       ) : (
         <Spinner className="flex" />
       )}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent className="p-4">
+          {(onClose) => (
+            <>
+              <ModalBody>
+                <p>{textModal}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onPress={onClose}>
+                  Voltar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 }

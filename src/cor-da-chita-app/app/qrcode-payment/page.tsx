@@ -1,12 +1,14 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { QRCode } from "react-qrcode-logo";
 import axios from "axios";
 import dayjs from "dayjs";
-import {Skeleton} from "@nextui-org/react";
+import {Skeleton, useCardContext} from "@nextui-org/react";
 import { url } from "../api/backend/webApiUrl";
+import { PixContext } from "@/contexts/PixContext/PixContext";
 export default function PaymentQrCode({ ...props }: any) {
   const logo = require("../../assets/imgs/IMG-20230919-WA0013~2.jpg");
+  const{pixId} = useContext(PixContext)
   const[total,setTotal] = useState<number>()
   const[codigoQrCode,setCodigoQrCode] = useState<string>()
   const [dataExpiracao,setDataExpiracao] = useState<any>()
@@ -17,7 +19,7 @@ export default function PaymentQrCode({ ...props }: any) {
   },[])
 const getPay = async()=>{
 //O id na rota será pego nas informações do pedido criado,no caso o id do pagamento do mercado pago
-  await axios.get(`${url}/Payment/66906438666`).then(r=>{
+  await axios.get(`${url}/Payment/${pixId}`).then(r=>{
   console.log(r.data)
   setTotal(r.data.transactionAmount)
   setCodigoQrCode(r.data.pointOfInteraction.transactionData.qrCode)
@@ -33,14 +35,14 @@ const getPay = async()=>{
 <>
 
     { codigoQrCode &&(
- <div className=" grid-box bg-light flex flex-col items-center justify-center   ">
+ <div className=" grid-box bg-light flex flex-col items-center justify-center mt-20 mb-20 text-center   ">
 
         
      
  <QRCode
  
    value={codigoQrCode}
-   size={270}
+   size={320}
    logoHeight={40}
    logoWidth={40}
    eyeRadius={12}

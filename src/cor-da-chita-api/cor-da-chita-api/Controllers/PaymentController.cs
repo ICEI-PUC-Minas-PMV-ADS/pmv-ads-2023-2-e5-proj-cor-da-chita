@@ -86,7 +86,7 @@ namespace cor_da_chita_api.Controllers
                     {
                         Email = order.UserEmail,
                         FirstName = order.UserName.Split(' ')[0],
-                        LastName = order.UserName.Split(' ')[1],
+                        
                         
                     },
                 };

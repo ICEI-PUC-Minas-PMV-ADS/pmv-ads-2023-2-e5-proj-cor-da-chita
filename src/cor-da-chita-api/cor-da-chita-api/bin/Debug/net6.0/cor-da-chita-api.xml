@@ -41,7 +41,7 @@
         </member>
         <member name="M:cor_da_chita_api.Controllers.OrderController.GetAllOrdersWithEmail(System.String)">
             <summary>
-            Endpoint to Get All Orders
+            Get all orders with user email
             </summary>
             <returns>List of Orders</returns>
         </member>
