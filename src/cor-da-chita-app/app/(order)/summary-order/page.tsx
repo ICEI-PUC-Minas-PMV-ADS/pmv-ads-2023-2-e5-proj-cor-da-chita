@@ -225,8 +225,10 @@ export default function SummaryOrder() {
                   ?.filter((item) => item.nome && item.preco) // Filter out items with empty or undefined properties
                   .map((item, index) => (
                     <div key={index} className="flex justify-between">
-                      <p>{item.nome}</p>
-                      <p>{item.quantidade}x</p>
+                      <div className="flex gap-2 justify-between">
+                        <p>{item.nome}</p>
+                        <p>{item.quantidade}x</p>
+                      </div>
                       <p>R$ {item.preco.toFixed(2)}</p>
                     </div>
                   ))}
