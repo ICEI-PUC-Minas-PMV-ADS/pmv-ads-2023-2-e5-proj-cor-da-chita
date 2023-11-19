@@ -50,7 +50,7 @@ export default function SummaryOrder() {
     }%0a`;
 
     let message =
-      `Olá Cor da Chita, me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos ` +
+      `Olá! Sou ${user.name} %0a e gostaria de comprar no crédito os seguintes produtos: ` +
       typeDelivery;
 
     copyCartItems.map((product) => {
