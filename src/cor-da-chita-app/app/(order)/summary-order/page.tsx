@@ -64,6 +64,8 @@ export default function SummaryOrder() {
 
     message += `Preço Total: R$${sumCartItems.toFixed(2)}`;
 
+    message += `Podemos combinar o pagamento e a entrega? Obrigado(a)!`;
+
     route.push(
       `https://api.whatsapp.com/send?phone=552700000000&text=${message}`
     );
