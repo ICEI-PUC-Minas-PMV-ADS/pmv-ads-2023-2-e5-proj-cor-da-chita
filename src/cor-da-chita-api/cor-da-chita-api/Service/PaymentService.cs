@@ -12,20 +12,26 @@ namespace cor_da_chita_api.Service
 
         public async Task<Payment> CreatePixPayment(OrderRequest order)
         {
-           
 
-                MercadoPagoConfig.AccessToken = "APP_USR-6208199695202903-111220-76fa5c7f18fb2a55f99d26b51eea67c0-1545639555";
-            //Minha
-           
+
+            MercadoPagoConfig.AccessToken = "APP_USR-6208199695202903-111220-76fa5c7f18fb2a55f99d26b51eea67c0-1545639555";
             //Define em 2 o numero de tentativas para realizar o pagamento
-            
+            var defaultStrategy = new DefaultRetryStrategy(2);
 
 
-                var defaultStrategy = new DefaultRetryStrategy(2);
+
+
+        
+
+            //Definir o numero de casas decimais em 2, e caso não tenha valor de frete,usa só o valor total dos produtos,desconsiderando o valor de frete que vem null do front
+            decimal valorPix = order.Freight.FreightValue == null ? Math.Round(order.TotalPriceProducts,2) : Math.Round((decimal)(order.TotalPriceProducts + order.Freight.FreightValue), 2);
 
                 var request = new PaymentCreateRequest
                 {
-                    TransactionAmount = order.Freight.FreightValue + order.TotalPriceProducts,
+
+                   
+                    TransactionAmount = valorPix,
+
 
                     PaymentMethodId = "pix",
 
@@ -33,7 +39,6 @@ namespace cor_da_chita_api.Service
                     {
                         Email = order.UserEmail,
                         FirstName = order.UserName.Split(' ')[0],
-                        LastName = "Lopes"
 
                     },
                 };
