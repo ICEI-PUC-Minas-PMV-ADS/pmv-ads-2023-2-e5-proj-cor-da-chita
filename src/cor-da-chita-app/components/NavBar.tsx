@@ -7,6 +7,8 @@ import CartIcon from "@/assets/icons/CartIcon";
 import OrdersIcon from "@/assets/icons/OrdersIcon";
 import HelpIcon from "@/assets/icons/HelpIcon";
 import FlowerIcon from "@/assets/icons/FlowerIcon";
+import TotalCartItems from "@/components/ui/TotalCartItems"; 
+
 
 
 
@@ -52,6 +54,9 @@ export default function NavBar() {
        <div className="flex items-center">
       <NavbarContent>
          <SearchInput/>
+         <NavbarItem>
+            <TotalCartItems /> 
+          </NavbarItem>
         <NavbarItem>
         {session && session.user ? (
           <Dropdown className="p-0 rounded-md shadow-none">
