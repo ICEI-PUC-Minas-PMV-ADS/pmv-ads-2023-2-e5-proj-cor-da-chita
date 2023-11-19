@@ -40,19 +40,19 @@ export default function SummaryOrder() {
     }%0a`;
 
     let message =
-      `Olá Cor da Chita,me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos ` +
+      `Olá Cor da Chita, me chamo ${user.name} %0a Gostaria de comprar no cartão de crédito os seguintes produtos ` +
       typeDelivery;
 
     copyCartItems.map((product) => {
       //Verifica se é o ultimo item da lista para não inserir virgula no final
       message += ` ${product.quantidade} ${
         product.quantidade > 1 ? `Unidades` : `Unidade`
-      } de ${product.nome},cada unidade custando R$${product.preco.toFixed(
+      } de ${product.nome}, cada unidade custando R$${product.preco.toFixed(
         2
       )}%0a`;
     });
 
-    message += `Preço Total:R$${sumCartItems.toFixed(2)}`;
+    message += `Preço Total: R$${sumCartItems.toFixed(2)}`;
 
     route.push(
       `https://api.whatsapp.com/send?phone=552700000000&text=${message}`
@@ -120,6 +120,8 @@ export default function SummaryOrder() {
 
       order.items.push(newItem);
     });
+
+    console.log(order);
 
     const fetchData = async () => {
       const data = await postOrder(order);
