@@ -8,7 +8,7 @@ export default function OrderLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="container mx-auto pb-20">
       {/* <h1>OrderLayout AQUI</h1>
       <p>Esse layout será para as telas referentes ao processo de pedido </p>
       <p>Seus Dados (your-data)</p>
