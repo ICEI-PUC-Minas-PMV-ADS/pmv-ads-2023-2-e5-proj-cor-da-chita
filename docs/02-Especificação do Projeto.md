@@ -91,7 +91,9 @@ De acordo com a elicitação de requisitos, foram elencados os seguintes casos d
 
 ## Modelo ER (Projeto Conceitual) e Projeto da Base de Dados
 
-Após levantamento dos requisitos e elaboração do diagrama de casos de uso, pôde-se estabelecer as entidades envolvidas no processo do produto Cor da Chita, bem como seus atributos e como se relacionam entre si. Abaixo, está o Modelo Entidade-Relacionamento que ilustra bem todo esse contexto.
+Após levantamento dos requisitos e elaboração do diagrama de casos de uso, pôde-se estabelecer as entidades envolvidas no processo do produto Cor da Chita, bem como seus atributos e como se relacionam entre si. Abaixo, estão o Modelo Entidade-Relacionamento e Projeto da Base de Dados que ilustram bem todo esse contexto.
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/Cor_da_chita_ER.png" alt="diagrama de caso de uso" width="500" />
-
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/cor_da_chita_bd.jpg" alt="projeto banco de dados" width="500" />
+Projeto do Banco de dados
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/cor_da_chita_er.jpg" alt="diagrama er" width="500" />
+Modelo Entidade-Relacionamento
