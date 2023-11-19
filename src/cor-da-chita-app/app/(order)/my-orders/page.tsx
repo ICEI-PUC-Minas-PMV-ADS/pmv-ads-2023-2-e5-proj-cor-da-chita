@@ -28,39 +28,7 @@ import { useRouter } from "next/navigation";
 import Cep from "@/app/api/cep/cep";
 import { CepContext } from "@/contexts/CepContext/CepContext";
 import axios from "axios";
-
-interface Order {
-  id: string;
-  items: [
-    {
-      productId: string;
-      productName: string;
-      productPrice: number;
-      productQuantity: number;
-    }
-  ];
-  userName: string;
-  userEmail: string;
-  street: string;
-  neighborhood: string;
-  num: string;
-  city: string;
-  uf: string;
-  cep: string;
-  complement: string;
-  freight: {
-    totalWidthFreight: number;
-    totalHeightFreight: number;
-    totalLengthFreight: number;
-    totalWeightFreight: number;
-    freightValue: number;
-    freightMethod: string;
-  };
-  orderPixId: number;
-  orderDate: string;
-  phoneNumber: string;
-  totalPriceProducts: number;
-}
+import { OrderContext } from "@/contexts/OrderContext/OrderContext";
 
 export default function MyOrders({ ...props }: any) {
   const { data: session } = useSession();
@@ -70,6 +38,8 @@ export default function MyOrders({ ...props }: any) {
   const address = useContext(AddressContext);
   const { saveCepContext } = useContext(CepContext); // Se envio por correios
   const [orders, setOrders] = useState(); // Database
+
+  //const { order, setOrder } = useContext(OrderContext);
   const [value, setValue] = useState<any>();
 
   const columns = [
@@ -87,6 +57,8 @@ export default function MyOrders({ ...props }: any) {
       });
 
     setOrders(data);
+
+    //setOrders(data);
     console.log(data);
   };
 
@@ -95,19 +67,22 @@ export default function MyOrders({ ...props }: any) {
   }, []);
 
   useEffect(() => {
-    console.log(orders);
-
     if (orders != undefined) {
       console.log(orders);
 
       const values: any = Object.values(orders);
       setValue(values);
 
-      values.map((x: any) => console.log(x));
+      //values.map((x: any) => console.log(x));
     }
   }, [orders]);
 
+  // Pare testes
   useEffect(() => {
+    if (value != undefined) {
+      value.map((x: any) => console.log(x.id));
+    }
+
     console.log(value);
   }, [value]);
 
@@ -122,7 +97,7 @@ export default function MyOrders({ ...props }: any) {
         <ArrowLeft /> Retornar
       </Link>
       <div className="px-20">
-        <Table
+        {/* <Table
           aria-label="Example table with custom cells"
           removeWrapper
           shadow="none"
@@ -141,10 +116,25 @@ export default function MyOrders({ ...props }: any) {
             )}
           </TableHeader>
 
-          <TableBody>
-          
-          </TableBody>
-          {/* {orders == undefined ? (
+          <TableBody>{[]}</TableBody>
+         
+        </Table> */}
+        <div>
+          {value != undefined ? (
+            value.map((item: any) => {
+              <p>AQUI:: {item.id} </p>;
+            })
+          ) : (
+            <>Necas</>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+{
+  /* {orders == undefined ? (
             <TableBody emptyContent={"Você não possui pedidos no momento"}>
               {[]}
             </TableBody>
@@ -154,18 +144,5 @@ export default function MyOrders({ ...props }: any) {
             <TableBody>
               {orders.}
             </TableBody>
-          )} */}
-        </Table>
-        <div>
-          {value ? (
-            value?.map((item: any) => {
-              <p>AQUI:: {item[0]} </p>;
-            })
-          ) : (
-            <>Necas</>
-          )}
-        </div>
-      </div>
-    </>
-  );
+          )} */
 }
