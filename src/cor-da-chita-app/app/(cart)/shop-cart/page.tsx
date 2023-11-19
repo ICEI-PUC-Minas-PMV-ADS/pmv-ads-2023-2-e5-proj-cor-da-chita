@@ -185,7 +185,18 @@ export default function ShopCart() {
         {/* Renderizar itens do carrinho */}
         <div className="flex flex-col items-center my-5">
           {!cart.length ? (
+            <div className="flex flex-col items-center gap-5">
             <p>Seu carrinho está vazio</p>
+            <Button
+              variant="ghost"
+              size="lg"
+              color="success"
+              onClick={() => route.push("/all-products")}
+            >
+              Ver todos os produtos 
+            </Button>
+            </div>
+
           ) : (
             cart?.map((idItem: string, index) => (
               <CardCart key={index} id={idItem} />
