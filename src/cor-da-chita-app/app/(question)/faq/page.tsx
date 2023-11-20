@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 import { Link } from "@nextui-org/react";
 
-export default function About({ ...props }: any) {
+export default function Faq({ ...props }: any) {
   const route = useRouter();
 
   const handleReturn = () => {

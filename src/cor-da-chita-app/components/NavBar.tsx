@@ -106,7 +106,7 @@ export default function NavBar() {
                   >
                     <p
                       className="text-tiny p-4"
-                      onClick={() => route.push("/question")}
+                      onClick={() => route.push("/faq")}
                     >
                       Perguntas Frequentes
                     </p>
