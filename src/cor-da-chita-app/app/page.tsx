@@ -12,6 +12,9 @@ import Encomenda from "@/components/Encomenda";
 
 export default function Home() {
   const route = useRouter();
+  
+  
+  
   return (
     <main className="bg-light">
       <Banner />

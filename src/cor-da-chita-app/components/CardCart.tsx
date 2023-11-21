@@ -107,6 +107,8 @@ export default function CardCart({ ...props }: any) {
 
     setCart(newArrItens);
 
+    setCartItems(newArrItens)
+
     setMessageAlert(`O item ${nome} foi removido do seu carrinho`);
     setSeveridadeAlert("success");
     setOpenSnackBar(true);

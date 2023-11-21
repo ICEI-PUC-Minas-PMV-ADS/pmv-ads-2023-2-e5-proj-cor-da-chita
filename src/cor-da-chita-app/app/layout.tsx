@@ -1,9 +1,12 @@
+
 import "../styles/globals.css";
+import React, { useContext, useEffect, useState } from "react";
 
 import NavBar from "@/components/NavBar";
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import Encomenda from "@/components/Encomenda";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 
 import { Providers } from "./api/providers/Providers";
@@ -22,6 +25,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+ 
+
+
+ 
+
+ 
+ 
   return (
     <html lang="pt-br">
       <body className="bg-light" suppressHydrationWarning={true}>

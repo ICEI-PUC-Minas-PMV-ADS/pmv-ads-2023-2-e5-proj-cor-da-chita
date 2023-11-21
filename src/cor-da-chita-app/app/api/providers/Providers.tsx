@@ -2,6 +2,7 @@
 
 import { NextUIProvider } from "@nextui-org/react";
 import { SessionProvider } from "next-auth/react";
+import React, { useContext, useEffect, useState } from "react";
 
 import UserContextProvider from "@/contexts/UserContext/UserContext";
 import AddressContextProvider from "@/contexts/AddressContext/AddressContext";
@@ -13,8 +14,20 @@ import CepContextProvider from "@/contexts/CepContext/CepContext";
 import FreteContextProvider from "@/contexts/FreteContext/FreteContext";
 import PixContextProvider from "@/contexts/PixContext/PixContext";
 import OrderContext from "@/contexts/OrderContext/OrderContext";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  
+  const { cartItems,setCartItems } = useContext(CartItemsContext);
+  useEffect(()=>
+  {
+   const carrinho = JSON.parse(localStorage.getItem("cartItens") || "[]");
+   setCartItems(carrinho)
+   console.log(carrinho.length)
+ 
+  },[])
+  
+  
   return (
     <SessionProvider>
       <NextUIProvider>
