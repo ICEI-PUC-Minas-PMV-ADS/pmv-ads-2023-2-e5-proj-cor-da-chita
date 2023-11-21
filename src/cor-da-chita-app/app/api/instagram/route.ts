@@ -7,6 +7,7 @@ export async function GET(request: Request) {
   }
 
   try {
+    console.log(process.env.INSTAGRAM_KEY)
     const url = `https://graph.instagram.com/v12.0/me/media?fields=id,media_type,caption,permalink,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
