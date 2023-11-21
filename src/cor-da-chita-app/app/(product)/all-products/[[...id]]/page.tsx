@@ -26,7 +26,7 @@ async function getData(
   if (categoryNameOrSearch.includes("search")) {
     // Consulta feita via SeachInput
     const data = (await getProductDataSearch(search)) as Produto[];
-
+    console.log(data)
     setProductData(data);
   } else if (categoryNameOrSearch != "") {
     // Consulta via click no Menu de Categoria
@@ -38,7 +38,7 @@ async function getData(
   } else {
     // Todos os produtos
     const data = (await getProductCardData()) as Produto[];
-
+    console.log(data)
     setProductData(data);
   }
 }

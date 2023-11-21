@@ -2,7 +2,13 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 
-import { Button, Input, Link, Spinner } from "@nextui-org/react";
+import { Button, Input, Link, Spinner,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
+} from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import { MyButton } from "@/components/ui/Button";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
@@ -24,6 +30,8 @@ export default function ShippingData() {
   const address = useContext(AddressContext);
   const { saveCepContext } = useContext(CepContext); // Se envio por correios
 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [textModal, setTextModal] = useState("");
   // Controla mensagem de erro
   const [missInfo, setMissInfo] = useState(false);
   const validadeData =
@@ -37,6 +45,12 @@ export default function ShippingData() {
   // Controla preenchimento dos campos de endereço
   const handleCep = async (cep: string) => {
     const cepData: any[] = await Cep(cep);
+      //Se vier mensagem de error então,provalvemete o cep não existe ou foi digitado errado
+      if(cepData[0].erro){
+        onOpen();
+        setTextModal("CEP inválido, por favor verifique o CEP novamente")
+      }
+      else{
 
     if (cepData.length == 0) {
       setMissInfo(true);
@@ -49,6 +63,8 @@ export default function ShippingData() {
       // Se frete correios
       if (saveCepContext) address.setCep(cepData[0].cep ?? "");
     }
+  }
+
     // console.log(cepData);
   };
 
@@ -320,6 +336,22 @@ export default function ShippingData() {
       ) : (
         <Spinner className="flex" />
       )}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent className="p-4">
+          {(onClose) => (
+            <>
+              <ModalBody>
+                <p>{textModal}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onPress={onClose}>
+                  Voltar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </section>
   );
 }
