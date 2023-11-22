@@ -93,7 +93,7 @@ export default function ShopCart() {
         setTextModal(
           "Erro de conexão com servidor, tente novamente mais tarde"
         );
-        console.log(e);
+        
         onOpen();
         setLoading(false);
       });
