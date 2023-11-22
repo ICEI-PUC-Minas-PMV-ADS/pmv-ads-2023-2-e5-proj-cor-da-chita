@@ -2,6 +2,9 @@ import { MyButton } from "./ui/Button.tsx";
 import { Image, Link } from "@nextui-org/react";
 
 const LPGrid = () => {
+  
+  
+  
   return (
     <div className="bg-black">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">

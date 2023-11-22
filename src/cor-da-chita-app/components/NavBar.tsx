@@ -93,20 +93,20 @@ export default function NavBar() {
                   >
                     <p className="text-tiny p-4">Carrinho</p>
                   </DropdownItem>
-                  <DropdownItem
+                  {/* <DropdownItem
                     key="my_orders"
                     onClick={() => route.push("/my-orders")}
                     endContent={<OrdersIcon className={iconClasses} />}
                   >
                     <p className="text-tiny p-4">Meus Pedidos</p>
-                  </DropdownItem>
+                  </DropdownItem> */}
                   <DropdownItem
                     key="help"
                     endContent={<HelpIcon className={iconClasses} />}
                   >
                     <p
                       className="text-tiny p-4"
-                      onClick={() => route.push("/question")}
+                      onClick={() => route.push("/faq")}
                     >
                       Perguntas Frequentes
                     </p>

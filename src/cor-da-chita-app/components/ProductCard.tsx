@@ -12,6 +12,7 @@ import { Produto } from "../lib/interface";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 import { ProductContext } from "@/contexts/ProductContext/ProductContext";
 import { Box } from "@mui/material";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 interface ProductCardProps {
   data: Produto[] | undefined;
@@ -20,6 +21,7 @@ interface ProductCardProps {
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const route = useRouter();
+  const { cartItems,setCartItems } = useContext(CartItemsContext);
 
   // Snack Bar: Adicionar no carrinho
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
@@ -80,9 +82,9 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       };
 
       arrItens.push(novoItem);
-
+      setCartItems(arrItens)
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
-
+      
       setSeveridadeAlert("success");
       setMessageAlert(
         "O item " + nome + " foi adicionado no seu carrinho com sucesso!"
@@ -131,25 +133,36 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                     )}
             </div>
               <CardFooter className="">
-                <div className="flex justify-between w-full">
+                <div className={product.estoque>0?"flex justify-between w-full":"flex justify-between w-full flex-col"}>
                   <div>
-                    <p className="">{product.nome}</p>
-                    <p className="font-semibold">R$ {product.preco.toFixed(2)}</p>
+                    <p className=" w-full">{product.nome}</p>
+                    <p className="font-semibold">R$ {product.preco.toFixed(2).toString().replace('.',',')}</p>
                   </div>
+                  {product.estoque>0?
+                  
                   <Link
-                    className=""
-                    onClick={() =>
-                      handleStorageProductCart(
-                        product._id,
-                        product.nome,
-                        product.quantidade
-                      )
-                    }
-                  >
-                    <div className="bg-green p-3">
-                      <CartPlusIcon fill="white" />
-                    </div>
-                  </Link>
+                  className=""
+                  onClick={() =>
+                    handleStorageProductCart(
+                      product._id,
+                      product.nome,
+                      product.quantidade
+                    )
+                  }
+                >
+                  <div className="bg-green p-3">
+                    <CartPlusIcon fill="white" />
+                  </div>
+                </Link>
+
+                 :
+                 <div className="text-center mt-2">
+                 
+                 <p className="text-base "> Estamos sem este produto no estoque no momento</p>
+                 
+                 </div>
+                 }
+                 
                 </div>
               </CardFooter>
             </CardBody>

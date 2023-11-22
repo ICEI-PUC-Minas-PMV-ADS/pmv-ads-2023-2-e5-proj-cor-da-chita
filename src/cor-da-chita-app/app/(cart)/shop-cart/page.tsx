@@ -93,7 +93,7 @@ export default function ShopCart() {
         setTextModal(
           "Erro de conexão com servidor, tente novamente mais tarde"
         );
-        console.log(e);
+        
         onOpen();
         setLoading(false);
       });
@@ -321,7 +321,7 @@ export default function ShopCart() {
                             }`}
                           >
                             <strong>R$</strong>{" "}
-                            {freteInContext.valorPac.toFixed(2)} -
+                            {freteInContext.valorPac.toFixed(2).toString().replace('.',',')} -
                             <strong> Prazo: </strong> {freteInContext.prazoPac}
                             {freteInContext.prazoPac === 1 ? (
                               <span> dia&nbsp;&nbsp;</span>
@@ -358,7 +358,7 @@ export default function ShopCart() {
                             }`}
                           >
                             <strong>R$</strong>{" "}
-                            {freteInContext.valorSedex.toFixed(2)} -
+                            {freteInContext.valorSedex.toFixed(2).toString().replace('.',',')} -
                             <strong> Prazo: </strong>
                             {freteInContext.prazoSedex}
                             {freteInContext.prazoSedex === 1 ? (
@@ -386,9 +386,9 @@ export default function ShopCart() {
                     R${" "}
                     {freteInContext != "" && isCombinarFrete ? (
                       isPac == "PAC" ? (
-                        freteInContext.valorPac.toFixed(2)
+                        freteInContext.valorPac.toFixed(2).toString().replace('.',',')
                       ) : (
-                        freteInContext.valorSedex.toFixed(2)
+                        freteInContext.valorSedex.toFixed(2).toString().replace('.',',')
                       )
                     ) : (
                       <>0,00</>
@@ -406,12 +406,12 @@ export default function ShopCart() {
                     R${" "}
                     {freteInContext != "" && isCombinarFrete ? (
                       isPac == "PAC" ? (
-                        (freteInContext.valorPac + sumCartItems).toFixed(2)
+                        (freteInContext.valorPac + sumCartItems).toFixed(2).toString().replace('.',',')
                       ) : (
-                        (freteInContext.valorSedex + sumCartItems).toFixed(2)
+                        (freteInContext.valorSedex + sumCartItems).toFixed(2).toString().replace('.',',')
                       )
                     ) : (
-                      <>{sumCartItems.toFixed(2)}</>
+                      <>{sumCartItems.toFixed(2).toString().replace('.',',')}</>
                     )}
                   </strong>
                 </p>

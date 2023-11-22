@@ -59,10 +59,10 @@ export default function SummaryOrder() {
         product.quantidade > 1 ? `Unidades` : `Unidade`
       } de ${product.nome}, cada unidade custando R$${product.preco.toFixed(
         2
-      )}%0a`;
+      ).toString().replace('.',',')}%0a`;
     });
 
-    message += `Preço Total: R$${sumCartItems.toFixed(2)}`;
+    message += `Preço Total: R$${sumCartItems.toFixed(2).toString().replace('.',',')}`;
 
     message += `Podemos combinar o pagamento e a entrega? Obrigado(a)!`;
 
@@ -159,6 +159,7 @@ export default function SummaryOrder() {
       if(orderCreated)
       {
         setPixId(orderCreated.orderPixId)
+        onOpen();
         setLoading(false)
         //Caso o pedido tenha sido criado,então limpara o carrinho
         localStorage.clear()
@@ -231,7 +232,7 @@ export default function SummaryOrder() {
                         <p>{item.nome}</p>
                         <p>{item.quantidade}x</p>
                       </div>
-                      <p>R$ {item.preco.toFixed(2)}</p>
+                      <p>R$ {item.preco.toFixed(2).toString().replace('.',',')}</p>
                     </div>
                   ))}
               </div>
@@ -243,7 +244,7 @@ export default function SummaryOrder() {
                     <strong>Total dos Itens</strong>
                   </p>
                   <p>
-                    <strong>R$ {sumCartItems.toFixed(2)}</strong>
+                    <strong>R$ {sumCartItems.toFixed(2).toString().replace('.',',')}</strong>
                   </p>
                 </div>
 
@@ -265,12 +266,12 @@ export default function SummaryOrder() {
                   {freteInContext != undefined && isCombinarFrete ? (
                     isPac == "PAC" ? (
                       <p>
-                        <strong>R$ {freteInContext.valorPac.toFixed(2)}</strong>
+                        <strong>R$ {freteInContext.valorPac.toFixed(2).toString().replace('.',',')}</strong>
                       </p>
                     ) : (
                       <p>
                         <strong>
-                          R$ {freteInContext.valorSedex.toFixed(2)}
+                          R$ {freteInContext.valorSedex.toFixed(2).toString().replace('.',',')}
                         </strong>
                       </p>
                     )
@@ -296,16 +297,14 @@ export default function SummaryOrder() {
                       <p>
                         <strong>
                           R${" "}
-                          {(freteInContext.valorPac + sumCartItems).toFixed(2)}
+                          {(freteInContext.valorPac + sumCartItems).toFixed(2).toString().replace('.',',')}
                         </strong>
                       </p>
                     ) : (
                       <p>
                         <strong>
                           R${" "}
-                          {(freteInContext.valorSedex + sumCartItems).toFixed(
-                            2
-                          )}
+                          {(freteInContext.valorSedex + sumCartItems).toFixed(2).toString().replace('.',',')}
                         </strong>
                       </p>
                     )

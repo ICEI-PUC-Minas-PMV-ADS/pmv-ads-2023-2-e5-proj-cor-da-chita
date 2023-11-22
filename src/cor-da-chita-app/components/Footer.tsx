@@ -30,7 +30,7 @@ export default function Footer({ children, ...props }: any) {
             <Link href="/about">
               <p className="text-tiny py-1">Sobre Cor da Chita</p>
             </Link>   
-            <Link href="/questions">
+            <Link href="/faq">
               <p className="text-tiny py-1">Perguntas Frequentes</p>
             </Link>   
           </div>

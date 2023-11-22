@@ -94,22 +94,30 @@ export default function ProductAdvertisement() {
         <p className="">
           {product.lengthProduct}x{product.widthProduct}cm
         </p>
-        <p className="py-4"><strong>R$ {product.price}</strong></p>
+        <p className="py-4"><strong>R$ {product.price.toFixed(2).toString().replace(".",",")}</strong></p>
       </div>
       <div className="py-5 flex flex-col gap-3">
+        {product.stock>0?
+        
         <MyButton
-          color="green"
-          size="sm"
-          onClick={() =>
-            handleStorageProductCart(
-              product.id,
-              product.name,
-              product.quantity
-            )
-          }
-        >
-          Adicionar ao Carrinho
-        </MyButton>
+        color="green"
+        size="sm"
+        onClick={() =>
+          handleStorageProductCart(
+            product.id,
+            product.name,
+            product.quantity
+          )
+        }
+      >
+        Adicionar ao Carrinho
+      </MyButton>
+
+        :
+        <p className="text-base "> Estamos sem este produto no estoque no momento</p>
+
+        }
+       
         <Link
         size="sm"
         as="button"
