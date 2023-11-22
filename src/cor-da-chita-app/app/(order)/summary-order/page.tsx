@@ -216,9 +216,9 @@ export default function SummaryOrder() {
       </Link>
 
       {address.cep !== "" || cartItems.length !== 0 || user.email !== "" ? (
-        <div className="px-10">
+        <div className="px-10 max-w-[800px] mx-auto">
           <div className="font-serif pb-10">
-            <h2 className="text-2xl">Resumo do Pedido</h2>
+            <h2 className="text-2xl text-center">Resumo do Pedido</h2>
           </div>
           {/* Items do pedido */}
           <div className="mx-5">
@@ -313,7 +313,7 @@ export default function SummaryOrder() {
                   )}
                 </div>
 
-                <div className="my-3">
+                <div className="my-3 flex justify-center">
                   <Button
                     color="secondary"
                     variant="ghost"
@@ -326,10 +326,12 @@ export default function SummaryOrder() {
             </div>
           </div>
 
-          {/* Dados de Envio */}
-          <div className="my-10">
-            <div className="font-serif py-3">
-              <h2 className="text-2xl">Dados de Envio</h2>
+          <div className="flex flex-row justify-between">
+
+         {/* Dados de Envio */}
+          <div className="my-10 flex flex-col place-content-evenly gap-5">
+            <div className="font-serif py-3 pb-10">
+              <h2 className="text-2xl text-center">Dados de Envio</h2>
             </div>
 
             <div className="mx-5">
@@ -343,7 +345,7 @@ export default function SummaryOrder() {
                 {address.city} - {address.uf}
               </p>
 
-              <div className="my-6">
+              <div className="flex justify-center p-10">
                 <Button
                   color="secondary"
                   variant="ghost"
@@ -356,9 +358,9 @@ export default function SummaryOrder() {
           </div>
 
           {/* Dados do Cliente */}
-          <div className="my-10">
-            <div className="font-serif py-3">
-              <h2 className="text-2xl">Seus Dados</h2>
+          <div className="my-10 flex flex-col place-content-evenly gap-5">
+            <div className="font-serif py-3 pb-10">
+              <h2 className="text-2xl text-center">Seus Dados</h2>
             </div>
 
             <div className="mx-5">
@@ -369,7 +371,7 @@ export default function SummaryOrder() {
                 <p>{user.email}</p>
               </div>
 
-              <div className="my-6">
+              <div className="flex justify-center p-10">
                 <Button
                   color="secondary"
                   variant="ghost"
@@ -379,7 +381,9 @@ export default function SummaryOrder() {
                 </Button>
               </div>
             </div>
+        </div>
 
+          </div>
             {/* Pagamento */}
             <div className="flex flex-col gap-3 my-5 items-center">
               <MyButton
@@ -403,7 +407,7 @@ export default function SummaryOrder() {
 
           
           </div>
-        </div>
+
       ) : (
         <Spinner className="flex" />
       )}
