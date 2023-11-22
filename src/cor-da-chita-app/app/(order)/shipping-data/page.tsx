@@ -83,10 +83,10 @@ export default function ShippingData() {
       user.setPhone(user.phone);
     }
 
-    // if (!session && user.email == "") {
-    //   setWaitingData(true);
-    //   route.push("/shop-cart");
-    // }
+    if (!session && user.email == "") {
+      setWaitingData(true);
+      route.push("/shop-cart");
+    }
 
     if (saveCepContext.length !== 0) {
       // Se frete correios
