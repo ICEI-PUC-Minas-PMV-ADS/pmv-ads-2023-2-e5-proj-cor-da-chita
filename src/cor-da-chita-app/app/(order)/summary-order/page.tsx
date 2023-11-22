@@ -4,12 +4,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 
-import { Button, Divider, Link, Spinner,
+import {
+  Button,
+  Divider,
+  Link,
+  Spinner,
   Modal,
   ModalContent,
   ModalBody,
   ModalFooter,
-  useDisclosure } from "@nextui-org/react";
+  useDisclosure,
+} from "@nextui-org/react";
 import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -35,36 +40,54 @@ export default function SummaryOrder() {
   const { cartItems, sumCartItems, copyCartItems } =
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
-  const {setPixId} = useContext(PixContext)
+  const { setPixId } = useContext(PixContext);
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
   const handleRedirectWhatsApp = () => {
     console.log(user);
     //%0a Serve para pular linha no whatsapp
-    const typeFrete =
-      isPac == "PAC" && !isCombinarFrete
-        ? " pela modalidade de envio PAC:"
-        : "pela modalidade de envio SEDEX:";
+
+    let typeFrete = "";
+    console.log(isCombinarFrete);
+
+    if (isCombinarFrete) {
+      // correios
+      typeFrete =
+        isPac == "PAC"
+          ? " Modalidade de envio PAC. "
+          : " Modalidade de envio SEDEX. ";
+    } else {
+      typeFrete = " Combinando diretamente com você a entrega. ";
+    }
+
+    // const typeFrete =
+    //   isPac == "PAC" && !isCombinarFrete
+    //     ? " Pela modalidade de envio PAC:"
+    //     : " Pela modalidade de envio SEDEX:";
     let typeDelivery = `${
       isCombinarFrete ? "Combinando diretamente com você a entrega" : typeFrete
     }%0a`;
 
     let message =
       `Olá! Sou ${user.name} %0a e gostaria de comprar no crédito os seguintes produtos: ` +
-      typeDelivery;
+      typeFrete;
 
     copyCartItems.map((product) => {
       //Verifica se é o ultimo item da lista para não inserir virgula no final
       message += ` ${product.quantidade} ${
         product.quantidade > 1 ? `Unidades` : `Unidade`
-      } de ${product.nome}, cada unidade custando R$${product.preco.toFixed(
-        2
-      ).toString().replace('.',',')}%0a`;
+      } de ${product.nome}, cada unidade custando R$ ${product.preco
+        .toFixed(2)
+        .toString()
+        .replace(".", ",")}%0a`;
     });
 
-    message += `Preço Total: R$${sumCartItems.toFixed(2).toString().replace('.',',')}`;
+    message += `Preço Total: R$ ${sumCartItems
+      .toFixed(2)
+      .toString()
+      .replace(".", ",")}`;
 
-    message += `Podemos combinar o pagamento e a entrega? Obrigado(a)!`;
+    message += ` Podemos combinar o pagamento e a entrega? Obrigado(a)!`;
 
     route.push(
       `https://api.whatsapp.com/send?phone=552700000000&text=${message}`
@@ -72,11 +95,11 @@ export default function SummaryOrder() {
   };
 
   // Enviar pedido
-  async function  handleOrder () {
+  async function handleOrder() {
     // Somando dados da cubagem do pedido
 
-    console.log(freteInContext)
-    console.log(isPac)
+    console.log(freteInContext);
+    console.log(isPac);
     const totalWidthFreightSum = cartItems.reduce(
       (sum, item) => sum + item.largura,
       0
@@ -101,10 +124,10 @@ export default function SummaryOrder() {
       isPac === "PAC" && !isCombinarFrete
         ? "PAC"
         : isPac === "SEDEX" && !isCombinarFrete
-          ? "SEDEX"
-          : !isPac && isCombinarFrete
-            ? "Combinar com a vendedora"
-            : "outro";
+        ? "SEDEX"
+        : !isPac && isCombinarFrete
+        ? "Combinar com a vendedora"
+        : "outro";
 
     console.log("freightMethod:", freightMethod);
 
@@ -128,14 +151,14 @@ export default function SummaryOrder() {
         totalHeightFreight: totalHeightFreight,
         totalLengthFreight: totalLengthFreight,
         totalWeightFreight: totalWeightFreight,
-        freightValue: isPac=="PAC"?freteInContext.valorPac:freteInContext.valorSedex,
+        freightValue:
+          isPac == "PAC" ? freteInContext.valorPac : freteInContext.valorSedex,
         freightMethod: freightMethod,
-        
       },
-      orderPixId:0,
+      orderPixId: 0,
       orderDate: new Date(),
       phoneNumber: user.phone,
-      totalPriceProducts: sumCartItems
+      totalPriceProducts: sumCartItems,
     };
 
     // Itens do Pedido
@@ -148,34 +171,24 @@ export default function SummaryOrder() {
       };
 
       order.items.push(newItem);
-    }); 
+    });
 
-    setLoading(true)
+    setLoading(true);
 
-    try{
-      
+    try {
       const orderCreated = await postOrder(order);
       //Se criou Pagamento então seta na variavel de context o id do pix para pegar posterirmente o codigo do pix e gerar o qrcode na tela
-      if(orderCreated)
-      {
-        setPixId(orderCreated.orderPixId)
+      if (orderCreated) {
+        setPixId(orderCreated.orderPixId);
         onOpen();
-        setLoading(false)
+        setLoading(false);
         //Caso o pedido tenha sido criado,então limpara o carrinho
-        localStorage.clear()
-        route.push("/qrcode-payment")
-
+        localStorage.clear();
+        route.push("/qrcode-payment");
       }
+    } catch (e) {
+      setTextModal("Erro ao criar pagamento,tente novamente mais tarde");
     }
-    catch(e){
-      setTextModal("Erro ao criar pagamento,tente novamente mais tarde")
-    }
-
-    
-
-
-    
-   
   }
 
   // Lidar com rotas dos botões de edição
@@ -232,7 +245,9 @@ export default function SummaryOrder() {
                         <p>{item.nome}</p>
                         <p>{item.quantidade}x</p>
                       </div>
-                      <p>R$ {item.preco.toFixed(2).toString().replace('.',',')}</p>
+                      <p>
+                        R$ {item.preco.toFixed(2).toString().replace(".", ",")}
+                      </p>
                     </div>
                   ))}
               </div>
@@ -244,7 +259,9 @@ export default function SummaryOrder() {
                     <strong>Total dos Itens</strong>
                   </p>
                   <p>
-                    <strong>R$ {sumCartItems.toFixed(2).toString().replace('.',',')}</strong>
+                    <strong>
+                      R$ {sumCartItems.toFixed(2).toString().replace(".", ",")}
+                    </strong>
                   </p>
                 </div>
 
@@ -266,12 +283,22 @@ export default function SummaryOrder() {
                   {freteInContext != undefined && isCombinarFrete ? (
                     isPac == "PAC" ? (
                       <p>
-                        <strong>R$ {freteInContext.valorPac.toFixed(2).toString().replace('.',',')}</strong>
+                        <strong>
+                          R${" "}
+                          {freteInContext.valorPac
+                            .toFixed(2)
+                            .toString()
+                            .replace(".", ",")}
+                        </strong>
                       </p>
                     ) : (
                       <p>
                         <strong>
-                          R$ {freteInContext.valorSedex.toFixed(2).toString().replace('.',',')}
+                          R${" "}
+                          {freteInContext.valorSedex
+                            .toFixed(2)
+                            .toString()
+                            .replace(".", ",")}
                         </strong>
                       </p>
                     )
@@ -297,14 +324,20 @@ export default function SummaryOrder() {
                       <p>
                         <strong>
                           R${" "}
-                          {(freteInContext.valorPac + sumCartItems).toFixed(2).toString().replace('.',',')}
+                          {(freteInContext.valorPac + sumCartItems)
+                            .toFixed(2)
+                            .toString()
+                            .replace(".", ",")}
                         </strong>
                       </p>
                     ) : (
                       <p>
                         <strong>
                           R${" "}
-                          {(freteInContext.valorSedex + sumCartItems).toFixed(2).toString().replace('.',',')}
+                          {(freteInContext.valorSedex + sumCartItems)
+                            .toFixed(2)
+                            .toString()
+                            .replace(".", ",")}
                         </strong>
                       </p>
                     )
@@ -327,87 +360,82 @@ export default function SummaryOrder() {
           </div>
 
           <div className="flex flex-row justify-between">
+            {/* Dados de Envio */}
+            <div className="my-10 flex flex-col place-content-evenly gap-5">
+              <div className="font-serif py-3 pb-10">
+                <h2 className="text-2xl text-center">Dados de Envio</h2>
+              </div>
 
-         {/* Dados de Envio */}
-          <div className="my-10 flex flex-col place-content-evenly gap-5">
-            <div className="font-serif py-3 pb-10">
-              <h2 className="text-2xl text-center">Dados de Envio</h2>
+              <div className="mx-5">
+                <p>
+                  {address.street}, {address.num}
+                </p>
+                <p>{address.neighborhood}</p>
+                <p>{address.complement ? address.complement : ""}</p>
+                <p>{address.cep}</p>
+                <p>
+                  {address.city} - {address.uf}
+                </p>
+
+                <div className="flex justify-center p-10">
+                  <Button
+                    color="secondary"
+                    variant="ghost"
+                    onClick={handleRouteEditAddressData}
+                  >
+                    Editar Endereço
+                  </Button>
+                </div>
+              </div>
             </div>
 
-            <div className="mx-5">
-              <p>
-                {address.street}, {address.num}
-              </p>
-              <p>{address.neighborhood}</p>
-              <p>{address.complement ? address.complement : ""}</p>
-              <p>{address.cep}</p>
-              <p>
-                {address.city} - {address.uf}
-              </p>
+            {/* Dados do Cliente */}
+            <div className="my-10 flex flex-col place-content-evenly gap-5">
+              <div className="font-serif py-3 pb-10">
+                <h2 className="text-2xl text-center">Seus Dados</h2>
+              </div>
 
-              <div className="flex justify-center p-10">
-                <Button
-                  color="secondary"
-                  variant="ghost"
-                  onClick={handleRouteEditAddressData}
-                >
-                  Editar Endereço
-                </Button>
+              <div className="mx-5">
+                <div>
+                  <p>{user.name}</p>
+
+                  <p>{user.phone}</p>
+                  <p>{user.email}</p>
+                </div>
+
+                <div className="flex justify-center p-10">
+                  <Button
+                    color="secondary"
+                    variant="ghost"
+                    onClick={handleRouteEditUserData}
+                  >
+                    Editar Dados
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
+          {/* Pagamento */}
+          <div className="flex flex-col gap-3 my-5 items-center">
+            <MyButton
+              color="green"
+              variant="flat"
+              onClick={handleOrder}
+              className="w-[400px]"
+            >
+              {loading ? <SpinnerForButton /> : "Pagar com PIX"}
+            </MyButton>
 
-          {/* Dados do Cliente */}
-          <div className="my-10 flex flex-col place-content-evenly gap-5">
-            <div className="font-serif py-3 pb-10">
-              <h2 className="text-2xl text-center">Seus Dados</h2>
-            </div>
-
-            <div className="mx-5">
-              <div>
-                <p>{user.name}</p>
-
-                <p>{user.phone}</p>
-                <p>{user.email}</p>
-              </div>
-
-              <div className="flex justify-center p-10">
-                <Button
-                  color="secondary"
-                  variant="ghost"
-                  onClick={handleRouteEditUserData}
-                >
-                  Editar Dados
-                </Button>
-              </div>
-            </div>
+            <MyButton
+              color="green"
+              variant="flat"
+              className="w-[400px]"
+              onClick={() => handleRedirectWhatsApp()}
+            >
+              Pagar com Cartão de Crédito
+            </MyButton>
+          </div>
         </div>
-
-          </div>
-            {/* Pagamento */}
-            <div className="flex flex-col gap-3 my-5 items-center">
-              <MyButton
-                color="green"
-                variant="flat"
-                onClick={handleOrder}
-                className="w-[400px]"
-              >
-                {loading?<SpinnerForButton/>:"Pagar com PIX"}
-              </MyButton>
-
-              <MyButton
-                color="green"
-                variant="flat"
-                className="w-[400px]"
-                onClick={() => handleRedirectWhatsApp()}
-              >
-                Pagar com Cartão de Crédito
-              </MyButton>
-            </div>
-
-          
-          </div>
-
       ) : (
         <Spinner className="flex" />
       )}
