@@ -90,11 +90,8 @@ export default function UserData() {
       <div className="px-10 flex justify-around">
         <div className="flex-col">
 
-        <div className="">
-          <div className="font-serif pb-5">
-            <h1 className="text-2xl">Seus Dados</h1>
-          </div>
           <div className="px-5">
+          <h1 className="text-2xl font-serif text-center">Seus Dados</h1>
             <Form method="post" className="max-w-[600px]">
               <div className="flex flex-col gap-3 py-5">
                 <Input // Nome Completo
@@ -183,7 +180,17 @@ export default function UserData() {
                 />
               </div>
 
-              <div className="mt-5  flex justify-end">
+
+
+      
+            </Form>
+          
+          </div>
+ 
+      </div>
+      
+      </div>
+       <div className="mt-5  flex justify-center">
                 <Link
                   size="sm"
                   as="button"
@@ -193,14 +200,6 @@ export default function UserData() {
                   Confirmar Dados <ArrowRight />
                 </Link>
                </div>
-
-      
-            </Form>
-          
-          </div>
-        </div>
-      </div>
-      </div>
       
           {/* Continuar ou não com o Google */}
           <div>

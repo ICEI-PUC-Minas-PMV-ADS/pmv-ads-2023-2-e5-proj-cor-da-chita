@@ -114,7 +114,7 @@ export default function ShippingData() {
           <div className="flex flex-row justify-around">
             <div className="flex-col items-center">
               <div className="font-serif">
-                <h2 className="text-2xl">Seus Dados</h2>
+                <h2 className="text-2xl text-center">Seus Dados</h2>
               </div>
               <div className="mx-5">
               {/* Dados do Usuário */}
@@ -123,20 +123,23 @@ export default function ShippingData() {
                 <p>{user.email}</p>
                 <p>{user.phone}</p>
                 <br />
-                <Button
-                  color="secondary"
-                  variant="bordered"
-                  onPress={() => route.back()}
-                >
-                  Editar Dados
-                </Button>
+                <div className="flex justify-center">
+                  <Button
+                    color="secondary"
+                    variant="bordered"
+                    onPress={() => route.back()}
+                  >
+                    Editar Dados
+                  </Button>
+
+                </div>
               </div>
             </div>
           </div>
             <div className="flex-col items-center">
 
           <div className="font-serif">
-            <h2 className="text-2xl">Dados de Envio</h2>
+            <h2 className="text-2xl text-center">Dados de Envio</h2>
           </div>
           <div className="mx-5">
             <div>
@@ -321,7 +324,8 @@ export default function ShippingData() {
                   />
                 </div>
               </Form>
-              <div className="mt-5 flex justify-end">
+            </div>
+            <div className="mt-5 flex justify-center">
                 <Link
                   size="sm"
                   as="button"
@@ -335,10 +339,10 @@ export default function ShippingData() {
                   Confirmar Dados <ArrowRight />
                 </Link>
               </div>
-            </div>
           </div>
           </div>
           </div>
+         
         </div>
 
       ) : (
