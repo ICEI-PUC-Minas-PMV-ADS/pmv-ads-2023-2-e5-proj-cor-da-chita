@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function Footer({ children, ...props }: any) {
   const route = useRouter();
   return (
-    <footer {...props}>
+    <footer className="relative bottom-0" {...props}>
       <div className="grid grid-cols-2  p-5 bg-dark text-light text-tiny">
         <div className="p-5">
           <h3>
