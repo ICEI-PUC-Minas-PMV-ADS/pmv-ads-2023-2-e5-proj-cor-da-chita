@@ -8,7 +8,6 @@ import { Link, Button, Input, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 import ArrowRight from "@/assets/icons/ArrowRight";
-import { MyButton } from "@/components/ui/Button";
 
 import Form from "../../../components/ui/Form";
 
@@ -209,15 +208,17 @@ export default function UserData() {
               
               <div className="flex flex-col gap-3 items-center">
                 <h3 className="font-serif mb-1">ou</h3>
-                <MyButton // Continuar com Google
+                <Button // Continuar com Google
+                  variant="flat"
                   color="secondary"
-                  size="xl"
-                  className="w-[400px]"
+                  className="p-5 hover:opacity-80 p-10"
                   onClick={() => signIn("google")}
-                  startContent={<GoogleIcon className="text-2xl" />}
                 >
+                  <div className="flex gap-3">
+                  <GoogleIcon className="text-2xl" />
                   Continuar com Google
-                </MyButton>
+                  </div>
+                </Button>
               </div>
             )}
       </div>
