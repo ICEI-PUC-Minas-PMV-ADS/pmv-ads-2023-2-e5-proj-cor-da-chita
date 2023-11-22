@@ -2,7 +2,11 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 
-import { Button, Input, Link, Spinner,
+import {
+  Button,
+  Input,
+  Link,
+  Spinner,
   useDisclosure,
   Modal,
   ModalContent,
@@ -45,27 +49,24 @@ export default function ShippingData() {
   // Controla preenchimento dos campos de endereço
   const handleCep = async (cep: string) => {
     const cepData: any[] = await Cep(cep);
-      //Se vier mensagem de error então,provalvemete o cep não existe ou foi digitado errado
-      if(cepData[0].erro){
-        onOpen();
-        setTextModal("CEP inválido, por favor verifique o CEP novamente")
-      }
-      else{
 
-    if (cepData.length == 0) {
-      setMissInfo(true);
+    //Se vier mensagem de error então,provalvemete o cep não existe ou foi digitado errado
+    if (cepData[0].erro) {
+      onOpen();
+      setTextModal("CEP inválido, por favor verifique");
     } else {
-      address.setStreet(cepData[0].logradouro ?? "");
-      address.setNeighborhood(cepData[0].bairro ?? "");
-      address.setCity(cepData[0].localidade ?? "");
-      address.setUf(cepData[0].uf ?? "");
+      if (cepData.length == 0) {
+        setMissInfo(true);
+      } else {
+        address.setStreet(cepData[0].logradouro ?? "");
+        address.setNeighborhood(cepData[0].bairro ?? "");
+        address.setCity(cepData[0].localidade ?? "");
+        address.setUf(cepData[0].uf ?? "");
 
-      // Se frete correios
-      if (saveCepContext) address.setCep(cepData[0].cep ?? "");
+        // Se frete correios
+        if (saveCepContext) address.setCep(cepData[0].cep ?? "");
+      }
     }
-  }
-
-    // console.log(cepData);
   };
 
   // Valida 'Enter'em Buscar Cep
@@ -73,6 +74,7 @@ export default function ShippingData() {
     if (e.key === "Enter") handleCep(address.cep);
   };
   const [waitingData, setWaitingData] = useState(false);
+
   // Carrega dados do usuário e se for envio via correios, também carrega endereço
   useEffect(() => {
     if (session && session.user) {
@@ -81,7 +83,7 @@ export default function ShippingData() {
       user.setPhone(user.phone);
     }
 
-    if (!session || user.email == "") {
+    if (!session && user.email == "") {
       setWaitingData(true);
       route.push("/shop-cart");
     }
@@ -107,35 +109,41 @@ export default function ShippingData() {
         <ArrowLeft /> Retornar
       </Link>
 
-      {(session && session.user) || user.email ? (
-        <div className="px-10 max-w-screen-lg ml-auto">
-          <div className="font-serif">
-            <h2 className="text-2xl">Seus Dados</h2>
-          </div>
+      {(session && session.user) || user.email != "" ? (
+        <div className="px-10">
+          <div className="flex flex-row justify-around">
+            <div className="flex-col items-center">
+              <div className="font-serif">
+                <h2 className="text-2xl text-center">Seus Dados</h2>
+              </div>
+              <div className="mx-5">
+              {/* Dados do Usuário */}
+              <div className="py-3">
+                <p>{user.name}</p>
+                <p>{user.email}</p>
+                <p>{user.phone}</p>
+                <br />
+                <div className="flex justify-center">
+                  <Button
+                    color="secondary"
+                    variant="bordered"
+                    onPress={() => route.back()}
+                  >
+                    Editar Dados
+                  </Button>
 
-          <div className="mx-5">
-            {/* Dados do Usuário */}
-            <div className="py-3">
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              <p>{user.phone}</p>
-              <br />
-              <Button
-                color="secondary"
-                variant="bordered"
-                onPress={() => route.back()}
-              >
-                Editar Dados
-              </Button>
+                </div>
+              </div>
             </div>
           </div>
-          <br />
+            <div className="flex-col items-center">
+
           <div className="font-serif">
-            <h2 className="text-2xl">Dados de Envio</h2>
+            <h2 className="text-2xl text-center">Dados de Envio</h2>
           </div>
           <div className="mx-5">
             <div>
-              <Form method="post">
+              <Form method="post" className="max-w-[600px]">
                 <div className="flex flex-col gap-3 py-5">
                   <div className="flex flex-row gap-3">
                     <Input // CEP
@@ -316,7 +324,8 @@ export default function ShippingData() {
                   />
                 </div>
               </Form>
-              <div className="mt-5 flex justify-end">
+            </div>
+            <div className="mt-5 flex justify-center">
                 <Link
                   size="sm"
                   as="button"
@@ -330,9 +339,12 @@ export default function ShippingData() {
                   Confirmar Dados <ArrowRight />
                 </Link>
               </div>
-            </div>
           </div>
+          </div>
+          </div>
+         
         </div>
+
       ) : (
         <Spinner className="flex" />
       )}

@@ -147,9 +147,9 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
-      <div className="px-10 max-w-screen-lg ml-auto">
+      <div className="px-10 max-w-[800px] mx-auto">
         <div className="font-serif pb-5">
-          <h2 className="text-2xl">Checkout</h2>
+          <h2 className="text-2xl text-center">Checkout</h2>
         </div>
 
         <div className="mx-5">
@@ -420,7 +420,7 @@ export default function ShopCart() {
           </div>
 
           {/* Ir para Pagamento */}
-          <div className="mt-5 flex justify-end">
+          <div className="mt-5 flex justify-center">
             <Link
               size="sm"
               as="button"

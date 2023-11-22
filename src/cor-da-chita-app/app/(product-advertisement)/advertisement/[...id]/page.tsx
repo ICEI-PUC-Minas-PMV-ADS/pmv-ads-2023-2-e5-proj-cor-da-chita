@@ -68,9 +68,11 @@ export default function ProductAdvertisement() {
       </Link>
 
       {/* Item */}
-      <div className="px-10 max-w-screen-lg ml-auto">
-        <div className="flex flex-col relative overflow-hidden md:flex-row justify-between font-open">
-          <div className="bg-dark"
+      <div className="px-10 max-w-[1200px] mx-auto">
+      <div className="flex justify-around"> 
+
+        <div className="relative overflow-hidden md:flex-row font-open">
+          <div className="bg-dark flex-col "
             style={{
               height: '500px',
               width: '500px',
@@ -85,17 +87,15 @@ export default function ProductAdvertisement() {
               src={product.imageProduct}
             />
           </div>
-        <div> 
+        </div>
 
-      <div className="px-5 md:px-20 bg-light flex flex-col place-content-evenly">
-      <div className="flex-grow">
-        <p className="text-xl font-serif py-4">{product.name}</p>
+        <div className="px-5 md:px-20 bg-light flex flex-col max-w-[400px]">
+        <p className="text-xl pb-4">{product.name}</p>
         <p className="">{product.description}</p>
         <p className="">
           {product.lengthProduct}x{product.widthProduct}cm
         </p>
         <p className="py-4"><strong>R$ {product.price.toFixed(2).toString().replace(".",",")}</strong></p>
-      </div>
       <div className="py-5 flex flex-col gap-3">
         {product.stock>0?
         
@@ -129,13 +129,9 @@ export default function ProductAdvertisement() {
       </Link>
 
       </div>
+        </div>
       </div>
-
-    </div>
-
-  
-</div>
-</div>
+     </div>
 
       {/* Snack Bar */}
       <div className=" m-auto ">

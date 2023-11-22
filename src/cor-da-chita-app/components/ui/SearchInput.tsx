@@ -40,9 +40,9 @@ export default function SearchInput({ children, ...props }: any) {
         ],
       }}
       endContent={
-        <Link  onPress={handleClickSearch} color="foreground" isBlock>
-          <SearchIcon size={14}/>
-        </Link>
+        <Link  onPress={handleClickSearch} color="foreground" isBlock className="cursor-pointer">
+          <SearchIcon size={14} />
+        </Link> 
       }
       value={productName}
       onChange={(e) => setProductName(e.target.value)}

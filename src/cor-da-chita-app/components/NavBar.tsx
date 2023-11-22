@@ -128,7 +128,7 @@ export default function NavBar() {
                 </DropdownMenu>
               </Dropdown>
             ) : (
-              <Button variant="ghost" onClick={() => signIn("google")}>
+              <Button variant="ghost" color="success" onClick={() => signIn("google")}>
                 Entrar
               </Button>
             )}
