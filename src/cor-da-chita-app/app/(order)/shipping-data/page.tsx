@@ -49,7 +49,7 @@ export default function ShippingData() {
   // Controla preenchimento dos campos de endereço
   const handleCep = async (cep: string) => {
     const cepData: any[] = await Cep(cep);
-    
+
     //Se vier mensagem de error então,provalvemete o cep não existe ou foi digitado errado
     if (cepData[0].erro) {
       onOpen();
@@ -83,10 +83,10 @@ export default function ShippingData() {
       user.setPhone(user.phone);
     }
 
-    if (!session && user.email == "") {
-      setWaitingData(true);
-      route.push("/shop-cart");
-    }
+    // if (!session && user.email == "") {
+    //   setWaitingData(true);
+    //   route.push("/shop-cart");
+    // }
 
     if (saveCepContext.length !== 0) {
       // Se frete correios
