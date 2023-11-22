@@ -216,7 +216,7 @@ export default function SummaryOrder() {
       </Link>
 
       {address.cep !== "" || cartItems.length !== 0 || user.email !== "" ? (
-        <div className="px-10 max-w-screen-lg ml-auto">
+        <div className="px-10">
           <div className="font-serif pb-10">
             <h2 className="text-2xl">Resumo do Pedido</h2>
           </div>

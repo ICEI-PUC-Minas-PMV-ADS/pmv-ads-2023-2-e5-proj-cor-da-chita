@@ -110,34 +110,37 @@ export default function ShippingData() {
       </Link>
 
       {(session && session.user) || user.email != "" ? (
-        <div className="px-10 max-w-screen-lg ml-auto">
-          <div className="font-serif">
-            <h2 className="text-2xl">Seus Dados</h2>
-          </div>
-
-          <div className="mx-5">
-            {/* Dados do Usuário */}
-            <div className="py-3">
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              <p>{user.phone}</p>
-              <br />
-              <Button
-                color="secondary"
-                variant="bordered"
-                onPress={() => route.back()}
-              >
-                Editar Dados
-              </Button>
+        <div className="px-10">
+          <div className="flex flex-row justify-around">
+            <div className="flex-col items-center">
+              <div className="font-serif">
+                <h2 className="text-2xl">Seus Dados</h2>
+              </div>
+              <div className="mx-5">
+              {/* Dados do Usuário */}
+              <div className="py-3">
+                <p>{user.name}</p>
+                <p>{user.email}</p>
+                <p>{user.phone}</p>
+                <br />
+                <Button
+                  color="secondary"
+                  variant="bordered"
+                  onPress={() => route.back()}
+                >
+                  Editar Dados
+                </Button>
+              </div>
             </div>
           </div>
-          <br />
+            <div className="flex-col items-center">
+
           <div className="font-serif">
             <h2 className="text-2xl">Dados de Envio</h2>
           </div>
           <div className="mx-5">
             <div>
-              <Form method="post">
+              <Form method="post" className="max-w-[600px]">
                 <div className="flex flex-col gap-3 py-5">
                   <div className="flex flex-row gap-3">
                     <Input // CEP
@@ -334,7 +337,10 @@ export default function ShippingData() {
               </div>
             </div>
           </div>
+          </div>
+          </div>
         </div>
+
       ) : (
         <Spinner className="flex" />
       )}

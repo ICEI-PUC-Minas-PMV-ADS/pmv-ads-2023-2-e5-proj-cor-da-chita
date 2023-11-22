@@ -147,7 +147,7 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
-      <div className="px-10 max-w-screen-lg ml-auto">
+      <div className="px-10">
         <div className="font-serif pb-5">
           <h2 className="text-2xl">Checkout</h2>
         </div>

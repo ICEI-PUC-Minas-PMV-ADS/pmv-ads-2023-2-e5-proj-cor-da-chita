@@ -68,7 +68,7 @@ export default function ProductAdvertisement() {
       </Link>
 
       {/* Item */}
-      <div className="px-10 max-w-screen-lg ml-auto">
+      <div className="px-10">
         <div className="flex flex-col relative overflow-hidden md:flex-row justify-between font-open">
           <div className="bg-dark"
             style={{
