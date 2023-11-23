@@ -1,53 +1,28 @@
-// Dados de envio na finalização da compra
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import { url } from "@/app/api/backend/webApiUrl";
+import axios from "axios";
+import React, { use, useEffect, useState } from "react";
 
-import { Button, Input, Link, Spinner } from "@nextui-org/react";
-import { useSession } from "next-auth/react";
-import { MyButton } from "@/components/ui/Button";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
-
+import { useSession } from "next-auth/react";
 import {
   Table,
-  TableHeader,
-  TableColumn,
   TableBody,
-  TableRow,
   TableCell,
-  User,
-  Chip,
-  Tooltip,
-  ChipProps,
-  getKeyValue,
+  TableColumn,
+  TableHeader,
+  TableRow,
 } from "@nextui-org/react";
+import MyOrders from "../my-orders/page";
 
-import { url } from "@/app/api/backend/webApiUrl";
-import { UserContext } from "@/contexts/UserContext/UserContext";
-import { AddressContext } from "@/contexts/AddressContext/AddressContext";
-import { useRouter } from "next/navigation";
-import Cep from "@/app/api/cep/cep";
-import { CepContext } from "@/contexts/CepContext/CepContext";
-import axios from "axios";
-import { OrderContext } from "@/contexts/OrderContext/OrderContext";
-
-export default function MyOrders({ ...props }: any) {
-  const { data: session } = useSession();
+const TestOrders = () => {
   const route = useRouter();
+  const { data: session } = useSession(); // REQUIRED DEFINIR
 
-  const user = useContext(UserContext);
-  const address = useContext(AddressContext);
-  const { saveCepContext } = useContext(CepContext); // Se envio por correios
-  const [orders, setOrders] = useState(); // Database
-
-  //const { order, setOrder } = useContext(OrderContext);
+  const [orders, setOrders] = useState<any>();
   const [value, setValue] = useState<any>();
-
-  const columns = [
-    { name: "NAME", uid: "name" },
-    { name: "ROLE", uid: "role" },
-    { name: "STATUS", uid: "status" },
-    { name: "ACTIONS", uid: "actions" },
-  ];
 
   const getOrderByEmail = async () => {
     const data = await axios
@@ -58,7 +33,6 @@ export default function MyOrders({ ...props }: any) {
 
     setOrders(data);
 
-    //setOrders(data);
     console.log(data);
   };
 
@@ -67,35 +41,43 @@ export default function MyOrders({ ...props }: any) {
   }, []);
 
   useEffect(() => {
+    const arrayOrders: any = [];
+
     if (orders != undefined) {
-      console.log(orders);
+      console.log(orders[0]);
 
-      const values: any = Object.values(orders);
-      setValue(values);
-
-      //values.map((x: any) => console.log(x));
+      for (let key in orders) {
+        if (Object.prototype.hasOwnProperty.call(orders, key)) {
+          console.log(orders[key]);
+          arrayOrders.push(orders[key]);
+        }
+      }
     }
+    setValue(arrayOrders);
+
+    if (orders != undefined) console.log(orders);
+    console.log(value);
+    // setValue(orders.length);
   }, [orders]);
 
-  // Pare testes
-  useEffect(() => {
-    if (value != undefined) {
-      value.map((x: any) => console.log(x.id));
-    }
-
-    console.log(value);
-  }, [value]);
+  const columns = [
+    { name: "NAME", uid: "name" },
+    { name: "ROLE", uid: "role" },
+    { name: "STATUS", uid: "status" },
+    { name: "ACTIONS", uid: "actions" },
+  ];
 
   return (
     <>
-      <Link
+      {/* <Link
         size="sm"
         as="button"
         className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
         onClick={() => route.back()}
       >
         <ArrowLeft /> Retornar
-      </Link>
+      </Link> */}
+
       <div className="px-20">
         {/* <Table
           aria-label="Example table with custom cells"
@@ -116,33 +98,36 @@ export default function MyOrders({ ...props }: any) {
             )}
           </TableHeader>
 
-          <TableBody>{[]}</TableBody>
-         
+          <TableBody>
+            {value != undefined
+              ? value.map((item: any) => (
+                  <>
+                    <TableRow key={item.id}>
+                      <TableCell>T{item.userName}</TableCell>
+                      <TableCell>CEO</TableCell>
+                      <TableCell>Active</TableCell>
+                      <TableCell>Active</TableCell>
+                    </TableRow>
+                  </>
+                ))
+              : "Não foi"}
+          </TableBody>
         </Table> */}
-        <div>
-          {value != undefined ? (
-            value.map((item: any) => {
-              <p>AQUI:: {item.id} </p>;
-            })
-          ) : (
-            <>Necas</>
-          )}
-        </div>
+
+        {value != undefined ? (
+          value.map((item: any) => (
+            <>
+              <p>Número do Pedido: {item.id}</p>
+              <p>Cliente: {item.userName}</p>
+              <br />
+            </>
+          ))
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
-}
+};
 
-{
-  /* {orders == undefined ? (
-            <TableBody emptyContent={"Você não possui pedidos no momento"}>
-              {[]}
-            </TableBody>
-          ) : (
-          
-          +
-            <TableBody>
-              {orders.}
-            </TableBody>
-          )} */
-}
+export default TestOrders;
