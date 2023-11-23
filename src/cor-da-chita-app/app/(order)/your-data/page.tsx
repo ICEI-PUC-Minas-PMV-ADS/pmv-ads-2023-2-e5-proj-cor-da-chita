@@ -90,8 +90,8 @@ export default function UserData() {
         <div className="flex-col">
 
           <div className="px-5">
-          <h1 className="text-2xl font-serif text-center">Seus Dados</h1>
-            <Form method="post" className="max-w-[600px]">
+          <h1 className="text-2xl font-serif text-center">Dados do Cliente</h1>
+            <Form method="post" className="max-w-[1200px]">
               <div className="flex flex-col gap-3 py-5">
                 <Input // Nome Completo
                   variant="bordered"

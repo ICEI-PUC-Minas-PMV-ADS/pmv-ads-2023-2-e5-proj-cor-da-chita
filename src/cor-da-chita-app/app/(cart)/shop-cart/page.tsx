@@ -147,10 +147,12 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
-      <div className="px-10 max-w-[800px] mx-auto">
+      <div className="px-10 mx-auto">
         <div className="font-serif pb-5">
           <h2 className="text-2xl text-center">Checkout</h2>
         </div>
+        <h2 className="py-3 text-2xl font-serif">Carrinho</h2>
+
 
         <div className="mx-5">
           {/* Renderizar itens do carrinho */}
@@ -173,22 +175,24 @@ export default function ShopCart() {
               ))
             )}
           </div>
-          <Divider />
+        </div>
+
+        {/* <Divider className="mt-10" /> */}
 
           {/* Modo de envio: Título e tooltip */}
           <div className="flex flex-col my-5">
             <div className="flex items-center">
-              <h2 className="py-3">Modo de Envio</h2>
+              <h2 className="py-3 text-2xl font-serif">Envio</h2>
 
               <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
-                <div className="p-3">
+                <div className="ml-3 p-3">
                   <IconQuestionCircle />
                 </div>
               </Tooltip>
             </div>
 
             {/* Radio Group Combinar / Correios */}
-            <div className="">
+            <div className="ml-3">
               <RadioGroup defaultValue={"combinar"}>
                 <Radio
                   isDisabled={cart.length === 0}
@@ -217,62 +221,46 @@ export default function ShopCart() {
             {isCombinarFrete && (
               <>
                 {/* CEP: Título e Tooltip */}
-                <div className="flex mt-6 items-center ">
-                  <p
-                    className={`text-sm mr-2 ${
-                      !isCombinarFrete ? "text-gray-400" : ""
-                    }`}
-                  >
-                    CEP
-                  </p>
-                  <Tooltip content="Somente números">
-                    <div>
-                      <IconQuestionCircle
-                        className={`${!isCombinarFrete ? "text-gray-400" : ""}`}
-                      />
-                    </div>
-                  </Tooltip>
-
-                  {/* Input CEP */}
-                  <Input
-                    maxLength={8}
-                    variant="bordered"
-                    classNames={{
-                      innerWrapper: "bg-transparent",
-                      inputWrapper: ["shadow-none"],
-                    }}
-                    isClearable
-                    isDisabled={!isCombinarFrete}
-                    className="ml-20 place-self-end"
-                    size="sm"
-                    type="text"
-                    placeholder="Digite seu CEP"
-                    value={cep}
-                    onChange={(e) => {
-                      !/[^0-9]+/g.test(e.target.value)
-                        ? setCep(e.target.value)
-                        : "";
-                    }}
-                    onClear={() => setCep("")}
-                    onKeyDown={handleKeyDown}
-                  />
-                </div>
-
+                <div className="flex mt-6  gap-3">
+                    <div className="flex">
+                    {/* Input CEP */}
+                    <Input
+                      maxLength={8}
+                      variant="bordered"
+                      classNames={{
+                        innerWrapper: "bg-transparent",
+                        inputWrapper: ["shadow-none"],
+                      }}
+                      isClearable
+                      isDisabled={!isCombinarFrete}
+                      className="place-self-end"
+                      type="text"
+                      placeholder="Digite seu CEP"
+                      value={cep}
+                      onChange={(e) => {
+                        !/[^0-9]+/g.test(e.target.value)
+                          ? setCep(e.target.value)
+                          : "";
+                      }}
+                      onClear={() => setCep("")}
+                      onKeyDown={handleKeyDown}
+                    />
+                  </div>
+                  <div className="place-self-end">
+                    <Button
+                      color="success"
+                      variant="ghost"
+                      isDisabled={!isCombinarFrete || cep.length != 8}
+                      onClick={handleCep}
+                    >
+                      {loading ? <SpinnerForButton /> : "Calcular"}
+                    </Button>
+                  </div>
+              </div>
                 {/* Botão Calcular Frete */}
-                <div className="mt-4 place-self-end">
-                  <Button
-                    color="success"
-                    variant="ghost"
-                    isDisabled={!isCombinarFrete || cep.length != 8}
-                    onClick={handleCep}
-                  >
-                    {loading ? <SpinnerForButton /> : "Calcular"}
-                  </Button>
-                </div>
               </>
             )}
 
-            <Divider className="mt-5" />
 
             {/* PAC / SEDEX */}
             {isCombinarFrete && (
@@ -433,7 +421,6 @@ export default function ShopCart() {
               Ir para Pagamento <ArrowRight />
             </Link>
           </div>
-        </div>
       </div>
 
       {/* Modal CEP errado e Erro conexão */}
