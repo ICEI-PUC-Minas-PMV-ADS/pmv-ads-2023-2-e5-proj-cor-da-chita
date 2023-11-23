@@ -425,15 +425,15 @@ export default function SummaryOrder() {
             </div>
           </div>
           {/* Pagamento */}
-          <Divider className="mb-20"/>
+          {/* <Divider className="mb-20"/> */}
         <div className="py-3 pb-10">
-          <h2 className="text-2xl">Forma de Pagamento</h2>
+          <h2 className="text-2xl font-serif">Forma de Pagamento</h2>
         </div>
           <div className="flex justify-between items-center">
         <div>
 
 
-        <RadioGroup defaultValue="pix">
+        <RadioGroup defaultValue="pix" className="ml-3">
           <Radio value="pix" onClick={() => {setSelectedOption("pix")}}>Pix</Radio>
           <Radio value="creditCard" onClick={() => {setSelectedOption("creditCard")}}>Cartão de Crédito</Radio>
         </RadioGroup>

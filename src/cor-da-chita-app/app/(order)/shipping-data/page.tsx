@@ -119,7 +119,7 @@ export default function ShippingData() {
               </div>
               <div className="mx-5">
               {/* Dados do Usuário */}
-              <div className="py-3">
+              <div className="py-3 pl-3">
                 <p>{user.name}</p>
                 <p>{user.email}</p>
                 <p>{user.phone}</p>
