@@ -57,15 +57,17 @@ namespace cor_da_chita_api.Controllers
             try
             {
 
-                
+
 
                 //
 
                 //
 
-/*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";
-*/
-                string url = $"{urlCalculoFrete}/33010515/02177060/1000/20/20/20/be7e55ad68f03c01a7862f72edc6fa09f2eb4fe5";
+                /*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";3
+                */
+
+                //4ec871f7e9cc8bb1e6a9c883de86a1f228d95a05
+                string url = $"{urlCalculoFrete}/33010515/02177060/1000/20/20/20/4ec871f7e9cc8bb1e6a9c883de86a1f228d95a05";
 
 
             var a = await _httpClient.GetStringAsync(url);
