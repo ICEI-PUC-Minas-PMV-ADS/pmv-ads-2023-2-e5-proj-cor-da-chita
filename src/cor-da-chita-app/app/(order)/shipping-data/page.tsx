@@ -7,6 +7,7 @@ import {
   Input,
   Link,
   Spinner,
+  Divider,
   useDisclosure,
   Modal,
   ModalContent,
@@ -114,7 +115,7 @@ export default function ShippingData() {
           <div className="flex flex-row justify-around">
             <div className="flex-col items-center">
               <div className="font-serif">
-                <h2 className="text-2xl text-center">Seus Dados</h2>
+                <h2 className="text-2xl text-center">Dados do Cliente</h2>
               </div>
               <div className="mx-5">
               {/* Dados do Usuário */}
@@ -123,7 +124,7 @@ export default function ShippingData() {
                 <p>{user.email}</p>
                 <p>{user.phone}</p>
                 <br />
-                <div className="flex justify-center">
+                <div className="flex">
                   <Button
                     color="secondary"
                     variant="bordered"
@@ -136,7 +137,8 @@ export default function ShippingData() {
               </div>
             </div>
           </div>
-            <div className="flex-col items-center">
+          <Divider orientation="vertical" />
+          <div className="flex-col items-center">
 
           <div className="font-serif">
             <h2 className="text-2xl text-center">Dados de Envio</h2>

@@ -17,6 +17,7 @@ import {
 } from "@nextui-org/react";
 import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
+import {RadioGroup, Radio} from "@nextui-org/react";
 
 import postOrder from "@/database/order/postOrder";
 
@@ -41,6 +42,8 @@ export default function SummaryOrder() {
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
   const { setPixId } = useContext(PixContext);
+  const [selectedOption, setSelectedOption] = useState('');
+  
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
   const handleRedirectWhatsApp = () => {
@@ -207,6 +210,7 @@ export default function SummaryOrder() {
     route.push("/shop-cart");
   }
 
+  
   // Limpando path cartFlow
   useEffect(() => {
     setCartFlow("");
@@ -215,7 +219,9 @@ export default function SummaryOrder() {
     if (address.cep === "" || cartItems.length === 0 || user.email === "") {
       route.push("/shop-cart");
     }
-  }, []);
+  },
+  
+  []);
 
   return (
     <>
@@ -229,10 +235,13 @@ export default function SummaryOrder() {
       </Link>
 
       {address.cep !== "" || cartItems.length !== 0 || user.email !== "" ? (
-        <div className="px-10 max-w-[800px] mx-auto">
+        <div className="px-10 max-w-[1200px] mx-auto">
           <div className="font-serif pb-10">
             <h2 className="text-2xl text-center">Resumo do Pedido</h2>
           </div>
+          <div className="font-serif py-3">
+                <h2 className="text-2xl">Pedido</h2>
+              </div>
           {/* Items do pedido */}
           <div className="mx-5">
             <div className="pb-5">
@@ -346,7 +355,7 @@ export default function SummaryOrder() {
                   )}
                 </div>
 
-                <div className="my-3 flex justify-center">
+                <div className="my-3 flex">
                   <Button
                     color="secondary"
                     variant="ghost"
@@ -359,11 +368,11 @@ export default function SummaryOrder() {
             </div>
           </div>
 
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-col">
             {/* Dados de Envio */}
-            <div className="my-10 flex flex-col place-content-evenly gap-5">
-              <div className="font-serif py-3 pb-10">
-                <h2 className="text-2xl text-center">Dados de Envio</h2>
+            <div className="my-10 flex flex-col gap-5">
+              <div className="font-serif py-3">
+                <h2 className="text-2xl">Dados de Envio</h2>
               </div>
 
               <div className="mx-5">
@@ -377,7 +386,7 @@ export default function SummaryOrder() {
                   {address.city} - {address.uf}
                 </p>
 
-                <div className="flex justify-center p-10">
+                <div className="flex pt-10">
                   <Button
                     color="secondary"
                     variant="ghost"
@@ -390,9 +399,9 @@ export default function SummaryOrder() {
             </div>
 
             {/* Dados do Cliente */}
-            <div className="my-10 flex flex-col place-content-evenly gap-5">
-              <div className="font-serif py-3 pb-10">
-                <h2 className="text-2xl text-center">Seus Dados</h2>
+            <div className="my-10 flex flex-col gap-5">
+              <div className="font-serif py-3">
+                <h2 className="text-2xl">Dados do Cliente</h2>
               </div>
 
               <div className="mx-5">
@@ -403,7 +412,7 @@ export default function SummaryOrder() {
                   <p>{user.email}</p>
                 </div>
 
-                <div className="flex justify-center p-10">
+                <div className="flex py-10">
                   <Button
                     color="secondary"
                     variant="ghost"
@@ -416,25 +425,43 @@ export default function SummaryOrder() {
             </div>
           </div>
           {/* Pagamento */}
-          <div className="flex flex-col gap-3 my-5 items-center">
-            <MyButton
-              color="green"
-              variant="flat"
-              onClick={handleOrder}
-              className="w-[400px]"
-            >
-              {loading ? <SpinnerForButton /> : "Pagar com PIX"}
-            </MyButton>
+          <Divider className="mb-20"/>
+        <div className="py-3 pb-10">
+          <h2 className="text-2xl">Forma de Pagamento</h2>
+        </div>
+          <div className="flex justify-between items-center">
+        <div>
 
-            <MyButton
-              color="green"
-              variant="flat"
-              className="w-[400px]"
-              onClick={() => handleRedirectWhatsApp()}
-            >
-              Pagar com Cartão de Crédito
-            </MyButton>
-          </div>
+
+        <RadioGroup defaultValue="pix">
+          <Radio value="pix" onClick={() => {setSelectedOption("pix")}}>Pix</Radio>
+          <Radio value="creditCard" onClick={() => {setSelectedOption("creditCard")}}>Cartão de Crédito</Radio>
+        </RadioGroup>
+        </div>
+
+        <div className="">
+        {selectedOption === 'pix' && (
+        <MyButton
+          color="green"
+          className="p-10 hover:opacity-80"
+          onClick={handleOrder}
+        >
+          {loading ? <SpinnerForButton /> : "Prosseguir com PIX"}
+        </MyButton>
+      )}
+
+      {selectedOption === 'creditCard' && (
+        <MyButton
+          color="green"
+          variant="flat"
+          className="p-10 hover:opacity-80"
+          onClick={handleRedirectWhatsApp}
+        >
+          Prosseguir com Cartão de Crédito
+        </MyButton>
+      )}
+        </div>
+    </div>
         </div>
       ) : (
         <Spinner className="flex" />
