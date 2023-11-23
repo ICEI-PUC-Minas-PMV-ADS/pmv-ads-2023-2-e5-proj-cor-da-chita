@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 import { useSession } from "next-auth/react";
 import {
+  Accordion,
+  AccordionItem,
+  Spinner,
   Table,
   TableBody,
   TableCell,
@@ -49,22 +52,26 @@ const TestOrders = () => {
       for (let key in orders) {
         if (Object.prototype.hasOwnProperty.call(orders, key)) {
           console.log(orders[key]);
+          console.log(orders[key].items);
           arrayOrders.push(orders[key]);
         }
       }
     }
     setValue(arrayOrders);
 
-    if (orders != undefined) console.log(orders);
+    //if (orders != undefined) console.log(orders);
+
     console.log(value);
-    // setValue(orders.length);
+
+    if (value != undefined)
+      value.map((x: any) => console.log(x.items.productName));
+    // console.log(value.items);
   }, [orders]);
 
   const columns = [
-    { name: "NAME", uid: "name" },
-    { name: "ROLE", uid: "role" },
-    { name: "STATUS", uid: "status" },
-    { name: "ACTIONS", uid: "actions" },
+    { name: "Número Pedido", uid: "numpedido" },
+    { name: "Nome", uid: "name" },
+    { name: "Cidade", uid: "status" },
   ];
 
   return (
@@ -73,13 +80,13 @@ const TestOrders = () => {
         size="sm"
         as="button"
         className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
-        onClick={() => route.back()}
+        // onClick={() => route.back()}
       >
         <ArrowLeft /> Retornar
       </Link> */}
 
       <div className="px-20">
-        {/* <Table
+        <Table
           aria-label="Example table with custom cells"
           removeWrapper
           shadow="none"
@@ -99,32 +106,45 @@ const TestOrders = () => {
           </TableHeader>
 
           <TableBody>
-            {value != undefined
-              ? value.map((item: any) => (
-                  <>
-                    <TableRow key={item.id}>
-                      <TableCell>T{item.userName}</TableCell>
-                      <TableCell>CEO</TableCell>
-                      <TableCell>Active</TableCell>
-                      <TableCell>Active</TableCell>
-                    </TableRow>
-                  </>
-                ))
-              : "Não foi"}
+            {value != undefined ? (
+              value.map((item: any) => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.id}</TableCell>
+                  <TableCell>
+                    <Accordion>
+                      <AccordionItem
+                        key="1"
+                        aria-label="Produtos"
+                        title="Produtos"
+                      >
+                        items aqui
+                      </AccordionItem>
+                    </Accordion>
+                  </TableCell>
+                  <TableCell>{item.userName}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell>
+                  <Spinner size="sm" />
+                </TableCell>
+                <TableCell>
+                  <Spinner size="sm" />
+                </TableCell>
+                <TableCell>
+                  <Spinner size="sm" />
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
-        </Table> */}
+        </Table>
 
-        {value != undefined ? (
-          value.map((item: any) => (
-            <>
-              <p>Número do Pedido: {item.id}</p>
-              <p>Cliente: {item.userName}</p>
-              <br />
-            </>
-          ))
-        ) : (
-          <></>
-        )}
+        <Accordion>
+          <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
+            Opa
+          </AccordionItem>
+        </Accordion>
       </div>
     </>
   );
