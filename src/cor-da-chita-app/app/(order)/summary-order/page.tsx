@@ -42,7 +42,7 @@ export default function SummaryOrder() {
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
   const { setPixId } = useContext(PixContext);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('pix');
   
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
