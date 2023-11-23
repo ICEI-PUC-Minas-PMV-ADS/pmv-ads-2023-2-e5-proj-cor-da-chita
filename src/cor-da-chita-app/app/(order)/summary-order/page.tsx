@@ -29,6 +29,7 @@ import { CartContext } from "@/contexts/CartContext/CartContext";
 import { PixContext } from "@/contexts/PixContext/PixContext";
 import SpinnerForButton from "@/components/SpinnerButton";
 
+
 export default function SummaryOrder() {
   const route = useRouter();
   const path = usePathname();
@@ -38,7 +39,7 @@ export default function SummaryOrder() {
   const address = useContext(AddressContext);
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
-  const { cartItems, sumCartItems, copyCartItems } =
+  const { cartItems, sumCartItems, copyCartItems,setCartItems } =
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
   const { setPixId } = useContext(PixContext);
@@ -178,20 +179,25 @@ export default function SummaryOrder() {
 
     setLoading(true);
 
-    try {
+    
       const orderCreated = await postOrder(order);
+      console.log(orderCreated)
       //Se criou Pagamento então seta na variavel de context o id do pix para pegar posterirmente o codigo do pix e gerar o qrcode na tela
       if (orderCreated) {
         setPixId(orderCreated.orderPixId);
-        onOpen();
         setLoading(false);
         //Caso o pedido tenha sido criado,então limpara o carrinho
         localStorage.clear();
+        setCartItems([])
         route.push("/qrcode-payment");
       }
-    } catch (e) {
-      setTextModal("Erro ao criar pagamento,tente novamente mais tarde");
-    }
+      else{
+        setLoading(false)
+        onOpen();
+        setTextModal("Erro ao criar pagamento,tente novamente mais tarde");
+      }
+    
+    
   }
 
   // Lidar com rotas dos botões de edição
