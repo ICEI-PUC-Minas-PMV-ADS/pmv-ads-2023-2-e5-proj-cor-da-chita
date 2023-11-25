@@ -17,7 +17,7 @@ import {
 } from "@nextui-org/react";
 import { MyButton } from "@/components/ui/Button";
 import { usePathname, useRouter } from "next/navigation";
-import {RadioGroup, Radio} from "@nextui-org/react";
+import { RadioGroup, Radio } from "@nextui-org/react";
 
 import postOrder from "@/database/order/postOrder";
 
@@ -29,7 +29,6 @@ import { CartContext } from "@/contexts/CartContext/CartContext";
 import { PixContext } from "@/contexts/PixContext/PixContext";
 import SpinnerForButton from "@/components/SpinnerButton";
 
-
 export default function SummaryOrder() {
   const route = useRouter();
   const path = usePathname();
@@ -39,12 +38,12 @@ export default function SummaryOrder() {
   const address = useContext(AddressContext);
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
-  const { cartItems, sumCartItems, copyCartItems,setCartItems } =
+  const { cartItems, sumCartItems, copyCartItems, setCartItems } =
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
   const { setPixId } = useContext(PixContext);
-  const [selectedOption, setSelectedOption] = useState('pix');
-  
+  const [selectedOption, setSelectedOption] = useState("pix");
+
   const { freteInContext, isPac, isCombinarFrete } = useContext(FreteContext);
 
   const handleRedirectWhatsApp = () => {
@@ -179,25 +178,21 @@ export default function SummaryOrder() {
 
     setLoading(true);
 
-    
-      const orderCreated = await postOrder(order);
-      console.log(orderCreated)
-      //Se criou Pagamento então seta na variavel de context o id do pix para pegar posterirmente o codigo do pix e gerar o qrcode na tela
-      if (orderCreated) {
-        setPixId(orderCreated.orderPixId);
-        setLoading(false);
-        //Caso o pedido tenha sido criado,então limpara o carrinho
-        localStorage.clear();
-        setCartItems([])
-        route.push("/qrcode-payment");
-      }
-      else{
-        setLoading(false)
-        onOpen();
-        setTextModal("Erro ao criar pagamento,tente novamente mais tarde");
-      }
-    
-    
+    const orderCreated = await postOrder(order);
+    console.log(orderCreated);
+    //Se criou Pagamento então seta na variavel de context o id do pix para pegar posterirmente o codigo do pix e gerar o qrcode na tela
+    if (orderCreated) {
+      setPixId(orderCreated.orderPixId);
+      setLoading(false);
+      //Caso o pedido tenha sido criado,então limpara o carrinho
+      localStorage.clear();
+      setCartItems([]);
+      route.push("/qrcode-payment");
+    } else {
+      setLoading(false);
+      onOpen();
+      setTextModal("Erro ao criar pagamento,tente novamente mais tarde");
+    }
   }
 
   // Lidar com rotas dos botões de edição
@@ -216,7 +211,6 @@ export default function SummaryOrder() {
     route.push("/shop-cart");
   }
 
-  
   // Limpando path cartFlow
   useEffect(() => {
     setCartFlow("");
@@ -225,9 +219,7 @@ export default function SummaryOrder() {
     if (address.cep === "" || cartItems.length === 0 || user.email === "") {
       route.push("/shop-cart");
     }
-  },
-  
-  []);
+  }, []);
 
   return (
     <>
@@ -246,8 +238,8 @@ export default function SummaryOrder() {
             <h2 className="text-2xl text-center">Resumo do Pedido</h2>
           </div>
           <div className="font-serif py-3">
-                <h2 className="text-2xl">Pedido</h2>
-              </div>
+            <h2 className="text-2xl">Pedido</h2>
+          </div>
           {/* Items do pedido */}
           <div className="mx-5">
             <div className="pb-5">
@@ -432,42 +424,55 @@ export default function SummaryOrder() {
           </div>
           {/* Pagamento */}
           {/* <Divider className="mb-20"/> */}
-        <div className="py-3 pb-10">
-          <h2 className="text-2xl font-serif">Forma de Pagamento</h2>
-        </div>
+          <div className="py-3 pb-10">
+            <h2 className="text-2xl font-serif">Forma de Pagamento</h2>
+          </div>
           <div className="flex justify-between items-center">
-        <div>
+            <div>
+              <RadioGroup defaultValue="pix" className="ml-3">
+                <Radio
+                  value="pix"
+                  onClick={() => {
+                    setSelectedOption("pix");
+                  }}
+                >
+                  Pix
+                </Radio>
+                <Radio
+                  value="creditCard"
+                  onClick={() => {
+                    setSelectedOption("creditCard");
+                  }}
+                >
+                  Cartão de Crédito
+                </Radio>
+              </RadioGroup>
+            </div>
+           
+            <div className="">
+              {selectedOption === "pix" && (
+                <MyButton
+                  color="green"
+                  className="p-10 hover:opacity-80"
+                  onClick={handleOrder}
+                >
+                  {loading ? <SpinnerForButton /> : "Prosseguir com PIX"}
+                </MyButton>
+              )}
 
-
-        <RadioGroup defaultValue="pix" className="ml-3">
-          <Radio value="pix" onClick={() => {setSelectedOption("pix")}}>Pix</Radio>
-          <Radio value="creditCard" onClick={() => {setSelectedOption("creditCard")}}>Cartão de Crédito</Radio>
-        </RadioGroup>
-        </div>
-
-        <div className="">
-        {selectedOption === 'pix' && (
-        <MyButton
-          color="green"
-          className="p-10 hover:opacity-80"
-          onClick={handleOrder}
-        >
-          {loading ? <SpinnerForButton /> : "Prosseguir com PIX"}
-        </MyButton>
-      )}
-
-      {selectedOption === 'creditCard' && (
-        <MyButton
-          color="green"
-          variant="flat"
-          className="p-10 hover:opacity-80"
-          onClick={handleRedirectWhatsApp}
-        >
-          Prosseguir com Cartão de Crédito
-        </MyButton>
-      )}
-        </div>
-    </div>
+              {selectedOption === "creditCard" && (
+                <MyButton
+                  color="green"
+                  variant="flat"
+                  className="p-10 hover:opacity-80"
+                  onClick={handleRedirectWhatsApp}
+                >
+                  Prosseguir com Cartão de Crédito
+                </MyButton>
+              )}
+            </div>
+          </div>
+          <button onClick={postOrder} className="bg-red-200">postar</button>
         </div>
       ) : (
         <Spinner className="flex" />
