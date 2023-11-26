@@ -191,7 +191,7 @@ export default function SummaryOrder() {
     } else {
       setLoading(false);
       onOpen();
-      setTextModal("Erro ao criar pagamento,tente novamente mais tarde");
+      setTextModal("Erro ao criar pagamento, tente novamente mais tarde");
     }
   }
 
@@ -444,7 +444,7 @@ export default function SummaryOrder() {
                     setSelectedOption("creditCard");
                   }}
                 >
-                  Cartão de Crédito
+                  Cartão de Crédito (via Whatsapp)
                 </Radio>
               </RadioGroup>
             </div>
@@ -485,7 +485,7 @@ export default function SummaryOrder() {
                 <p>{textModal}</p>
               </ModalBody>
               <ModalFooter>
-                <Button color="primary" onPress={onClose}>
+                <Button onPress={onClose}>
                   Voltar
                 </Button>
               </ModalFooter>

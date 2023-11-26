@@ -191,9 +191,10 @@ export default function CardCart({ ...props }: any) {
                     </p>
                   </ModalBody>
                   <ModalFooter>
+                    <div  className="flex justify-center gap-5">
                     <Button
                       color="danger"
-                      variant="light"
+                      variant="ghost"
                       onPress={() => {
                         {
                           handleRemoveItemCart(item[0]._id, item[0].nome),
@@ -203,9 +204,10 @@ export default function CardCart({ ...props }: any) {
                     >
                       Sim
                     </Button>
-                    <Button color="success" variant="light" onPress={onClose}>
+                    <Button color="success" variant="ghost" onPress={onClose}>
                       Não
                     </Button>
+                    </div>
                   </ModalFooter>
                 </>
               )}
