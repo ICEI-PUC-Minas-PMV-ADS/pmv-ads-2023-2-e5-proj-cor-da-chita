@@ -15,9 +15,8 @@ const TotalCartItems = () => {
 
   return (
     <Button
+      className="bg-gradient-to-tr from-emerald-300 to-lime-200 text-white shadow-md"
       isIconOnly
-      variant="ghost"
-      color="success"
       onClick={() => route.push("/shop-cart")}
     >
       <div className="flex items-center relative pl-1">

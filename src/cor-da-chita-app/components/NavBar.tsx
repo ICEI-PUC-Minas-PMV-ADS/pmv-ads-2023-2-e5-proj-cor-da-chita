@@ -45,7 +45,7 @@ export default function NavBar() {
       shouldHideOnScroll
       maxWidth="full"
       isBordered
-      className="bg-light flex justify-between"
+      className="bg-light flex shadow-sm justify-between"
     >
       <div className="flex items-center">
         <NavbarBrand onClick={handleClick} className="bg-light ">
@@ -65,7 +65,7 @@ export default function NavBar() {
                 <DropdownTrigger>
                   <Avatar
                     as="button"
-                    className="transition-transform"
+                    className="transition-transform shadow-md"
                     name={session.user.name ?? ""}
                     src={session.user.image ?? ""}
                   />
