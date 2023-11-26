@@ -16,6 +16,7 @@ using cor_da_chita_api.Controllers.Requests;
 using MongoDB.Driver;
 using System.Net;
 using System.Xml;
+using MongoDB.Bson;
 
 namespace cor_da_chita_api.Controllers
 {
@@ -108,6 +109,12 @@ namespace cor_da_chita_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, validatioResult.ToValidationErrorReponse());
                 }
 
+
+                var numberOrders = await _ordersService.GetAllAsync();
+
+                
+                newOrder.OrderNumber = numberOrders.Count + 1;
+
                 var paymentCreated = await _paymentService.CreatePixPayment(newOrder);
 
                 newOrder.OrderPixId = paymentCreated.Id;
@@ -117,7 +124,6 @@ namespace cor_da_chita_api.Controllers
 
 
 
-                var a = 20;
 
 
 
@@ -215,6 +221,8 @@ namespace cor_da_chita_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, validationResult.ToValidationErrorReponse());
                 }
 
+     
+
                 await _ordersService.RemoveAsync(id);
 
                 return Ok();
@@ -231,5 +239,10 @@ namespace cor_da_chita_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.ToErrorReponse());
             }
         }
+        
+
+
+
+
     }
 }

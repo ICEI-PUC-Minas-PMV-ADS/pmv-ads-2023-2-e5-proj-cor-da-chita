@@ -47,15 +47,16 @@ namespace cor_da_chita_api.Service
         {
             var orderDto = new OrderDto
             {
+                OrderNumber = newOrder.OrderNumber,
                 Freight = newOrder.Freight,
                 Items = newOrder.Items,
                 OrderDate = newOrder.OrderDate,
                 Neighborhood = newOrder.Neighborhood,
-                Num=newOrder.Num,
-                City=newOrder.City,
-                UF=newOrder.UF,
-                CEP=newOrder.CEP,
-                Complement=newOrder.Complement,
+                Num = newOrder.Num,
+                City = newOrder.City,
+                UF = newOrder.UF,
+                CEP = newOrder.CEP,
+                Complement = newOrder.Complement,
                 OrderPixId = newOrder.OrderPixId,
                 PhoneNumber = newOrder.PhoneNumber,
                 Street = newOrder.Street,
@@ -87,5 +88,6 @@ namespace cor_da_chita_api.Service
         {
             await _orderRepository.RemoveAsync(id);
         }
+      
     }
 }

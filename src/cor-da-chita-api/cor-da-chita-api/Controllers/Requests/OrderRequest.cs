@@ -5,6 +5,8 @@ namespace cor_da_chita_api.Controllers.Requests
     public class OrderRequest
     {
         public List<Items> Items { get; set; }
+
+        public int OrderNumber { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string Street { get; set; }

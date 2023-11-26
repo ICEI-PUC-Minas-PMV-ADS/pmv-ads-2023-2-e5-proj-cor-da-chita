@@ -46,7 +46,6 @@ namespace cor_da_chita_api.Service
                 var client = new PaymentClient();
                 //Realiza a criação do pagamento retornando as informações como status do pagamento,id e mais importante O código do QRcode
                 Payment payment = await client.CreateAsync(request);
-                var a = 20;
                 return payment;
 
             

@@ -126,7 +126,7 @@ const MyOrders = () => {
                 {value != undefined ? (
                   value.map((item: any) => (
                     <TableRow key={item.id}>
-                      <TableCell>{item.id}</TableCell>
+                      <TableCell>Nº {item.orderNumber}</TableCell>
                       <TableCell>{formatedDate(item.orderDate)}</TableCell>
                       <TableCell>
                         <Accordion>

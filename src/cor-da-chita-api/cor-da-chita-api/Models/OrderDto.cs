@@ -8,6 +8,8 @@ namespace cor_da_chita_api.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
+        public int? OrderNumber { get; set; }
+
         public List<Items>? Items { get; set; }
         public string? UserName { get; set; }
         public string? UserEmail { get; set; }
