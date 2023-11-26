@@ -164,6 +164,7 @@ export default function ShopCart() {
                   variant="ghost"
                   size="lg"
                   color="success"
+                  className="shadow-sm hover:text-light hover:opacity-80"
                   onClick={() => route.push("/all-products")}
                 >
                   Ver todos os produtos
@@ -250,6 +251,7 @@ export default function ShopCart() {
                     <Button
                       color="success"
                       variant="ghost"
+                      className="shadow-sm hover:text-light hover:opacity-80"
                       isDisabled={!isCombinarFrete || cep.length != 8}
                       onClick={handleCep}
                     >

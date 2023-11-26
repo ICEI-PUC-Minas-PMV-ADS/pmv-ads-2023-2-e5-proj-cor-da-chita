@@ -29,14 +29,13 @@ export default function SearchInput({ children, ...props }: any) {
 
   return (
     <Input
-      color="default"
       placeholder="Busca"
       variant="bordered"
       labelPlacement="inside"
       classNames={{
         innerWrapper: "bg-transparent",
         inputWrapper: [
-          "shadow-none",
+          "shadow-sm",
         ],
       }}
       endContent={

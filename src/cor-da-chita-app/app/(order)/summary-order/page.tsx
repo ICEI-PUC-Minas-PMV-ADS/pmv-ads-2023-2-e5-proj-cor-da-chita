@@ -357,6 +357,7 @@ export default function SummaryOrder() {
                   <Button
                     color="secondary"
                     variant="ghost"
+                            className="shadow-sm hover:opacity-80"
                     onPress={handleRouteEditCartData}
                   >
                     Editar Carrinho
@@ -388,6 +389,7 @@ export default function SummaryOrder() {
                   <Button
                     color="secondary"
                     variant="ghost"
+                            className="shadow-sm hover:opacity-80"
                     onClick={handleRouteEditAddressData}
                   >
                     Editar Endereço
@@ -414,6 +416,7 @@ export default function SummaryOrder() {
                   <Button
                     color="secondary"
                     variant="ghost"
+                    className="shadow-sm hover:opacity-80"
                     onClick={handleRouteEditUserData}
                   >
                     Editar Dados
@@ -463,7 +466,7 @@ export default function SummaryOrder() {
               {selectedOption === "creditCard" && (
                 <MyButton
                   color="green"
-                  variant="flat"
+                  variant="ghost"
                   className="p-10 hover:opacity-80"
                   onClick={handleRedirectWhatsApp}
                 >
@@ -472,7 +475,6 @@ export default function SummaryOrder() {
               )}
             </div>
           </div>
-          <button onClick={postOrder} className="bg-red-200">postar</button>
         </div>
       ) : (
         <Spinner className="flex" />

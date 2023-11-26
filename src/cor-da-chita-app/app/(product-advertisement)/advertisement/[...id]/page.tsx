@@ -102,6 +102,7 @@ export default function ProductAdvertisement() {
         <MyButton
         color="green"
         size="sm"
+        className="shadow-md"
         onClick={() =>
           handleStorageProductCart(
             product.id,

@@ -132,8 +132,8 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                       </div>
                     )}
             </div>
-              <CardFooter className="">
-                <div className={product.estoque>0?"flex justify-between w-full":"flex justify-between w-full flex-col"}>
+              <CardFooter className="px-0">
+                <div className={product.estoque>0?"flex justify-between w-full":"flex justify-between w-full flex-col p-0"}>
                   <div>
                     <p className=" w-full">{product.nome}</p>
                     <p className="font-semibold">R$ {product.preco.toFixed(2).toString().replace('.',',')}</p>
@@ -150,7 +150,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                     )
                   }
                 >
-                  <div className="bg-green p-3">
+                  <div className="bg-green shadow-md p-3">
                     <CartPlusIcon fill="white" />
                   </div>
                 </Link>

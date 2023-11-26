@@ -15,7 +15,7 @@ const TotalCartItems = () => {
 
   return (
     <Button
-      className="bg-gradient-to-tr from-emerald-300 to-lime-200 text-white shadow-md"
+      className="bg-gradient-to-tr from-emerald-300 to-fuchsia-200 text-white shadow-sm hover:opacity-80"
       isIconOnly
       onClick={() => route.push("/shop-cart")}
     >

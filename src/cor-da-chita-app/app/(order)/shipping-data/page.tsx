@@ -128,6 +128,7 @@ export default function ShippingData() {
                   <Button
                     color="secondary"
                     variant="ghost"
+                    className="shadow-sm hover:opacity-80"
                     onPress={() => route.back()}
                   >
                     Editar Dados
@@ -177,10 +178,11 @@ export default function ShippingData() {
                       isDisabled={address.cep.length < 8}
                       color="success"
                       variant="ghost"
-                      size="lg"
+                      className="shadow-sm hover:opacity-80"
+                      size="lg" 
                       onClick={() => handleCep(address.cep)}
                     >
-                      Buscar CEP
+                      Buscar
                     </Button>
                   </div>
 

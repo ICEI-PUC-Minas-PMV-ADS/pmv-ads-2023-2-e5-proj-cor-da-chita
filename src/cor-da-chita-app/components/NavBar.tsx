@@ -61,7 +61,7 @@ export default function NavBar() {
           </NavbarItem>
           <NavbarItem>
             {session && session.user ? (
-              <Dropdown className="p-0 rounded-md shadow-none">
+              <Dropdown className="p-0 rounded-md shadow-md">
                 <DropdownTrigger>
                   <Avatar
                     as="button"
@@ -128,7 +128,7 @@ export default function NavBar() {
                 </DropdownMenu>
               </Dropdown>
             ) : (
-              <Button variant="ghost" color="success" onClick={() => signIn("google")}>
+              <Button className="border bg-gradient-to-trfrom-emerald-300 to-fuchsia-200 hover:opacity-80 focus:opacity-80 text-green shadow-sm" onClick={() => signIn("google")}>
                 Entrar
               </Button>
             )}
