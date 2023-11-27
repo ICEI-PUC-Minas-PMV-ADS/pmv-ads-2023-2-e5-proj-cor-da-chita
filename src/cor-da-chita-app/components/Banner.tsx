@@ -3,6 +3,8 @@ import { Image } from "@nextui-org/react";
 import { MyButton } from "./ui/Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
 
 const images = [
   "Chita (1).png",   "Chita (2).png", "Chita (3).png", 
@@ -21,25 +23,21 @@ export default function Banner() {
   };
 
   return (
-    <div className="relative h-screen bg-dark flex">
+  <div className="relative h-screen bg-dark flex">
    <div className="flex-1/2 relative overflow-hidden">
-  <div className="relative">
-    <Image
-      src={`/Chita/${images[currentImageIndex]}`}
-      alt="Cor da Chita"
-      style={{ maxWidth: "100%", height: "100%", objectFit: "cover" }}
-      className="responsive-image"
-    />
-    <div className="absolute inset-0 flex items-center justify-between">
-  <div className="arrow left text-2xl text-white cursor-pointer z-20" onClick={prevImage}>
-    {"<"}
-  </div>
-  <div className="arrow right text-2xl text-white cursor-pointer z-20" onClick={nextImage}>
-    {">"}
-  </div>
-</div>
-
-  </div>
+        <Image
+          src={`/Chita/${images[currentImageIndex]}`}
+          alt="Cor da Chita"
+          style={{ objectFit: "cover" }}
+        />
+    <div className="absolute inset-0 flex flex-row items-center justify-between">
+      <div className="flex-col text-2xl text-white cursor-pointer z-20 p-10 bg-dark  hover:scale-125" onClick={prevImage}>
+        <ArrowLeft className="hover:scale-125" />
+      </div>
+      <div className="flex-col text-2xl text-white cursor-pointer z-20 p-10 bg-dark " onClick={nextImage}>
+      <ArrowRight className="hover:scale-125" />
+      </div>
+    </div>
 </div>
 
       <div className="flex flex-col items-center justify-center text-center z-10 p-20">
