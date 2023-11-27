@@ -84,9 +84,9 @@ export default function AllProducts() {
             <ArrowLeft /> Retornar
           </Link>
           <div className="flex gap-3 my-5">
-            <h2 className="text-2xl underline underline-offset-8 decoration-wavy">
+            <h1 className="text-2xl underline underline-offset-8 decoration-wavy">
               {h2Text}
-            </h2>
+            </h1>
             <h2>({totalProducts})</h2>
           </div>
         </div>

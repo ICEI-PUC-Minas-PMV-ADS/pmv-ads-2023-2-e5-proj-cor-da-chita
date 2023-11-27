@@ -111,7 +111,7 @@ export default function ShippingData() {
       </Link>
 
       <div className=" pb-5">
-          <h2 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h2>
+          <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h1>
         </div>
 
       {(session && session.user) || user.email != "" ? (

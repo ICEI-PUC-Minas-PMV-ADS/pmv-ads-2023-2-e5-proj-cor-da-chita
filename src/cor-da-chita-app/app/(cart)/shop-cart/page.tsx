@@ -149,7 +149,7 @@ export default function ShopCart() {
 
       <div className="px-10 mx-auto">
         <div className=" pb-5">
-          <h2 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h2>
+          <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h1>
         </div>
         <h2 className="py-3 text-2xl ">Carrinho</h2>
 

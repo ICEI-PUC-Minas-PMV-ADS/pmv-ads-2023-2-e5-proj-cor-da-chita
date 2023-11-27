@@ -10,7 +10,7 @@ export default function LinkInstagram({ children, ...props }: any) {
       aria-label="Instagram Cor da Chita"
       href="https://www.instagram.com/cor.da.chita/"
     >
-      <div className="flex flex-row items-center gap-x-1 text-light text-tiny py-1 hover:underline underline-offset-8  decoration-wavy">
+      <div className="flex flex-row items-center gap-x-1 text-light text-tiny py-1 hover:underline underline-offset-4 hover:opacity-80 decoration-wavy">
         <p>Instagram</p>
         <IconInstagram />
       </div>

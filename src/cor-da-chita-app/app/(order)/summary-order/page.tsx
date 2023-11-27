@@ -235,7 +235,7 @@ export default function SummaryOrder() {
       {address.cep !== "" || cartItems.length !== 0 || user.email !== "" ? (
         <div className="px-10 max-w-[1200px] mx-auto">
           <div className=" pb-10">
-            <h2 className="text-2xl text-center m-10 underline underline-offset-8 decoration-wavy">Resumo do Pedido</h2>
+            <h1 className="text-2xl text-center m-10 underline underline-offset-8 decoration-wavy">Resumo do Pedido</h1>
           </div>
           <div className="py-3">
             <h2 className="text-2xl">Pedido</h2>

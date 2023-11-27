@@ -91,7 +91,7 @@ export default function UserData() {
 
           <div className="px-5">
           <div className=" pb-5">
-          <h2 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h2>
+          <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h1>
         </div>
           <h1 className="text-2xl  text-center m-10">Dados do Cliente</h1>
             <Form method="post" className="max-w-[1200px]">
