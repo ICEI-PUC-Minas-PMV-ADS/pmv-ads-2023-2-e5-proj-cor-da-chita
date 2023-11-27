@@ -120,7 +120,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                       removeWrapper
                       alt="Card background"
                       className={`z-0 w-full h-full object-cover transition-transform ${
-                        hoveredProductId === product._id ? "hover:scale-125 hover:blur" : ""
+                        hoveredProductId === product._id ? "hover:scale-105 hover:blur" : ""
                       }`}
                       src={product.imagem}
                     />
@@ -141,7 +141,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                   {product.estoque>0?
                   
                   <Link
-                  className=""
+                  className="hover:scale-105"
                   onClick={() =>
                     handleStorageProductCart(
                       product._id,

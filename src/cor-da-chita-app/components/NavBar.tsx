@@ -45,10 +45,10 @@ export default function NavBar() {
       shouldHideOnScroll
       maxWidth="full"
       isBordered
-      className="bg-light flex shadow-sm justify-between"
+      className="bg-dark flex shadow-sm justify-between"
     >
       <div className="flex items-center">
-        <NavbarBrand onClick={handleClick} className="bg-light ">
+        <NavbarBrand onClick={handleClick} className="bg-dark ">
           <CorChitaFlor />
           <CorChitaTexto />
         </NavbarBrand>
@@ -65,7 +65,7 @@ export default function NavBar() {
                 <DropdownTrigger>
                   <Avatar
                     as="button"
-                    className="transition-transform shadow-md"
+                    className="transition-transform shadow-md hover:scale-105"
                     name={session.user.name ?? ""}
                     src={session.user.image ?? ""}
                   />
@@ -128,7 +128,7 @@ export default function NavBar() {
                 </DropdownMenu>
               </Dropdown>
             ) : (
-              <Button className="border bg-gradient-to-trfrom-emerald-300 to-fuchsia-200 hover:opacity-80 focus:opacity-80 text-green shadow-sm" onClick={() => signIn("google")}>
+              <Button className="bg-light shadow-sm text-grey hover:scale-105 hover:bg-default-200/70" onClick={() => signIn("google")}>
                 Entrar
               </Button>
             )}
