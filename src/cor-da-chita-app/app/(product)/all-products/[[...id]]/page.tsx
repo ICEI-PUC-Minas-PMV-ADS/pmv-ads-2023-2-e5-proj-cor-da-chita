@@ -60,10 +60,12 @@ export default function AllProducts() {
 
   // Vem o nome da categoria via click no Menu ou o nome "search", quando o user busca via SearchInput
   const categoryNameOrSearch = decodeURIComponent(pathname.slice(14));
+  const isSearch = categoryNameOrSearch.includes("search");
+  const categoryOrSearch = isSearch ? search || "search" : categoryNameOrSearch;
   const h2Text =
-    search && categoryNameOrSearch !== "search"
-      ? `Resultados para: ${search}`
-      : categoryNameOrSearch || "Todos os produtos";
+    isSearch
+      ? `Resultados para: "${categoryOrSearch}"`
+      : categoryOrSearch || "Todos os produtos";
 
   useEffect(() => {
     getData(setProductData, setTotalProducts, categoryNameOrSearch, search);
@@ -73,21 +75,20 @@ export default function AllProducts() {
     <>
       <div className="pb-10">
         <div>
-        <Link
-          size="sm"
-          as="button"
-          className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
-          onClick={() => route.back()}
-        >
-        <ArrowLeft /> Retornar
-      </Link>
-        <div className="flex gap-3 my-5">
-        <h2 className="text-2xl underline underline-offset-8 decoration-wavy">
-          {h2Text}
-        </h2>
-        <h2>({totalProducts})</h2>
-        </div>
-
+          <Link
+            size="sm"
+            as="button"
+            className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+            onClick={() => route.back()}
+          >
+            <ArrowLeft /> Retornar
+          </Link>
+          <div className="flex gap-3 my-5">
+            <h2 className="text-2xl underline underline-offset-8 decoration-wavy">
+              {h2Text}
+            </h2>
+            <h2>({totalProducts})</h2>
+          </div>
         </div>
       </div>
       <ProductCard data={productData} />
