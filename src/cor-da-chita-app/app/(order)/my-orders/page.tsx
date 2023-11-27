@@ -112,8 +112,8 @@ const MyOrders = () => {
               removeWrapper
               shadow="none"
               radius="none"
-              className="border"
-              classNames={{ th: "bg-light border-b-1 font-open text-lg font-thin text-dark text-center py-5" }}
+              className="shadow-sm"
+              classNames={{ th: "border-b-1 bg-light font-thin text-dark text-center py-5 text-md" }}
             >
               <TableHeader columns={columns}>
                 {(column) => (
@@ -126,7 +126,7 @@ const MyOrders = () => {
                 )}
               </TableHeader>
 
-              <TableBody>
+              <TableBody  emptyContent={"Nenhum pedido realizado."}>
                 {value != undefined ? (
                   value.map((item: any) => (
                     <TableRow className="text-center" key={item.id}>
