@@ -36,6 +36,7 @@ export default function SummaryOrder() {
   const [textModal, setTextModal] = useState("");
   const user = useContext(UserContext);
   const address = useContext(AddressContext);
+  const { street, setStreet, neighborhood, setNeighborhood, num, setNum, city, setCity, uf, setUf, cep, setCep, complement, setComplement } = useContext(AddressContext);
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
   const { cartItems, sumCartItems, copyCartItems, setCartItems } =
@@ -48,6 +49,13 @@ export default function SummaryOrder() {
 
   const handleRedirectWhatsApp = () => {
     console.log(user);
+    console.log(street);
+    console.log(neighborhood);
+    console.log(num);
+    console.log(city);
+    console.log(uf);
+    console.log(cep);
+    console.log(complement);
     //%0a Serve para pular linha no whatsapp
 
     let typeFrete = "";
@@ -57,10 +65,10 @@ export default function SummaryOrder() {
       // correios
       typeFrete =
         isPac == "PAC"
-          ? " Modalidade de envio PAC. "
-          : " Modalidade de envio SEDEX. ";
+          ? " via PAC."
+          : " via SEDEX.";
     } else {
-      typeFrete = " Combinando diretamente com você a entrega. ";
+      typeFrete = " combinando diretamente com você a entrega.";
     }
 
     // const typeFrete =
@@ -72,28 +80,32 @@ export default function SummaryOrder() {
     }%0a`;
 
     let message =
-      `Olá! Me chamo ${user.name} e gostaria de tratar uma compra diretamente com a artesã. Os itens de interesse são:%0a ` +
-      typeFrete;
+      `Olá! Gostaria de fazer um pedido para pagamento no crédito. Os itens de interesse são:%0a `;
 
     copyCartItems.map((product) => {
       //Verifica se é o ultimo item da lista para não inserir virgula no final
-      message += ` %0a${product.quantidade} ${
+      message += ` %0a- ${product.quantidade} ${
         product.quantidade > 1 ? `Unidades` : `Unidade`
       } de ${product.nome}, cada unidade custando R$ ${product.preco
         .toFixed(2)
         .toString()
-        .replace(".", ",")}.%0a`;
+        .replace(".", ",")}.`;
     });
 
-    message += `%0aPreço Total: R$ ${sumCartItems
+
+    message += `%0a%0aA modalidade escolhida de frete é` + typeFrete ;
+
+    message += `%0a%0a- Informações de envio:%0a${user.name}%0a${street}, ${num}%0a${neighborhood}, ${city}, ${uf}%0aCEP: ${cep}%0aComplemento: ${complement}`;
+
+    message += `%0a%0aPreço Total: R$ ${sumCartItems
       .toFixed(2)
       .toString()
       .replace(".", ",")}.`;
 
-    message += ` %0aPodemos combinar o pagamento e a entrega? Obrigado(a)!`;
+    message += ` %0a%0aPodemos combinar o pagamento e a entrega? Obrigado(a)!`;
 
     route.push(
-      `https://api.whatsapp.com/send?phone=552700000000&text=${message}`
+      `https://api.whatsapp.com/send?phone=553198772756&text=${message}`
     );
   };
 
