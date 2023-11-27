@@ -11,7 +11,7 @@ export default function Encomenda() {
   return (
     <div className="bg-green  flex flex-col md:flex-row justify-between px-4 md:px-20 py-5">
     <div className="mb-4 md:mb-0">
-      <h2 className="text-2xl text-white font-serif text-semibold py-2">
+      <h2 className="text-2xl text-white  text-semibold py-2">
         Quer um produto Cor da Chita personalizado?
       </h2>
       <h3 className="text-xl text-light text-white">

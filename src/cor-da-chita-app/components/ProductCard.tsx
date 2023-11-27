@@ -96,6 +96,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   return (
     <>
+    <div className="flex flex-wrap">
       {productData?.map((product) => (
         <div key={product._id} className="ml-20">
           {/* Card itens */}
@@ -191,6 +192,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </Snackbar>
     
           </Box>
+          </div>
     </>
   );
 }

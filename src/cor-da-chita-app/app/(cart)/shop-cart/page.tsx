@@ -148,10 +148,10 @@ export default function ShopCart() {
       </Link>
 
       <div className="px-10 mx-auto">
-        <div className="font-serif pb-5">
-          <h2 className="text-2xl text-center">Checkout</h2>
+        <div className=" pb-5">
+          <h2 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h2>
         </div>
-        <h2 className="py-3 text-2xl font-serif">Carrinho</h2>
+        <h2 className="py-3 text-2xl ">Carrinho</h2>
 
 
         <div className="mx-5">
@@ -183,7 +183,7 @@ export default function ShopCart() {
           {/* Modo de envio: Título e tooltip */}
           <div className="flex flex-col my-5">
             <div className="flex items-center">
-              <h2 className="py-3 text-2xl font-serif">Envio</h2>
+              <h2 className="py-3 text-2xl ">Envio</h2>
 
               <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
                 <div className="ml-3 p-3">

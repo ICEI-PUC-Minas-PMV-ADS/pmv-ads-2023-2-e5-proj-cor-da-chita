@@ -234,10 +234,10 @@ export default function SummaryOrder() {
 
       {address.cep !== "" || cartItems.length !== 0 || user.email !== "" ? (
         <div className="px-10 max-w-[1200px] mx-auto">
-          <div className="font-serif pb-10">
-            <h2 className="text-2xl text-center">Resumo do Pedido</h2>
+          <div className=" pb-10">
+            <h2 className="text-2xl text-center m-10 underline underline-offset-8 decoration-wavy">Resumo do Pedido</h2>
           </div>
-          <div className="font-serif py-3">
+          <div className="py-3">
             <h2 className="text-2xl">Pedido</h2>
           </div>
           {/* Items do pedido */}
@@ -370,7 +370,7 @@ export default function SummaryOrder() {
           <div className="flex flex-col">
             {/* Dados de Envio */}
             <div className="my-10 flex flex-col gap-5">
-              <div className="font-serif py-3">
+              <div className="py-3">
                 <h2 className="text-2xl">Dados de Envio</h2>
               </div>
 
@@ -400,7 +400,7 @@ export default function SummaryOrder() {
 
             {/* Dados do Cliente */}
             <div className="my-10 flex flex-col gap-5">
-              <div className="font-serif py-3">
+              <div className="py-3">
                 <h2 className="text-2xl">Dados do Cliente</h2>
               </div>
 
@@ -428,7 +428,7 @@ export default function SummaryOrder() {
           {/* Pagamento */}
           {/* <Divider className="mb-20"/> */}
           <div className="py-3 pb-10">
-            <h2 className="text-2xl font-serif">Forma de Pagamento</h2>
+            <h2 className="text-2xl">Forma de Pagamento</h2>
           </div>
           <div className="flex justify-between items-center">
             <div>

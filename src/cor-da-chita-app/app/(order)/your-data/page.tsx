@@ -90,7 +90,10 @@ export default function UserData() {
         <div className="flex-col">
 
           <div className="px-5">
-          <h1 className="text-2xl font-serif text-center">Dados do Cliente</h1>
+          <div className=" pb-5">
+          <h2 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h2>
+        </div>
+          <h1 className="text-2xl  text-center m-10">Dados do Cliente</h1>
             <Form method="post" className="max-w-[1200px]">
               <div className="flex flex-col gap-3 py-5">
                 <Input // Nome Completo
@@ -207,7 +210,7 @@ export default function UserData() {
             ) : (
               
               <div className="flex flex-col gap-3 items-center">
-                <h3 className="font-serif mb-1">ou</h3>
+                <h3 className=" mb-1">ou</h3>
                 <Button // Continuar com Google
                   variant="flat"
                   color="secondary"

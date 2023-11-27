@@ -68,7 +68,7 @@ export default function ProductAdvertisement() {
       </Link>
 
       {/* Item */}
-      <div className="px-10 max-w-[1200px] mx-auto">
+      <div className="px-10 my-20 max-w-[1200px] mx-auto">
       <div className="flex justify-around"> 
 
         <div className="relative overflow-hidden md:flex-row font-open">
@@ -90,7 +90,7 @@ export default function ProductAdvertisement() {
         </div>
 
         <div className="px-5 md:px-20 bg-light flex flex-col max-w-[400px]">
-        <p className="text-xl pb-4">{product.name}</p>
+        <p className="text-2xl pb-4 underline underline-offset-8 decoration-wavy my-5">{product.name}</p>
         <p className="">{product.description}</p>
         <p className="">
           {product.lengthProduct}x{product.widthProduct}cm

@@ -104,8 +104,8 @@ const MyOrders = () => {
           </Link>
           <div className="px-10 mx-auto">
 
-        <div className="font-serif pb-10">
-          <h2 className="text-2xl text-center">Meus Pedidos</h2>
+        <div className=" pb-10">
+          <h2 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Meus Pedidos</h2>
         </div>
             <Table
               aria-label="Example table with custom cells"
