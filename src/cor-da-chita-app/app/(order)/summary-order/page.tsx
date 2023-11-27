@@ -72,25 +72,25 @@ export default function SummaryOrder() {
     }%0a`;
 
     let message =
-      `Olá! Sou ${user.name} %0a e gostaria de comprar no crédito os seguintes produtos: ` +
+      `Olá! Me chamo ${user.name} e gostaria de tratar uma compra diretamente com a artesã. Os itens de interesse são:%0a ` +
       typeFrete;
 
     copyCartItems.map((product) => {
       //Verifica se é o ultimo item da lista para não inserir virgula no final
-      message += ` ${product.quantidade} ${
+      message += ` %0a${product.quantidade} ${
         product.quantidade > 1 ? `Unidades` : `Unidade`
       } de ${product.nome}, cada unidade custando R$ ${product.preco
         .toFixed(2)
         .toString()
-        .replace(".", ",")}%0a`;
+        .replace(".", ",")}.%0a`;
     });
 
-    message += `Preço Total: R$ ${sumCartItems
+    message += `%0aPreço Total: R$ ${sumCartItems
       .toFixed(2)
       .toString()
-      .replace(".", ",")}`;
+      .replace(".", ",")}.`;
 
-    message += ` Podemos combinar o pagamento e a entrega? Obrigado(a)!`;
+    message += ` %0aPodemos combinar o pagamento e a entrega? Obrigado(a)!`;
 
     route.push(
       `https://api.whatsapp.com/send?phone=552700000000&text=${message}`
