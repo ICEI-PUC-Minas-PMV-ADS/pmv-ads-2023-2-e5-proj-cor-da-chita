@@ -57,10 +57,10 @@ export default function SummaryOrder() {
       // correios
       typeFrete =
         isPac == "PAC"
-          ? " Modalidade de envio PAC. "
-          : " Modalidade de envio SEDEX. ";
+          ? " via PAC"
+          : " via SEDEX";
     } else {
-      typeFrete = " Combinando diretamente com você a entrega. ";
+      typeFrete = " combinando diretamente com você a entrega. ";
     }
 
     // const typeFrete =
@@ -72,28 +72,29 @@ export default function SummaryOrder() {
     }%0a`;
 
     let message =
-      `Olá! Me chamo ${user.name} e gostaria de tratar uma compra diretamente com a artesã. Os itens de interesse são:%0a ` +
-      typeFrete;
+      `Olá! Me chamo ${user.name} e gostaria de tratar uma compra diretamente com a artesã. Os itens de interesse são:%0a `;
 
     copyCartItems.map((product) => {
       //Verifica se é o ultimo item da lista para não inserir virgula no final
-      message += ` %0a${product.quantidade} ${
+      message += ` %0a- ${product.quantidade} ${
         product.quantidade > 1 ? `Unidades` : `Unidade`
       } de ${product.nome}, cada unidade custando R$ ${product.preco
         .toFixed(2)
         .toString()
-        .replace(".", ",")}.%0a`;
+        .replace(".", ",")}.`;
     });
 
-    message += `%0aPreço Total: R$ ${sumCartItems
+    message += `%0a%0aA modalidade escolhida de frete é` + typeFrete + ` e a de pagamento seria através do cartão de crédito.`;
+
+    message += `%0a%0aPreço Total: R$ ${sumCartItems
       .toFixed(2)
       .toString()
       .replace(".", ",")}.`;
 
-    message += ` %0aPodemos combinar o pagamento e a entrega? Obrigado(a)!`;
+    message += ` %0a%0aPodemos combinar o pagamento e a entrega? Obrigado(a)!`;
 
     route.push(
-      `https://api.whatsapp.com/send?phone=552700000000&text=${message}`
+      `https://api.whatsapp.com/send?phone=553198772756&text=${message}`
     );
   };
 
