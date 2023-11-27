@@ -45,7 +45,7 @@ export default function NavBar() {
       shouldHideOnScroll
       maxWidth="full"
       isBordered
-      className="bg-dark flex shadow-sm justify-between"
+      className="bg-dark flex shadow-sm justify-between shadow-none"
     >
       <div className="flex items-center">
         <NavbarBrand onClick={handleClick} className="bg-dark ">
