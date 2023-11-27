@@ -32,6 +32,7 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.4",
+    "heic-convert": "^2.0.0",
     "mercadopago": "^0.0.6",
     "net": "^1.0.2",
     "next": "^13.5.4",
