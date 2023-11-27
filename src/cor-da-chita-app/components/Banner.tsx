@@ -31,7 +31,7 @@ export default function Banner() {
           style={{ objectFit: "cover" }}
         />
     <div className="absolute inset-0 flex flex-row items-center justify-between">
-      <div className="flex-col text-2xl text-white cursor-pointer z-20 p-10 bg-dark  hover:scale-125" onClick={prevImage}>
+      <div className="flex-col text-2xl text-white cursor-pointer z-20 p-10 bg-dark" onClick={prevImage}>
         <ArrowLeft className="hover:scale-125" />
       </div>
       <div className="flex-col text-2xl text-white cursor-pointer z-20 p-10 bg-dark " onClick={nextImage}>

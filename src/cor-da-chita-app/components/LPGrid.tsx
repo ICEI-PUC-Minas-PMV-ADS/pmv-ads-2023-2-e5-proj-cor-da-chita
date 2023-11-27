@@ -37,7 +37,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6812 (1).png"
+              src="/Chita/Chita (14).png"
               className={`z-0 w-full h-full object-cover`}
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
@@ -72,7 +72,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6813 (1).png"
+              src="/Chita/Chita (13).png"
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
           </div>
@@ -92,7 +92,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6814 (1).png"
+              src="/Chita/Chita (10).png"
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
           </div>
@@ -127,7 +127,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6811 (1).png"
+              src="/Chita/Chita (11).png"
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
           </div>
