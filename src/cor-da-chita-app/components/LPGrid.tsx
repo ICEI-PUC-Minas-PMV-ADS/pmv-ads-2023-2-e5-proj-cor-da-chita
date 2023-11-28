@@ -68,7 +68,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
@@ -103,7 +103,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
@@ -123,7 +123,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
@@ -158,7 +158,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
