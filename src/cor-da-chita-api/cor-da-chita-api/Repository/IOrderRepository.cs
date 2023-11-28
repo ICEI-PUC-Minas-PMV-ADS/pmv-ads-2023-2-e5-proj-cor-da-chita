@@ -11,5 +11,6 @@ namespace cor_da_chita_api.Repository
         Task<OrderDto?> CreateAsync(OrderDto newOrder);
         Task<OrderDto> UpdateAsync(OrderDto updatedOrder);
         Task RemoveAsync(string id);
+
     }
 }

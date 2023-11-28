@@ -85,18 +85,6 @@
             <param name="id">Id</param>
             <returns>The paymnet client Entity</returns>
         </member>
-        <member name="M:cor_da_chita_api.Controllers.PaymentController.CreatePayment(cor_da_chita_api.Models.OrderDto)">
-            <summary>
-            Create The Payment With PIX in Mercado Pago returning the QrCode Key 
-            </summary>
-            <param name="id">The entity </param>
-            <returns>Payment Client Data</returns>
-            <response code="200">Payment found</response>
-            <response code="404">Payment Not found</response>
-            <response code="500">Server Error</response>
-            <response code="403">Not Authorized</response>
-            
-        </member>
         <member name="M:cor_da_chita_api.Extensions.ResponseExtensions.ToValidationErrorReponse(FluentValidation.Results.ValidationResult)">
             <summary>
             Handle with validation objects

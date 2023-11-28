@@ -34,7 +34,7 @@ export default function RootLayout({
  
   return (
     <html lang="pt-br">
-      <body className="bg-light" suppressHydrationWarning={true}>
+      <body className="bg-light min-h-screen" suppressHydrationWarning={true}>
         <Providers>
           <Script
             strategy="lazyOnload"
@@ -53,7 +53,10 @@ export default function RootLayout({
           </Script>
           <NavBar />
           <Menu />
-          {children}
+          <div className="min-h-screen">
+            {children}
+
+          </div>
           <Footer />
         </Providers>
       </body>

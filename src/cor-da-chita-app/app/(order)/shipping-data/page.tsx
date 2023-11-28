@@ -127,7 +127,7 @@ export default function ShippingData() {
                 <div className="flex">
                   <Button
                     color="secondary"
-                    variant="bordered"
+                    variant="ghost"
                     onPress={() => route.back()}
                   >
                     Editar Dados
