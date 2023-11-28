@@ -7,7 +7,7 @@ import ArrowLeft from "@/assets/icons/ArrowLeft";
 import ArrowRight from "@/assets/icons/ArrowRight";
 
 const images = [
-  "Chita (1).png",   "Chita (2).png", "Chita (3).png", 
+  "Banner (1).png",   "Banner (2).png", "Banner (3).png", "Banner (4).png"
 ];
 
 export default function Banner() {
