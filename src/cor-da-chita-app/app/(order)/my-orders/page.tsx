@@ -103,17 +103,18 @@ const MyOrders = () => {
             <ArrowLeft /> Retornar
           </Link>
           <div className="px-10 mx-auto">
-
-        <div className="font-serif pb-10">
-          <h2 className="text-2xl text-center">Meus Pedidos</h2>
-        </div>
+            <div className="font-serif pb-10">
+              <h2 className="text-2xl text-center">Meus Pedidos</h2>
+            </div>
             <Table
               aria-label="Example table with custom cells"
               removeWrapper
               shadow="none"
               radius="none"
               className="border"
-              classNames={{ th: "bg-light border-b-1 font-open text-lg font-thin text-dark text-center py-5" }}
+              classNames={{
+                th: "bg-light border-b-1 font-open text-lg font-thin text-dark text-center py-5",
+              }}
             >
               <TableHeader columns={columns}>
                 {(column) => (
@@ -130,20 +131,37 @@ const MyOrders = () => {
                 {value != undefined ? (
                   value.map((item: any) => (
                     <TableRow className="text-center" key={item.id}>
-                      <TableCell className="py-10">{item.orderNumber}</TableCell>
-                      <TableCell className="py-10" >{formatedDate(item.orderDate)}</TableCell>
                       <TableCell className="py-10">
-                            {item.items != undefined ? (
-                              item.items?.map((item: any) => (
-                                  <p>{item.productName}  R${item.productPrice.toFixed(2)
-                                    .toString()
-                                    .replace(".", ",")}  ({item.productQuantity}x)</p>
-                              ))
-                            ) : (
-                              <></>
-                            )}
+                        {item.orderNumber}
                       </TableCell>
-                      <TableCell className="py-10"><b>R$ {item.totalPriceProducts.toFixed(2).toString().replace('.',',')}</b></TableCell>
+                      <TableCell className="py-10">
+                        {formatedDate(item.orderDate)}
+                      </TableCell>
+                      <TableCell className="py-10">
+                        {item.items != undefined ? (
+                          item.items?.map((item: any) => (
+                            <p key={item.id}>
+                              {item.productName} R$
+                              {item.productPrice
+                                .toFixed(2)
+                                .toString()
+                                .replace(".", ",")}{" "}
+                              ({item.productQuantity}x)
+                            </p>
+                          ))
+                        ) : (
+                          <></>
+                        )}
+                      </TableCell>
+                      <TableCell className="py-10">
+                        <b>
+                          R${" "}
+                          {item.totalPriceProducts
+                            .toFixed(2)
+                            .toString()
+                            .replace(".", ",")}
+                        </b>
+                      </TableCell>
                     </TableRow>
                   ))
                 ) : (
