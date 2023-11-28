@@ -93,7 +93,7 @@ export default function ShippingData() {
       // Se frete correios
       handleCep(saveCepContext);
     }
-  }, []);
+  });
 
   if (waitingData) {
     return <Spinner className="flex" />;
