@@ -54,7 +54,7 @@ const MyOrders = () => {
     console.log(data);
   };
 
-  // Quando atualiza a page ele não reconhece o user
+  // Quando atualiza a page ele não reconhece o user: undefined
   useEffect(() => {
     const activeUserEmail = session?.user?.email;
 
