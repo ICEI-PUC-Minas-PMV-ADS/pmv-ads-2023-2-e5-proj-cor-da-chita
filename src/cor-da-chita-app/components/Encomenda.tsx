@@ -1,5 +1,6 @@
 import { Link } from "@nextui-org/react";
 import { MyButton } from "@/components/ui/Button";
+import FlowerIcon2 from "@/assets/icons/FlowerIcon2";
 
 export default function Encomenda() {
   const handleContactButtonClick = () => {
@@ -8,31 +9,32 @@ export default function Encomenda() {
     window.location.href = `mailto:${emailAddress}`;
   };
 
+ 
   return (
-    <div className="bg-green  flex flex-col md:flex-row justify-between px-4 md:px-20 py-5">
-    <div className="mb-4 md:mb-0">
-      <h2 className="text-2xl text-white  text-semibold py-2">
+    <div className="bg-green  flex flex-col md:flex-row justify-around place-items-center gap-5 px-4 md:px-20 py-5">
+      {/* <FlowerIcon2  style={{  color: 'white' }} /> */}
+      <div>
+      <h2 className="text-2xl text-white font-semibold font-open">
         Quer um produto Cor da Chita personalizado?
       </h2>
-      <h3 className="text-xl text-light text-white">
+      <h2 className="text-2xl text-white">
         Faça sua encomenda!
-      </h3>
-    </div>
-
-    <div className="flex flex-col md:flex-row md:place-self-center h-full">
+      </h2>
+      </div>
       <MyButton
         color="transparent"
-        className="px-10 text-light mb-4 md:mb-0 md:mr-4"
+        className="px-10 text-light mb-4 md:mb-0 md:mr-4 rounded-full border-2"
       >
         <Link
           isExternal
           className="text-white"
           href="https://api.whatsapp.com/send?phone=5583987261972"
+          onClick={handleContactButtonClick}
         >
-          Entre em contato aqui
+        Entrar em contato
         </Link>
       </MyButton>
-    </div>
+      {/* <FlowerIcon2 style={{  color: 'white', strokeWidth: '0.5' }} /> */}
   </div>
   );
 }
