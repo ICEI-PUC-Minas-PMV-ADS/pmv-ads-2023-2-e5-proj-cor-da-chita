@@ -1,9 +1,49 @@
+import React, { useState, useEffect } from "react";
+import { Image } from "@nextui-org/react";
 import { MyButton } from "./ui/Button.tsx";
-import { Image, Link } from "@nextui-org/react";
+import Link from "next/link";
+
+const images = [
+  "Grid (1).png",
+  "Grid (2).png",
+  "Grid (3).png",
+  "Grid (4).png",
+  "Grid (5).png",
+  "Grid (6).png",
+  "Grid (7).png",
+];
 
 const LPGrid = () => {
-  
-  
+  const [randomImage1, setRandomImage1] = useState("");
+  const [randomImage2, setRandomImage2] = useState("");
+  const [randomImage3, setRandomImage3] = useState("");
+  const [randomImage4, setRandomImage4] = useState("");
+
+  useEffect(() => {
+    const generateRandomImage = () => {
+      const getRandomImage = () => {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return images[randomIndex];
+      };
+
+      let image1, image2, image3, image4;
+
+      // Ensure that the images are different
+      do {
+        image1 = getRandomImage();
+        image2 = getRandomImage();
+        image3 = getRandomImage();
+        image4 = getRandomImage();
+      } while (image1 === image2 || image1 === image3 || image1 === image4 || image2 === image3 || image2 === image4 || image3 === image4);
+
+      setRandomImage1(image1);
+      setRandomImage2(image2);
+      setRandomImage3(image3);
+      setRandomImage4(image4);
+    };
+
+    generateRandomImage();
+  }, []); 
   
   return (
     <div className="bg-black">
@@ -28,7 +68,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
@@ -37,7 +77,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6812 (1).png"
+              src={`/Chita/${randomImage1}`}
               className={`z-0 w-full h-full object-cover`}
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
@@ -63,7 +103,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
@@ -72,7 +112,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6813 (1).png"
+              src={`/Chita/${randomImage2}`}
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
           </div>
@@ -83,7 +123,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
@@ -92,7 +132,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6814 (1).png"
+              src={`/Chita/${randomImage3}`}
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
           </div>
@@ -118,7 +158,7 @@ const LPGrid = () => {
           style={{ height: "250px" }}
         >
           <div
-            className="grid-img-wrapper bg-white"
+            className="grid-img-wrapper bg-white bg-center"
             style={{
               height: "100%",
               width: "100%",
@@ -127,7 +167,7 @@ const LPGrid = () => {
             }}
           >
             <Image
-              src="/Chita/IMG_6811 (1).png"
+              src={`/Chita/${randomImage4}`}
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
             />
           </div>

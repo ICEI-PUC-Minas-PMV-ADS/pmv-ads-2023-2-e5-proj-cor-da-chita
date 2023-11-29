@@ -9,7 +9,7 @@ export default function ProductLayout({
 }) {
   return (
     <main className="container mx-auto">
-        <section className="flex flex-wrap gap-10 py-20">
+        <section className="mb-10">
         {children}
         {/* <h1>ProductLayout AQUI</h1>s
       <p>Esse layout será para as telas que renderizam os cards de produtos</p>

@@ -122,7 +122,8 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
     <div className="flex items-center gap-5">
       <Button
         isIconOnly
-        variant="ghost"
+        className="shadow-sm hover:opacity-80 hover:scale-105"
+        variant="flat"
         color="secondary"
         onClick={handleDecreaseQuantity}
       >
@@ -133,7 +134,8 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
 
       <Button
         isIconOnly
-        variant="ghost"
+        variant="flat"
+        className="shadow-sm hover:opacity-80 hover:scale-105 "
         color="success"
         onClick={handleIncreaseQuantity}
       >

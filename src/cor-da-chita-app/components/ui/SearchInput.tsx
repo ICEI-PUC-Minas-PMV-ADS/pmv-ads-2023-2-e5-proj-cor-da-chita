@@ -29,14 +29,24 @@ export default function SearchInput({ children, ...props }: any) {
 
   return (
     <Input
-      color="default"
-      placeholder="Busca"
       variant="bordered"
-      labelPlacement="inside"
+      labelPlacement="outside"
+      label="Busca"
       classNames={{
+        input: [
+          "bg-light",
+          "text-black/90 dark:text-white/90",
+          "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+        ],
         innerWrapper: "bg-transparent",
         inputWrapper: [
-          "shadow-none",
+          "shadow-xl",
+          "bg-light",
+          "hover:bg-default-200/70",
+          "hover:scale-105",
+          "group-data-[focused=true]:bg-default-200/50",
+          "dark:group-data-[focused=true]:bg-default/60",
+          "!cursor-text",
         ],
       }}
       endContent={

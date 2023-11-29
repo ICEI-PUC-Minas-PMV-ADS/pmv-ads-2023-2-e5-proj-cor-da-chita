@@ -148,10 +148,10 @@ export default function ShopCart() {
       </Link>
 
       <div className="px-10 mx-auto">
-        <div className="font-serif pb-5">
-          <h2 className="text-2xl text-center">Checkout</h2>
+        <div className=" pb-5">
+          <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h1>
         </div>
-        <h2 className="py-3 text-2xl font-serif">Carrinho</h2>
+        <h2 className="py-3 text-2xl ">Carrinho</h2>
 
 
         <div className="mx-5">
@@ -164,6 +164,7 @@ export default function ShopCart() {
                   variant="ghost"
                   size="lg"
                   color="success"
+                  className="shadow-sm hover:text-light hover:opacity-80"
                   onClick={() => route.push("/all-products")}
                 >
                   Ver todos os produtos
@@ -182,7 +183,7 @@ export default function ShopCart() {
           {/* Modo de envio: Título e tooltip */}
           <div className="flex flex-col my-5">
             <div className="flex items-center">
-              <h2 className="py-3 text-2xl font-serif">Envio</h2>
+              <h2 className="py-3 text-2xl ">Envio</h2>
 
               <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
                 <div className="ml-3 p-3">
@@ -250,6 +251,7 @@ export default function ShopCart() {
                     <Button
                       color="success"
                       variant="ghost"
+                      className="shadow-sm hover:text-light hover:opacity-80"
                       isDisabled={!isCombinarFrete || cep.length != 8}
                       onClick={handleCep}
                     >

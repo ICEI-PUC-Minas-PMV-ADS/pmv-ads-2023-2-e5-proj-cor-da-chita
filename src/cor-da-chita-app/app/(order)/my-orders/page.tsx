@@ -103,18 +103,17 @@ const MyOrders = () => {
             <ArrowLeft /> Retornar
           </Link>
           <div className="px-10 mx-auto">
-            <div className="font-serif pb-10">
-              <h2 className="text-2xl text-center">Meus Pedidos</h2>
-            </div>
+
+        <div className=" pb-10">
+          <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Meus Pedidos</h1>
+        </div>
             <Table
               aria-label="Example table with custom cells"
               removeWrapper
               shadow="none"
               radius="none"
-              className="border"
-              classNames={{
-                th: "bg-light border-b-1 font-open text-lg font-thin text-dark text-center py-5",
-              }}
+              className="shadow-sm"
+              classNames={{ th: "border-b-1 bg-light font-thin text-dark text-center py-5 text-md" }}
             >
               <TableHeader columns={columns}>
                 {(column) => (
@@ -127,7 +126,7 @@ const MyOrders = () => {
                 )}
               </TableHeader>
 
-              <TableBody>
+              <TableBody  emptyContent={"Nenhum pedido realizado."}>
                 {value != undefined ? (
                   value.map((item: any) => (
                     <TableRow className="text-center" key={item.id}>

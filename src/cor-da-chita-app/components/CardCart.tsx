@@ -166,6 +166,7 @@ export default function CardCart({ ...props }: any) {
                 <Button
                   color="secondary"
                   variant="ghost"
+                  className="hover:opacity-50"
                   onClick={() => onOpen()}
                 >
                   <IconCartX />

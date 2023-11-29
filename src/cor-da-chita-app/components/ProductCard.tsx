@@ -96,6 +96,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   return (
     <>
+    <div className="flex flex-wrap">
       {productData?.map((product) => (
         <div key={product._id} className="ml-20">
           {/* Card itens */}
@@ -120,7 +121,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                       removeWrapper
                       alt="Card background"
                       className={`z-0 w-full h-full object-cover transition-transform ${
-                        hoveredProductId === product._id ? "hover:scale-125 hover:blur" : ""
+                        hoveredProductId === product._id ? "hover:scale-105 hover:blur" : ""
                       }`}
                       src={product.imagem}
                     />
@@ -132,8 +133,8 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                       </div>
                     )}
             </div>
-              <CardFooter className="">
-                <div className={product.estoque>0?"flex justify-between w-full":"flex justify-between w-full flex-col"}>
+              <CardFooter className="px-0">
+                <div className={product.estoque>0?"flex justify-between w-full":"flex justify-between w-full flex-col p-0"}>
                   <div>
                     <p className=" w-full">{product.nome}</p>
                     <p className="font-semibold">R$ {product.preco.toFixed(2).toString().replace('.',',')}</p>
@@ -141,7 +142,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                   {product.estoque>0?
                   
                   <Link
-                  className=""
+                  className="hover:scale-105"
                   onClick={() =>
                     handleStorageProductCart(
                       product._id,
@@ -150,7 +151,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                     )
                   }
                 >
-                  <div className="bg-green p-3">
+                  <div className="bg-green shadow-md p-3">
                     <CartPlusIcon fill="white" />
                   </div>
                 </Link>
@@ -191,6 +192,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </Snackbar>
     
           </Box>
+          </div>
     </>
   );
 }
