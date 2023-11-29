@@ -121,7 +121,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
                       removeWrapper
                       alt="Card background"
                       className={`z-0 w-full h-full object-cover transition-transform ${
-                        hoveredProductId === product._id ? "hover:scale-105 hover:blur" : ""
+                        hoveredProductId === product._id ? "hover:scale-90 hover:blur" : ""
                       }`}
                       src={product.imagem}
                     />

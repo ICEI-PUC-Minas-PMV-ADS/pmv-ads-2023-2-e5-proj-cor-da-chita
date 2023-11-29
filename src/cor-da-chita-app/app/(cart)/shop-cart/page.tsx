@@ -213,7 +213,7 @@ export default function ShopCart() {
                     setIsCombinarFrete(true);
                   }}
                 >
-                  <p className="text-sm ml-2">Correios</p>
+                  <p className="text-sm ml-2">Calcular Frete</p>
                 </Radio>
               </RadioGroup>
             </div>
