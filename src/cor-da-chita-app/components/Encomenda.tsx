@@ -12,7 +12,9 @@ export default function Encomenda() {
  
   return (
     <div className="bg-green  flex flex-col md:flex-row justify-around place-items-center gap-5 px-4 md:px-20 py-5">
-      {/* <FlowerIcon2  style={{  color: 'white' }} /> */}
+      <FlowerIcon2  style={{  color: 'white' }} />
+      <FlowerIcon2  style={{  color: 'white' }} />
+      <FlowerIcon2  style={{  color: 'white' }} />
       <div>
       <h2 className="text-2xl text-white font-semibold font-open">
         Quer um produto Cor da Chita personalizado?
@@ -34,7 +36,9 @@ export default function Encomenda() {
         Entrar em contato
         </Link>
       </MyButton>
-      {/* <FlowerIcon2 style={{  color: 'white', strokeWidth: '0.5' }} /> */}
+      <FlowerIcon2  style={{  color: 'white' }} />
+      <FlowerIcon2  style={{  color: 'white' }} />
+      <FlowerIcon2  style={{  color: 'white' }} />
   </div>
   );
 }
