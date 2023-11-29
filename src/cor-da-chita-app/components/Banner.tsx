@@ -62,13 +62,13 @@ export default function Banner() {
         />
         <div className="absolute inset-0 flex flex-row items-center justify-between">
           <div
-            className="flex-col text-2xl text-white cursor-pointer z-20 p-10 bg-dark"
+            className="flex-col text-2xl text-white cursor-pointer z-20 p-5 m-10 rounded-full bg-dark opacity-80"
             onClick={prevImage}
           >
             <ArrowLeft className="hover:scale-125" />
           </div>
           <div
-            className="flex-col text-2xl text-white cursor-pointer z-20 p-10 bg-dark "
+            className="flex-col text-2xl text-white cursor-pointer z-20 p-5 m-10 rounded-full bg-dark opacity-80"
             onClick={nextImage}
           >
             <ArrowRight className="hover:scale-125" />

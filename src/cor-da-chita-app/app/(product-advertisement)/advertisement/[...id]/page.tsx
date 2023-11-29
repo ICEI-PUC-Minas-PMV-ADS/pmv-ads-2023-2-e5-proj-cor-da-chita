@@ -1,8 +1,10 @@
-// Tela do anúncio individual de um  produto
+// Tela do anúncio individual de um produto
 "use client";
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { MyButton } from "@/components/ui/Button";
+import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
+
 
 import { Button, Image, Link } from "@nextui-org/react";
 import { Snackbar } from "@mui/material";
@@ -14,6 +16,7 @@ import ArrowRight from "@/assets/icons/ArrowRight";
 
 export default function ProductAdvertisement() {
   const route = useRouter();
+  const { cartItems, setCartItems } = useContext(CartItemsContext);
   const product = useContext(ProductContext);
 
   // Snack Bar: Adicionar no carrinho
@@ -44,12 +47,14 @@ export default function ProductAdvertisement() {
       };
 
       arrItens.push(novoItem);
-
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
+
+      // Update cart items in context
+      setCartItems(arrItens);
 
       setSeveridadeAlert("success");
       setMessageAlert(
-        "O item " + nome + " foi adicionado no seu carrinho com sucesso!"
+        `O item ${nome} foi adicionado no seu carrinho com sucesso!`
       );
 
       setOpenSnackBar(true);
@@ -69,80 +74,81 @@ export default function ProductAdvertisement() {
 
       {/* Item */}
       <div className="px-10 my-20 max-w-[1200px] mx-auto">
-      <div className="flex justify-around"> 
+        <div className="flex justify-around">
+          <div className="relative overflow-hidden md:flex-row font-open">
+            <div
+              className="bg-dark flex-col"
+              style={{
+                height: "500px",
+                width: "500px",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                isZoomed
+                removeWrapper
+                alt="Foto do Produto"
+                className="object-cover w-full h-full cover-fit"
+                src={product.imageProduct}
+              />
+            </div>
+          </div>
 
-        <div className="relative overflow-hidden md:flex-row font-open">
-          <div className="bg-dark flex-col "
-            style={{
-              height: '500px',
-              width: '500px',
-              overflow: 'hidden',
-            }}
-          >
-            <Image
-              isZoomed
-              removeWrapper
-              alt="Foto do Produto"
-              className="object-cover w-full h-full cover-fit"
-              src={product.imageProduct}
-            />
+          <div className="px-5 md:px-20 bg-light flex flex-col max-w-[400px]">
+            <p className="text-2xl pb-4 underline underline-offset-4 decoration-wavy my-5">
+              {product.name}
+            </p>
+            <p className="">{product.description}</p>
+            <p className="">
+              {product.lengthProduct}x{product.widthProduct}cm
+            </p>
+            <p className="py-4">
+              <strong>R$ {product.price.toFixed(2).toString().replace(".", ",")}</strong>
+            </p>
+            <div className="py-5 flex flex-col gap-3">
+              {product.stock > 0 ? (
+                <MyButton
+                  color="green"
+                  size="sm"
+                  className="shadow-md"
+                  onClick={() =>
+                    handleStorageProductCart(
+                      product.id,
+                      product.name,
+                      product.quantity
+                    )
+                  }
+                >
+                  Adicionar ao Carrinho
+                </MyButton>
+              ) : (
+                <p className="text-base">
+                  Estamos sem este produto no estoque no momento
+                </p>
+              )}
+
+              <Link
+                size="sm"
+                as="button"
+                className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
+                onClick={() => route.push("/shop-cart")}
+              >
+                Ir para Carrinho <ArrowRight />
+              </Link>
+            </div>
           </div>
         </div>
-
-        <div className="px-5 md:px-20 bg-light flex flex-col max-w-[400px]">
-        <p className="text-2xl pb-4 underline underline-offset-8 decoration-wavy my-5">{product.name}</p>
-        <p className="">{product.description}</p>
-        <p className="">
-          {product.lengthProduct}x{product.widthProduct}cm
-        </p>
-        <p className="py-4"><strong>R$ {product.price.toFixed(2).toString().replace(".",",")}</strong></p>
-      <div className="py-5 flex flex-col gap-3">
-        {product.stock>0?
-        
-        <MyButton
-        color="green"
-        size="sm"
-        className="shadow-md"
-        onClick={() =>
-          handleStorageProductCart(
-            product.id,
-            product.name,
-            product.quantity
-          )
-        }
-      >
-        Adicionar ao Carrinho
-      </MyButton>
-
-        :
-        <p className="text-base "> Estamos sem este produto no estoque no momento</p>
-
-        }
-       
-        <Link
-        size="sm"
-        as="button"
-        className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
-        onClick={() => route.push("/shop-cart")
-      }
-      >
-       Ir para Carrinho  <ArrowRight /> 
-      </Link>
-
       </div>
-        </div>
-      </div>
-     </div>
 
       {/* Snack Bar */}
-      <div className=" m-auto ">
+      <div className="m-auto">
         <Snackbar
           open={openSnackBar}
           autoHideDuration={30000}
-          onClose={(e) => setOpenSnackBar(false)}
+          onClose={() => setOpenSnackBar(false)}
         >
           <MuiAlert
-            onClose={(e) => setOpenSnackBar(false)}
+            onClose={() => setOpenSnackBar(false)}
             severity={severidadeAlert}
             sx={{ width: "100%" }}
           >
