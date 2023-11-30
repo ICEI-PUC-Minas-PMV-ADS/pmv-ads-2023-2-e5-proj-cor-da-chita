@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj": {}
   },
   "projects": {
@@ -13,27 +12,9 @@
         "projectPath": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\",
-=======
-    "C:\\Users\\ilano\\OneDrive\\Documents\\Cor da Chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\ilano\\OneDrive\\Documents\\Cor da Chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\ilano\\OneDrive\\Documents\\Cor da Chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
-        "projectName": "cor-da-chita-api",
-        "projectPath": "C:\\Users\\ilano\\OneDrive\\Documents\\Cor da Chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
-        "packagesPath": "C:\\Users\\ilano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ilano\\OneDrive\\Documents\\Cor da Chita\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\",
->>>>>>> 4b0f8106dec65e76c38542067751b19628905410
         "projectStyle": "PackageReference",
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\ilano\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
->>>>>>> 4b0f8106dec65e76c38542067751b19628905410
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
