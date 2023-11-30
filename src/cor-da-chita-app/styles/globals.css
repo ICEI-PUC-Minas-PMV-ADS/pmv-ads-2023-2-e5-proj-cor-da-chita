@@ -9,3 +9,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+p {
+  font-size: 17px;
+}
+.text-tiny {
+  font-size: 14px;
+}
+
+.text-2xl { 
+  font-size: 32px;
+  line-height: 2;
+}
+
+.encomenda-text {
+  font-size: 24px;
+}
+

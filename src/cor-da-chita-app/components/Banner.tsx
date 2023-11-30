@@ -1,28 +1,90 @@
-import React from "react";
-import { Image } from "@nextui-org/react";
+import React, { useState, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
 import { MyButton } from "./ui/Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ArrowLeft from "@/assets/icons/ArrowLeft";
+import ArrowRight from "@/assets/icons/ArrowRight";
 
+const images = ["Banner (1).png", "Banner (2).png", "Banner (3).png", "Banner (4).png"];
+
+const preloadImages = (images: string[]) => {
+  images.forEach((image) => {
+    const img = new Image();
+    img.src = `/Chita/${image}`;
+  });
+};
 
 export default function Banner() {
   const route = useRouter();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+  };
+
+  useEffect(() => {
+    preloadImages(images);
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    }, 10000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleError = () => {
+    setIsLoading(false);
+  };
+
+  const springProps = useSpring({
+    opacity: isLoading ? 0 : 1,
+  });
+
   return (
     <div className="relative h-screen bg-dark flex">
       <div className="flex-1/2 relative overflow-hidden">
-        <Image
-          src="/Chita/IMG_6811 (1).png"
+        <animated.img
+          src={`/Chita/${images[currentImageIndex]}`}
           alt="Cor da Chita"
-          style={{ maxWidth: "100%", height: "100%", objectFit: "cover" }}
-          className="responsive-image"
+          style={{ objectFit: "cover", ...springProps }}
+          loading={isLoading ? "eager" : "lazy"}
+          onLoad={handleLoad}
+          onError={handleError}
         />
+        <div className="absolute inset-0 flex flex-row items-center justify-between">
+          <div
+            className="flex-col text-2xl text-white cursor-pointer z-20 p-5 m-10 rounded-full bg-dark opacity-80"
+            onClick={prevImage}
+          >
+            <ArrowLeft className="hover:scale-125" />
+          </div>
+          <div
+            className="flex-col text-2xl text-white cursor-pointer z-20 p-5 m-10 rounded-full bg-dark opacity-80"
+            onClick={nextImage}
+          >
+            <ArrowRight className="hover:scale-125" />
+          </div>
+        </div>
       </div>
+
       <div className="flex flex-col items-center justify-center text-center z-10 p-20">
-        <div >
+        <div>
           <h1 className="text-4xl text-white font-serif">
             Arte com Chita & Cia para alegrar a vida o ano todo
           </h1>
-          <p className="text-tiny text-white p-10 font-semibold" onClick={() => route.push("/about")}>
+          <p
+            className="text-tiny text-white p-10 font-semibold"
+            onClick={() => route.push("/about")}
+          >
             Por Madriana Nóbrega
           </p>
           <Link href="/all-products">
@@ -30,32 +92,6 @@ export default function Banner() {
           </Link>
         </div>
       </div>
-      <style jsx>{`
-        .image-wrapper {
-          position: relative;
-          width: 100%;
-          height: 0;
-          padding-bottom: 100%;
-        }
-
-        .responsive-image {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
-
-        @media (max-width: 640px) {
-          .flex {
-            flex-direction: column;
-          }
-          .responsive-image {
-            height: 100%;
-            width: 100%;
-          }
-        }
-      `}</style>
     </div>
   );
 }

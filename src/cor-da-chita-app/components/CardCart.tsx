@@ -127,11 +127,11 @@ export default function CardCart({ ...props }: any) {
         <>
           <div className="flex flex-col md:flex-row justify-between w-full my-1 gap-3">
             <div>
-              <div
+              <div 
                 className="image-container relative"
                 style={{
                   height: "150px",
-                  width: "200px",
+                  width: "400px",
                   overflow: "hidden",
                 }}
               >
@@ -146,10 +146,10 @@ export default function CardCart({ ...props }: any) {
 
             <div
               className="flex flex-col place-content-evenly justify-left h
-            w-24"
+            w-48"
             >
-              <h2 className="my-2">{item[0].nome}</h2>
-              <p className="my-2">R$ {item[0].preco.toFixed(2).toString().replace('.',',')}</p>
+              <h2 className="my-2 text-xl">{item[0].nome}</h2>
+              <p className="my-2 text-xl">R$ {item[0].preco.toFixed(2).toString().replace('.',',')}</p>
             </div>
 
             <div className="flex flex-col place-content-evenly">
@@ -166,6 +166,7 @@ export default function CardCart({ ...props }: any) {
                 <Button
                   color="secondary"
                   variant="ghost"
+                  className="hover:opacity-50"
                   onClick={() => onOpen()}
                 >
                   <IconCartX />

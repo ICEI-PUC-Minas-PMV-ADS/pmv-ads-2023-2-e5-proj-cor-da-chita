@@ -21,6 +21,7 @@
     "@mui/material": "^5.14.16",
     "@nextui-org/react": "^2.1.13",
     "@portabletext/react": "^3.0.7",
+    "@sanity/cli": "^3.20.1",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.20.1",
     "@types/node": "20.6.1",
@@ -33,6 +34,7 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.4",
+    "heic-convert": "^2.0.0",
     "mercadopago": "^0.0.6",
     "net": "^1.0.2",
     "next": "^13.5.4",
@@ -42,6 +44,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-qrcode-logo": "^2.9.0",
+    "react-spring": "^9.7.3",
     "typescript": "5.2.2"
   },
   "devDependencies": {

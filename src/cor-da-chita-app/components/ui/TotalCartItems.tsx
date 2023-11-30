@@ -15,9 +15,8 @@ const TotalCartItems = () => {
 
   return (
     <Button
+    className="bg-light shadow-sm text-grey hover:scale-105  hover:bg-default-200/70"
       isIconOnly
-      variant="ghost"
-      color="success"
       onClick={() => route.push("/shop-cart")}
     >
       <div className="flex items-center relative pl-1">

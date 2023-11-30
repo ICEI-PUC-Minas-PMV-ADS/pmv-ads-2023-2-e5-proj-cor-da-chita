@@ -2073,19 +2073,40 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\carlo\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\gabri\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> 8341fd493c8a1ba62cd13e52bc331e33ca27d765
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
       "projectName": "cor-da-chita-api",
       "projectPath": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
       "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
+      "projectName": "cor-da-chita-api",
+      "projectPath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
+      "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\",
+>>>>>>> 8341fd493c8a1ba62cd13e52bc331e33ca27d765
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> 8341fd493c8a1ba62cd13e52bc331e33ca27d765
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2179,7 +2200,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -2188,7 +2209,11 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
+<<<<<<< HEAD
       "message": "Problema ao ler o arquivo de cache C:\\Users\\carlo\\Documents\\PUC\\EIXO 5\\projeto-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> 8341fd493c8a1ba62cd13e52bc331e33ca27d765
     },
     {
       "code": "NU1701",

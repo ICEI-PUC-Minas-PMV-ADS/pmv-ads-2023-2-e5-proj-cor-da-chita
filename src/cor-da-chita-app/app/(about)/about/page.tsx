@@ -32,9 +32,9 @@ import { Link } from "@nextui-org/react";
           <ArrowLeft /> Retornar
         </Link>
         <div className="px-20">
-          <h1 className="text-2xl font-serif py-5">Pode entrar, a casa é sua</h1>
+          <h1 className="text-2xl  py-5 text-center underline underline-offset-8 decoration-wavy m-10">Pode entrar, a casa é sua</h1>
           {content.map((sentence, index) => (
-            <p key={index} className="text-xl font-serif tracking-wide text-justify leading-relaxed py-2">
+            <p key={index} className="text-xl  tracking-wide text-justify leading-relaxed py-2">
               {sentence}
             </p>
           ))}

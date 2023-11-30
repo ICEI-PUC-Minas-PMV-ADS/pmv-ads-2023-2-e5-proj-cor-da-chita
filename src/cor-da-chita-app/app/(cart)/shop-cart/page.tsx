@@ -148,15 +148,13 @@ export default function ShopCart() {
       </Link>
 
       <div className="px-10 mx-auto">
-        <div className="font-serif pb-5">
-          <h2 className="text-2xl text-center">Checkout</h2>
+        <div className=" pb-20">
+          <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h1>
         </div>
-        <h2 className="py-3 text-2xl font-serif">Carrinho</h2>
-
 
         <div className="mx-5">
-          {/* Renderizar itens do carrinho */}
-          <div className="flex flex-col items-center my-5">
+        <h2 className="py-3 text-2xl ">Carrinho</h2>
+        <div className="flex flex-col items-center m-10">
             {!cart.length ? (
               <div className="flex flex-col items-center gap-5">
                 <p>Seu carrinho está vazio</p>
@@ -164,6 +162,7 @@ export default function ShopCart() {
                   variant="ghost"
                   size="lg"
                   color="success"
+                  className="shadow-sm hover:text-light hover:opacity-80"
                   onClick={() => route.push("/all-products")}
                 >
                   Ver todos os produtos
@@ -174,236 +173,238 @@ export default function ShopCart() {
                 <CardCart key={index} id={idItem} />
               ))
             )}
-          </div>
+        </div>
         </div>
 
-        {/* <Divider className="mt-10" /> */}
-
           {/* Modo de envio: Título e tooltip */}
-          <div className="flex flex-col my-5">
-            <div className="flex items-center">
-              <h2 className="py-3 text-2xl font-serif">Envio</h2>
-
+          <div className="mx-5">
+            <div className="flex items-center gap-3">
+            <h2 className="py-3 text-2xl mb-1 ">Envio</h2>
               <Tooltip content="Adicione produtos no seu carrinho para selecionar o modo de envio">
-                <div className="ml-3 p-3">
+                <div className="">
                   <IconQuestionCircle />
                 </div>
               </Tooltip>
             </div>
 
+            <div className="m-10">
+
             {/* Radio Group Combinar / Correios */}
-            <div className="ml-3">
-              <RadioGroup defaultValue={"combinar"}>
-                <Radio
-                  isDisabled={cart.length === 0}
-                  size="sm"
-                  value="combinar"
-                  onClick={() => {
-                    setIsCombinarFrete(false), setCep(""), setIsPac("PAC");
-                  }}
-                >
-                  <p className="text-sm ml-2">Combinar com a vendedora</p>
-                </Radio>
-                <Radio
-                  isDisabled={cart.length === 0}
-                  size="sm"
-                  value="correios"
-                  onClick={() => {
-                    setIsCombinarFrete(true);
-                  }}
-                >
-                  <p className="text-sm ml-2">Correios</p>
-                </Radio>
-              </RadioGroup>
-            </div>
-
-            {/* Cep / Input Cep / Botão Calcular */}
-            {isCombinarFrete && (
-              <>
-                {/* CEP: Título e Tooltip */}
-                <div className="flex mt-6  gap-3">
-                    <div className="flex">
-                    {/* Input CEP */}
-                    <Input
-                      maxLength={8}
-                      variant="bordered"
-                      classNames={{
-                        innerWrapper: "bg-transparent",
-                        inputWrapper: ["shadow-none"],
-                      }}
-                      isClearable
-                      isDisabled={!isCombinarFrete}
-                      className="place-self-end"
-                      type="text"
-                      placeholder="Digite seu CEP"
-                      value={cep}
-                      onChange={(e) => {
-                        !/[^0-9]+/g.test(e.target.value)
-                          ? setCep(e.target.value)
-                          : "";
-                      }}
-                      onClear={() => setCep("")}
-                      onKeyDown={handleKeyDown}
-                    />
-                  </div>
-                  <div className="place-self-end">
-                    <Button
-                      color="success"
-                      variant="ghost"
-                      isDisabled={!isCombinarFrete || cep.length != 8}
-                      onClick={handleCep}
-                    >
-                      {loading ? <SpinnerForButton /> : "Calcular"}
-                    </Button>
-                  </div>
-              </div>
-                {/* Botão Calcular Frete */}
-              </>
-            )}
-
-
-            {/* PAC / SEDEX */}
-            {isCombinarFrete && (
-              <>
-                <div className="my-5">
-                  {/*Tipo de Envio> Título e Tooltip */}
-                  <div className="flex  items-center">
-                    <h2 className="mr-2">Selecione o tipo de envio:</h2>
-                    <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
-                      {freteInContext == "" ? (
-                        <div>
-                          <IconQuestionCircle />
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                    </Tooltip>
-                  </div>
-
-                  {/* PAC / SEDEX / Valores calculados*/}
-                  <RadioGroup
-                    className="mt-4"
-                    isDisabled={!isCombinarFrete}
-                    defaultValue={"PAC"}
+              <div className="ml-3">
+                <RadioGroup defaultValue={"combinar"}>
+                  <Radio
+                    isDisabled={cart.length === 0}
+                    size="sm"
+                    value="combinar"
+                    onClick={() => {
+                      setIsCombinarFrete(false), setCep(""), setIsPac("PAC");
+                    }}
                   >
-                    {/* PAC */}
-                    <div className="flex justify-around">
-                      <Radio
-                        isDisabled={freteInContext == "" || !isCombinarFrete}
-                        size="sm"
-                        value="PAC"
-                        onClick={() => {
-                          //setChooseTypeFrete("PAC"),
-                          setIsPac("PAC");
-                        }}
-                      >
-                        <p className="text-tiny mr-4">PAC</p>
-                      </Radio>
+                    <p className="text-lg ml-2">Combinar com a vendedora</p>
+                  </Radio>
+                  <Radio
+                    isDisabled={cart.length === 0}
+                    size="sm"
+                    value="correios"
+                    onClick={() => {
+                      setIsCombinarFrete(true);
+                    }}
+                  >
+                    <p className="text-lg ml-2">Calcular Frete</p>
+                  </Radio>
+                </RadioGroup>
+              </div>
 
-                      {/* Valor Calculado PAC */}
+              {/* Cep / Input Cep / Botão Calcular */}
+              {isCombinarFrete && (
+                <>
+                  {/* CEP: Título e Tooltip */}
+                  <div className="flex mt-6  gap-3">
                       <div className="flex">
-                        {freteInContext != "" ? (
-                          <p
-                            className={`text-tiny ${
-                              !isCombinarFrete ? "text-gray-400" : ""
-                            }`}
-                          >
-                            <strong>R$</strong>{" "}
-                            {freteInContext.valorPac.toFixed(2).toString().replace('.',',')} -
-                            <strong> Prazo: </strong> {freteInContext.prazoPac}
-                            {freteInContext.prazoPac === 1 ? (
-                              <span> dia&nbsp;&nbsp;</span>
-                            ) : (
-                              " dias"
-                            )}
-                          </p>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* SEDEX */}
-                    <div className="flex justify-around">
-                      <Radio
-                        isDisabled={freteInContext == "" || !isCombinarFrete}
-                        size="sm"
-                        value="SEDEX"
-                        onClick={() => {
-                          //setChooseTypeFrete("SEDEX"),
-                          setIsPac("SEDEX");
+                      {/* Input CEP */}
+                      <Input
+                        maxLength={8}
+                        variant="bordered"
+                        classNames={{
+                          innerWrapper: "bg-transparent",
+                          inputWrapper: ["shadow-none"],
                         }}
-                      >
-                        <p className="text-tiny">SEDEX</p>
-                      </Radio>
-
-                      {/* Valor Calculado SEDEX */}
-                      <div className="flex">
-                        {freteInContext != "" ? (
-                          <p
-                            className={`text-tiny ${
-                              !isCombinarFrete ? "text-gray-400" : ""
-                            }`}
-                          >
-                            <strong>R$</strong>{" "}
-                            {freteInContext.valorSedex.toFixed(2).toString().replace('.',',')} -
-                            <strong> Prazo: </strong>
-                            {freteInContext.prazoSedex}
-                            {freteInContext.prazoSedex === 1 ? (
-                              <span> dia&nbsp;&nbsp;</span>
-                            ) : (
-                              " dias"
-                            )}
-                          </p>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
+                        isClearable
+                        isDisabled={!isCombinarFrete}
+                        className="place-self-end"
+                        type="text"
+                        placeholder="Digite seu CEP"
+                        value={cep}
+                        onChange={(e) => {
+                          !/[^0-9]+/g.test(e.target.value)
+                            ? setCep(e.target.value)
+                            : "";
+                        }}
+                        onClear={() => setCep("")}
+                        onKeyDown={handleKeyDown}
+                      />
                     </div>
-                  </RadioGroup>
+                    <div className="place-self-end">
+                      <Button
+                        color="success"
+                        variant="ghost"
+                        className="shadow-sm hover:text-light hover:opacity-80"
+                        isDisabled={!isCombinarFrete || cep.length != 8}
+                        onClick={handleCep}
+                      >
+                        {loading ? <SpinnerForButton /> : "Calcular"}
+                      </Button>
+                    </div>
                 </div>
-              </>
-            )}
+                  {/* Botão Calcular Frete */}
+                </>
+              )}
 
-            {/* Valor do Frete e Total */}
-            <div className="mt-3 text-sm">
-              <div className="flex justify-between">
-                <h2 className="py-3">Valor do Frete</h2>
-                <p className="mt-2">
-                  <strong>
-                    R${" "}
-                    {freteInContext != "" && isCombinarFrete ? (
-                      isPac == "PAC" ? (
-                        freteInContext.valorPac.toFixed(2).toString().replace('.',',')
+
+              {/* PAC / SEDEX */}
+              {isCombinarFrete && (
+                <>
+                  <div className="m-5">
+                    {/*Tipo de Envio> Título e Tooltip */}
+                    <div className="flex items-center gap-3">
+                      <p className="text-lg">Tipo de envio</p>
+                      <Tooltip content="É necessário calcular o frete antes de selecionar o tipo de envio">
+                        {freteInContext == "" ? (
+                          <div>
+                            <IconQuestionCircle />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </Tooltip>
+                    </div>
+
+                    {/* PAC / SEDEX / Valores calculados*/}
+                    <RadioGroup
+                      className="mt-4"
+                      isDisabled={!isCombinarFrete}
+                      defaultValue={"PAC"}
+                    >
+                      {/* PAC */}
+                      <div className="">
+                        <Radio
+                          isDisabled={freteInContext == "" || !isCombinarFrete}
+                          size="sm"
+                          value="PAC"
+                          onClick={() => {
+                            //setChooseTypeFrete("PAC"),
+                            setIsPac("PAC");
+                          }}
+                        >
+                          <p className="mr-4 ml-2">PAC</p>
+                        </Radio>
+
+                        {/* Valor Calculado PAC */}
+                        <div className="flex">
+                          {freteInContext != "" ? (
+                            <p
+                              className={`${
+                                !isCombinarFrete ? "text-gray-400" : ""
+                              }`}
+                            >
+                              <strong>R$</strong>{" "}
+                              {freteInContext.valorPac.toFixed(2).toString().replace('.',',')} -
+                              <strong> Prazo: </strong> {freteInContext.prazoPac}
+                              {freteInContext.prazoPac === 1 ? (
+                                <span> dia&nbsp;&nbsp;</span>
+                              ) : (
+                                " dias"
+                              )}
+                            </p>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* SEDEX */}
+                      <div className="">
+                        <Radio
+                          isDisabled={freteInContext == "" || !isCombinarFrete}
+                          size="sm"
+                          value="SEDEX"
+                          onClick={() => {
+                            //setChooseTypeFrete("SEDEX"),
+                            setIsPac("SEDEX");
+                          }}
+                        >
+                          <p className=" ml-2">SEDEX</p>
+                        </Radio>
+
+                        {/* Valor Calculado SEDEX */}
+                        <div className="">
+                          {freteInContext != "" ? (
+                            <p
+                              className={`text-lg ${
+                                !isCombinarFrete ? "text-gray-400" : ""
+                              }`}
+                            >
+                              <strong>R$</strong>{" "}
+                              {freteInContext.valorSedex.toFixed(2).toString().replace('.',',')} -
+                              <strong> Prazo: </strong>
+                              {freteInContext.prazoSedex}
+                              {freteInContext.prazoSedex === 1 ? (
+                                <span> dia&nbsp;&nbsp;</span>
+                              ) : (
+                                " dias"
+                              )}
+                            </p>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </RadioGroup>
+                  </div>
+                </>
+              )}
+
+              {/* Valor do Frete e Total */}
+              <div className="my-10">
+                <div className="flex justify-between">
+                  <h2 className="py-3 text-lg">Valor do Frete</h2>
+                  <p className="mt-2 text-lg">
+                    <strong>
+                      R${" "}
+                      {freteInContext != "" && isCombinarFrete ? (
+                        isPac == "PAC" ? (
+                          freteInContext.valorPac.toFixed(2).toString().replace('.',',')
+                        ) : (
+                          freteInContext.valorSedex.toFixed(2).toString().replace('.',',')
+                        )
                       ) : (
-                        freteInContext.valorSedex.toFixed(2).toString().replace('.',',')
-                      )
-                    ) : (
-                      <>0,00</>
-                    )}
-                  </strong>
-                </p>
+                        <>0,00</>
+                      )}
+                    </strong>
+                  </p>
+                </div>
+
+                <div className="flex justify-between">
+                  <h2 className="py-3 text-xl">
+                    <strong>Total</strong>
+                  </h2>
+                  <p className="mt-2 text-xl">
+                    <strong>
+                      R${" "}
+                      {freteInContext != "" && isCombinarFrete ? (
+                        isPac == "PAC" ? (
+                          (freteInContext.valorPac + sumCartItems).toFixed(2).toString().replace('.',',')
+                        ) : (
+                          (freteInContext.valorSedex + sumCartItems).toFixed(2).toString().replace('.',',')
+                        )
+                      ) : (
+                        <>{sumCartItems.toFixed(2).toString().replace('.',',')}</>
+                      )}
+                    </strong>
+                  </p>
+                </div>
               </div>
 
-              <div className="flex justify-between">
-                <h2 className="py-3">
-                  <strong>Total</strong>
-                </h2>
-                <p className="mt-2">
-                  <strong>
-                    R${" "}
-                    {freteInContext != "" && isCombinarFrete ? (
-                      isPac == "PAC" ? (
-                        (freteInContext.valorPac + sumCartItems).toFixed(2).toString().replace('.',',')
-                      ) : (
-                        (freteInContext.valorSedex + sumCartItems).toFixed(2).toString().replace('.',',')
-                      )
-                    ) : (
-                      <>{sumCartItems.toFixed(2).toString().replace('.',',')}</>
-                    )}
-                  </strong>
-                </p>
-              </div>
             </div>
           </div>
 

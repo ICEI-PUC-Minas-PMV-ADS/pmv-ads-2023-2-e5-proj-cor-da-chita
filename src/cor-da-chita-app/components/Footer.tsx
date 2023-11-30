@@ -17,9 +17,9 @@ export default function Footer({ children, ...props }: any) {
             <strong>COR DA CHITA</strong>
           </h3>
           <br />
-          <p className="py-1">Feito em João Pessoa, Paraíba</p>
-          <p className="py-1">Por Madriana Nóbrega</p>
-          <p className="py-1">&copy; 2020-2023</p>
+          <p className="py-1 text-tiny">Feito em João Pessoa, Paraíba</p>
+          <p className="py-1 text-tiny">Por Madriana Nóbrega</p>
+          <p className="py-1 text-tiny">&copy; 2020-2023</p>
         </div>
         <div className="grid grid-cols-2">
           <div className="place-content-center p-5">
@@ -28,10 +28,10 @@ export default function Footer({ children, ...props }: any) {
             </h4>
             <br />
             <Link href="/about">
-              <p className="text-tiny py-1">Sobre Cor da Chita</p>
+              <p className="text-tiny py-1 hover:underline underline-offset-4 hover:opacity-80  decoration-wavy">Sobre Cor da Chita</p>
             </Link>   
             <Link href="/faq">
-              <p className="text-tiny py-1">Perguntas Frequentes</p>
+              <p className="text-tiny py-1 hover:underline underline-offset-4 hover:opacity-80  decoration-wavy">Perguntas Frequentes</p>
             </Link>   
           </div>
           <div className="place-content-center p-5">

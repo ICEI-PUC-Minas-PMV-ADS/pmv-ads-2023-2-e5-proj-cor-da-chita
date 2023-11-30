@@ -59,10 +59,10 @@ export default function Faq({ ...props }: any) {
         <ArrowLeft /> Retornar
       </Link>
       <div className="px-20">
-        <h1 className="text-2xl text-center py-10 font-serif">Perguntas Frequentes</h1>
+        <h1 className="text-2xl text-center py-20  underline underline-offset-8 decoration-wavy">Perguntas Frequentes</h1>
         {qaPairs.map(({ question, answer }, index) => (
           <div key={index} className="py-4">
-            <h2 className="text-2xl font-serif">{question}</h2>
+            <h2 className="text-2xl my-5">{question}</h2>
             <p className="text-lg tracking-wide text-justify leading-relaxed">{answer}</p>
           </div>
         ))}

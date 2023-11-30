@@ -110,12 +110,16 @@ export default function ShippingData() {
         <ArrowLeft /> Retornar
       </Link>
 
+      <div className=" pb-5">
+          <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h1>
+        </div>
+
       {(session && session.user) || user.email != "" ? (
         <div className="px-10">
           <div className="flex flex-row justify-around">
             <div className="flex-col items-center">
-              <div className="font-serif">
-                <h2 className="text-2xl text-center">Dados do Cliente</h2>
+              <div className="">
+                <h2 className="text-2xl text-center m-10">Dados do Cliente</h2>
               </div>
               <div className="mx-5">
               {/* Dados do Usuário */}
@@ -128,6 +132,7 @@ export default function ShippingData() {
                   <Button
                     color="secondary"
                     variant="ghost"
+                    className="shadow-sm hover:opacity-80"
                     onPress={() => route.back()}
                   >
                     Editar Dados
@@ -139,9 +144,10 @@ export default function ShippingData() {
           </div>
           <Divider orientation="vertical" />
           <div className="flex-col items-center">
+            
 
-          <div className="font-serif">
-            <h2 className="text-2xl text-center">Dados de Envio</h2>
+          <div className="">
+            <h2 className="text-2xl text-center m-10">Dados de Envio</h2>
           </div>
           <div className="mx-5">
             <div>
@@ -177,10 +183,11 @@ export default function ShippingData() {
                       isDisabled={address.cep.length < 8}
                       color="success"
                       variant="ghost"
-                      size="lg"
+                      className="shadow-sm hover:opacity-80"
+                      size="lg" 
                       onClick={() => handleCep(address.cep)}
                     >
-                      Buscar CEP
+                      Buscar
                     </Button>
                   </div>
 
