@@ -23,10 +23,10 @@ export default function Encomenda() {
       <FlowerIcon2 style={{ color: 'white' }} />
       <FlowerIcon2 style={{ color: 'white' }} />
       <div>
-        <h2 className="text-2xl text-white font-semibold font-open">
+        <h2 className="text-xl text-white font-open">
           Quer um produto Cor da Chita personalizado?
         </h2>
-        <h2 className="text-2xl text-white">Faça sua encomenda!</h2>
+        <h2 className="text-xl text-white">Faça sua encomenda!</h2>
       </div>
       <Link
         className="text-white border rounded-full p-5 hover:scale-105 hover:opacity-80"

@@ -73,7 +73,7 @@ export default function AllProducts() {
 
   return (
     <>
-      <div className="pb-10">
+      <div className="pb-10 mx-auto">
         <div>
           <Link
             size="sm"

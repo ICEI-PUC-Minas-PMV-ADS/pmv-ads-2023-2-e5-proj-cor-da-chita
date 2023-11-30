@@ -6,7 +6,7 @@ interface FlowerIconProps extends React.SVGProps<SVGSVGElement> {
   strokeWidth?: string;
 }
 
-function FlowerIcon2({ fontSize = "64", color = "white", strokeWidth = "0.5", ...props }: FlowerIconProps) {
+function FlowerIcon2({ fontSize = "60", color = "white", strokeWidth = "3", ...props }: FlowerIconProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={fontSize} height={fontSize} fill={color} strokeWidth={strokeWidth} viewBox="0 0 16 16" {...props}>
       <path

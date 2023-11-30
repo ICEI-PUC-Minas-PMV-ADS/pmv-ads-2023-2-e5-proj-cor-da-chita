@@ -96,9 +96,9 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   return (
     <>
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap gap-10 justify-between">
       {productData?.map((product) => (
-        <div key={product._id} className="ml-20">
+        <div key={product._id} className="flex">
           {/* Card itens */}
           <Card
             className="flex-wrap font-open bg-light"
