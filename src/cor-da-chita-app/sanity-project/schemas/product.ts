@@ -64,7 +64,7 @@ export default {
       validation: (Rule: any) => Rule.greaterThan(0).error('O peso precisa ser maior do que zero'),
     },
     
-    // Comentar esse trecho e ajustar no front / api se necessário
+    // Comentar esse trecho e ajustar no front / api - se necessário
     {
       name: 'comprimento',
       type: 'number',
