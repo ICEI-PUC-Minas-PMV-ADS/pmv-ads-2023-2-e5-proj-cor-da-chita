@@ -131,12 +131,8 @@ API Correios                |     Correios ©        | x
 Next.js                     |     Vercel            | 18.2.0
 OAuth                       |     Google            | x
 
-* Hardware:
-
-    Computador com capacidade de processamento adequada para execução de aplicações web.
-
-* Ferramentas de Desenvolvimento: 
-Node.js (versão LTS mais recente), npm (versão mais recente).
+* Hardware: Computador com capacidade de processamento adequada para execução de aplicações web.
+* Ferramentas de Desenvolvimento: Node.js (versão LTS mais recente), npm (versão mais recente).
 
 ## 4 - Programação dos Testes
 
@@ -153,7 +149,7 @@ O sistema deve gerar relatórios das regiões das épocas do ano em que a loja m
 
 ### 4.2 - Ferramenta de Teste
 
-→ Sanity.io
+* Sanity.io
 
 Com estes recursos de software e hardware, juntamente com as ferramentas específicas de teste, a equipe terá o ambiente necessário para conduzir os testes de forma eficaz no projeto da vitrine de produtos artesanais.
 
@@ -188,11 +184,112 @@ Caso de Uso         | Id       | Passos                                         
 Realizar pagamento  |    1     | Clicar na opção de comprar                                 | Página de pagamento será exibida
 &nbsp;  |    2     | Escolher opção de pagamento desejada  | Se PIX, deve ser exibido QR Code, se pagamento for via WhatsApp, a artesã deverá enviar dados para que seja finalizado o pagamento
 
-## 6 - Cronograma
-
-Tipo de teste      | Duração | data de início | data de término
--------------------|---------|----------------|-----------------
  
 # Evidências de Testes de Software
 
-Apresente imagens e/ou vídeos que comprovam que um determinado teste foi executado, e o resultado esperado foi obtido. Normalmente são screenshots de telas, ou vídeos do software em funcionamento.
+| CT-01. FUNCIONALIDADE: AUTENTICAÇÃO | Autenticação |
+|:---:|:---:|
+| RF-1 | Sistema deve autenticar usuário |
+
+| #ID | Nome | RESULTADO DA TAREFA | AUTENTICAÇÃO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | Carlos Camuzzi | DIFICULDADE | Erro autenticação | Usuário Logado | Problema na credentials do google |
+| 2 | Carlos Camuzzi | SUCESSO | Login com Google | OAuth | - |
+| 3 | Carlos Camuzzi | SUCESSO | Logout | Usuário desconectado | - |
+| 4 | Carlos Camuzzi | SUCESSO | Login/Logout | Redirecionamento da página caso o usuário não esteja logado com o Google ou que não tenha informado seus dados para realização de pedido | - |
+
+| CT-02. CADASTRO DE PRODUTOS | Cadastrar produto no sistema |
+|---|---|
+| RF-2 | Artesã deve poder cadastrar produtos no sistema |
+
+| #ID | Nome | RESULTADO DA TAREFA | CADASTRO DE PRODUTO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Gabriel Antônio | SUCESSO | O cadastro de produto | A criação do produto com todas as propriedades definidas | - |
+| 2 | Carlos Camuzzi | SUCESSO | Validação de campos de formulário | Validações corretas | - |
+
+| CT-03. BUSCA POR PRODUTO | Buscar produto |
+|---|---|
+| RF-3 | A aplicação deve a busca de produtos pelo cliente |
+
+| #ID | Nome | RESULTADO DA TAREFA | BUSCAR PRODUTO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Carlos Camuzzi | DIFICULDADE | Busca por nome do produto | Objeto retornando com erro | Query incorreta |
+| 2 | Carlos Camuzzi | SUCESSO | Buscar por ID | Objeto retornado do banco de dados | - |
+| 3 | Carlos Camuzzi | SUCESSO | Busca por nome do produto | Objeto retornado do banco de dados | - |
+
+| CT-04. CARRINHO | Montar carrinho |
+|---|---|
+| RF-4 | A aplicação deve permitir ao usuário montar um carrinho com produtos do site |
+
+| #ID | Nome | RESULTADO DA TAREFA | MONTAR CARRINHO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Ila Nóbrega | SUCESSO | Montagem de carrinho com itens do site | Carrinho com itens adicionados | - |
+| 2 | Carlos Camuzzi | SUCESSO | Atualização quantidade | Item com a quantidade modificada | - |
+| 3 | Carlos Camuzzi | SUCESSO | Atualização valores | Item com o valor atualizado | - |
+| 4 | Carlos Camuzzi | SUCESSO | Atualização de valor + frete | Item com o valor atualizado | - |
+| 5 | Carlos Camuzzi | SUCESSO | Renderização de vários itens | Itens renderizados corretamente | - |
+
+| CT-05. CÁLCULO DE FRETE | Calcular frete |
+|---|---|
+| RF-5 | Deve haver cálculo de frete para as compras |
+
+| #ID | Nome | RESULTADO DA TAREFA | CALCULAR FRETE | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Ila Nóbrega | SUCESSO | Após adição de itens em carrinho, no check-out, o frete foi calculado com base no CEP do comprador e tendo como base o CEP da artesã | Valores para fretes PAC e SEDEX | - |
+| 2 | Gabriel Antônio | SUCESSO | Integração com a API Cep certo | Obtenção dos valores de Preço em PAC e SEDEX como também o prazo de entrega dos mesmos | Dados vindo da API vindo formatados incorretamente e em formato XML |
+| 3 | Carlos Camuzzi | SUCESSO | Busca CEP API Via Cep | Busca de endereço | - |
+
+| CT-06. PAGAMENTO | Realizar pagamento |
+|---|---|
+| RF-6 | A aplicação deve poder fornecer os meios de pagamento para a compra |
+
+| #ID | Nome | RESULTADO DA TAREFA | REALIZAR PAGAMENTO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Ila Nóbrega | SUCESSO | Teste feito usando o QR Code do Mercado Pago | Dinheiro transferido entre as contas | - |
+| - | Gabriel Antônio | SUCESSO | Integrar a API de pagamentos do Mercado Pago | Geração do código de pix em cada pagamento como também criação do QRCode para facilitar o pagamento do cliente | Valores de frete para realização de soma com o valor dos produtos vindo null do front caso o usuário opte por combinar o frete diretamente com a vendedora, onde este erro causava de o pagamento não ser criado |
+
+| CT-07. CONFIRMAÇÃO DE COMPRA | Confirmar compra |
+|---|---|
+| RF-7 | A aplicação deve notificar a parceira sobre uma compra para que haja confirmação, tanto para ela quanto para o cliente |
+
+| #ID | Nome | RESULTADO DA TAREFA | CONFIRMAÇÃO DE COMPRA | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Ila Nóbrega | DIFICULDADE | O e-mail chegou para cliente, mas não para artesã. O método de envio não estava aparecendo. | E-mails chegando na caixa de entrada de ambas as partes | - |
+| 2 | Ila Nóbrega | SUCESSO | Confirmação enviada via e-mail, tanto para a artesã quanto para o cliente | E-mails chegando na caixa de entrada de ambas as partes | - |
+| 3 | Ana Paula Buchholz | SUCESSO | Confirmação enviada via e-mail, tanto para a artesã quanto para o cliente | E-mails chegando na caixa de entrada de ambas as partes, com dados das compras | - |
+
+| CT-08. CONTATO COM A ARTESÃ | Contatar artesã |
+|---|---|
+| RF-8 | O site deverá dar opções de contato com a artesã |
+
+| #ID | Nome | RESULTADO DA TAREFA | CONTATO COM ARTESÃ | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Gabriel Antônio | SUCESSO | Possibilidade de realizar contato diretamente com a artesã | Redirecionamento para o WhatsApp, opção avulsa e quando for realizar uma compra | - |
+
+| CT-09. NOTIFICAÇÃO DE PEDIDO | Notificar pedido |
+|---|---|
+| RF-9 | Ambas as partes, vendedor e comprador, devem ser notificados quando um pedido for realizado |
+
+| #ID | Nome | RESULTADO DA TAREFA | NOTIFICAÇÃO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Ila Nóbrega | SUCESSO | Confirmação enviada via e-mail, tanto para a artesã quanto para o cliente | E-mails chegando na caixa de entrada de ambas as partes | - |
+
+| CT-10. RELATÓRIOS DE VENDAS | Fornecer insights (Google Analytics) |
+|---|---|
+| RF-10 | Deve ser fornecido uma ferramenta para insights e relatórios para a vendedora |
+
+| #ID | Nome | RESULTADO DA TAREFA | RELATÓRIO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Ila Nóbrega | SUCESSO | Uso da ferramenta Google Analytics para geração de relatórios com insights para expansão do negócio | Possibilidade de consultar diferentes métricas para o site | - |
+| 2 | Ana Paula Buchholz | SUCESSO | Uso da ferramenta Google Analytics para geração de relatórios com insights para expansão do negócio | Possibilidade de consultar diferentes métricas para o site | - |
+
+| CT-11. RELATÓRIOS DE PEDIDOS | Fornecer insights (Google Analytics) |
+|---|---|
+| RF-11 | O sistema deve disponibilizar aos clientes um relatório com os pedidos realizados |
+
+| #ID | Nome | RESULTADO DA TAREFA | RELATÓRIO | SAÍDA ESPERADA | REGISTRO RESOLUÇÃO DE PROBLEMAS - Devs |
+|---|---|---|---|---|---|
+| 1 | Carlos Camuzzi | DIFICULDADE | Gerar relatório com a lista de pedidos | Erros de renderização | Avaliação do problema e consulta na documentação de componentes utilizada NextUi |
+| 2 | Carlos Camuzzi | SUCESSO | Gerar relatório com a lista de pedidos | Renderização realizada | - |
+
+
