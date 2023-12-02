@@ -31,7 +31,7 @@ export default {
       type: 'string',
       title: 'Categoria do produto',
       options: {
-        list: ['Estandartes', 'Cama e Mesa', 'Ecobags e Carteiras', 'Natalinos', 'Outros'],
+        list: ['Estandartes', 'Cama e Mesa', 'Ecobags e Carteiras', 'Outros'],
       },
       validation: (Rule: any) => Rule.required().error('A Categoria é obrigatória'),
     },
@@ -50,11 +50,21 @@ export default {
       validation: (Rule: any) => Rule.greaterThan(0).error('O preço precisa ser maior do que zero'),
     },
     {
+      title: 'Embalagem CxLxA',
+      name: 'embalagem',
+      type: 'string',
+      options: {
+        list: ['40x40x4', '21x21x6'],
+      },
+    },
+    {
       name: 'peso',
       type: 'number',
       title: 'Peso (g)',
       validation: (Rule: any) => Rule.greaterThan(0).error('O peso precisa ser maior do que zero'),
     },
+    
+    // Comentar esse trecho e ajustar no front / api - se necessário
     {
       name: 'comprimento',
       type: 'number',

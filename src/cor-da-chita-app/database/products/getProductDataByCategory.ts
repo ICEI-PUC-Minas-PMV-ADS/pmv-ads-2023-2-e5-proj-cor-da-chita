@@ -11,7 +11,7 @@ export default async function getProductDataByCategory(categoryName: string) {
   //console.log(formatCategoryName);
 
   try {
-    const query = `*[_type == "produto" && categoria == "${formatCategoryName}"]{
+    const query = `*[_type == "produto" && categoria == "${formatCategoryName}" && !(_id in path("drafts.**"))]{
       _id,
       nome,
       categoria,
@@ -33,7 +33,7 @@ export default async function getProductDataByCategory(categoryName: string) {
     }`;
 
     const data = await client.fetch(query);
-    console.log(data);
+    //console.log(data);
 
     return data;
   } catch (e) {

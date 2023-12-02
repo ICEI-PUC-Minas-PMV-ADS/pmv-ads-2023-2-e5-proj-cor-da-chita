@@ -17,17 +17,14 @@ import OrderContext from "@/contexts/OrderContext/OrderContext";
 import { CartItemsContext } from "@/contexts/CartContext/CartItemsContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  
-  const { cartItems,setCartItems } = useContext(CartItemsContext);
-  useEffect(()=>
-  {
-   const carrinho = JSON.parse(localStorage.getItem("cartItens") || "[]");
-   setCartItems(carrinho)
-   console.log(carrinho.length)
- 
-  },[])
-  
-  
+  const { cartItems, setCartItems } = useContext(CartItemsContext);
+
+  useEffect(() => {
+    const carrinho = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    setCartItems(carrinho);
+    //console.log(carrinho.length)
+  }, []);
+
   return (
     <SessionProvider>
       <NextUIProvider>

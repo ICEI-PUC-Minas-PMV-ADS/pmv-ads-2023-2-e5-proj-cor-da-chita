@@ -21,7 +21,7 @@ interface ProductCardProps {
 export default function ProductCard(product: ProductCardProps, ...props: any) {
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const route = useRouter();
-  const { cartItems,setCartItems } = useContext(CartItemsContext);
+  const { cartItems, setCartItems } = useContext(CartItemsContext);
 
   // Snack Bar: Adicionar no carrinho
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
@@ -35,12 +35,12 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
   // Salva itens no productData para renderização
   useEffect(() => {
     setProductData(product.data);
-    console.log(productData);
+    //console.log(productData);
   });
 
   // Salvando no context
   function handleClick(product: Produto) {
-    console.log(product);
+   // console.log(product);
 
     productAds.setId(product._id);
     productAds.setName(product.nome);
@@ -82,9 +82,9 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       };
 
       arrItens.push(novoItem);
-      setCartItems(arrItens)
+      setCartItems(arrItens);
       localStorage.setItem("cartItens", JSON.stringify(arrItens));
-      
+
       setSeveridadeAlert("success");
       setMessageAlert(
         "O item " + nome + " foi adicionado no seu carrinho com sucesso!"
@@ -96,103 +96,117 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   return (
     <>
-    <div className="flex flex-wrap gap-10 justify-between">
-      {productData?.map((product) => (
-        <div key={product._id} className="flex">
-          {/* Card itens */}
-          <Card
-            className="flex-wrap font-open bg-light"
-            isPressable
-            shadow="none"
-            onPress={() => handleClick(product)}
-            style={{ width: '380px', height: '480px' }}
-          >
-            <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
-              <div
-                className="image-container relative"
-                style={{
-                  height: '400px',
-                  width: '100%',
-                  overflow: 'hidden',
-                }}
-              >
-                <Image
-                      isZoomed
-                      removeWrapper
-                      alt="Card background"
-                      className={`z-0 w-full h-full object-cover transition-transform ${
-                        hoveredProductId === product._id ? "hover:scale-90 hover:blur" : ""
-                      }`}
-                      src={product.imagem}
-                    />
+      <div className="flex flex-wrap gap-10 justify-between">
+        {productData?.map((product) => (
+          <div key={product._id} className="flex">
+            {/* Card itens */}
+            <Card
+              className="flex-wrap font-open bg-light"
+              isPressable
+              shadow="none"
+              onPress={() => handleClick(product)}
+              style={{ width: "380px", height: "480px" }}
+            >
+              <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
+                <div
+                  className="image-container relative"
+                  style={{
+                    height: "400px",
+                    width: "100%",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Image
+                    isZoomed
+                    removeWrapper
+                    alt="Card background"
+                    className={`z-0 w-full h-full object-cover transition-transform ${
+                      hoveredProductId === product._id
+                        ? "hover:scale-90 hover:blur"
+                        : ""
+                    }`}
+                    src={product.imagem}
+                  />
                   {hoveredProductId === product._id && (
-                      <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
-                        <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
-                        <p className="text-small">{`Peso: ${product.peso} kg`}</p>
-                        <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
+                    <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
+                      <p className="text-small p-4">{`${product.descricao.children.text}`}</p>
+                      <p className="text-small">{`Peso: ${product.peso} kg`}</p>
+                      <p className="text-small">{`Dimensões: ${product.comprimento}x${product.largura}x${product.altura} cm`}</p>
+                    </div>
+                  )}
+                </div>
+                <CardFooter className="px-0">
+                  <div
+                    className={
+                      product.estoque > 0
+                        ? "flex justify-between w-full"
+                        : "flex justify-between w-full flex-col p-0"
+                    }
+                  >
+                    <div>
+                      <p className=" w-full">{product.nome}</p>
+                      <p className="font-semibold">
+                        R${" "}
+                        {product.preco.toFixed(2).toString().replace(".", ",")}
+                      </p>
+                    </div>
+                    {product.estoque > 0 ? (
+                      <Link
+                        className="hover:scale-105"
+                        onClick={() =>
+                          handleStorageProductCart(
+                            product._id,
+                            product.nome,
+                            product.quantidade
+                          )
+                        }
+                      >
+                        <div className="bg-green shadow-md p-3">
+                          <CartPlusIcon fill="white" />
+                        </div>
+                      </Link>
+                    ) : (
+                      <div className="text-center mt-2">
+                        <p className="text-base ">
+                          {" "}
+                          Estamos sem este produto no estoque no momento
+                        </p>
                       </div>
                     )}
-            </div>
-              <CardFooter className="px-0">
-                <div className={product.estoque>0?"flex justify-between w-full":"flex justify-between w-full flex-col p-0"}>
-                  <div>
-                    <p className=" w-full">{product.nome}</p>
-                    <p className="font-semibold">R$ {product.preco.toFixed(2).toString().replace('.',',')}</p>
                   </div>
-                  {product.estoque>0?
-                  
-                  <Link
-                  className="hover:scale-105"
-                  onClick={() =>
-                    handleStorageProductCart(
-                      product._id,
-                      product.nome,
-                      product.quantidade
-                    )
-                  }
-                >
-                  <div className="bg-green shadow-md p-3">
-                    <CartPlusIcon fill="white" />
-                  </div>
-                </Link>
-
-                 :
-                 <div className="text-center mt-2">
-                 
-                 <p className="text-base "> Estamos sem este produto no estoque no momento</p>
-                 
-                 </div>
-                 }
-                 
-                </div>
-              </CardFooter>
-            </CardBody>
-          </Card>
-
-        </div>
-      ))}
-   
-          <Box sx={{ display: 'flex', justifyContent: 'center',alignSelf: 'center',textAlign:'center' }}>
-            <Snackbar
-              open={openSnackBar}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center'
-              }}
-              autoHideDuration={2000}
-              onClose={(e) => setOpenSnackBar(false)}
-            >
-              <MuiAlert
-                onClose={(e) => setOpenSnackBar(false)}
-                severity={severidadeAlert}
-                sx={{ width: "100%" }}
-              >
-                {messageAlert}
-              </MuiAlert>
-            </Snackbar>
-    
-          </Box>
+                </CardFooter>
+              </CardBody>
+            </Card>
           </div>
+        ))}
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignSelf: "center",
+            textAlign: "center",
+          }}
+        >
+          <Snackbar
+            open={openSnackBar}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            autoHideDuration={2000}
+            onClose={(e) => setOpenSnackBar(false)}
+          >
+            <MuiAlert
+              onClose={(e) => setOpenSnackBar(false)}
+              severity={severidadeAlert}
+              sx={{ width: "100%" }}
+            >
+              {messageAlert}
+            </MuiAlert>
+          </Snackbar>
+        </Box>
+      </div>
     </>
   );
 }
