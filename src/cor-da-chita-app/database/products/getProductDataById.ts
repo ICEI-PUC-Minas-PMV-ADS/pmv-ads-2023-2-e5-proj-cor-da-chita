@@ -8,7 +8,7 @@ export default async function getProductDataById(itemId: string) {
   const idDoObjeto: string = itemObj.id;
 
   try {
-    const query = `*[_type == "produto" && _id == "${idDoObjeto}" && !(_id in path("drafts.**"))]{
+    const query = `*[_type == "produto" && _id == "${idDoObjeto}"]{
       _id,
       nome,
       categoria,

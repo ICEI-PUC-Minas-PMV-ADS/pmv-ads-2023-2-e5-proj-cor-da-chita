@@ -2,8 +2,9 @@
 import { client } from "../../lib/sanity";
 
 export default async function getProductDataSearch(search: string | undefined) {
+  console.log(search);
   try {
-    const query = `* [_type == "produto" && nome match "*${search}*" && !(_id in path("drafts.**"))] {
+    const query = `* [_type == "produto" && nome match "*${search}*"] {
         _id,
         nome,
         categoria,
@@ -25,7 +26,7 @@ export default async function getProductDataSearch(search: string | undefined) {
       }`;
 
     const data = await client.fetch(query);
-    // console.log(data);
+    console.log(data);
 
     return data;
   } catch (e) {
