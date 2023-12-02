@@ -49,8 +49,12 @@ export default function NavBar() {
     >
       <div className="flex items-center">
         <NavbarBrand onClick={handleClick} className="bg-dark ">
+          <span>
           <CorChitaFlor />
+          </span>
+          <span className={`hidden sm:inline-block`}>
           <CorChitaTexto />
+          </span>
         </NavbarBrand>
       </div>
       <div className="flex items-center">

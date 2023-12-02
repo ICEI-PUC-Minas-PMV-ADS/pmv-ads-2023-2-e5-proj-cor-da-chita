@@ -3,8 +3,8 @@ import React from "react";
 export const CorChitaFlor = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="40pt"
-    height="40pt"
+    width="46pt"
+    height="46pt"
     viewBox="0 0 1800 1800"
   >
     <image
