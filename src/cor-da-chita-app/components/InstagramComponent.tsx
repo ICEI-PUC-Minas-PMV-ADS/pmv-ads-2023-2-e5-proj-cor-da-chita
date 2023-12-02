@@ -34,7 +34,7 @@ const InstagramComponent: React.FC = () => {
           <p className="font-semibold text-small">@Cor.Da.Chita</p>
         </Link>
       </div>
-      <div className="flex flex-wrap justify-around space-x-4 space-y-4 md:space-y-0 md:space-x-4 md:px-10">
+      <div className="flex flex-wrap justify-around p-4 gap-5">
         {instagramData.map((item: any) => (
           <a
             key={item.id}
