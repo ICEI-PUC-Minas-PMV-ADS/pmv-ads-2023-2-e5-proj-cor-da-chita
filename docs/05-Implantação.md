@@ -6,5 +6,7 @@
 | Publicação do Frontend | Deploy automático do site no Vercel a partir do repositório Git, garantindo atualizações contínuas com base no código-fonte. |
 | Publicação da API | A API foi implantada no Microsoft Azure, aproveitando a infraestrutura da nuvem, seus serviços escaláveis e a possibilidade de gerenciamento e monitoramento robusto. |
 | Integração entre Frontend e Backend | Comunicação entre o site hospedado no Vercel e a API no Azure, utilizando endpoints definidos para garantir a troca segura e eficiente de dados. |
+| Integração PIX | PIX direto no app, utilizando o serviço do Mercado Pago. |
+
 
 •	Apresentar o planejamento de evolução da aplicação.
