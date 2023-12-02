@@ -24,11 +24,13 @@ export default function Home() {
         </Link>
       </div> */}
       <LPGrid />
-      <div className="bg-green flex flex-col md:flex-row justify-around place-items-center gap-5 px-4 md:px-20 py-5">
-      <FlowerIcon2 style={{ color: 'white' }} />
-      <FlowerIcon2 style={{ color: 'white' }} />
-      <FlowerIcon2 style={{ color: 'white' }} />
-      <div>
+      <div className="bg-green flex flex-col md:flex-row justify-around gap-5 px-4 md:px-20 py-5">
+      <div className='flex flex-row justify-between gap-20'>
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+      </div>
+      <div className=''>
         <h2 className="text-xl text-white font-open">
           Quer um produto Cor da Chita personalizado?
         </h2>
@@ -40,9 +42,12 @@ export default function Home() {
       >
         Entrar em contato
       </Link>
-      <FlowerIcon2 style={{ color: 'white' }} />
-      <FlowerIcon2 style={{ color: 'white' }} />
-      <FlowerIcon2 style={{ color: 'white' }} />
+
+      <div className='flex flex-row justify-between gap-20'>
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+      </div>
     </div>
       <InstagramComponent />
     </main>
