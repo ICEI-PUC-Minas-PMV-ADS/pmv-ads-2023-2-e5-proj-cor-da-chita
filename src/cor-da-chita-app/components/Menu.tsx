@@ -42,7 +42,7 @@ export default function Menu(props: any) {
   return (
     <nav {...props}>
       <div className="text-tiny">
-        <div>
+        <div className="my-2">
         <ul className="flex flex-wrap justify-around gap-4 sm:gap-8">
             {category.map((category) => (
               <li key={category.id} className="flex-none">
