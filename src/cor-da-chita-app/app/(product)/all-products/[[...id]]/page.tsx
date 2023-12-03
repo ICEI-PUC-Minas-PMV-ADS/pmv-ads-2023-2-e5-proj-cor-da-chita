@@ -30,7 +30,7 @@ async function getData(
     // Consulta feita via SeachInput
     const data = (await getProductDataSearch(search)) as Produto[];
     const totalProducts = data.length;
-    // console.log(data);
+    console.log(data);
     setProductData(data);
     setTotalProducts(totalProducts);
   } else if (categoryNameOrSearch !== "") {
@@ -45,7 +45,7 @@ async function getData(
     // Todos os produtos
     const data = (await getProductCardData()) as Produto[];
     const totalProducts = data.length;
-    //console.log(data);
+    console.log(data);
     setProductData(data);
     setTotalProducts(totalProducts);
   }
@@ -62,9 +62,10 @@ export default function AllProducts() {
   const categoryNameOrSearch = decodeURIComponent(pathname.slice(14));
   const isSearch = categoryNameOrSearch.includes("search");
   const categoryOrSearch = isSearch ? search || "search" : categoryNameOrSearch;
-  const h2Text = isSearch
-    ? `Resultados para: "${categoryOrSearch}"`
-    : categoryOrSearch || "Todos os produtos";
+  const h2Text =
+    isSearch
+      ? `Resultados para: "${categoryOrSearch}"`
+      : categoryOrSearch || "Todos os produtos";
 
   useEffect(() => {
     getData(setProductData, setTotalProducts, categoryNameOrSearch, search);
@@ -86,7 +87,7 @@ export default function AllProducts() {
             <h1 className="text-2xl underline underline-offset-8 decoration-wavy">
               {h2Text}
             </h1>
-            <h2>({totalProducts != undefined ? totalProducts : 0})</h2>
+            <h2>({totalProducts})</h2>
           </div>
         </div>
       </div>

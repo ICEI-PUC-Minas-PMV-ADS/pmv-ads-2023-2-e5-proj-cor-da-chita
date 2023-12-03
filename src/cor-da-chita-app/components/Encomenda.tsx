@@ -9,7 +9,7 @@ export default function Encomenda() {
 
   // Check if the pathname is one of the specified routes
   const isEncomendaVisible =
-    pathname?.startsWith('/all-products') || pathname?.startsWith('/my-orders') || pathname?.startsWith('/advertisement');
+    pathname?.startsWith('/all-products') || pathname?.startsWith('/my-orders') || pathname?.startsWith('/advertisement')|| pathname?.startsWith('/') ;
 
   // Render nothing if not on the specified pages
   if (!isEncomendaVisible) {
@@ -18,15 +18,15 @@ export default function Encomenda() {
 
   // Render the Encomenda component if on the specified pages
   return (
-    <div className="bg-green flex flex-col md:flex-row justify-around place-items-center gap-5 px-4 md:px-20 py-5">
+    <div className="bg-green flex md:flex-row sm:flex-row justify-around place-items-center  sm:gap-3 md:gap-5 px-4 md:px-20 py-5">
       <FlowerIcon2 style={{ color: 'white' }} />
       <FlowerIcon2 style={{ color: 'white' }} />
       <FlowerIcon2 style={{ color: 'white' }} />
-      <div>
-        <h2 className="text-xl text-white font-open">
+      <div >
+        <h2 className=" sm:text-base md:text-xl text-white font-open">
           Quer um produto Cor da Chita personalizado?
         </h2>
-        <h2 className="text-xl text-white">Faça sua encomenda!</h2>
+        <h2 className="sm:text-base md:text-xl text-white">Faça sua encomenda!</h2>
       </div>
       <Link
         className="text-white border rounded-full p-5 hover:scale-105 hover:opacity-80"

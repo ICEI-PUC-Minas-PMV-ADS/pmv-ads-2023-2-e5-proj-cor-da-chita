@@ -64,7 +64,8 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-007| Os clientes devem receber um e-mail de confirmação após a conclusão da compra.  | BAIXA |
 |RF-008| Os clientes podem entrar em contato com a artesã via WhatsApp ou Instagram em caso de dúvidas. | MÉDIA |
 |RF-009| A artesã deverá receber notificações de novos pedidos no site. | ALTA |
-|RF-010|  O sistema pode gerar relatórios que mostram o período do mês com mais vendas e as regiões do Brasil com mais compras. | BAIXA |
+|RF-010| O sistema pode gerar relatórios que mostram o período do mês com mais vendas e as regiões do Brasil com mais compras. | BAIXA |
+|RF-011| O sistema deverá disponibilizar aos clientes um relatório com os pedido realizados
 
 ### Requisitos não Funcionais
 

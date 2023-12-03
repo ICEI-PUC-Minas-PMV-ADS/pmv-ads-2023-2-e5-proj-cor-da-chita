@@ -2,11 +2,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { MyButton } from "@/components/ui/Button";
 import Banner from "../components/Banner";
 import LPGrid from "../components/LPGrid";
 import QuotesTabs from "../components/Tabs";
 import InstagramComponent from "../components/InstagramComponent";
+import FlowerIcon2 from '@/assets/icons/FlowerIcon2';
 import Encomenda from "@/components/Encomenda";
 
 
@@ -25,7 +25,8 @@ export default function Home() {
         </Link>
       </div> */}
       <LPGrid />
-      <Encomenda />
+      
+
       <InstagramComponent />
     </main>
   );
