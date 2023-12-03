@@ -340,7 +340,7 @@ export default function ShopCart() {
                         <div className="">
                           {freteInContext != "" ? (
                             <p
-                              className={`text-lg ${
+                              className={`${
                                 !isCombinarFrete ? "text-gray-400" : ""
                               }`}
                             >
