@@ -25,8 +25,36 @@ export default function Home() {
         </Link>
       </div> */}
       <LPGrid />
+<<<<<<< HEAD
       
 
+=======
+      <div className="bg-green flex flex-col md:flex-row justify-around gap-5 px-4 md:px-20 py-5">
+      <div className='flex flex-row justify-between gap-20'>
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+      </div>
+      <div className=''>
+        <h2 className="text-xl text-white font-open">
+          Quer um produto Cor da Chita personalizado?
+        </h2>
+        <h2 className="text-xl text-white">Faça sua encomenda!</h2>
+      </div>
+      <Link
+        className="text-white border rounded-full p-5 hover:scale-105 hover:opacity-80"
+        href="https://api.whatsapp.com/send?phone=5583987261972"
+      >
+        Entrar em contato
+      </Link>
+
+      <div className='flex flex-row justify-between gap-20'>
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+        <FlowerIcon2 style={{ color: 'white' }} />
+      </div>
+    </div>
+>>>>>>> 668a9b92 (responsividade encomenda ok)
       <InstagramComponent />
     </main>
   );
