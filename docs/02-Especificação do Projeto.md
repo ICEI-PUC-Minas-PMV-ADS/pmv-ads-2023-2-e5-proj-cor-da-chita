@@ -41,6 +41,8 @@ A arquitetura levantada para atender os requisitos funcionais e não funcionais 
 
 **OAuth:** Para autenticação. 
 
+**Google Analytics:** Para insights e relatórios sobre o negócio. 
+
 ## Project Model Canvas
 O Project Model Canvas foi desenvolvido levando-se em consideração as reuniões feitas e as dúvidas esclarecidas com a 'parceira de negócios' Madriana, proprietária da empresa Cor da Chita.
 
