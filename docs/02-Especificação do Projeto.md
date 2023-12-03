@@ -28,7 +28,7 @@
 
 A arquitetura levantada para atender os requisitos funcionais e não funcionais do Cor da Chita, foi definida conforme o seguinte diagrama 
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/arquitetura.png" alt="arquitetura de solução" />
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/arquitetura/arquitetura.png" alt="arquitetura de solução" />
 
 
 ### Tecnologias e Integrações
@@ -44,7 +44,7 @@ A arquitetura levantada para atender os requisitos funcionais e não funcionais 
 ## Project Model Canvas
 O Project Model Canvas foi desenvolvido levando-se em consideração as reuniões feitas e as dúvidas esclarecidas com a 'parceira de negócios' Madriana, proprietária da empresa Cor da Chita.
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/PM-Canvas-Cor-da-Chita-PNG.png?raw=true" alt="Project Model Canvas" />
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/pmc/PM-Canvas-Cor-da-Chita-PNG.png" />
 
 
 ## Requisitos
@@ -88,13 +88,13 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 De acordo com a elicitação de requisitos, foram elencados os seguintes casos de uso:
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/diagrama-caso-uso-cor-da-chita.png" alt="diagrama de caso de uso" width="500" />
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/diagrama-casos-uso/diagrama-caso-uso-cor-da-chita.png" width="500" />
 
 ## Modelo ER (Projeto Conceitual) e Projeto da Base de Dados
 
 Após levantamento dos requisitos e elaboração do diagrama de casos de uso, pôde-se estabelecer as entidades envolvidas no processo do produto Cor da Chita, bem como seus atributos e como se relacionam entre si. Abaixo, estão o Modelo Entidade-Relacionamento e Projeto da Base de Dados que ilustram bem todo esse contexto.
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/cor_da_chita_bd.jpg" alt="projeto banco de dados" width="500" />
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/modelagem-dados/cor_da_chita_bd.jpg" width="500" />
 Projeto do Banco de dados
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/cor_da_chita_er.jpg" alt="diagrama er" width="500" />
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/modelagem-dados/cor_da_chita_er.jpg" alt="diagrama er" width="500" />
 Modelo Entidade-Relacionamento
