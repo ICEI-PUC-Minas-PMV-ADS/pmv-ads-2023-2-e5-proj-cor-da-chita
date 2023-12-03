@@ -47,7 +47,7 @@ const LPGrid = () => {
   
   return (
     <div className="bg-black">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
         {/* First row */}
         <div
           className="grid-box bg-white flex items-center justify-center order-1"
@@ -119,7 +119,7 @@ const LPGrid = () => {
         </div>
        
         <div
-          className="grid-box bg-green flex items-center justify-center order-5"
+          className="grid-box bg-green flex items-center justify-center order-5 hidden sm:inline-block"
           style={{ height: "250px" }}
         >
           <div
