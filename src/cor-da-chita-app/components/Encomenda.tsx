@@ -9,7 +9,7 @@ export default function Encomenda() {
 
   // Check if the pathname is one of the specified routes
   const isEncomendaVisible =
-    pathname?.startsWith('/all-products') || pathname?.startsWith('/my-orders') || pathname?.startsWith('/advertisement')|| pathname?.startsWith('/') ;
+    pathname?.startsWith('/all-products') || pathname?.startsWith('/my-orders') || pathname?.startsWith('/advertisement');
 
   // Render nothing if not on the specified pages
   if (!isEncomendaVisible) {
