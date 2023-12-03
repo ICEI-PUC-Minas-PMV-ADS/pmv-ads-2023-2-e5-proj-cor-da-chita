@@ -38,7 +38,7 @@ namespace cor_da_chita_api.Controllers
 
         private const string EMAIL_SUBJECT_OWNER = "Oba! Mais um pedido chegando.";
 
-        private const string EMAIL_COR_DA_CHITA_OWNER = "ilanobregaeq@gmail.com";
+        private const string EMAIL_COR_DA_CHITA_OWNER = "cor.da.chita.commerce@gmail.com";
 
 
         public OrderController(IOrderService ordersService, IEmailService emailService, IPaymentService paymentService)
