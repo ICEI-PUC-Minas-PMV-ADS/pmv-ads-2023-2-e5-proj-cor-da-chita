@@ -173,7 +173,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
       ))}
 
     {/* completa grid com divs vazios */}
-    {[...Array((3 - (productData?.length % 3 || 3)) % 3)].map((_, index) => (
+    {productData?.length!=undefined && [...Array((3 - (productData?.length % 3 || 3)) % 3)].map((_, index) => (
         <div key={`empty-${index}`} className="flex" style={{ width: '380px' }}>
           {/* Empty div */}
         </div>

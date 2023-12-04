@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Bv0TYDXYKNrvtF/gltCMnu+9K9DNasV5gXOWiCcb+MM/TJFJlL2OfK5CHI9TCLOWSKcgmmAJWH+KL3QSme3CQw==",
+  "dgSpecHash": "Lba1k8q2FQQeeykLrXL9zqbIh6LIsau89hv0Y3xuYsyCVSVn/0VEFMvJtlk6v+AfIHIUxE2nwAspmY45fcjHtQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\cor-da-chita-api.csproj",
   "expectedPackageFiles": [
@@ -55,12 +55,6 @@
     "C:\\Users\\gabri\\.nuget\\packages\\zstdsharp.port\\0.6.2\\zstdsharp.port.0.6.2.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\pmv-ads-2023-2-e5-proj-cor-da-chita\\src\\cor-da-chita-api\\cor-da-chita-api\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",
