@@ -36,6 +36,9 @@
 * Implantar o backend (C# .NET) no Azure.
 * Configurar e testar a infraestrutura de hospedagem.
 * Gerar relatórios via plataforma Google Analytics.
+  
+  <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/GA.jpeg" />
+
 
 **9. Monitoramento e Manutenção**
 * Configurar ferramentas de monitoramento para acompanhar o desempenho e identificar problemas.
