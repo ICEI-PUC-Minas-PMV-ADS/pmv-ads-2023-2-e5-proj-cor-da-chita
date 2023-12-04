@@ -35,6 +35,7 @@
 * Realizar a implantação do frontend (Next.js, React.js) na Vercel.
 * Implantar o backend (C# .NET) no Azure.
 * Configurar e testar a infraestrutura de hospedagem.
+* Gerar relatórios via plataforma Google Analytics.
 
 **9. Monitoramento e Manutenção**
 * Configurar ferramentas de monitoramento para acompanhar o desempenho e identificar problemas.
