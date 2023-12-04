@@ -304,7 +304,7 @@ export default function SummaryOrder() {
                       <p>
                         <strong>
                           R${" "}
-                          {freteInContext.valorPac
+                          {freteInContext!=undefined && freteInContext.valorPac
                             .toFixed(2)
                             .toString()
                             .replace(".", ",")}

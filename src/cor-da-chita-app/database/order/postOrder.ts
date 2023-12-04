@@ -5,7 +5,7 @@ const postOrder = async (params: any) => {
   console.log(params);
   console.log(`${url}/api/v1/Order`);
 
-  const res = await axios.post(`${baseURL}/api/v1/Order`,params)
+  const res = await axios.post(`${url}/Order`,params)
     .then((r) => {
       console.log(r.data)
       return r.data
