@@ -53,9 +53,8 @@ export default function RootLayout({
           </Script>
           <NavBar />
           <Menu />
-          <div className="min-h-screen sm:p-20">
+          <div className="min-h-screen">
             {children}
-
           </div>
           <Encomenda />
           <Footer />

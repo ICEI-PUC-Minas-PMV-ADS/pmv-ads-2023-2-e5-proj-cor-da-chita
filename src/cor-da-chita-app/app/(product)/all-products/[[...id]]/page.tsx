@@ -73,7 +73,7 @@ export default function AllProducts() {
 
   return (
     <>
-      <div className="pb-10 mx-auto">
+      <div className="min-w-full">
         <div>
           <Link
             size="sm"
@@ -83,7 +83,7 @@ export default function AllProducts() {
           >
             <ArrowLeft /> Retornar
           </Link>
-          <div className="flex gap-3 my-5">
+          <div className="flex gap-3 m-5">
             <h1 className="text-2xl underline underline-offset-8 decoration-wavy">
               {h2Text}
             </h1>
@@ -91,7 +91,9 @@ export default function AllProducts() {
           </div>
         </div>
       </div>
+      <div className="m-5">
       <ProductCard data={productData} />
+      </div>
     </>
   );
 }

@@ -96,7 +96,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
   return (
     <>
-    <div className="flex flex-wrap gap-10 justify-between">
+<div className="flex flex-wrap gap-10 justify-between">
       {productData?.map((product) => (
         <div key={product._id} className="flex">
           {/* Card itens */}
@@ -171,6 +171,13 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
 
         </div>
       ))}
+
+    {/* completa grid com divs vazios */}
+    {[...Array((3 - (productData?.length % 3 || 3)) % 3)].map((_, index) => (
+        <div key={`empty-${index}`} className="flex" style={{ width: '380px' }}>
+          {/* Empty div */}
+        </div>
+      ))}
    
           <Box sx={{ display: 'flex', justifyContent: 'center',alignSelf: 'center',textAlign:'center' }}>
             <Snackbar
@@ -192,7 +199,7 @@ export default function ProductCard(product: ProductCardProps, ...props: any) {
             </Snackbar>
     
           </Box>
-          </div>
+    </div>
     </>
   );
 }

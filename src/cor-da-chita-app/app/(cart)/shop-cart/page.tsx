@@ -147,7 +147,7 @@ export default function ShopCart() {
         <ArrowLeft /> Retornar
       </Link>
 
-      <div className="px-10 mx-auto">
+      <div className="">
         <div className=" pb-20">
           <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Checkout</h1>
         </div>

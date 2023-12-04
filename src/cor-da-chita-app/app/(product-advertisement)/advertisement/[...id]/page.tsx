@@ -62,8 +62,8 @@ export default function ProductAdvertisement() {
   };
 
   return (
-    <>
-      <Link
+    <div className="min-w-full">
+    <Link
         size="sm"
         as="button"
         className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
@@ -75,9 +75,9 @@ export default function ProductAdvertisement() {
       {/* Item */}
     
       <div className="px-10 my-20 max-w-[1200px] mx-auto">
-  <div className="flex flex-col md:flex-row justify-around items-center">
+  <div className="flex flex-col sm:flex-row justify-around items-center">
     <div
-      className="bg-dark"
+      className="bg-dark max-w-full"
       style={{
         height: "500px",
         width: "500px",
@@ -155,6 +155,6 @@ export default function ProductAdvertisement() {
           </MuiAlert>
         </Snackbar>
       </div>
-    </>
+    </div>
   );
 }

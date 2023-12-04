@@ -102,7 +102,7 @@ const MyOrders = () => {
           >
             <ArrowLeft /> Retornar
           </Link>
-          <div className="px-10 mx-auto">
+          <div className="px-10">
 
         <div className=" pb-10">
           <h1 className="text-2xl text-center underline underline-offset-8 decoration-wavy">Meus Pedidos</h1>
