@@ -11,7 +11,7 @@ export default function LinkWhatsApp({ children, ...props }: any) {
       href="https://api.whatsapp.com/send?phone=5583987261972"
     >
       <div className="flex flex-row items-center gap-1 text-light text-tiny py-1 hover:underline underline-offset-4 hover:opacity-80 decoration-wavy">
-        <p>WhatsApp</p>
+        <p className="text-tiny">WhatsApp</p>
         <IconWhatsapp />
       </div>
     </Link>

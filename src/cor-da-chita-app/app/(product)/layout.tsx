@@ -7,15 +7,6 @@ export default function ProductLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <main className="container mx-auto">
-        <section className="mb-10">
-        {children}
-        {/* <h1>ProductLayout AQUI</h1>s
-      <p>Esse layout será para as telas que renderizam os cards de produtos</p>
-      <p>(all-products/page.tsx)</p>
-      {children} */}
-      </section>
-    </main>
-  );
+  return <div className="container mx-auto pb-20">{children}</div>;
+
 }

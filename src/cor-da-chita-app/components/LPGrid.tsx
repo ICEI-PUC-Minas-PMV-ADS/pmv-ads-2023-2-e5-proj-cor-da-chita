@@ -47,7 +47,7 @@ const LPGrid = () => {
   
   return (
     <div className="bg-black">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
         {/* First row */}
         <div
           className="grid-box bg-white flex items-center justify-center order-1"
@@ -55,9 +55,9 @@ const LPGrid = () => {
         >
           <div className="elements text-left p-20">
             <p className="uppercase sm:text-base lg:text-lg">Estandartes</p>
-            <p className="2xl:py-8 lg:py-4 md:py-4 font-light">Enfeitados com santos, bonequinhos, poesia e muito mais pra alegrar seu ambiente.</p>
+            <p className="2xl:py-8 font-light">Enfeitados com santos, bonequinhos, poesia e muito mais pra alegrar seu ambiente.</p>
             <Link href="/all-products/Estandartes">
-              <MyButton color="transparent" className="py-8">
+              <MyButton color="transparent" className="py-8 my-2">
                 Ver produtos
               </MyButton>
             </Link>
@@ -89,9 +89,9 @@ const LPGrid = () => {
         >
           <div className="elements text-left p-20">
           <p className="uppercase text-lg">Cama e Mesa</p>
-          <p className="2xl:py-8 lg:py-4 md:py-5 font-light">Toalhas, passadeiras, colchas e jogo americano, etc.</p>
+          <p className="2xl:py-8 font-light">Toalhas, passadeiras, colchas e jogo americano, etc.</p>
             <Link href="/all-products/Cama e Mesa">
-              <MyButton color="transparent" className="py-8">
+              <MyButton color="transparent" className="py-8 my-2">
                 Ver produtos
               </MyButton>
             </Link>
@@ -119,7 +119,7 @@ const LPGrid = () => {
         </div>
        
         <div
-          className="grid-box bg-green flex items-center justify-center order-5"
+          className="grid-box bg-green flex items-center justify-center order-5 hidden sm:inline-block"
           style={{ height: "250px" }}
         >
           <div
@@ -144,9 +144,9 @@ const LPGrid = () => {
         >
           <div className="elements text-left p-20 ">
           <p className="uppercase text-lg">Ecobags e Carteiras</p>
-            <p className="2xl:py-8 lg:py-4 md:py-5 font-light">Com tamanho para todo agrado, com zíper e bolsos internos e externos</p>
+            <p className="2xl:py-8 font-light">De tamanho para todo agrado, zíper e bolsos internos e externos</p>
             <Link href="/all-products/Ecobags e Carteiras">
-              <MyButton color="transparent" className="py-8">
+              <MyButton color="transparent" className="py-8 my-2">
                 Ver produtos
               </MyButton>
             </Link>
@@ -179,9 +179,9 @@ const LPGrid = () => {
         >
           <div className="elements text-left p-20">
             <p className="uppercase text-lg">E muito mais</p>
-            <p className="2xl:py-8 lg:py-4 md:py-5 font-light">Vem olhar nossa seleção, tem Chita para todo gosto!</p>
+            <p className="2xl:py-8 font-light">Vem olhar nossa seleção, tem Chita para todo gosto!</p>
             <Link href="/all-products">
-              <MyButton color="transparent" className="py-8">
+              <MyButton color="transparent" className="py-8 my-2">
                 Ver produtos
               </MyButton>
             </Link>

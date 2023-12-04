@@ -55,7 +55,6 @@ export default function RootLayout({
           <Menu />
           <div className="min-h-screen">
             {children}
-
           </div>
           <Encomenda />
           <Footer />

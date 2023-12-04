@@ -50,8 +50,9 @@ export default function Banner() {
   });
 
   return (
-    <div className="relative h-screen bg-dark flex">
-      <div className="flex-1/2 relative overflow-hidden">
+    <div className="relative h-screen bg-dark flex flex-col md:flex-row">
+      {/* Left column with the image */}
+      <div className="md:w-2/3 relative overflow-hidden">
         <animated.img
           src={`/Chita/${images[currentImageIndex]}`}
           alt="Cor da Chita"
@@ -76,7 +77,8 @@ export default function Banner() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center text-center z-10 p-20">
+      {/* Right column with text and buttons */}
+      <div className="md:w-1/3 flex flex-col items-center justify-center text-center z-10 p-20">
         <div>
           <h1 className="text-4xl text-white font-serif">
             Arte com Chita & Cia para alegrar a vida o ano todo

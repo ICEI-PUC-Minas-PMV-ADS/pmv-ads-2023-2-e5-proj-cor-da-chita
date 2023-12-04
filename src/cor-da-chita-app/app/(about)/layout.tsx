@@ -7,7 +7,7 @@ export default function AboutLayout({
 }) {
   return (
     <div  className="container mx-auto pb-20">
-      {children}
-    </div>
+    {children}
+  </div>
   );
 }
