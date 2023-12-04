@@ -296,6 +296,6 @@ Realizar pagamento  |    1     | Clicar na opção de comprar                   
 
 Após desenvolvido todo o front-end da aplicação Cor da Chita, foram aplicados testes de usabilidade com voluntários que se encaixam nas categorias de público-alvo. Neles, foi desenvolvido um formulário que, após análise do site, deveria ser respondido com notas e impressões sobre aspectos de usabilidade como estética, responsividade, facilidade de uso e navegação, nível de suporte e navegação, entre outros. Para alguns testes, houve a presença de um inspetor, membro da equipe, para guiar o usuário nas tarefas de teste. O formulário aplicado com os participantes pode ser consultado via link: https://forms.gle/fNoVSLzmjkWy5eBk7. Abaixo, registros na planilha de testes, que também pode ser acessada no link https://sgapucminasbr-my.sharepoint.com/:x:/g/personal/1366209_sga_pucminas_br/EQ3WF6ks9tBKrtCBpv-JDmUBL_wn3FT2AboSExRUhMUrRg?e=JGbCkM.
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/testes_de_usabilidade" width="500" />
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-cor-da-chita/blob/main/docs/img/testes _de_usabilidade" width="500" />
 
 
