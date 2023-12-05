@@ -1,4 +1,4 @@
-﻿using cor_da_chita_api.Models;
+using cor_da_chita_api.Models;
 
 namespace cor_da_chita_api
 {
@@ -71,7 +71,14 @@ namespace cor_da_chita_api
 
                     <h2>Informações do Cliente:</h2>
                     <p><strong>Nome:</strong> ##USERNAME##</p>
-                    <p><strong>Endereço:</strong> ##SENDADDRESS##</p>
+                    <p><strong>Endereço:</strong></p>
+                    <ul style=""list-style-type: none; padding: 0; margin: 0; text-indent: 20px;"">
+                        <li>##SENDSTREET##, ##SENDNUMBER##, ##SENDNEIGHBORHOOD##</a></li>
+                        <li>CEP: ##SENDCEP##</li>
+                        <li>##SENDCITY##, ##SENDSTATE##</li>
+                        <li>##SENDCOMPLEMENT##</li>
+                        <!-- Add more information as needed -->
+                    </ul>
                     <p><strong>E-mail:</strong> ##USEREMAIL##</p>
                     <p><strong>Telefone:</strong> ##USERPHONENUMBER##</p>
 
@@ -128,7 +135,13 @@ namespace cor_da_chita_api
                         .Replace("##ORDERNUMBER##", orderDetails.Id)
                         .Replace("##ORDERDATE##", orderDetails.OrderDate.ToString())
                         .Replace("##TABLE##", productTable)
-                        .Replace("##SENDADDRESS##", orderDetails.Neighborhood)
+                        .Replace("##SENDSTREET##", orderDetails.Street)
+                        .Replace("##SENDNUMBER##", orderDetails.Num)
+                        .Replace("##SENDNEIGHBORHOOD##", orderDetails.Neighborhood)
+                        .Replace("##SENDCEP##", orderDetails.CEP)
+                        .Replace("##SENDCITY##", orderDetails.City)
+                        .Replace("##SENDSTATE##", orderDetails.UF)
+                        .Replace("##SENDCOMPLEMENT##", orderDetails.Complement)
                         .Replace("##USEREMAIL##", orderDetails.UserEmail)
                         .Replace("##USERPHONENUMBER##", orderDetails.PhoneNumber)
                         .Replace("##SUBTOTAL##", subTotal.ToString())
