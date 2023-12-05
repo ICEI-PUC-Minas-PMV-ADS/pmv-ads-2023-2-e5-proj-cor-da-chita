@@ -50,7 +50,7 @@ export default function QuotesTabs() {
         variant="underlined"
         color="default"
         classNames={{
-          tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+          tabList: "gap-3 w-full relative rounded-none p-0 border-b border-divider",
         }}
         selectedKey={selectedKey}
         onSelectionChange={(index) => setSelectedKey(String(index))}

@@ -47,8 +47,8 @@ export default function NavBar() {
       isBordered
       className="bg-dark flex shadow-sm justify-between shadow-none"
     >
-      <div className="flex items-center">
-        <NavbarBrand onClick={handleClick} className="bg-dark ">
+      <div className="flex items-center cursor-pointer">
+        <NavbarBrand onClick={handleClick} className="bg-dark cursor-pointer">
           <span>
           <CorChitaFlor />
           </span>

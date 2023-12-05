@@ -2,12 +2,14 @@ import React from "react";
 
 export const CorChitaFlor = () => (
   <svg
+    className="cursor-pointer"
     xmlns="http://www.w3.org/2000/svg"
     width="46pt"
     height="46pt"
     viewBox="0 0 1800 1800"
   >
     <image
+      className="cursor-pointer"
       id="Camada_1"
       data-name="Camada 1"
       x="382"
