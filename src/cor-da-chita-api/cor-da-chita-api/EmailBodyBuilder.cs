@@ -1,4 +1,4 @@
-﻿using cor_da_chita_api.Models;
+using cor_da_chita_api.Models;
 
 namespace cor_da_chita_api
 {
@@ -71,7 +71,14 @@ namespace cor_da_chita_api
 
                     <h2>Informações do Cliente:</h2>
                     <p><strong>Nome:</strong> ##USERNAME##</p>
-                    <p><strong>Endereço:</strong> ##SENDADDRESS##</p>
+                    <p><strong>Endereço:</strong></p>
+                    <ul style=""list-style-type: none; padding: 0; margin: 0; text-indent: 20px;"">
+                        <li>##SENDSTREET##, ##SENDNUMBER##, ##SENDNEIGHBORHOOD##</a></li>
+                        <li>CEP: ##SENDCEP##</li>
+                        <li>##SENDCITY##, ##SENDSTATE##</li>
+                        <li>##SENDCOMPLEMENT##</li>
+                        <!-- Add more information as needed -->
+                    </ul>
                     <p><strong>E-mail:</strong> ##USEREMAIL##</p>
                     <p><strong>Telefone:</strong> ##USERPHONENUMBER##</p>
 
@@ -100,7 +107,8 @@ namespace cor_da_chita_api
 
         public static string EmailBodyTemplate(OrderDto orderDetails)
         {
-            var productTable = string.Empty;
+            // var productTable = string.Empty;
+            var productTable = TABLE_WITH_PRODUCT_INFO;
 
             var dictionary = orderDetails.Items.GroupBy(i => i.ProductId)
                         .ToDictionary(x => x.Key, i => i.ToList());
@@ -112,13 +120,29 @@ namespace cor_da_chita_api
                 var totalPrice = item.Value.Sum(x => x.ProductPrice);
                 subTotal += totalPrice;
 
-                productTable += TABLE_WITH_PRODUCT_INFO
-                                .Replace("##PRODUCTNAME##", item.Value.First().ProductName)
-                                .Replace("##PRODUCTCOUNT##", item.Value.Count.ToString())
-                                .Replace("##PRODUCTPRICE##", item.Value.First().ProductPrice.ToString())
-                                //.Replace("##TOTALPRICE##", totalPrice.ToString()) + "/n";
-                                .Replace("##TOTALPRICE##", totalPrice.ToString());
+                // Append the table rows for each item
+                productTable += $@"
+                    <tr>
+                        <td>{item.Value.First().ProductName}</td>
+                        <td>{item.Value.Count}</td>
+                        <td>{item.Value.First().ProductPrice}</td>
+                        <td>{totalPrice}</td>
+                    </tr>";
             }
+            
+            
+            // foreach (var item in dictionary)
+            // {
+            //     var totalPrice = item.Value.Sum(x => x.ProductPrice);
+            //     subTotal += totalPrice;
+
+            //     productTable += TABLE_WITH_PRODUCT_INFO
+            //                     .Replace("##PRODUCTNAME##", item.Value.First().ProductName)
+            //                     .Replace("##PRODUCTCOUNT##", item.Value.Count.ToString())
+            //                     .Replace("##PRODUCTPRICE##", item.Value.First().ProductPrice.ToString())
+            //                     //.Replace("##TOTALPRICE##", totalPrice.ToString()) + "/n";
+            //                     .Replace("##TOTALPRICE##", totalPrice.ToString());
+            // }
 
             var orderTotalPrice = orderDetails.Freight.FreightValue + subTotal;
 
@@ -129,7 +153,13 @@ namespace cor_da_chita_api
                         .Replace("##ORDERNUMBER##", orderDetails.Id)
                         .Replace("##ORDERDATE##", orderDetails.OrderDate.ToString())
                         .Replace("##TABLE##", productTable)
-                        .Replace("##SENDADDRESS##", orderDetails.Neighborhood)
+                        .Replace("##SENDSTREET##", orderDetails.Street)
+                        .Replace("##SENDNUMBER##", orderDetails.Num)
+                        .Replace("##SENDNEIGHBORHOOD##", orderDetails.Neighborhood)
+                        .Replace("##SENDCEP##", orderDetails.CEP)
+                        .Replace("##SENDCITY##", orderDetails.City)
+                        .Replace("##SENDSTATE##", orderDetails.UF)
+                        .Replace("##SENDCOMPLEMENT##", orderDetails.Complement)
                         .Replace("##USEREMAIL##", orderDetails.UserEmail)
                         .Replace("##USERPHONENUMBER##", orderDetails.PhoneNumber)
                         .Replace("##SUBTOTAL##", subTotal.ToString())
