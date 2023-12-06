@@ -23,8 +23,7 @@ namespace cor_da_chita_api.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class FreightController : ControllerBase
     {
-        //CEP de biel,mudar depois para cep de onde a mãe da illa for enviar
-        private const string cepOrigem = "33010515";
+        private const string cepOrigem = "58045010";
 
         //URl DA API
         private string urlCalculoFrete = "https://cepcerto.com/ws/json-frete";
