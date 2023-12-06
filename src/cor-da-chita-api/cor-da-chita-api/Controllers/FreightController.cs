@@ -24,7 +24,7 @@ namespace cor_da_chita_api.Controllers
     public class FreightController : ControllerBase
     {
         //CEP de biel,mudar depois para cep de onde a mãe da illa for enviar
-        private const string cepOrigem = "33010515";
+        private const string cepOrigem = "58045010";
 
         //URl DA API
         private string urlCalculoFrete = "https://cepcerto.com/ws/json-frete";
@@ -59,18 +59,10 @@ namespace cor_da_chita_api.Controllers
 
 
 
-                //
-
-                //
-
-                /*                string url = $"{urlApi}/{cepOrigem}/{model.CEP}/{model.Freight.TotalWheightFreight}/{model.Freight.TotalHeightFreight}/{model.Freight.TotalWidthFreight}/{model.Freight.TotalLengthFreight}/775ba44c848ce5696094a3b35815bcff01b39d46";3
-                */
-
-                //4ec871f7e9cc8bb1e6a9c883de86a1f228d95a05
-                string url = $"{urlCalculoFrete}/33010515/02177060/1000/20/20/20/4ec871f7e9cc8bb1e6a9c883de86a1f228d95a05";
+                string url = $"{urlCalculoFrete}/{cepOrigem}/{model.Cep}/1000/20/20/20/2f9fab7f7edc1f29de78ea5ce98b91c4b12927ad";
 
 
-            var a = await _httpClient.GetStringAsync(url);
+                var a = await _httpClient.GetStringAsync(url);
 
             var frete = JsonConvert.DeserializeObject<FreightDeserialize>(a);
 
