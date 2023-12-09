@@ -39,7 +39,7 @@ export default function SummaryOrder() {
   const { street, setStreet, neighborhood, setNeighborhood, num, setNum, city, setCity, uf, setUf, cep, setCep, complement, setComplement } = useContext(AddressContext);
   const [loading, setLoading] = useState(false); // Spinner Botão Calcular
 
-  const { cartItems, sumCartItems, copyCartItems, setCartItems } =
+  const { cartItems, sumCartItems, copyCartItems, setCartItems,setSumCartItems } =
     useContext(CartItemsContext);
   const { cartFlow, setCartFlow } = useContext(CartContext);
   const { setPixId } = useContext(PixContext);
@@ -223,12 +223,30 @@ export default function SummaryOrder() {
     route.push("/shop-cart");
   }
 
+  const totalCart=()=> {
+    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    console.log(cartItems)
+    const updatedSum = arrItens.reduce((acc: number, item: any) => {
+      const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
+      return acc + (cartItem?.preco || 0) * item.quantidade;
+    }, 0);
+    console.log(updatedSum)
+    setSumCartItems(updatedSum);
+  }
+
   // Limpando path cartFlow
   useEffect(() => {
-    setCartFlow("");
 
+    totalCart()
+
+    const carrinho : string[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
+
+    setCartFlow("");
+    console.log(user.email)
+    console.log(address.cep)
+    console.log(carrinho)
     // Caso atualize a página retornar para ao carrinho
-    if (address.cep === "" || cartItems.length === 0 || user.email === "") {
+    if (address.cep === "" || carrinho.length === 0 || user.email === "") {
       route.push("/shop-cart");
     }
   }, []);
@@ -263,6 +281,8 @@ export default function SummaryOrder() {
                       <div className="flex gap-2 justify-between">
                         <p>{item.nome}</p>
                         <p>{item.quantidade}x</p>
+                    
+                      
                       </div>
                       <p>
                         R$ {item.preco.toFixed(2).toString().replace(".", ",")}
@@ -280,6 +300,7 @@ export default function SummaryOrder() {
                   <p>
                     <strong>
                       R$ {sumCartItems.toFixed(2).toString().replace(".", ",")}
+                      R$ {console.log(sumCartItems)}
                     </strong>
                   </p>
                 </div>

@@ -45,7 +45,8 @@ export default function ShippingData() {
     !address.num ||
     !address.city ||
     !address.uf ||
-    !address.cep;
+    !address.cep
+    
 
   // Controla preenchimento dos campos de endereço
   const handleCep = async (cep: string) => {
@@ -78,6 +79,9 @@ export default function ShippingData() {
 
   // Carrega dados do usuário e se for envio via correios, também carrega endereço
   useEffect(() => {
+
+    
+
     if (session && session.user) {
       user.setName(session.user.name ?? "");
       user.setEmail(session.user.email ?? "");
@@ -340,7 +344,7 @@ export default function ShippingData() {
                   as="button"
                   className="p-4 my-3 gap-2 tracking-wide text-dark hover:text-success border border-transparent hover:border-success transition-all duration-200"
                   onClick={() =>
-                    validadeData
+                    validadeData && session!= null
                       ? setMissInfo(true)
                       : route.push("/summary-order")
                   }
@@ -351,7 +355,7 @@ export default function ShippingData() {
           </div>
           </div>
           </div>
-         
+          
         </div>
 
       ) : (

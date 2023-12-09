@@ -62,7 +62,7 @@ namespace cor_da_chita_api
                 <body>
                     <h1>Olá <strong>##USERNAME##</strong>,</h1>
 
-                    <p>O seu pedido número <strong>##ORDERNUMBER##</strong>, feito em <strong>##ORDERDATE##</strong>, está sendo processado.</p>
+                    <p>O pedido de numero <strong>##ORDERNUMBER##</strong>, feito em <strong>##ORDERDATE##</strong>, está sendo processado.</p>
 
                     <h2>Detalhes do Pedido:</h2>
                     <table>
@@ -150,7 +150,7 @@ namespace cor_da_chita_api
 
             var result = MAIN_EMAIL_BODY
                         .Replace("##USERNAME##", orderDetails.UserName)
-                        .Replace("##ORDERNUMBER##", orderDetails.Id)
+                        .Replace("##ORDERNUMBER##", orderDetails.OrderNumber.ToString())
                         .Replace("##ORDERDATE##", orderDetails.OrderDate.ToString())
                         .Replace("##TABLE##", productTable)
                         .Replace("##SENDSTREET##", orderDetails.Street)

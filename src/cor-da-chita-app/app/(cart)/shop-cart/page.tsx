@@ -34,9 +34,10 @@ import IconQuestionCircle from "@/assets/icons/IconQuestionCircle";
 import SpinnerForButton from "@/components/SpinnerButton";
 import { CepContext } from "@/contexts/CepContext/CepContext";
 import { FreteContext } from "@/contexts/FreteContext/FreteContext";
-
+import { getSession, useSession } from "next-auth/react";
 export default function ShopCart() {
   const route = useRouter();
+  const { data: session } = useSession();
 
   const { cart, setCart, cartFlow } = useContext(CartContext); // Array IDs produtos
   const { sumCartItems } = useContext(CartItemsContext); // Soma total
@@ -110,7 +111,10 @@ export default function ShopCart() {
       handleCep();
     }
   };
-
+ const getSessao = async()=>{
+  const res = await getSession()
+  console.log(res)
+ }
   // Lidar com a rota vinda do summary-order ou não. Chamada no botão "Ir para o Pagamento"
   function handleConfirmCartData(): void {
     if (cartFlow == "/summary-order") {
@@ -122,10 +126,12 @@ export default function ShopCart() {
 
   // Pega IDs do local storage salva em setCart
   useEffect(() => {
+   getSessao()
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     setCart(arrItens);
 
     setIsPac("PAC");
+
   }, []);
 
   useEffect(() => {

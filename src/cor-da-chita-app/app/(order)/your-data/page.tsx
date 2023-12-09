@@ -3,11 +3,13 @@
 
 import React, { useContext, useState, useMemo, useEffect } from "react";
 
-import { signIn, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { Link, Button, Input, Divider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import ArrowLeft from "@/assets/icons/ArrowLeft";
 import ArrowRight from "@/assets/icons/ArrowRight";
+import { CartItemsContext, } from "@/contexts/CartContext/CartItemsContext";
+import getProductDataById from "@/database/products/getProductDataById";
 
 import Form from "../../../components/ui/Form";
 
@@ -15,12 +17,16 @@ import MailIcon from "../../../assets/icons/MailIcon";
 import UserIcon from "../../../assets/icons/UserIcon";
 import PhoneIcon from "../../../assets/icons/PhoneIcon";
 import GoogleIcon from "@/assets/icons/GoogleIcon";
+import { Produto } from "@/lib/interface";
 
 import { UserContext } from "@/contexts/UserContext/UserContext";
 import { CartContext } from "@/contexts/CartContext/CartContext";
 
 export default function UserData() {
   const { data: session } = useSession();
+  const { cartItems,setCartItems,copyCartItems,setCopyCartItems } = useContext(CartItemsContext);
+  const { cart, setCart } = useContext(CartContext);
+
   const route = useRouter();
 
   const user = useContext(UserContext);
@@ -46,13 +52,47 @@ export default function UserData() {
     return validateEmail(value) ? false : true;
   }, [value]);
 
+const getSessao = async()=>{
+  const res =  await getSession()
+  return res
+
+
+}
+
   // Se usuário logado pega os dados da session
   useEffect(() => {
-    if (session) {
-      user.setName(session?.user?.name ?? "");
-      user.setEmail(session?.user?.email ?? "");
-    }
-  });
+
+    const carrinho = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    const fetchData = async () => {
+      const products = [];
+      for (let id of carrinho) {
+       
+        const produto = (await getProductDataById(id)) as Produto[];
+        console.log(produto)
+        products.push(produto[0]);
+      }
+      setCartItems(products);
+     
+    };
+
+    fetchData();
+
+   
+
+
+   //Quando loga nesta page,faz o login,a variable de session fica undefined,então faz um chamada assincrona do método do next auth para pegar a session
+    setTimeout(async () => {
+       const session = await  getSessao()
+        if(session)
+        {
+          user.setName(session?.user?.name ?? "");
+          user.setEmail(session?.user?.email ?? "");
+         
+        }
+
+    }, 500);
+  
+  },[]);
 
   // Lidar com botão Enter. Chamado no no input Tel ou Complemento
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

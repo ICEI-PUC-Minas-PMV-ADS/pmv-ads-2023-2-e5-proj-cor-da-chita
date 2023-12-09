@@ -16,13 +16,14 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
 
   // Soma total carrinho
   function totalCart() {
+    
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-
+    console.log(cartItems)
     const updatedSum = arrItens.reduce((acc: number, item: any) => {
       const cartItem = cartItems.find((cartItem) => cartItem._id === item.id);
       return acc + (cartItem?.preco || 0) * item.quantidade;
     }, 0);
-
+    
     setSumCartItems(updatedSum);
   }
 

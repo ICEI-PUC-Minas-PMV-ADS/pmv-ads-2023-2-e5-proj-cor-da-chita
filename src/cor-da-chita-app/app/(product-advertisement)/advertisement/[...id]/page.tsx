@@ -142,6 +142,10 @@ export default function ProductAdvertisement() {
       {/* Snack Bar */}
       <div className="m-auto">
         <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center'
+          }}
           open={openSnackBar}
           autoHideDuration={30000}
           onClose={() => setOpenSnackBar(false)}
