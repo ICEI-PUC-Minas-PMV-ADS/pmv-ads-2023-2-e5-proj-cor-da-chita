@@ -134,15 +134,14 @@ export default function SummaryOrder() {
       (sum, item) => sum + item.peso,
       0
     );
+      console.log(isPac)
+      console.log(isCombinarFrete)
 
-    const freightMethod =
-      isPac === "PAC" && !isCombinarFrete
-        ? "PAC"
-        : isPac === "SEDEX" && !isCombinarFrete
-        ? "SEDEX"
-        : !isPac && isCombinarFrete
-        ? "Combinar com a vendedora"
-        : "outro";
+      //A variável isCombinarFrete esta invertida,quando está false é quando esta combinando o frete e true quando é pelos correios
+      const tipoCorreios = isPac==="PAC"?"PAC":"SEDEX"
+
+      const freightMethod = !isCombinarFrete?"Combinado diretamente com a vendedora":tipoCorreios
+       
 
     console.log("freightMethod:", freightMethod);
 
@@ -300,7 +299,7 @@ export default function SummaryOrder() {
                   <p>
                     <strong>
                       R$ {sumCartItems.toFixed(2).toString().replace(".", ",")}
-                      R$ {console.log(sumCartItems)}
+                    
                     </strong>
                   </p>
                 </div>

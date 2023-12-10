@@ -38,6 +38,7 @@ import { getSession, useSession } from "next-auth/react";
 export default function ShopCart() {
   const route = useRouter();
   const { data: session } = useSession();
+  const { cartItems } = useContext(CartItemsContext);
 
   const { cart, setCart, cartFlow } = useContext(CartContext); // Array IDs produtos
   const { sumCartItems } = useContext(CartItemsContext); // Soma total
@@ -127,6 +128,8 @@ export default function ShopCart() {
   // Pega IDs do local storage salva em setCart
   useEffect(() => {
    getSessao()
+   console.log(freteInContext)
+   console.log(isCombinarFrete)
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
     setCart(arrItens);
 
@@ -135,7 +138,14 @@ export default function ShopCart() {
   }, []);
 
   useEffect(() => {
-    if (cart.length === 0 || freteInContext == "") setIsCombinarFrete(false);
+    const carrinho:string[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    console.log(carrinho)
+    if (carrinho.length == 0 || freteInContext == "") 
+    {
+      console.log("foiii")
+       setIsCombinarFrete(false);
+
+    }
 
     if (cartFlow === "/summary-order" && freteInContext != "") {
       setIsCombinarFrete(true);
@@ -203,17 +213,18 @@ export default function ShopCart() {
                     size="sm"
                     value="combinar"
                     onClick={() => {
-                      setIsCombinarFrete(false), setCep(""), setIsPac("PAC");
+                      setIsCombinarFrete(false),console.log(isCombinarFrete), setCep(""), setIsPac("PAC");
                     }}
                   >
                     <p className="text-lg ml-2">Combinar com a vendedora</p>
                   </Radio>
                   <Radio
-                    isDisabled={cart.length === 0}
+                    isDisabled={cart.length === 0 }
                     size="sm"
                     value="correios"
                     onClick={() => {
-                      setIsCombinarFrete(true);
+                      setIsCombinarFrete(true)
+                      console.log(isCombinarFrete)
                     }}
                   >
                     <p className="text-lg ml-2">Calcular Frete</p>
@@ -268,7 +279,7 @@ export default function ShopCart() {
 
 
               {/* PAC / SEDEX */}
-              {isCombinarFrete && (
+              {isCombinarFrete  && freteInContext!= "" && (
                 <>
                   <div className="m-5">
                     {/*Tipo de Envio> Título e Tooltip */}
