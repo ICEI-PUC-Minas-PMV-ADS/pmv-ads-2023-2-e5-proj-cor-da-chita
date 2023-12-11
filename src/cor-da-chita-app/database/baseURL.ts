@@ -1,1 +1,1 @@
-export const baseURL = "https://localhost:7095";
+export const baseURL = "https://cordachita.azurewebsites.net/api/v1";
