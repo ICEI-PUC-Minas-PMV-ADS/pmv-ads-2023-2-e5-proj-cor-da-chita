@@ -17,6 +17,10 @@ useEffect(()=>{
   if(arrItens.length == 0){
     setTotalQuantity(0)
   }
+
+  else if (arrItens.length>0){
+    setTotalQuantity(arrItens.length)
+  }
 else{
 
   let  valor = cartItems.reduce(
@@ -29,6 +33,8 @@ else{
   setTotalQuantity(valor)
 }
 },[cartItems])
+
+
   return (
     <Button
     className="bg-light shadow-sm text-grey hover:scale-105  hover:bg-default-200/70"
@@ -39,7 +45,7 @@ else{
         <CartIcon className="w-4 h-4" />
         <div className="rounded-full text-xs">
           <div className="w-4 h-4 flex items-center pb-2 justify-center">
-            {totalQuantity > 0 ? totalQuantity : 0}
+            { totalQuantity==undefined ||totalQuantity > 0  ? totalQuantity : 0}
           </div>
         </div>
       </div>
